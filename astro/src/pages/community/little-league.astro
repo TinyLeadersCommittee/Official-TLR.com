@@ -1,0 +1,172 @@
+---
+// src/pages/community/little-league.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// THE DATA ZONE: Update your schedule here!
+const schedule = [
+  { date: "Jan 5 - Jan 25", event: "Tiny Titans '25/'26 Championship", type: "championship" },
+  { date: "Jan 26 - Feb 22", event: "February Monthly", type: "qualifier" },
+  { date: "Mar 2 - Mar 29", event: "March Monthly", type: "qualifier" },
+  { date: "Apr 6 - May 3", event: "April Monthly", type: "qualifier" },
+  { date: "May 15 - Jun 28", event: "Spring SCT", type: "major" }, // Major event
+  { date: "May 18 - Jun 21", event: "Spring Monthly", type: "standard" },
+  // ... add the rest of your dates here
+];
+---
+
+<BaseLayout title="Official Little League">
+  
+  <header class="league-hero">
+    <h1>The Official Little League</h1>
+    <p>
+      Get ready to battle it out all year long! Whether you're a seasoned 
+      vet or new to the format, the Little League is the best way to 
+      play, compete, and connect with the community.
+    </p>
+    <p>
+      <strong>The Goal?</strong> Survive the seasons, conquer the Second 
+      Chances Tournament, and qualify for the Tiny Titans Top 8 Championship.
+    </p>
+  </header>
+
+  <aside class="philosophy-excerpt">
+    <h3>The League Philosophy</h3>
+    <blockquote>
+      "The monthly leagues are there to offer everyone a place to play 
+      <strong>organized</strong>, <strong>accessible</strong>, 
+      <strong>low-stakes</strong> Tiny Leaders."
+    </blockquote>
+    <p>
+      <small>
+        Our goal is to be your "Friday Night Magic" at home. 
+        It’s just not that big of a deal—and that’s the point.
+      </small>
+    </p>
+    <p>
+      <a href="/community/league-philosophy">
+        Read the full statement by Committee Advisor Fishe &rarr;
+      </a>
+    </p>
+  </aside>
+
+  <hr />
+
+  <section id="monthlies">
+    <h2>The Core Loop: Monthly Swiss</h2>
+    <p>
+      Your regular dose of Tiny Leaders. Every month, the Committee hosts 
+      a flexible, community-friendly tournament.
+    </p>
+
+    <div class="rules-grid">
+      <article class="rule-card">
+        <h3>The Format</h3>
+        <p>
+          <strong>Swiss Pairings.</strong> Typically 4 rounds. You have 
+          <strong>one full week</strong> per round to schedule and play 
+          your match on Cockatrice.
+        </p>
+      </article>
+
+      <article class="rule-card">
+        <h3>The Platform</h3>
+        <p>
+          Registration and brackets run on <strong>Challonge</strong>. 
+          Match communication happens in our <strong>Discord</strong>.
+        </p>
+      </article>
+
+      <article class="rule-card">
+        <h3>The Stakes</h3>
+        <p>
+          Prizes for Top 3 Tournament Supporters. Plus, performance in 
+          Spring & Fall months qualifies you for the <strong>SCT</strong>.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="seasons">
+    <h2>The Road to Glory: Seasonal Play</h2>
+    <p>
+      Although we play every month, the year is divided into two major 
+      competitive seasons: <strong>Spring</strong> and <strong>Fall</strong>.
+    </p>
+    
+    <article class="major-event">
+      <h3>The Second Chances Tournament (SCT)</h3>
+      <p>
+        Held at the end of both the Spring and Fall seasons. A cut-throat, 
+        <strong>Double Elimination</strong> bracket where every win counts, 
+        but everyone get's a second chance.
+      </p>
+      <ul>
+        <li>
+          <strong>Qualification:</strong> Top 14 players from the 3-month season 
+          + Top 2 from Weekly Tiny Brawls.
+        </li>
+        <li><strong>Cost:</strong> Free for qualified players.</li>
+        <li><strong>Prizes:</strong> Awards for Top 3 finishers.</li>
+      </ul>
+      <p class="note">
+        <em>
+          <strong>Important:</strong> If you qualify for Tiny Titans in the 
+          Spring, you cannot play in the Fall SCT. We save those seats for 
+          new challengers!
+        </em>
+      </p>
+    </article>
+
+    <article class="major-event championship">
+      <h3>🏆 Tiny Titans Top 8 Championship</h3>
+      <p>
+        <strong>The Pinnacle.</strong> The best of the best face off in January 
+        to kick off the new year.
+      </p>
+      <ul>
+        <li>
+          <strong>Qualification:</strong> Top 4 from Spring SCT + Top 4 from 
+          Fall SCT.
+        </li>
+        <li><strong>Format:</strong> High-stakes Single Elimination.</li>
+        <li><strong>The Prize:</strong> Cash prizes and the title of <strong>Mightiest Tiniest Leader</strong>.</li>
+      </ul>
+    </article>
+  </section>
+
+  <hr />
+
+  <section id="schedule">
+    <h2>2026 Tentative Schedule</h2>
+    <dl class="schedule-list">
+      {schedule.map((item) => (
+        <div class={`schedule-item ${item.type}`}>
+          <dt>{item.date}</dt>
+          <dd>
+            {item.type === "major" || item.type === "championship" ? (
+              <strong>{item.event}</strong>
+            ) : (
+              item.event
+            )}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <hr />
+
+  <aside id="resources">
+    <h3>Ready to Join?</h3>
+    <p>
+      Visit the <strong>#channels-and-roles</strong> section in Discord 
+      and select the <strong>@TLR Little League</strong> role to get notified 
+      when registration opens.
+    </p>
+    <nav>
+      <a href="https://challonge.com">Visit Challonge</a> | 
+      <a href="https://cockatrice.github.io/">Download Cockatrice</a>
+    </nav>
+  </aside>
+
+</BaseLayout>

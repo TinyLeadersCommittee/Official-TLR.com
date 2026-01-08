@@ -1,0 +1,140 @@
+---
+// serc/layouts/BaseLayout.astro
+// This is the "Frontmatter" (Server-side JavaScript)
+const { title } = Astro.props;
+---
+
+<!Doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Tiny Leaders: Reborn</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+
+  <body>
+    <header>
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/discover">Discover</a> |
+            <a href="/community">Community</a>
+        </nav>
+        <hr />
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    Here is the refined src/layouts/BaseLayout.astro code, incorporating the specific credits and link structure we just finalized.
+
+Code snippet
+
+---
+// src/layouts/BaseLayout.astro
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Tiny Leaders Reborn</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a> | 
+        <a href="/discover">Discover</a> | 
+        <a href="/community">Community</a>
+      </nav>
+      <hr />
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <hr />
+      
+      <section class="footer-grid">
+        
+        <div class="footer-column">
+          <h3>About</h3>
+          <ul>
+            <li><a href="/about">About TLR</a></li>
+            <li><a href="/about/committee">Governance</a></li>
+            <li><a href="/about/history">History</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Play</h3>
+          <ul>
+            <li><a href="/rules/overview">Format Overview</a></li>
+            <li><a href="/banlist">Ban List</a></li>
+            <li><a href="/rules/supplements">Rules Supplements</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="https://discord.com/invite/jq9KWHAdTm">Discord</a></li>
+            <li>
+              <a href="https://www.youtube.com/@TinyLeadersRebornCommittee/featured">
+                YouTube
+              </a>
+            </li>
+            <li>
+              <a href="https://bsky.app/profile/tinyleadersrebon.bsky.social">
+                Bluesky
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </section>
+
+      <hr />
+
+      <section class="credits-text">
+        <p>
+          <small>
+            <strong>Tiny Leaders Original Format</strong> created by Charlotte 
+            Tackaberry with Steven Hamonic and Matthew Turnbull (2013).
+            <br />
+            <strong>Tiny Leaders Reborn</strong> developed by founding members: 
+            Olivier Manin, Arnaud, and Cl&eacute;ment Silli&egrave;re (2018).
+          </small>
+        </p>
+      </section>
+
+      <section class="legal-text">
+        <p>
+          <small>
+            <strong>Unofficial Fan Content:</strong> Tiny Leaders Reborn is a 
+            community-run format. We are not affiliated with, endorsed by, or 
+            sponsored by Wizards of the Coast.
+          </small>
+        </p>
+        <p>
+          <small>
+            <strong>Trademark:</strong> Magic: The Gathering and all related 
+            trademarks are &copy; Wizards of the Coast LLC.
+          </small>
+        </p>
+        <p>
+          <small>
+            &copy; 2026 Tiny Leaders Reborn Committee. All rights reserved.
+          </small>
+        </p>
+      </section>
+
+    </footer>
+  </body>
+
+</html>
