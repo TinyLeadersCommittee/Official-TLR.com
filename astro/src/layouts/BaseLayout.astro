@@ -26,41 +26,8 @@ const { title } = Astro.props;
     <main>
       <slot />
     </main>
-
-    Here is the refined src/layouts/BaseLayout.astro code, incorporating the specific credits and link structure we just finalized.
-
-Code snippet
-
----
-// src/layouts/BaseLayout.astro
-const { title } = Astro.props;
----
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} | Tiny Leaders Reborn</title>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <a href="/">Home</a> | 
-        <a href="/discover">Discover</a> | 
-        <a href="/community">Community</a>
-      </nav>
-      <hr />
-    </header>
-
-    <main>
-      <slot />
-    </main>
-
-    <footer>
-      <hr />
       
-      <section class="footer-grid">
+    <section class="footer-grid">
         
         <div class="footer-column">
           <h3>About</h3>
@@ -97,9 +64,9 @@ const { title } = Astro.props;
           </ul>
         </div>
 
-      </section>
+    </section>
 
-      <hr />
+    <hr />
 
       <section class="credits-text">
         <p>
