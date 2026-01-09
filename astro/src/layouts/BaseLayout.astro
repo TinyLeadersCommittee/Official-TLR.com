@@ -18,7 +18,9 @@ const { title } = Astro.props;
         <nav>
             <a href="/">Home</a> |
             <a href="/discover">Discover</a> |
+            <a href="/banlist">Banlist</a> |
             <a href="/community">Community</a>
+            <a href="/about">About</a>
         </nav>
         <hr />
     </header>
@@ -27,22 +29,24 @@ const { title } = Astro.props;
       <slot />
     </main>
       
-    <section class="footer-grid">
+    <footer>
+      <hr />
+      
+      <section class="footer-grid">
         
         <div class="footer-column">
           <h3>About</h3>
           <ul>
-            <li><a href="/about">About TLR</a></li>
+            <li><a href="/about">History & Origins</a></li> 
             <li><a href="/about/committee">Governance</a></li>
-            <li><a href="/about/history">History</a></li>
-          </ul>
+            </ul>
         </div>
 
         <div class="footer-column">
           <h3>Play</h3>
           <ul>
             <li><a href="/rules/overview">Format Overview</a></li>
-            <li><a href="/banlist">Ban List</a></li>
+            <li><a href="/banlist">Ban List</a></li> 
             <li><a href="/rules/supplements">Rules Supplements</a></li>
           </ul>
         </div>
@@ -50,9 +54,9 @@ const { title } = Astro.props;
         <div class="footer-column">
           <h3>Connect</h3>
           <ul>
-            <li><a href="https://discord.com/invite/jq9KWHAdTm">Discord</a></li>
+            <li><a href="https://discord.gg/tiny-leaders">Discord</a></li>
             <li>
-              <a href="https://www.youtube.com/@TinyLeadersRebornCommittee/featured">
+              <a href="https://youtube.com/@TinyLeadersRebornCommittee">
                 YouTube
               </a>
             </li>
@@ -64,9 +68,9 @@ const { title } = Astro.props;
           </ul>
         </div>
 
-    </section>
+      </section>
 
-    <hr />
+      <hr />
 
       <section class="credits-text">
         <p>
