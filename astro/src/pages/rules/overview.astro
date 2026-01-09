@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Rules Overview">
+  <article class="rules-content">
+    
+    <header>
+      <h1>Format Overview</h1>
+      <p class="lead">
+        Tiny Leaders: Reborn (TLR) is a fan-created Magic: The Gathering 
+        format designed for one-on-one play. It's a singleton format, 
+        inspired by Commander, but with a unique compact structure that 
+        emphasizes strategic deck-building, interactive gameplay, and 
+        diverse strategies.
+      </p>
+    </header>
+
+    <hr />
+
+    <section id="key-rules">
+      <h2>Key Rules</h2>
+      <ul class="rules-list">
+        <li>
+            <strong>1v1 Play:</strong> Intended for one-on-one games.
+        </li>
+        <li>
+            <strong>3 Mana Value Restriction*:</strong> Every card must have 
+            a mana value of 3 or less.
+        </li>
+        <li>
+            <strong>Commander Requirement:</strong> A legendary creature or planeswalker
+            must be designated as a commander.
+        </li>
+        <li>
+          <strong>Deck Size:</strong> Exactly 50 cards, including commander(s).
+        </li>
+        <li>
+            <strong>Sideboard:</strong> No more than 10 cards.
+          </li>
+        <li>
+          <strong>Singleton Rule:</strong> Every card (except basic lands) 
+          must have a different English name.
+        </li>
+        <li>
+          <strong>Starting Life Total:</strong> Each player begins with 
+          20 life.
+        </li>
+      </ul>
+
+      <aside class="rule-callout">
+        <h3>*The Rule of 3</h3>
+        <p>
+          TLR evaluates cards differently than standard Magic. For 
+          multi-part cards (Adventures, Split Cards, MDFCs), 
+          <em>every</em> face or spell on the card must independently 
+          meet the MV 3 limit. 
+        </p>
+        <p>
+          <a href="/rules/supplements#philosophy">
+            Read the full technical breakdown here &rarr;
+          </a>
+        </p>
+      </aside>
+    </section>
+
+    <section id="additional-rules">
+      <h2>Additional Rules</h2>
+      <ul class="rules-list">
+        <li>
+            <strong>Color Identity:</strong> All cards in your deck must 
+            fit within the color identity of your commander(s). Identity 
+            includes mana symbols in the cost and rules text, plus any 
+            color indicators.
+        </li>
+        <li>
+          <strong>Commander Tax:</strong> {2} for each previous time cast 
+          from the command zone.
+        </li>
+        <li>
+          <strong>Commander Movement:</strong> May move to command zone 
+          from graveyard or exile as a state-based action.
+        </li>
+        <li>
+          <strong>Forced Mulligan:</strong> With multiple commanders, 
+          draw 7 and put one on the bottom. Counts as the first mulligan.
+        </li>
+        <li>
+          <strong>Wish Effects:</strong> May only choose cards from 
+          the sideboard.
+        </li>
+      </ul>
+    </section>
+
+    <hr />
+
+    <section id="philosophy">
+      <h2>The Philosophy of Tiny Leaders: Reborn</h2>
+      <p>
+        The Format and Play Experience is built upon several key principles:
+      </p>
+
+      <dl class="philosophy-grid">
+        <div class="philo-item">
+            <dt>Metagame Diversity</dt>
+            <dd>
+                A healthy format supports a variety of viable decks and strategies, avoiding 
+                excessive dominance by any single archetype.
+            </dd>
+        </div>
+
+        <div class="philo-item">
+            <dt>Competitive Balance</dt>
+            <dd>
+                While power levels will vary, the format should remain balanced enough that
+                no strategy is overwhelmingly superior.
+            </dd>
+        </div>
+
+        <div class="philo-item">
+            <dt>Counterplay & Interaction</dt>
+            <dd>
+                Decks should have meaningful ways to interact with opponents, preventing 
+                non-games where one player has little agency.
+            </dd>
+        </div>
+
+        <div class="philo-item">
+            <dt>Format Identity</dt>
+            <dd>
+                Tiny Leaders: Reborn retains its unique playstyle by adhering to its 
+                structural rules, such as 3 MV or lower commanders and 50-card decks, while 
+                evolving naturally over time.
+            </dd>
+        </div>
+
+        <div class="philo-item">
+            <dt>Player Engagement & Enjoyment</dt>
+            <dd>
+                The format should be fun, rewarding to play, and accessible to a broad 
+                audience, from casual to competitive players, but leans competitively.
+            </dd>
+        </div>
+      </dl>
+
+      <p>
+        Although Tiny Leaders: Reborn is a competitive 1v1 format, its 
+        unique constraints offer plenty of different ways to enjoy the 
+        game. The defining rules encourage players to construct decks with 
+        cards that are "off the beaten path," leading to quirky 
+        interactions where winning might not always be the sole purpose. 
+        It truly does have something for every type of player.
+      </p>
+
+      <p class="cta-link">
+        <a href="/rules/supplements" class="btn-primary">
+          View Official Rules Documents and FAQ &rarr;
+        </a>
+      </p>
+    </section>
+
+  </article>
+</BaseLayout>
+
+<style>
+  /* Lead Text size */
+  .lead {
+    font-size: 1.1rem;
+    color: #ccc;
+    max-width: 65ch;
+  }
+
+  /* Styling the lists */
+  .rules-list {
+    list-style: none; /* Remove bullets to use custom spacing */
+    padding: 0;
+  }
+  .rules-list li {
+    background: rgba(255, 255, 255, 0.03);
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    border-left: 3px solid #444;
+    border-radius: 0 4px 4px 0;
+  }
+  .rules-list strong {
+    color: var(--accent-color);
+  }
+
+  /* The Alert Box */
+  .rule-callout {
+    border: 1px solid var(--accent-color);
+    background: rgba(255, 126, 103, 0.1); /* Low opacity accent */
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+  .rule-callout h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+  }
+
+  /* Philosophy Grid */
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .philo-item dt {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.25rem;
+  }
+  .philo-item dd {
+    margin: 0;
+    color: #ccc;
+  }
+  
+  /* Button Link */
+  .cta-link {
+    margin-top: 2rem;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent-color);
+    color: #111;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    text-decoration: none;
+  }
+</style>

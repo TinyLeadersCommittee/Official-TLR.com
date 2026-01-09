@@ -1,0 +1,336 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Rules Supplements">
+  <article class="supplements-content">
+    
+    <h1>Rules Supplements</h1>
+
+    <section id="author">
+      <h2>Author</h2>
+      <p>
+        Authored and maintained by <strong>Gray</strong>, a Level 2 Judge and 
+        the TLR Committee's Rules/Policy Manager. These rules are indispensable
+        whether you're a player, organizer, or judge.
+      </p>
+      
+      <div class="contact-box">
+        <h3>Questions & Contributions</h3>
+        <p>
+          If you have questions regarding these documents or suggestions 
+          for the FAQ, join us on the 
+          <a href="https://discord.gg/tiny-leaders">Official TLR Discord</a>.
+        </p>
+        <ul>
+          <li>
+            <strong>General Rulings:</strong> Use the  
+            <code>#ask-a-certified-judge</code> channel.
+          </li>
+          <li>
+            <strong>Policy Concerns:</strong> Message the Rules Manager, 
+            <code>@Gray | Judge Dad | JF L2</code>.
+          </li>
+        </ul>
+        <p>
+          <em>A member of our Judge team will respond as soon as possible.</em>
+        </p>
+      </div>
+    </section>
+
+    <hr />
+
+    <section id="documents">
+      <h2>Official Rules Documents</h2>
+      <p>
+        Download a PDF copy by clicking on the links provided. 
+        Please also review the FAQ below for common interactions.
+      </p>
+      <div class="download-buttons">
+        <a href="/docs/tsmcr.pdf" class="btn-download" target="_blank">
+          📄 Download TSMCR (Comprehensive Rules)
+        </a>
+        <a href="/docs/tsmtr.pdf" class="btn-download" target="_blank">
+          📄 Download TSMTR (Tournament Rules)
+        </a>
+      </div>
+    </section>
+    
+    <hr />
+
+    <article id="philosophy">
+      <h2>The Discrete Philosophy Update</h2>
+      <p class="meta-date">Date: September 24, 2025</p>
+      
+      <section>
+        <h3>Result</h3>
+        <p>
+          A card is said to have multiple sets of characteristics, if it 
+          has more than one, of each of the following:
+        </p>
+        <ul>
+          <li>Name</li>
+          <li>Mana Cost</li>
+          <li>Type Line</li>
+          <li>Rules Text</li>
+        </ul>
+        <p>
+          In TL:R, every set of characteristics on a card must have a mana 
+          value &le; 3. If a card has multiple sets of characteristics that 
+          may be chosen for casting, each set must independently meet this 
+          limit.
+        </p>
+      </section>
+
+      <section>
+        <h3>The Logic</h3>
+        <p>
+          From a design perspective, cards with more than one set of 
+          characteristics are multiple cards sharing one piece of cardboard. 
+          Every card must have a mana value &le; 3 as determined by each 
+          distinct set of characteristics.
+        </p>
+      </section>
+    </article>
+    
+    <hr />
+
+    <section id="faq">
+        <h2>Rules FAQ</h2>
+        <p>Last updated: June 9, 2024</p>
+  
+        <div class="faq-grid">
+          <details>
+            <summary>How do I know if a meld card is legal?</summary>
+            <div class="faq-answer">
+              <p>
+                We only look at the front face. The back is ignored when 
+                considering Mana Value, Color Identity, or other restrictions.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>How does Partner / Background work?</summary>
+            <div class="faq-answer">
+              <p>
+                As long as both cards meet deckbuilding restrictions, you 
+                can use them. If you play with more than one commander, you 
+                start the game with a forced mulligan.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>Can I change my Commander between games/matches?</summary>
+            <div class="faq-answer">
+              <p>
+                No. Your configuration is locked at the start of the event. 
+                You can swap cards between your 49 and sideboard, but the 
+                Commander(s) never change.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>Can I use cards with X in the casting cost?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. We look at the mana value with X=0. If the card has 
+                MV 3 or less with X=0, it is legal.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>Can I use Adventure cards?</summary>
+            <div class="faq-answer">
+              <p>
+                <strong>Discrete Philosophy Check:</strong> Every part of the 
+                card must be MV 3 or less. You must check the creature 
+                AND the Adventure spell. If either part is MV 4+, the 
+                entire card is illegal.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>How do I determine Mana Value of MDFCs?</summary>
+            <div class="faq-answer">
+              <p>
+                For Modal Double-Faced Cards, both sides must, independent 
+                of the other, meet the MV 3 restriction and the color 
+                identity of your Commander(s).
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>How many colors can I play?</summary>
+            <div class="faq-answer">
+              <p>
+                There is no limit aside from your Commander's identity. 
+                If you find a legal 5-color Commander, you can play 5 colors.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>Can I use a Companion?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. Your companion and your deck/commander(s) must 
+                all meet the Companion's restrictions and the TSMCR.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>Can I use Split Cards (Fuse / Aftermath)?</summary>
+            <div class="faq-answer">
+              <p>
+                <strong>Discrete Philosophy Check:</strong> Every part 
+                must be MV 3 or less. Furthermore, per WotC rules, the 
+                total MV of the card is the sum of its halves. Fire // Ice 
+                is MV 4 and therefore illegal.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>How do I determine Color Identity?</summary>
+            <div class="faq-answer">
+              <p>
+                Identity includes all colors in the Mana Cost, Rules Text, 
+                and Color Indicators. For double-faced cards, always 
+                check the back side (except for Meld cards).
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>How do I know if I can use a flip card?</summary>
+            <div class="faq-answer">
+              <p>
+                We only look at the "default" (unflipped) characteristics. 
+                The flipped state is ignored for legality.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>Does having multiple Commanders affect my hand?</summary>
+            <div class="faq-answer">
+              <p>
+                Yes. If you have more than one, you take a forced mulligan 
+                at the start of the game.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>Can I use digital-only or Alchemy cards?</summary>
+            <div class="faq-answer">
+              <p>
+                No. TLR is a paper format. All cards use their Oracle 
+                text found on Gatherer.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>How does the forced mulligan work?</summary>
+            <div class="faq-answer">
+              <p>
+                Draw an opening seven, then put one on the bottom of your 
+                library. This counts as your first mulligan.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>Can I use Serum Powder on the forced mulligan?</summary>
+            <div class="faq-answer">
+              <p>
+                No. Since the first mulligan is forced and involves no 
+                choice, Serum Powder cannot replace it. It can apply 
+                to future mulligans.
+              </p>
+            </div>
+          </details>
+    
+          <details>
+            <summary>How does Urza's Bauble work?</summary>
+            <div class="faq-answer">
+              <p>
+                Looking at a card is a one-sided reveal. Your hand remains 
+                your hand. In a physical game, looking at a card with an 
+                opponent is essentially looking at it together.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Local Styles for FAQ Interactions */
+  
+  .contact-box {
+    background: rgba(255,255,255,0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+  }
+
+  .download-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .btn-download {
+    background: #333;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid #555;
+    transition: background 0.2s;
+  }
+  .btn-download:hover {
+    background: #444;
+  }
+
+  details {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #333;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+
+  summary {
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    list-style: none; /* Hides default triangle in some browsers */
+  }
+  
+  summary:hover {
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* Optional: Custom marker for summary */
+  summary::marker {
+    color: var(--accent-color);
+  }
+
+  .faq-answer {
+    padding: 0 1rem 1rem 1rem;
+    border-top: 1px solid #333;
+    background: rgba(0,0,0,0.2);
+  }
+</style>
