@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Discover">
+  <article>
+    <header>
+      <h1>Discover TLR</h1>
+      <p>
+        Tiny Leaders: Reborn is a fast, competitive 1v1 Magic format, 
+        directly derived and developed from the Original Tiny Leaders 
+        format. With 50-card singleton decks and a strict 3-mana-value 
+        cap, TLR compresses deep strategy into tight, expressive games. 
+        Designed for players who enjoy focused deckbuilding and 
+        interactive play.
+      </p>
+    </header>
+
+    <hr />
+
+    <section id="nexus">
+      <h2>Explore the Format</h2>
+      <nav class="discover-grid">
+        <article class="nav-card">
+          <h3>Rules</h3>
+          <p>Master the Rule of 3 and core mechanics.</p>
+          <a href="/rules/overview">Read the Rules</a>
+        </article>
+
+        <article class="nav-card">
+          <h3>Banlist</h3>
+          <p>Check the current bans and watchlist.</p>
+          <a href="/banlist">View Banlist</a>
+        </article>
+
+        <article class="nav-card">
+          <h3>Design</h3>
+          <p>Deep dives into format philosophy.</p>
+          <a href="/design">Design Philosophy</a>
+        </article>
+
+        <article class="nav-card">
+          <h3>Community</h3>
+          <p>Online Leagues, and ways to play in paper.</p>
+          <a href="/community">Community Hub</a>
+        </article>
+
+        <article class="nav-card">
+          <h3>The Feed</h3>
+          <p>Latest announcements and articles.</p>
+          <a href="/announcements">Read Announcements</a>
+        </article>
+
+        <article class="nav-card">
+          <h3>About</h3>
+          <p>Meet the Committee and read our history.</p>
+          <a href="/about">The Team</a>
+        </article>
+      </nav>
+    </section>
+
+    <hr />
+
+    <section id="discord">
+      <h2>Join the Conversation</h2>
+      <p>
+        Our Discord is the heartbeat of the community. Join us for:
+      </p>
+      <ul>
+        <li>Competitive brewing & strategy discussions</li>
+        <li>LFG (Looking for Game) channels</li>
+        <li>Compete in an open year long, online league</li>
+        <li>Communicate directly with members of the Tiny Leaders Committee</li>
+      </ul>
+      <p>
+        <a href="https://discord.com/invite/jq9KWHAdTm">
+          <strong>Join the Official Discord Server</strong>
+        </a>
+      </p>
+    </section>
+
+    <section id="media">
+      <h2>Watch & Follow</h2>
+      
+      <div class="media-block">
+        <h3>YouTube</h3>
+        <p>
+          Watch gameplay, deck techs, and format updates on our 
+          official channel.
+        </p>
+        <a href="https://www.youtube.com/@TinyLeadersRebornCommittee/featured">
+            Visit YouTube Channel
+        </a>
+      </div>
+
+      <div class="media-block">
+        <h3>Bluesky</h3>
+        <p>
+          Follow us for quick updates and community highlights.
+        </p>
+        <a href="https://bsky.app/profile/tinyleadersrebon.bsky.social">
+            Follow on Bluesky
+        </a>
+      </div>
+    </section>
+
+    <hr />
+
+    <aside id="toolkit">
+      <h3>Ready to Play?</h3>
+      <p>
+        Get the tools you need: Cockatrice installation guides, 
+        Manabox support, and Moxfield templates.
+      </p>
+      <p>
+        <a href="/community/resources">
+          Open the Player Toolkit &rarr;
+        </a>
+      </p>
+    </aside>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Basic styling for the discover cards to maintain structure */
+  .discover-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .nav-card {
+    border: 1px solid #444;
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .media-block {
+    margin-bottom: 1.5rem;
+  }
+</style>
