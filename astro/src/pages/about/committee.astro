@@ -135,7 +135,7 @@ const roles = ["Core Team", "Consultants", "LPO", "Advisors", "Contributors"];
 
 <style>
   .committee-page {
-    max-width: 900px;
+    max-width: 1000px; /* Widen the page slightly for big cards */
     margin: 0 auto;
   }
 
@@ -147,55 +147,74 @@ const roles = ["Core Team", "Consultants", "LPO", "Advisors", "Contributors"];
     border-bottom: 1px solid #444;
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
+    text-align: center; /* Center the role headings too */
     color: var(--accent-color);
   }
 
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    /* Increased minimum width to accommodate larger photos comfortably */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
   }
 
   /* CARD STYLING */
   .member-card {
     background: rgba(255,255,255,0.05);
     border: 1px solid #333;
-    border-radius: 8px;
+    border-radius: 12px; /* A bit more rounding for a modern look */
     overflow: hidden;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s;
+  }
+  
+  .member-card:hover {
+    border-color: #555;
+    transform: translateY(-2px);
   }
   
   .member-card[open] {
     background: rgba(255,255,255,0.1);
+    border-color: var(--accent-color);
   }
 
   summary {
+    position: relative; /* Needed to position the toggle icon */
     display: flex;
-    align-items: center;
-    padding: 1rem;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;    /* Center items horizontally */
+    text-align: center;     /* Center the text itself */
+    padding: 2rem 1rem;     /* More padding for a taller card */
     cursor: pointer;
-    list-style: none; /* Hide default triangle */
+    list-style: none;
   }
   
-  /* Custom Toggle Icon */
+  /* Custom Toggle Icon - Absolutely positioned in top right */
   .toggle-icon {
-    margin-left: auto;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     font-weight: bold;
     font-size: 1.5rem;
     color: #666;
+    transition: transform 0.3s ease;
   }
   details[open] .toggle-icon {
     transform: rotate(45deg);
+    color: var(--accent-color);
   }
 
-  /* PFP SHAPES */
+  /* PFP SHAPES - SUPER SIZED */
   .pfp-container {
-    width: 60px;
-    height: 60px;
-    margin-right: 1rem;
+    /* Previously 60px. Now 2.5x larger at 150px */
+    width: 150px;
+    height: 150px;
+    margin-right: 0;      /* Removed horizontal margin */
+    margin-bottom: 1.5rem; /* Added vertical space between pic and name */
     overflow: hidden;
     background: #444;
     flex-shrink: 0;
+    /* Adds a subtle shadow to make shapes pop off the card */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
   }
   
   .pfp-container img {
@@ -210,11 +229,13 @@ const roles = ["Core Team", "Consultants", "LPO", "Advisors", "Contributors"];
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 3rem; /* Larger question mark */
     color: #888;
+    background: rgba(255,255,255,0.1);
   }
 
   /* THE GEOMETRY */
+  /* Using slightly tighter clip-paths for sharper shapes at large sizes */
   .shape-triangle {
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   }
@@ -222,7 +243,7 @@ const roles = ["Core Team", "Consultants", "LPO", "Advisors", "Contributors"];
     border-radius: 50%;
   }
   .shape-square {
-    border-radius: 4px;
+    border-radius: 12px; /* Softened square */
   }
   .shape-diamond {
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
@@ -231,46 +252,56 @@ const roles = ["Core Team", "Consultants", "LPO", "Advisors", "Contributors"];
   /* TEXT STYLES */
   .member-name h3 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.4rem; /* Larger name */
+    margin-bottom: 0.25rem;
   }
   .discord-tag {
-    font-size: 0.85rem;
-    color: #aaa;
+    display: block; /* Forces it to its own line */
+    font-size: 0.9rem;
+    color: var(--accent-color);
     font-family: monospace;
+    opacity: 0.8;
   }
 
+  /* Expanded Bio Section */
   .card-content {
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 0 2rem 2rem 2rem;
     border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: left; /* Keep bio text readable aligned left */
   }
 
   dl { margin: 0; }
   dt {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
     font-weight: bold;
-    color: var(--accent-color);
-    font-size: 0.9rem;
+    color: #fff; /* White headings for better contrast in bio */
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
   }
   dd {
     margin-left: 0;
-    color: #ddd;
-    line-height: 1.5;
+    color: #ccc;
+    line-height: 1.6;
   }
 
   /* ADMIN FOOTER */
   .admin-footer {
     text-align: center;
-    margin-top: 4rem;
-    opacity: 0.3;
+    margin-top: 5rem;
+    opacity: 0.2;
+    transition: opacity 0.3s;
+  }
+  .admin-footer:hover {
+    opacity: 1;
   }
   .admin-footer a {
-    color: #333;
-    text-decoration: none;
-    font-size: 0.8rem;
-  }
-  .admin-footer a:hover {
     color: var(--accent-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 1rem;
   }
 </style>
