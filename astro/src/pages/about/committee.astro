@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Member Data Structure for easy updates
+const members = [
+  {
+    role: "Core Team",
+    shape: "triangle",
+    name: "M1-K3",
+    discord: "@M1-K3",
+    img: "/images/m1k3.jpg",
+    contribution: "Blogspot Maintenance; T.O. of the SCT and Titans Tournaments",
+    region: "Los Angeles, California, U.S.A.",
+    bio: "I started playing MTG off and on since 1997, but fairly consistently since 2013. Lover of affinity I tried to play robots in every format I could which included Modern, Legacy, Vintage, and Pauper.",
+    petDeck: "Geist of Saint Traft. “I dance to one song and one song only.”",
+    faveCard: "Geist of Saint Traft. I just love that GoST!"
+  },
+  {
+    role: "Consultants",
+    shape: "circle",
+    name: "Gray",
+    discord: "@Gray",
+    img: "/images/gray.jpg",
+    contribution: "Rules and Policy Manager",
+    region: "Northeast United States",
+    bio: "I'm Gray, your friendly local(ish) L2 from northeast US. I've been playing since 2013 and judging since 2018. My first sanctioned event was the Eldritch Moon prerelease.",
+    petDeck: "I don't have pet decks as I'm currently waist deep in a cube obsession, including a TL:R cube.",
+    faveCard: "A three-way tie between Skullcrack, Decimate, and Mockingbird because flavor text is 🔥."
+  },
+  {
+    role: "LPO",
+    shape: "square",
+    name: "Joe Cantrell",
+    discord: "@Laglaunt",
+    img: "/images/laglaunt.jpg",
+    contribution: "T.O. of Reborn Rumble (TLR Comp REL Tournament)",
+    region: "Northern California, U.S.A.",
+    bio: "I'm Joe Cantrell, aka Laglaunt. I run the paper high-stakes Tiny Leaders Reborn events in Northern California. I've been playing Magic pretty consistently since 2000.",
+    petDeck: "Acererak (Control/Combo Hybrid)",
+    faveCard: "Force of Will (Overall), Barrowgoyf (TLR)"
+  },
+  {
+    role: "Advisors",
+    shape: "diamond",
+    name: "Olivier Dicé",
+    discord: "@Olivier Dicé",
+    img: "/images/olivier.jpg",
+    contribution: "General Advice and Guidance",
+    region: "Paris, France",
+    bio: "I'm Olivier MANIN (aka on social medias O'Dicé or Olivier Dicé). I've been playing since 1997. An old player I guess. I learn to play MTG with these old rule books.",
+    petDeck: "Prosperous Bloom a long time ago, probably Kroxa in tournaments, and Wilson (+ any color) for casual games",
+    faveCard: "Anje's Ravager – This card is absurd. I don't think I've ever lost a game where I solved an attack with it."
+  },
+  {
+    role: "Contributors",
+    shape: "none", // No special shape for contributors
+    name: "jonesie42",
+    discord: "@jonesie42",
+    img: null, // No image provided
+    contribution: "Server Vetted Judge - Assists by answering rules questions in #ask-a-certified-judge",
+    region: "Central Texas, U.S.A.",
+    bio: "I go by Leo, and while I haven’t been as active on the server as I’d like (webcam Magic is sadly niche), I love this format and its creative potential.",
+    petDeck: "Anafenza the Foremost",
+    faveCard: "Prismari Command"
+  }
+];
+
+// Helper function to group members by role if you ever have multiple people per role
+// But for now, we will render them in a flat list or grouped manually if preferred.
+// Let's render them as a single grid for simplicity, but grouped by Section Headings.
+const roles = ["Core Team", "Consultants", "LPO", "Advisors", "Contributors"];
+---
+
+<BaseLayout title="The Committee">
+  <article class="committee-page">
+    <header class="page-header">
+      <h1>The Tiny Leaders Committee</h1>
+      <p>
+        Dedicated to the stewardship, development, and health of the Tiny 
+        Leaders Reborn format.
+      </p>
+    </header>
+
+    {roles.map(roleGroup => (
+      <section class="role-section">
+        <h2>{roleGroup}</h2>
+        <div class="cards-grid">
+          {members.filter(m => m.role === roleGroup).map(member => (
+            <details class="member-card">
+              <summary>
+                <div class={`pfp-container shape-${member.shape}`}>
+                  {member.img ? (
+                    <img src={member.img} alt={member.name} />
+                  ) : (
+                    <div class="placeholder-pfp">?</div>
+                  )}
+                </div>
+                <div class="member-name">
+                  <h3>{member.name}</h3>
+                  <span class="discord-tag">{member.discord}</span>
+                </div>
+                <span class="toggle-icon">+</span>
+              </summary>
+              
+              <div class="card-content">
+                <dl>
+                  <dt>Contribution</dt>
+                  <dd>{member.contribution}</dd>
+                  
+                  <dt>Region</dt>
+                  <dd>{member.region}</dd>
+                  
+                  <dt>Bio</dt>
+                  <dd>{member.bio}</dd>
+                  
+                  <dt>Pet Deck</dt>
+                  <dd>{member.petDeck}</dd>
+                  
+                  <dt>Favorite Card</dt>
+                  <dd>{member.faveCard}</dd>
+                </dl>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <div class="admin-footer">
+      <a href="/admin/login">π</a>
+    </div>
+
+  </article>
+</BaseLayout>
+
+<style>
+  .committee-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .role-section {
+    margin-bottom: 3rem;
+  }
+
+  .role-section h2 {
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* CARD STYLING */
+  .member-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  
+  .member-card[open] {
+    background: rgba(255,255,255,0.1);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    list-style: none; /* Hide default triangle */
+  }
+  
+  /* Custom Toggle Icon */
+  .toggle-icon {
+    margin-left: auto;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #666;
+  }
+  details[open] .toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  /* PFP SHAPES */
+  .pfp-container {
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+    overflow: hidden;
+    background: #444;
+    flex-shrink: 0;
+  }
+  
+  .pfp-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .placeholder-pfp {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #888;
+  }
+
+  /* THE GEOMETRY */
+  .shape-triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  .shape-circle {
+    border-radius: 50%;
+  }
+  .shape-square {
+    border-radius: 4px;
+  }
+  .shape-diamond {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  /* TEXT STYLES */
+  .member-name h3 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  .discord-tag {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-family: monospace;
+  }
+
+  .card-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  dl { margin: 0; }
+  dt {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  dd {
+    margin-left: 0;
+    color: #ddd;
+    line-height: 1.5;
+  }
+
+  /* ADMIN FOOTER */
+  .admin-footer {
+    text-align: center;
+    margin-top: 4rem;
+    opacity: 0.3;
+  }
+  .admin-footer a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+  .admin-footer a:hover {
+    color: var(--accent-color);
+  }
+</style>
