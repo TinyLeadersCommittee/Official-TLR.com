@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Discord Community">
+  <header class="community-hero">
+    <h1>Your Seat at the Table is Ready</h1>
+    <p>
+      Tiny Leaders Reborn is a niche format, and finding a local playgroup 
+      can be a challenge. That’s why our Discord exists. It isn’t just a 
+      chat server, it’s the official digital watering hole for the format.
+    </p>
+    
+    <a href="https://discord.com/invite/jq9KWHAdTm" class="discord-logo-btn">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 127.14 96.36" 
+          width="180" 
+          class="discord-svg"
+          aria-label="Join the Official Discord Server">
+          <path fill="#ffffff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.09,105.09,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.89,105.89,0,0,0,126.6,80.22c1.24-23.37-3.55-47.54-19.9-72.05ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+        </svg>
+      </a>
+
+    <p>
+      Whether you’re a thousand miles from the nearest LGS or looking for 
+      a home for your local paper group, you belong here.
+    </p>
+
+    <div class="video-container">
+        <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/FnjumU1vRrk?si=rEG-zu43VlhiFT1i" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    
+  </header>
+
+  <hr />
+
+  <section id="play">
+    <h2>Where the Games Happen</h2>
+    <article class="feature">
+      <h3>The Official TLR Little League</h3>
+      <p>
+        Our year-long, free-to-play league. Every month is a new 
+        chance to find glory (and sometimes prizes!).
+      </p>
+    </article>
+    <article class="feature">
+      <h3>Weekly Tournaments</h3>
+      <p>Regular events for those looking for a quicker competitive fix.</p>
+    </article>
+    <article class="feature">
+      <h3>Digital & Paper</h3>
+      <p>
+        Most of our members play via Cockatrice, but you might find 
+        a few ready for Spelltable (paper over webcam) sessions.
+      </p>
+    </article>
+  </section>
+
+  <section id="brewery">
+    <h2>Brew, Refine, Conquer, or just Yap</h2>
+    <p>
+      From "unplayable" jank to high-level optimization, we have 
+      dedicated spaces for every mindset:
+    </p>
+    <ul>
+      <li><strong><code>#Tavern:</code></strong> General chat and format talk.</li>
+      <li><strong><code>#Brewery:</code></strong> Exploring new deck ideas.</li>
+      <li><strong><code>#Competitive-Cellar:</code></strong> Optimization and meta-talk.</li>
+    </ul>
+    <p>
+      <small>
+        Note: Don’t see a forum for your favorite Leader? Head to 
+        <strong><code>#forum-requests</code></strong> and we’ll open one up for you.
+      </small>
+    </p>
+  </section>
+
+  <section id="governance">
+    <h2>Stay Informed</h2>
+    <p>
+      The Committee lives here. Discord is the first place to see:
+    </p>
+    <ul>
+      <li>Ban & Watchlist Announcements</li>
+      <li>Direct Rules & Committee Updates</li>
+      <li>The <code>#Suggestions</code> Channel (Your voice matters!)</li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <aside class="next-step">
+    <h2>Ready to Test Your Mettle?</h2>
+    <p>
+      One of the best ways to experience the format is through the  
+      Official Little League.
+    </p>
+    <a href="/community/little-league">Learn more about the Little League &rarr;</a>
+  </aside>
+</BaseLayout>
+
+<style>
+  /* 1. HERO SECTION */
+  .community-hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .community-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* 2. RESPONSIVE VIDEO CONTAINER */
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 2rem 0;
+    border: 1px solid var(--border-subtle);
+    background-color: #000;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 3. DISCORD BUTTON */
+  .discord-logo-btn {
+    display: inline-flex;       /* Keeps icon centered */
+    align-items: center;        /* Vertically centers icon */
+    justify-content: center;    /* Horizontally centers icon */
+    background-color: #5865F2;
+    padding: 1.5rem 4rem;       /* BIGGER PADDING: Makes the button box larger */
+    border-radius: 12px;        /* Slightly more rounded for a modern feel */
+    transition: transform 0.2s, background-color 0.2s;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4); /* Adds a subtle glow */
+  }
+  
+  /* This controls the actual logo size */
+  .discord-svg {
+    width: 64px;               /* INCREASED: Was 40px, now 64px */
+    height: auto;              /* Keeps aspect ratio */
+    display: block;
+  }
+
+  .discord-logo-btn:hover {
+    transform: translateY(-3px);
+    background-color: #4752C4;
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
+  }
+
+  /* 4. FEATURE LIST (Vertical Stack) */
+  #play {
+    display: flex;
+    flex-direction: column; /* Forces vertical stacking */
+    gap: 1.5rem;            /* Space between the cards */
+    margin: 2rem 0;
+  }
+
+  .feature {
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .feature h3 {
+    margin-top: 0;
+    color: var(--accent);
+  }
+
+  /* 5. LIST SPACING (The Bullet Points) */
+  ul li {
+    margin-bottom: 1rem; /* Increased spacing between items */
+    line-height: 1.6;
+  }
+
+  /* 6. DISCORD MENTIONS */
+  code {
+    background-color: var(--surface);
+    color: var(--accent);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 0.9em;
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* 7. NEXT STEP */
+  .next-step {
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 4px solid var(--accent);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 3rem;
+  }
+
+  .next-step h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+
+  .next-step a {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+</style>

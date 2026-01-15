@@ -97,7 +97,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <section id="faq">
         <h2>Rules FAQ</h2>
-        <p>Last updated: June 9, 2024</p>
+        <p>Last updated: September 24, 2025</p>
   
         <div class="faq-grid">
           <details>
@@ -158,9 +158,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <summary>How do I determine Mana Value of MDFCs?</summary>
             <div class="faq-answer">
               <p>
-                For Modal Double-Faced Cards, both sides must, independent 
-                of the other, meet the MV 3 restriction and the color 
-                identity of your Commander(s).
+                <strong>Discrete Philosophy Check:</strong> For Modal Double-Faced 
+                Cards, both sides must, independent of the other, meet the MV 3 
+                restriction and the color identity of your Commander(s).
               </p>
             </div>
           </details>
@@ -186,13 +186,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </details>
     
           <details>
-            <summary>Can I use Split Cards (Fuse / Aftermath)?</summary>
+            <summary>Can I use Split Cards (such as Fire//Ice)?</summary>
             <div class="faq-answer">
               <p>
-                <strong>Discrete Philosophy Check:</strong> Every part 
-                must be MV 3 or less. Furthermore, per WotC rules, the 
-                total MV of the card is the sum of its halves. Fire // Ice 
-                is MV 4 and therefore illegal.
+                <strong>Discrete Philosophy Check:</strong> Split cards are 
+                evaluated by checking each half independently. All halves 
+                must have a mana value of 3 or less for the card to be legal.
               </p>
             </div>
           </details>
@@ -278,10 +277,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   /* Local Styles for FAQ Interactions */
   
   .contact-box {
-    background: rgba(255,255,255,0.05);
+    background: var(--surface); /* Fixed: removed hardcoded transparency */
     padding: 1rem;
     border-radius: 8px;
-    border-left: 4px solid var(--accent-color);
+    border-left: 4px solid var(--accent); /* Fixed: corrected var name */
   }
 
   .download-buttons {
@@ -292,21 +291,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
 
   .btn-download {
-    background: #333;
-    color: white;
+    background: var(--surface); /* Fixed: adapts to all themes */
+    color: var(--heading-color); /* Fixed: ensures text is readable on light/dark */
     padding: 0.75rem 1rem;
     border-radius: 4px;
     text-decoration: none;
-    border: 1px solid #555;
-    transition: background 0.2s;
+    border: 1px solid var(--border-subtle); /* Fixed: removed hardcoded border color */
+    transition: border-color 0.2s, transform 0.2s;
   }
+  
   .btn-download:hover {
-    background: #444;
+    border-color: var(--accent); /* Highlighting border is safer than guessing a background color */
+    transform: translateY(-1px);
   }
 
   details {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid #333;
+    background: var(--surface); 
+    border: 1px solid var(--border-subtle);
     border-radius: 6px;
     margin-bottom: 0.5rem;
     overflow: hidden;
@@ -316,21 +317,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     padding: 1rem;
     cursor: pointer;
     font-weight: bold;
-    list-style: none; /* Hides default triangle in some browsers */
+    color: var(--heading-color);
+    list-style: none; 
+    transition: background-color 0.2s;
   }
   
   summary:hover {
-    background: rgba(255,255,255,0.05);
+    /* Using --bg here creates a nice "inset" or "contrast" feel against the surface */
+    background-color: var(--bg); 
   }
 
-  /* Optional: Custom marker for summary */
   summary::marker {
-    color: var(--accent-color);
+    color: var(--accent); /* Fixed: corrected var name */
   }
 
   .faq-answer {
-    padding: 0 1rem 1rem 1rem;
-    border-top: 1px solid #333;
-    background: rgba(0,0,0,0.2);
+    padding: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    /* Using --bg makes the answer feel "recessed" inside the card */
+    background: var(--bg); 
+    color: var(--text-body);
   }
 </style>

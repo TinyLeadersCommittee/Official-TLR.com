@@ -70,9 +70,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           View Visual Banned List on Moxfield &rarr;
         </a>
       </p>
-      <p>The following cards are banned from the 50-card deck (and command zone):</p>
       
       <h3>1. Categorically Excluded Cards</h3>
+      <p>The following cards are banned from the 50-card deck (and command zone):</p>
       <ul class="category-list">
         <li>Silver-bordered, Gold-bordered, or Acorn-stamped cards</li>
         <li>Cards with the card type Conspiracy</li>
@@ -83,7 +83,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <h3>2. Banned as Tiny Leader (Commander) Only</h3>
       <p>These cards <strong>can</strong> be played in your 49-card deck, but <strong>cannot</strong> be your Commander.</p>
-      <ul class="card-list">
+      <ul class="card-list multi-column">
         <li>Ajani, Nacatl Pariah</li>
         <li>Ashiok, Dream Render</li>
         <li>Derevi, Imperial Tactician</li>
@@ -166,18 +166,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  /* Local styles for the announcement box until we do global CSS */
+  /* Local styles for the announcement box */
   .announcement-box {
-    border: 1px solid #444;
+    border: 1px solid var(--border-subtle); /* Fixed: adapts to theme borders */
     padding: 1.5rem;
     border-radius: 8px; 
-    background-color: rgba(255, 255, 255, 0.05); 
+    background-color: var(--surface);       /* Fixed: adapts to theme card color */
     margin: 2rem 0;
   }
   
   /* Make the long list split into columns on big screens */
   .multi-column {
     column-count: 1;
+    column-gap: 2rem; /* Added: ensures text doesn't run into the next column */
   }
   
   @media (min-width: 600px) {

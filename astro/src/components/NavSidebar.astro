@@ -1,0 +1,343 @@
+---
+/* src/components/NavSidebar.astro */
+---
+
+<button id="nav-trigger" class="ghost-trigger" aria-label="Open Menu">
+  <span class="tlr-logo">TLR</span>
+</button>
+
+<aside id="sidebar-menu" class="sidebar">
+  
+  <div class="sidebar-header">
+    <span class="sidebar-title">Index</span>
+    <button id="close-btn" class="close-btn" aria-label="Close Menu">&times;</button>
+  </div>
+
+  <nav class="site-tree">
+    
+    <a href="/discover" class="tree-item nexus-link">
+      <span class="icon">✴</span> THE NEXUS
+    </a>
+
+    <a href="/feed" class="tree-link nexus-link" style="font-size: 1rem; margin-bottom: 2rem;">
+      <span class="icon">📢</span> 
+      THE FEED
+    </a>
+
+    <hr class="tree-divider" />
+
+    <div class="tree-category">
+      <span class="cat-title">FORMAT LIBRARY</span>
+      <a href="/rules/overview" class="tree-link">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+        </svg>
+        Rules Overview
+      </a>
+      <a href="/banlist" class="tree-link">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/>
+        </svg>
+        The Banlist
+      </a>
+      <a href="/rules/supplements" class="tree-link">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+        </svg>
+        Supplements & FAQ
+      </a>
+      <a href="/design" class="tree-link">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M2.5 19h19v2h-19zm19.57-9.36c-.21-.8-1.04-2.06-2.9-2.69.05-.23.08-.47.08-.72a3.5 3.5 0 0 0-3.5-3.5c-.6 0-1.16.14-1.67.4L7.5 7.65V15h2.15l8.77-5.83c.89.55 1.76.65 2.22.65.65 0 1.29-.21 1.43-.46z"/>
+        </svg>
+        Design Philosophy
+      </a>
+    </div>
+
+    <div class="tree-category">
+      <span class="cat-title">THE GATHERING</span>
+      <a href="/community" class="tree-link">
+        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+          <path d="M38-428q-18-36-28-73T0-576q0-112 76-188t188-76q63 0 120 26.5t96 73.5q39-47 96-73.5T696-840q112 0 188 76t76 188q0 38-10 75t-28 73q-11-19-26-34t-35-24q9-23 14-45t5-45q0-78-53-131t-131-53q-81 0-124.5 44.5T480-616q-48-56-91.5-100T264-760q-78 0-131 53T80-576q0 23 5 45t14 45q-20 9-35 24t-26 34ZM0-80v-63q0-44 44.5-70.5T160-240q13 0 25 .5t23 2.5q-14 20-21 43t-7 49v65H0Zm240 0v-65q0-65 66.5-105T480-290q108 0 174 40t66 105v65H240Zm540 0v-65q0-26-6.5-49T754-237q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780ZM480-210q-57 0-102 15t-53 35h311q-9-20-53.5-35T480-210Zm-320-70q-33 0-56.5-23.5T80-360q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-280Zm640 0q-33 0-56.5-23.5T720-360q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-280Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-440q0 50-34.5 85T480-320Zm0-160q-17 0-28.5 11.5T440-440q0 17 11.5 28.5T480-400q17 0 28.5-11.5T520-440q0-17-11.5-28.5T480-480Zm0 40Zm1 280Z"/>
+        </svg>
+        Discord Community
+      </a>
+      <a href="/community/little-league" class="tree-link">
+        <span class="sub-arrow">↳</span> Little League
+      </a>
+      <a href="/community/paper-play" class="tree-link">
+        <span class="sub-arrow">↳</span> LPO Network
+      </a>
+      <a href="/community/play-options" class="tree-link">
+        <span class="sub-arrow">↳</span> More Ways to Play
+      </a>
+    </div>
+
+    <div class="tree-category">
+      <span class="cat-title">FOUNDATIONS</span>
+      <a href="/about" class="tree-link">
+        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+          <path d="M0 0h24v24H0V0z" fill="none"/>
+          <path d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6z"/>
+      </svg>
+        History & Origins
+      </a>
+      <a href="/about/committee" class="tree-link">
+        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+          <path d="M40-160v-160q0-34 23.5-57t56.5-23h131q20 0 38 10t29 27q29 39 71.5 61t90.5 22q49 0 91.5-22t70.5-61q13-17 30.5-27t36.5-10h131q34 0 57 23t23 57v160H640v-91q-35 25-75.5 38T480-200q-43 0-84-13.5T320-252v92H40Zm440-160q-38 0-72-17.5T351-386q-17-25-42.5-39.5T253-440q22-37 93-58.5T480-520q63 0 134 21.5t93 58.5q-29 0-55 14.5T609-386q-22 32-56 49t-73 17ZM160-440q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T280-560q0 50-34.5 85T160-440Zm640 0q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T920-560q0 50-34.5 85T800-440ZM480-560q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-680q0 50-34.5 85T480-560Z"/>
+        </svg>
+        The Committee
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="theme-label">Interface Theme</div>
+    <div class="mini-theme-picker">
+      <button class="t-btn t-light" data-set-theme="light" title="Light"></button>
+      <button class="t-btn t-dark" data-set-theme="dark" title="Dark (Default)"></button>
+      <button class="t-btn t-committee" data-set-theme="committee" title="Committee"></button>
+      <button class="t-btn t-charlotte" data-set-theme="charlotte" title="Charlotte"></button>
+    </div>
+  </div>
+
+</aside>
+
+<div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+<style>
+  /* 1. GHOST TRIGGER */
+  .ghost-trigger {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    background: transparent;
+    border: 2px solid var(--text);
+    color: var(--text);
+    padding: 0.5rem;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: opacity 0.3s, transform 0.2s, background 0.3s;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+  }
+
+  .ghost-trigger:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* 2. SIDEBAR DRAWER */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden by default */
+    width: 320px;
+    height: 100vh;
+    background: var(--bg);
+    border-left: 1px solid #333;
+    z-index: 2000; /* Above everything */
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+    transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1); /* Snappy slide */
+  }
+
+  .sidebar.open {
+    right: 0;
+  }
+
+  /* 3. HEADER & TITLE */
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .sidebar-title {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: var(--accent);
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text);
+    cursor: pointer;
+    line-height: 1;
+  }
+  .close-btn:hover { color: var(--accent); }
+
+  /* 4. SITE TREE NAVIGATION */
+  .site-tree {
+    flex: 1; /* Fills middle space */
+    overflow-y: auto; /* Scrollable if tall */
+    padding: 1.5rem;
+  }
+
+  .tree-category {
+    margin-bottom: 2rem;
+  }
+
+  .cat-title {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 0.75rem;
+    font-weight: bold;
+  }
+
+  .tree-link, .nexus-link {
+    display: flex;
+    align-items: center;
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .tree-link:hover, .nexus-link:hover {
+    color: var(--accent);
+    transform: translateX(5px); /* Slight nudge right */
+  }
+
+  .nexus-link {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .icon-svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    opacity: 0.7;
+  }
+  
+  .sub-arrow {
+    margin-left: 28px; /* Indent sub-links */
+    margin-right: 8px;
+    color: #555;
+  }
+
+  .tree-divider {
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 1rem 0 2rem 0;
+  }
+
+  /* 5. FOOTER & THEME PICKER */
+  .sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.2);
+  }
+
+  .theme-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .mini-theme-picker {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .t-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .t-btn:hover { transform: scale(1.2); border-color: var(--text); }
+
+  .t-light { background: #f0f0f0; }
+  .t-dark { background: #222; }
+  .t-committee { background: #9c27b0; }
+  .t-charlotte { background: #ff69b4; }
+
+  /* 6. OVERLAY (Backdrop) */
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+
+  .sidebar-backdrop.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* MOBILE: FULL SCREEN */
+  @media (max-width: 600px) {
+    .sidebar { width: 100%; }
+  }
+</style>
+
+<script>
+  // CLIENT-SIDE LOGIC
+  
+  // 1. Sidebar Toggle Logic
+  const trigger = document.getElementById('nav-trigger');
+  const sidebar = document.getElementById('sidebar-menu');
+  const closeBtn = document.getElementById('close-btn');
+  const backdrop = document.getElementById('sidebar-backdrop');
+
+  function toggleMenu() {
+    // FIX 1: We check if sidebar AND backdrop exist before trying to toggle
+    if (sidebar && backdrop) {
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('active');
+    }
+  }
+
+  // Event Listeners with Null Checks (?)
+  trigger?.addEventListener('click', toggleMenu);
+  closeBtn?.addEventListener('click', toggleMenu);
+  backdrop?.addEventListener('click', toggleMenu);
+
+  // 2. Theme Picker Logic
+  const themeBtns = document.querySelectorAll('.t-btn'); // specific class selector is safer
+  
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      
+      const button = e.currentTarget;
+      
+      // FIX: Verify it is an HTML Element first. 
+      // This satisfies the type-checker AND is valid JavaScript.
+      if (button instanceof HTMLElement) {
+        const newTheme = button.getAttribute('data-set-theme');
+        
+        if (newTheme) {
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+        }
+      }
+
+    });
+  });
+</script>

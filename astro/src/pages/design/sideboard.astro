@@ -1,0 +1,359 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Sideboard - 10 Cards">
+  <main class="design-essay">
+    
+    <header class="essay-header">
+      <span class="super-title">Design Philosophy V</span>
+      <h1>Sideboard - 10 Cards</h1>
+      <p class="subtitle">Adaptation Through Limitation</p>
+    </header>
+
+    <hr />
+
+    <article class="prose-block">
+      <p class="lead-paragraph">
+        Tiny Leaders Reborn decks include a 10-card sideboard, giving players a compact but meaningful 
+        set of tools to adapt between games. The sideboard is not designed to completely erase bad 
+        matchups or answer every possible threat. Instead, it reinforces intentionality by asking 
+        players to decide what their deck is prepared to fight, and where it is willing to remain vulnerable.
+      </p>
+    </article>
+
+    <section class="chapter-section">
+      <div class="prose-block">
+        <h3>Focused Purpose</h3>
+        <p>
+          A sideboard exists to serve specific, focused purposes. With only ten slots available, 
+          prioritization becomes unavoidable.
+        </p>
+        
+        <ul class="purpose-list">
+          <li>
+            <strong>Strengthening Matchups:</strong> Bolstering your strategy against specific archetypes.
+          </li>
+          <li>
+            <strong>Structural Support:</strong> Supplementing areas where the main deck is naturally weak.
+          </li>
+          <li>
+            <strong>Targeted Interaction:</strong> Providing specific answers against known strategies.
+          </li>
+        </ul>
+
+        <p>
+          That limitation is healthy for the format, preserving archetype diversity and preventing 
+          decks from converging into universally prepared toolkits.
+        </p>
+      </div>
+    </section>
+
+    <section class="chapter-section alt-bg">
+      <div class="prose-block">
+        <h3>Optimization & Metagame</h3>
+        <p>
+          The presence of a sideboard also introduces a layer of optimization familiar to competitive Magic. 
+          It rewards metagame awareness, forward planning, and the ability to make real trade-offs over 
+          the course of a match.
+        </p>
+        <p>
+          While TLR is not exclusively a competitive environment, the sideboard creates space for players 
+          who enjoy refining and adapting their decks without making that mindset mandatory.
+        </p>
+        
+        <div class="tension-box">
+          <h4>The Tension of Choice</h4>
+          <p>
+            Every slot carries weight. Players must weigh flexible, broadly useful cards against narrow 
+            but powerful answers that may only matter in specific pairings. Those choices add depth not 
+            only to deckbuilding, but to the act of sideboarding itself.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter-section">
+      <div class="prose-block">
+        <h3>Historical Context</h3>
+        <p>
+          Historically, the 10-card sideboard traces back to early EDH, where sideboards existed as 
+          optional extensions of a deck rather than dedicated wish targets. They were never intended 
+          to replace core construction decisions, only to provide limited adaptability.
+        </p>
+        <p>
+          Tiny Leaders Reborn carries that philosophy forward with enough room to respond, but never 
+          enough to escape the consequences of your main deck choices and shortcomings. By curating 
+          a 10-card sideboard, TLR reinforces its balance between flexibility and commitment.
+        </p>
+        <p>
+          Preparation matters. Adaptation is rewarded. And intentional weaknesses remain part of the 
+          strategic landscape.
+        </p>
+      </div>
+    </section>
+
+    <hr />
+
+    <footer class="essay-footer prose-block">
+      <p class="final-statement">
+        <strong>The sideboard is never an afterthought.<br>
+        It is a statement about how you engage with the game.</strong>
+      </p>
+    </footer>
+
+    <nav class="series-nav">
+      
+      <a href="/design/maindeck" class="nav-card prev">
+        <span class="nav-label">Previous</span>
+        <div class="nav-inner">
+          <span class="nav-arrow">&larr;</span>
+          <span class="chapter-title">Maindeck - 50 Cards</span>
+        </div>
+      </a>
+
+      <a href="/design/banlist" class="nav-card next">
+        <span class="nav-label">Next Element</span>
+        <div class="nav-inner">
+          <span class="chapter-title">The Banlist</span>
+          <span class="nav-arrow">&rarr;</span>
+        </div>
+      </a>
+
+    </nav>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* --- REUSING DESIGN SYSTEM STYLES --- */
+  .design-essay {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    color: var(--text-body);
+  }
+
+  .prose-block {
+    max-width: 65ch;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.15rem;
+  }
+
+  /* --- HEADER --- */
+  .essay-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .super-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .essay-header h1 {
+    font-size: 3rem;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .lead-paragraph {
+    font-size: 1.25rem;
+    color: var(--heading-color);
+  }
+
+  /* --- SECTIONS --- */
+  .chapter-section {
+    padding: 3rem 0;
+  }
+
+  .chapter-section h3 {
+    font-size: 1.75rem;
+    color: var(--heading-color);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  /* --- PURPOSE LIST (Card Slot Style) --- */
+  .purpose-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between "slots" */
+  }
+
+  .purpose-list li {
+    background-color: var(--bg);
+    border: 1px solid var(--border-subtle);
+    border-left: 4px solid var(--accent); /* Accent on the left like a card */
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+  }
+
+  .purpose-list li:hover {
+    transform: translateX(4px); /* Interactive feel */
+  }
+  
+  /* Remove the old ::before pseudo-element since we are using border-left now */
+  .purpose-list li::before {
+    content: none;
+  }
+
+  /* Little accent squares */
+  .purpose-list li::before {
+    content: "";
+    position: absolute;
+    left: -6px; /* Center over border */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: 2px;
+  }
+
+  /* --- TENSION BOX (New) --- */
+  .tension-box {
+    background-color: var(--bg);
+    border: 1px solid var(--border-subtle);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .tension-box h4 {
+    margin-top: 0;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tension-box p {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+
+  /* --- ALT BACKGROUND --- */
+  .alt-bg {
+    background-color: var(--surface);
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100vw;
+  }
+
+  /* --- FINAL STATEMENT --- */
+  .final-statement {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--heading-color);
+  }
+
+  /* --- FOOTER ADJUSTMENT --- */
+  .essay-footer {
+    margin-top: 5rem; /* Pushes the text down, away from the HR */
+  }
+
+  /* --- NAVIGATION --- */
+  .series-nav {
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  .nav-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .nav-card:hover {
+    background-color: var(--surface);
+    border-color: var(--border-subtle);
+    transform: translateY(-2px);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .prev { align-items: flex-start; text-align: left; }
+  .next { align-items: flex-end; text-align: right; }
+
+  .nav-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .chapter-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--heading-color);
+  }
+
+  .nav-arrow {
+    font-size: 1.25rem;
+    color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    .alt-bg {
+      margin-left: -1rem;
+      margin-right: -1rem;
+      width: calc(100% + 2rem);
+    }
+    
+    .series-nav {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .nav-card {
+      max-width: 100%;
+      align-items: center;
+      text-align: center;
+      background-color: var(--surface);
+      border-color: var(--border-subtle);
+    }
+    
+    .prev, .next { align-items: center; text-align: center; }
+  }
+</style>

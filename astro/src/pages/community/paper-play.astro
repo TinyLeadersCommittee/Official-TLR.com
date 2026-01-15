@@ -1,0 +1,328 @@
+---
+// src/pages/community/paper-play.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// DATA ZONE: Add your Local Play Organizers (LPOs) here!
+const organizers = [
+  {
+    name: "Fishe",
+    region: "Vancouver, BC, Canada",
+    role: "Committee Advisor & LPO",
+    bio: "I run monthly casual meetups and the occasional competitive bracket. Our group is very proxy-friendly and focuses on testing new brews.",
+    venues: [
+      { 
+        name: "Magic Stronghold", 
+        city: "Vancouver", 
+        cadence: "Monthly", 
+        link: "https://magicstronghold.com" 
+      },
+      { 
+        name: "Connection Games", 
+        city: "Vancouver", 
+        cadence: "Ad-hoc / Prerelease Events", 
+        link: "#" 
+      }
+    ]
+  },
+  {
+    name: "Steven 'The tiny' Smith",
+    region: "Austin, TX, USA",
+    role: "Local Play Organizer",
+    bio: "Building the Texas Tiny scene one game at a time. We host a league night every Tuesday with prize support provided by the community.",
+    venues: [
+      { 
+        name: "Dragon's Lair Comics", 
+        city: "Austin", 
+        cadence: "Weekly (Tuesdays)", 
+        link: "#" 
+      }
+    ]
+  },
+  // Add more organizers here...
+];
+---
+
+<BaseLayout title="Paper Play Directory">
+  <main class="paper-play-page">
+
+    <header class="page-intro">
+      <h1>Paper Play Directory</h1>
+      <p class="intro-text">
+        Tiny Leaders: Reborn is community-powered. The events listed below are 
+        coordinated by our dedicated <strong>Local Play Organizers (LPOs)</strong>.
+      </p>
+      
+      <div class="disclaimer-box">
+        <p>
+          <strong>Note:</strong> Venues are listed for visibility to help you 
+          find games. Inclusion does not imply an official partnership or 
+          endorsement of the business by The Committee.
+        </p>
+      </div>
+    </header>
+
+    <hr />
+
+    <section class="organizers-grid" aria-label="List of Local Play Organizers">
+      
+      {organizers.map((org) => (
+        <article class="organizer-card">
+          
+          <header class="org-header">
+            <div class="org-identity">
+              <h2>{org.name}</h2>
+              <span class="region-text">{org.region}</span>
+            </div>
+            <span class="role-badge">{org.role}</span>
+          </header>
+
+          <section class="org-bio">
+            <p>{org.bio}</p>
+          </section>
+
+          <section class="org-venues">
+            <h3>Places to Play</h3>
+            <div class="venues-list">
+              {org.venues.map((venue) => (
+                <article class="venue-item">
+                  <div class="venue-info">
+                    <a href={venue.link} target="_blank" rel="nofollow noreferrer" class="venue-name">
+                      {venue.name}
+                    </a>
+                    <span class="venue-meta">{venue.city} &bull; {venue.cadence}</span>
+                  </div>
+                  <div class="venue-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                      <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                    </svg>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+        </article>
+      ))}
+
+    </section>
+
+    <section class="cta-section">
+      <h3>Do you run events in your area?</h3>
+      <p>
+        We are always looking for new LPOs to help grow the format. 
+        Join the Discord and reach out to The Committee to learn about
+        the requirements to join the Committee as an LPO.
+      </p>
+      <a href="https://discord.com/invite/jq9KWHAdTm" class="btn-primary">Join the Discord</a>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* --- LAYOUT --- */
+  .paper-play-page {
+    max-width: 900px; /* Slightly tighter than full width for readability */
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    color: var(--text-body);
+  }
+
+  /* --- HEADER & INTRO --- */
+  .page-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-intro h1 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+  }
+
+  .intro-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 65ch;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+  }
+
+  /* Disclaimer (Option 1 Style from previous convo) */
+  .disclaimer-box {
+    background-color: var(--surface);
+    border-left: 4px solid var(--text-muted);
+    padding: 1rem;
+    border-radius: 0 4px 4px 0;
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-body);
+  }
+
+  /* --- ORGANIZER GRID --- */
+  .organizers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  /* --- ORGANIZER CARD --- */
+  .organizer-card {
+    background-color: var(--bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  /* Header Area */
+  .org-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1rem;
+  }
+
+  .org-identity h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--heading-color);
+  }
+
+  .region-text {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+  }
+
+  .role-badge {
+    background-color: var(--surface);
+    color: var(--heading-color);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-weight: bold;
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* Bio Area */
+  .org-bio {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 75ch;
+  }
+
+  /* --- VENUES SECTION --- */
+  .org-venues h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .venues-list {
+    display: grid;
+    /* Responsive grid for venues inside the card */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .venue-item {
+    background-color: var(--surface);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .venue-item:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .venue-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .venue-name {
+    font-weight: bold;
+    color: var(--heading-color);
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  .venue-name:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .venue-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .venue-icon {
+    color: var(--border-subtle); /* Subtle icon */
+  }
+
+  .venue-item:hover .venue-icon {
+    color: var(--accent); /* Lights up on hover */
+  }
+
+  /* --- CTA FOOTER --- */
+  .cta-section {
+    margin-top: 5rem;
+    text-align: center;
+    background-color: var(--surface);
+    padding: 3rem;
+    border-radius: 8px;
+  }
+
+  .cta-section h3 {
+    margin-top: 0;
+    color: var(--heading-color);
+  }
+
+  .btn-primary {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background-color: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--heading-color); /* Darkens on hover */
+  }
+
+  /* --- MOBILE --- */
+  @media (max-width: 600px) {
+    .org-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .role-badge {
+      align-self: flex-start;
+    }
+  }
+</style>

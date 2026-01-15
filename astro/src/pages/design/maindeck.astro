@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Deck Size (50 Cards)">
+  <main class="design-essay">
+    
+    <header class="essay-header">
+      <span class="super-title">Design Philosophy IV</span>
+      <h1>Deck Size - 50 Cards</h1>
+      <p class="subtitle">Half the Size, Double the Focus</p>
+    </header>
+
+    <hr />
+
+    <article class="prose-block">
+      <p class="lead-paragraph">
+        Tiny Leaders Reborn uses a 50-card deck which is small by Commander standards, but deliberately so. 
+        It’s exactly half the size of a traditional 100-card Commander deck, preserving the format’s lineage 
+        while fundamentally changing how games play out. The reduced deck size creates a tighter, more 
+        focused experience.
+      </p>
+    </article>
+
+    <section class="chapter-section">
+      <div class="prose-block">
+        <h3>Deceptively Simple</h3>
+        <p>
+          The choice of 50 cards is deceptively simple, and that’s part of its strength. In the original 
+          Tiny Leaders format, the number emerged naturally as a clean division of Commander’s 100 cards. 
+          Other sizes were considered, but 50 immediately established a stable identity and never demanded revision.
+        </p>
+        <p>
+          Forty cards, in particular, was intentionally avoided, as it echoes Limited construction. At 50, 
+          the format occupies a distinct middle ground that’s larger than Draft, smaller than 60-card 
+          Constructed, and unmistakably rooted in Commander.
+        </p>
+      </div>
+    </section>
+
+    <section class="chapter-section alt-bg">
+      <div class="prose-block">
+        <h3>The Middle Ground</h3>
+        <p>
+          From a gameplay perspective, that balance plays a key role linked to deck design. Singleton 
+          construction introduces natural variance, but a 50-card deck mitigates excessive randomness 
+          without sacrificing personality.
+        </p>
+        
+        <div class="comparison-grid">
+          <div class="comp-item">
+            <span class="comp-label">Vs. Commander (100)</span>
+            <p>Decks come together more reliably and depend less on extreme swings or singular haymakers.</p>
+          </div>
+          <div class="comp-item">
+            <span class="comp-label">Vs. Constructed (60)</span>
+            <p>The singleton restriction preserves the variety and identity-driven deckbuilding that players value.</p>
+          </div>
+        </div>
+
+        <p class="center-text">
+          Your core game plan appears often enough to remain coherent, while individual matches avoid 
+          feeling scripted or repetitive. Games feel familiar without ever being identical.
+        </p>
+      </div>
+    </section>
+
+    <section class="chapter-section">
+      <div class="prose-block">
+        <h3>Earning Redundancy</h3>
+        <p>
+          This is where deckbuilding skill becomes most visible. With fewer slots, redundancy must be 
+          earned through functional overlap, flexible role-players, and synergistic design rather than 
+          raw duplication.
+        </p>
+        
+        <div class="callout-box">
+          <p>
+            Especially in more competitive environments, TLR rewards careful curation as much as in-game 
+            execution. Whether that means methodically dismantling an opponent’s plan or decisively 
+            advancing your own.
+          </p>
+        </div>
+
+        <p>
+          The 50-card deck is where TLR’s theme and mechanics converge. By shrinking Commander without 
+          diluting its identity, the format produces games that are faster, tighter, and more intentional. 
+          It’s compact enough to support focused strategies, yet varied enough to keep every match engaging.
+        </p>
+
+        
+      </div>
+    </section>
+
+    <footer class="essay-footer prose-block">
+          <p class="final-statement">
+            <strong>Tiny in size, but not in ambition.</strong>
+          </p>
+        </footer>
+
+    <nav class="series-nav">
+      
+      <a href="/design/one-v-one" class="nav-card prev">
+        <span class="nav-label">Previous</span>
+        <div class="nav-inner">
+          <span class="nav-arrow">&larr;</span>
+          <span class="chapter-title">1v1 Structure</span>
+        </div>
+      </a>
+
+      <a href="/design/sideboard" class="nav-card next">
+        <span class="nav-label">Next Element</span>
+        <div class="nav-inner">
+          <span class="chapter-title">Sideboard</span>
+          <span class="nav-arrow">&rarr;</span>
+        </div>
+      </a>
+
+    </nav>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* --- REUSING DESIGN SYSTEM STYLES --- */
+  .design-essay {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    color: var(--text-body);
+  }
+
+  .prose-block {
+    max-width: 65ch;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.15rem;
+  }
+
+  /* --- HEADER --- */
+  .essay-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .super-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .essay-header h1 {
+    font-size: 3rem;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .lead-paragraph {
+    font-size: 1.25rem;
+    color: var(--heading-color);
+  }
+
+  /* --- SECTIONS --- */
+  .chapter-section {
+    padding: 3rem 0;
+  }
+
+  .chapter-section h3 {
+    font-size: 1.75rem;
+    color: var(--heading-color);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  /* --- COMPARISON GRID (New) --- */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .comp-item {
+    background-color: var(--bg);
+    border: 1px solid var(--border-subtle);
+    padding: 1.5rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .comp-label {
+    display: block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-subtle);
+    padding-bottom: 0.5rem;
+  }
+
+  .comp-item p {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .center-text {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 2rem;
+  }
+
+  /* --- CALLOUT BOX --- */
+  .callout-box {
+    background-color: var(--surface);
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout-box p { margin: 0; }
+
+  /* --- ALT BACKGROUND --- */
+  .alt-bg {
+    background-color: var(--surface);
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100vw;
+  }
+
+  /* --- FINAL STATEMENT --- */
+  .final-statement {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--heading-color);
+  }  
+
+  /* --- NAVIGATION --- */
+  .series-nav {
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  .nav-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .nav-card:hover {
+    background-color: var(--surface);
+    border-color: var(--border-subtle);
+    transform: translateY(-2px);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .prev { align-items: flex-start; text-align: left; }
+  .next { align-items: flex-end; text-align: right; }
+
+  .nav-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .chapter-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--heading-color);
+  }
+
+  .nav-arrow {
+    font-size: 1.25rem;
+    color: var(--accent);
+  }
+
+  /* Mobile Fix */
+  @media (max-width: 600px) {
+    .alt-bg {
+      margin-left: -1rem;
+      margin-right: -1rem;
+      width: calc(100% + 2rem);
+    }
+    
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .series-nav {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .nav-card {
+      max-width: 100%;
+      align-items: center;
+      text-align: center;
+      background-color: var(--surface);
+      border-color: var(--border-subtle);
+    }
+    
+    .prev, .next { align-items: center; text-align: center; }
+  }
+
+  /* --- PAGE SPECIFIC ADJUSTMENT --- */
+  /* Pulls the nav up closer by removing padding and adding negative margin 
+     to the last content section only on this page. */
+  .chapter-section:last-of-type {
+    padding-bottom: 0;
+    margin-bottom: -0.25rem; /* Counteracts the large top margin of the nav */
+  }
+</style>

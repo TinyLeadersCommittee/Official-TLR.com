@@ -17,11 +17,10 @@ const schedule = [
 <BaseLayout title="Official Little League">
   
   <header class="league-hero">
-    <h1>The Official Little League</h1>
+    <h1>The Official TLR Little League</h1>
     <p>
-      Get ready to battle it out all year long! Whether you're a seasoned 
-      vet or new to the format, the Little League is the best way to 
-      play, compete, and connect with the community.
+      Whether you're a seasoned vet or new to the format, the Little League is 
+      the best place to play, compete, and connect with the community.
     </p>
     <p>
       <strong>The Goal?</strong> Survive the seasons, conquer the Second 
@@ -29,30 +28,22 @@ const schedule = [
     </p>
   </header>
 
-  <aside class="philosophy-excerpt">
-    <h3>The League Philosophy</h3>
+  <section class="philosophy-block">
     <blockquote>
       "The monthly leagues are there to offer everyone a place to play 
       <strong>organized</strong>, <strong>accessible</strong>, 
       <strong>low-stakes</strong> Tiny Leaders."
     </blockquote>
-    <p>
-      <small>
-        Our goal is to be your "Friday Night Magic" at home. 
-        It’s just not that big of a deal—and that’s the point.
-      </small>
-    </p>
-    <p>
-      <a href="/community/league-philosophy">
-        Read the full statement by Committee Advisor Fishe &rarr;
-      </a>
-    </p>
-  </aside>
+    <div class="citation">
+       — Fishe, Committee Advisor
+       <a href="/community/league-philosophy" class="read-more">Read full statement &rarr;</a>
+    </div>
+  </section>
 
   <hr />
 
   <section id="monthlies">
-    <h2>The Core Loop: Monthly Swiss</h2>
+    <h2>The Core Events: Monthly Swiss</h2>
     <p>
       Your regular dose of Tiny Leaders. Every month, the Committee hosts 
       a flexible, community-friendly tournament.
@@ -60,27 +51,58 @@ const schedule = [
 
     <div class="rules-grid">
       <article class="rule-card">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+            <path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3z"/>
+          </svg>
+        </div>
         <h3>The Format</h3>
         <p>
-          <strong>Swiss Pairings.</strong> Typically 4 rounds. You have 
-          <strong>one full week</strong> per round to schedule and play 
-          your match on Cockatrice.
+          <strong>Swiss Pairings.</strong> <br>
+          Typically 4 rounds. You have one full week per round to 
+          schedule and play your match.
         </p>
       </article>
 
       <article class="rule-card">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+            <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v2h12v-2l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
+          </svg>
+        </div>
         <h3>The Platform</h3>
         <p>
           Registration and brackets run on <strong>Challonge</strong>. 
           Match communication happens in our <strong>Discord</strong>.
+          Games typically take place via <strong>Cockatrice</strong>.
         </p>
       </article>
 
       <article class="rule-card">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+            <path d="M9.68 13.69L12 11.93l2.31 1.76-.88-2.85L15.75 9h-2.84L12 6.19 11.09 9H8.25l2.31 1.84-.88 2.85zM20 10c0-4.42-3.58-8-8-8s-8 3.58-8 8c0 2.03.76 3.87 2 5.28V23l6-2 6 2v-7.72c1.24-1.41 2-3.25 2-5.28zm-8-6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6z"/>
+          </svg>
+        </div>
         <h3>The Stakes</h3>
+
         <p>
-          Prizes for Top 3 Tournament Supporters. Plus, performance in 
-          Spring & Fall months qualifies you for the <strong>SCT</strong>.
+          <strong>Mainly, bragging rights and a sense of accomplishment.</strong><br>
+          But also, prizes for Top Scoring Tournament Supporters. And, a chance to 
+          qualifify for the SCT.
+        </p>
+      </article>
+
+      <article class="rule-card">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+            <path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 2l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/>
+          </svg>
+        </div>
+        <h3>The Goal</h3>
+        <p>
+          <strong>Have Fun. Meet cool people.</strong><br>
+          And possibly, qualify for the Tiny Titans Top 8 Championship.
         </p>
       </article>
     </div>
@@ -89,79 +111,96 @@ const schedule = [
   <section id="seasons">
     <h2>The Road to Glory: Seasonal Play</h2>
     <p>
-      Although we play every month, the year is divided into two major 
+      Although we play <i>almost</i> every month, the year is divided into two major 
       competitive seasons: <strong>Spring</strong> and <strong>Fall</strong>.
     </p>
     
-    <article class="major-event">
-      <h3>The Second Chances Tournament (SCT)</h3>
-      <p>
-        Held at the end of both the Spring and Fall seasons. A cut-throat, 
-        <strong>Double Elimination</strong> bracket where every win counts, 
-        but everyone get's a second chance.
-      </p>
-      <ul>
-        <li>
-          <strong>Qualification:</strong> Top 14 players from the 3-month season 
-          + Top 2 from Weekly Tiny Brawls.
-        </li>
-        <li><strong>Cost:</strong> Free for qualified players.</li>
-        <li><strong>Prizes:</strong> Awards for Top 3 finishers.</li>
-      </ul>
-      <p class="note">
-        <em>
-          <strong>Important:</strong> If you qualify for Tiny Titans in the 
-          Spring, you cannot play in the Fall SCT. We save those seats for 
-          new challengers!
-        </em>
-      </p>
-    </article>
+    <div class="events-container">
+        <article class="major-event sct-card">
+            <header>
+                <h3>The Second Chances Tournament (SCT)</h3>
+                <span class="event-meta">Double Elimination | End of Season</span>
+            </header>
+            <p>
+                Held bianually, a double-elim bracket where every win counts, 
+                but everyone gets a second chance.
+            </p>
+            <ul class="specs-list">
+                <li><strong>Qualification:</strong> Place in the Top 14 at the end of the current season</li>
+                <li><strong>Cost:</strong> Free for qualified players</li>
+                <li><strong>Prizes:</strong> Awards for Top 3 finishers and the Top 4 qualify for Tiny Titans</li>
+            </ul>
+            
+            <div class="alert-box warning">
+                <div class="alert-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                        <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                    </svg>
+                </div>
+                <p>
+                    <strong>Important:</strong> If you qualify for Tiny Titans in the 
+                    Spring, you cannot play in the Fall SCT. We save those seats for 
+                    new challengers!
+                </p>
+            </div>
+        </article>
 
-    <article class="major-event championship">
-      <h3>🏆 Tiny Titans Top 8 Championship</h3>
-      <p>
-        <strong>The Pinnacle.</strong> The best of the best face off in January 
-        to kick off the new year.
-      </p>
-      <ul>
-        <li>
-          <strong>Qualification:</strong> Top 4 from Spring SCT + Top 4 from 
-          Fall SCT.
-        </li>
-        <li><strong>Format:</strong> High-stakes Single Elimination.</li>
-        <li><strong>The Prize:</strong> Cash prizes and the title of <strong>Mightiest Tiniest Leader</strong>.</li>
-      </ul>
-    </article>
+        <article class="major-event championship-card">
+            <header>
+                <h3>Tiny Titans Top 8 Championship</h3>
+                <span class="event-meta">Single Elimination | January</span>
+            </header>
+            <p>
+                <strong>The Pinnacle.</strong> An annual event where the best 
+                of the best face off in January to kick off the new year.
+            </p>
+            <ul class="specs-list">
+                <li><strong>Qualification:</strong> Top 4 Spring SCT + Top 4 Fall SCT</li>
+                <li><strong>The Prize:</strong> Cash prizes and the title of <strong>Mightiest Tiniest Leader</strong>.</li>
+            </ul>
+        </article>
+    </div>
   </section>
 
   <hr />
 
   <section id="schedule">
     <h2>2026 Tentative Schedule</h2>
-    <dl class="schedule-list">
+    
+    <div class="schedule-grid">
+      <div class="schedule-header">
+        <span>Dates</span>
+        <span>Event</span>
+        <span>Type</span> 
+      </div>
+      
       {schedule.map((item) => (
-        <div class={`schedule-item ${item.type}`}>
-          <dt>{item.date}</dt>
-          <dd>
+        <div class={`schedule-row ${item.type}`}>
+          <div class="date-col">{item.date}</div>
+          <div class="event-col">
             {item.type === "major" || item.type === "championship" ? (
               <strong>{item.event}</strong>
             ) : (
               item.event
             )}
-          </dd>
+          </div>
+          <div class="type-col">
+            {item.type.replace("-", " ")} </div>
         </div>
       ))}
-    </dl>
+    </div>
   </section>
 
   <hr />
 
-  <aside id="resources">
+  <aside id="resources" class="join-cta">
     <h3>Ready to Join?</h3>
     <p>
-      Visit the <strong>#channels-and-roles</strong> section in Discord 
-      and select the <strong>@TLR Little League</strong> role to get notified 
-      when registration opens.
+      Visit the <strong>Official TLR Little League</strong> section in Discord 
+      and click on <strong>#tlr-little-league-info</strong> for more detailed 
+      information. Then, head to <strong>#channels-and-roles</strong> and select 
+      the <span class="role-pill">@TLR Little League</span> role to get notified 
+      when registration opens, each month.
     </p>
     <nav>
       <a href="https://challonge.com">Visit Challonge</a> | 
@@ -170,3 +209,279 @@ const schedule = [
   </aside>
 
 </BaseLayout>
+
+<style>
+  /* --- GENERAL LAYOUT --- */
+  .league-hero {
+    text-align: center;
+    padding: 3rem 1rem 0.5rem; 
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .league-hero h1 {
+    color: var(--heading-color);
+  }
+
+  .league-hero p {
+    color: var(--text-body);
+  }
+
+  /* --- PHILOSOPHY BLOCK --- */
+  .philosophy-block {
+    background-color: var(--surface);
+    border-left: 4px solid var(--accent);
+    padding: 2rem;
+    margin: 1rem 0 2rem; 
+    border-radius: 0 4px 4px 0;
+  }
+
+  .philosophy-block blockquote {
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+    font-style: italic;
+    color: var(--text-body);
+  }
+
+  .citation {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .read-more {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--accent);
+  }
+
+  /* --- RULES GRID (Icons) --- */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .rule-card {
+    background-color: var(--bg); /* White cards */
+    padding: 1.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .rule-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Subtle shadow on hover */
+    border-color: var(--accent);
+  }
+
+  .icon-wrapper {
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: inline-flex;
+    padding: 12px;
+    background-color: var(--surface); /* Light grey backing for red icon */
+    border-radius: 50%;
+  }
+
+  /* --- SEASONS & EVENTS --- */
+  .events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .major-event {
+    padding: 2rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg);
+  }
+
+  .sct-card header h3, 
+  .championship-card header h3 {
+      color: var(--heading-color);
+      margin-bottom: 0.25rem;
+  }
+
+  /* Distinguish the Championship card slightly */
+  .championship-card {
+    background-color: var(--surface); 
+    border-color: var(--accent); /* Highlight the big event with red border */
+  }
+
+  .event-meta {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  .specs-list {
+    margin: 1rem 0;
+    padding-left: 1.2rem;
+    color: var(--text-body);
+  }
+
+  /* --- ALERT BOX --- */
+  .alert-box {
+    display: flex;
+    gap: 1rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 4px solid var(--accent); /* Red Accent */
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-body);
+  }
+
+  .alert-icon {
+    color: var(--accent);
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2px;
+  }
+
+  /* --- SCHEDULE GRID --- */
+  .schedule-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    font-family: inherit; 
+  }
+
+  .schedule-header {
+    display: grid;
+    /* CHANGED: Now 3 columns (Date | Event | Type) */
+    grid-template-columns: 180px 350px 1fr; 
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid var(--border-subtle);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  .schedule-row {
+    display: grid;
+    /* CHANGED: Matches Header */
+    grid-template-columns: 180px 350px 1fr; 
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    align-items: center;
+    background-color: var(--surface);
+    color: var(--text-body);
+    border: 1px solid transparent; 
+  }
+
+  /* NEW: Style for the Type column */
+  .type-col {
+    text-transform: capitalize; /* Turns "qualifier" into "Qualifier" */
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: left; /* Aligns nicely to the edge */
+  }
+
+  /* Status Styles */
+  .schedule-row.active {
+    background-color: var(--bg); /* White bg to stand out against grey list */
+    border-left: 4px solid var(--accent);
+    border-top: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    font-weight: bold;
+  }
+
+  .schedule-row.upcoming {
+    color: var(--text-muted);
+  }
+
+  /* --- DISCORD ROLE PILL --- */
+  /* Keeps the Discord Blurple because it is a brand color, 
+     but you can change this to var(--accent) if you prefer uniformity */
+  .role-pill {
+    display: inline-block;
+    background-color: var(--accent); 
+    color: white; 
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9em;
+  }
+
+  .join-cta {
+    background-color: var(--surface);
+    padding: 2rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .resource-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    background-color: var(--bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text-body);
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    border-color: var(--text-muted);
+    background-color: var(--surface);
+    color: var(--heading-color);
+  }
+
+  /* --- MOBILE RESPONSIVENESS --- */
+  @media (max-width: 600px) {
+    .schedule-header {
+      display: none;
+    }
+    
+    .schedule-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      border-left-width: 4px; /* Ensure status colors show on mobile */
+    }
+
+    .date-col {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: bold;
+    }
+
+    .type-col {
+      text-align: left;
+      font-size: 0.8rem;
+      background-color: var(--border-subtle);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+  }
+</style>

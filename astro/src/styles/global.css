@@ -1,0 +1,93 @@
+/* src/styles/global.css */
+
+:root {
+  /* LIGHT MODE (Default) */
+  --bg: #ffffff;
+  --surface: #f4f4f4;
+  --heading-color: #111111;
+  --text-body: #333333;
+  --text-muted: #666666;
+  --accent: #d32f2f;
+  --border-subtle: rgba(0, 0, 0, 0.1);
+  --footer-bg: #1a1a1a;
+  --footer-text: #BEBDB8;
+}
+
+[data-theme='dark'] {
+  --bg: #121212;
+  --surface: #1e1e1e;
+  --heading-color: #ffffff;
+  --text-body: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --accent: #ff7e67;
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --footer-bg: rgba(0,0,0,0.3);
+  --footer-text: #ffffff;
+}
+
+[data-theme='committee'] {
+  /* BACKGROUNDS: Neutral Dark Gray (Like VS Code or GitHub Dark) */
+  --bg: #1E1E20;           /* Dark Charcoal/Slate */
+  --surface: #2D2D30;      /* Slightly lighter gray for sidebars/cards */
+  
+  /* TEXT: Clean Whites and Grays (No longer lavender/tinted) */
+  --heading-color: #F0F0F0; /* Bright White-Gray */
+  --text-body: #CCCCCC;     /* Standard readable Light Gray */
+  --text-muted: #888888;    /* Neutral Muted Gray */
+  
+  /* ACCENTS: Keep the Purple identity here ONLY */
+  --accent: #A56CC1;        /* A slightly brighter purple to pop against gray */
+  --border-subtle: rgba(255, 255, 255, 0.15); /* White-based border for neutrality */
+  
+  /* FOOTER: Deep Dark */
+  --footer-bg: #151517;     /* Almost black, slightly off-tone */
+  --footer-text: #A56CC1;   /* Purple text to match the accent */
+
+  /* Scheme Colors (Unchanged) */
+  --color-core: #00ACFF;
+  --color-consultant: #11806A;
+  --color-advisor: #9B59B6;
+  --color-lpo: #E67E22;
+  --color-contributor: #F1C40F;
+}
+
+[data-theme='charlotte'] {
+  --bg: #FFF0F5;            /* Lavender Blush */
+  --surface: #ffffff;       /* Pure White for contrast */
+  --heading-color: #4A0E2E; /* Deep Plum for crisp readability */
+  --text-body: #5D2E46;     /* Muted Berry */
+  --text-muted: #B39DDB;    /* Soft Lavender */
+  --accent: #FF007F;        /* Bright Neon Pink */
+  --border-subtle: rgba(255, 0, 127, 0.15);
+  --footer-bg: #2D0D18;     /* Dark Berry Footer */
+  --footer-text: #FFC1E3;   /* Pastel Pink Footer Text */
+}
+
+/* GLOBAL TAG ASSIGNMENTS */
+body {
+  background-color: var(--bg);
+  color: var(--text-body);
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4 {
+  color: var(--heading-color);
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+}

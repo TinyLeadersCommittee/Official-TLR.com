@@ -4,14 +4,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 <BaseLayout title="League Philosophy">
   <article class="prose-content">
-    <header>
+    <header class="doc-header">
       <h1>Official TLR Little League Philosophy</h1>
-      <p><em>By Fishe, Committee Advisor</em></p>
+      <p class="author">By Fishe, Committee Advisor</p>
     </header>
 
     <hr />
 
-    <p>Hello!!!!</p>
+    <p class="intro-text">Hello!!!!</p>
 
     <p>
       Recently our discord community had a long discussion about how to improve 
@@ -39,89 +39,96 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       what we’re trying to accomplish with these monthly leagues.
     </p>
 
-    <h3>The Philosophy Behind Our Monthly Leagues</h3>
+    <div class="highlight-box">
+      <h3>The Philosophy Behind Our Monthly Leagues</h3>
     <p>
       The monthly leagues are there to offer everyone a place to play 
       <strong>organized</strong>, <strong>accessible</strong>, 
       <strong>low-stakes</strong> Tiny Leaders.
     </p>
-
-    <h4>Organized</h4>
-    <p>
-      We want to provide a space where people know they’re going to get to play 
-      at least one game this week. 
-    </p>
-    <p>
-      There is absolutely nothing stopping you from playing Tiny whenever you 
-      want with anyone you want. Go use the LFG ping, it’s great. But that has 
-      its limits! People are busy! Maybe you don’t have an IRL playgroup you can 
-      get regular games in with. It takes time and effort to find an opponent, 
-      and unless you’re the most organized person alive, you’re probably not 
-      going to schedule a bo3 for the 2 hour window when you’re available in 3 days.
-    </p>
-    <p>
-      By joining the tournament you know you’re going to get to play Tiny this 
-      week. We’ll find your opponent for you. We’re organized so you don’t have to be.
-    </p>
-
-    <h4>Accessible</h4>
-    <p>
-      When I say everyone, I mean absolutely everyone. That includes our new 
-      players, veterans, spikes, casuals, people from the other side of the 
-      planet from you, your dog, your friend from grade 3 who ate your lunchables. 
-      Everyone.
-    </p>
-    <p>
-      The monthly leagues will ALWAYS be completely and totally free to play. 
-      Yes there are prizes available, but it will never be a barrier to entry.
-    </p>
-    <p>
-      Tiny is for everyone and we really do get everyone here. We have players 
-      from nearly every continent and so many different walks to life.
-    </p>
-    <p>
-      We also understand that playing a niche commander variant micro-format is 
-      probably not super high on most people’s priorities. Nor should it be. 
-      Playing just one game per week makes the tournament accessible to people 
-      with busy schedules, people from different parts of the world, people who 
-      maybe just want to play a little bit of Tiny. We also start rounds at the 
-      beginning of the week to give most people the most amount of heads up that 
-      they may need to block out 40 minutes of their weekend to play. Plus 4 
-      rounds fits nicely into a month-long schedule (for the most part).
-    </p>
+    </div>
     
+    <section class="pillar-section">
+      <h4>Organized</h4>
+      <p>
+        We want to provide a space where people know they’re going to get to play 
+        at least one game this week. 
+      </p>
+      <p>
+        There is absolutely nothing stopping you from playing Tiny whenever you 
+        want with anyone you want. Go use the LFG ping, it’s great. But that has 
+        its limits! People are busy! Maybe you don’t have an IRL playgroup you can 
+        get regular games in with. It takes time and effort to find an opponent, 
+        and unless you’re the most organized person alive, you’re probably not 
+        going to schedule a bo3 for the 2 hour window when you’re available in 3 days.
+      </p>
+      <p>
+        By joining the tournament you know you’re going to get to play Tiny this 
+        week. We’ll find your opponent for you. We’re organized so you don’t have to be.
+      </p>
+    </section>
 
-    <h4>Low Stakes</h4>
-    <p>
-      In short, we want the monthlies to be akin to your Friday Night Magic. 
-      Your way to go test your mettle against other people for glory and fun, 
-      and sometimes there might be prizes, but mostly it’s just because Magic 
-      The Gathering is a fun game we like to play.
-    </p>
-    <p>
-      In other words: <strong>It’s Just Not That Big Of A Deal.</strong>
-    </p>
-    <p>
-      However, just like your regular FNMs, we can acknowledge there’s different 
-      types of people playing. People have fun in different ways. We all know 
-      about Timmys, Johnnys, and Spikes. These players can all coexist. The 
-      important thing is we’re not going to separate these crowds. Your FNM 
-      doesn’t divide out the casual from the competitive and we’re not going 
-      to either.
-    </p>
-    <p>
-      This is also why low-stakes is not NO-stakes. We keep things 
-      <a href="https://blogs.magicjudges.org/rules/mtr1-12/">Regular REL.</a> 
-      Because the rules do matter, and there are some things at stake
-    </p>
-    <p>
-      Some, but not all, of our players are playing for real life money, and 
-      there’s opportunities most months to qualify into more competitively 
-      focused tournaments with more prizes. This is why we maintain our 
-      cockatrice hash-code bookkeeping, this is why Gray gets paid the big bucks 
-      being our resident judge (we actually don’t pay him but feel free to slip 
-      him a 20)
-    </p>
+    <section class="pillar-section">
+      <h4>Accessible</h4>
+      <p>
+        When I say everyone, I mean absolutely everyone. That includes our new 
+        players, veterans, spikes, casuals, people from the other side of the 
+        planet from you, your dog, your friend from grade 3 who ate your lunchables. 
+        Everyone.
+      </p>
+      <p>
+        The monthly leagues will ALWAYS be completely and totally free to play. 
+        Yes there are prizes available, but it will never be a barrier to entry.
+      </p>
+      <p>
+        Tiny is for everyone and we really do get everyone here. We have players 
+        from nearly every continent and so many different walks to life.
+      </p>
+      <p>
+        We also understand that playing a niche commander variant micro-format is 
+        probably not super high on most people’s priorities. Nor should it be. 
+        Playing just one game per week makes the tournament accessible to people 
+        with busy schedules, people from different parts of the world, people who 
+        maybe just want to play a little bit of Tiny. We also start rounds at the 
+        beginning of the week to give most people the most amount of heads up that 
+        they may need to block out 40 minutes of their weekend to play. Plus 4 
+        rounds fits nicely into a month-long schedule (for the most part).
+      </p>
+    </section>
+
+    <section class="pillar-section">
+      <h4>Low Stakes</h4>
+      <p>
+        In short, we want the monthlies to be akin to your Friday Night Magic. 
+        Your way to go test your mettle against other people for glory and fun, 
+        and sometimes there might be prizes, but mostly it’s just because Magic 
+        The Gathering is a fun game we like to play.
+      </p>
+      <p>
+        In other words: <strong>It’s Just Not That Big Of A Deal.</strong>
+      </p>
+      <p>
+        However, just like your regular FNMs, we can acknowledge there’s different 
+        types of people playing. People have fun in different ways. We all know 
+        about Timmys, Johnnys, and Spikes. These players can all coexist. The 
+        important thing is we’re not going to separate these crowds. Your FNM 
+        doesn’t divide out the casual from the competitive and we’re not going 
+        to either.
+      </p>
+      <p>
+        This is also why low-stakes is not NO-stakes. We keep things 
+        <a href="https://blogs.magicjudges.org/rules/mtr1-12/">Regular REL.</a> 
+        Because the rules do matter, and there are some things at stake
+      </p>
+      <p>
+        Some, but not all, of our players are playing for real life money, and 
+        there’s opportunities most months to qualify into more competitively 
+        focused tournaments with more prizes. This is why we maintain our 
+        cockatrice hash-code bookkeeping, this is why Gray gets paid the big bucks 
+        being our resident judge (we actually don’t pay him but feel free to slip 
+        him a 20)
+      </p>
+    </section>
     
     <hr />
     
@@ -150,13 +157,135 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       other to make the best possible experience for everyone!
     </p>
     
-    <p><em>- Fishe, Committee Advisor</em></p>
+    <p class="author-signoff"><em>- Fishe, Committee Advisor</em></p>
 
     <hr />
 
-    <p>
+    <p class="back-link">
       <a href="/community/little-league">&larr; Back to Little League Info</a>
     </p>
 
   </article>
 </BaseLayout>
+
+<style>
+  /* --- CONTAINER & TYPOGRAPHY --- */
+  .prose-content {
+    /* "Golden Rule" of readability: ~65 characters wide */
+    max-width: 65ch; 
+    margin: 3rem auto;
+    padding: 0 1rem;
+    color: var(--text-body);
+    font-size: 1.1rem; /* Slightly larger base font for reading comfort */
+    line-height: 1.7;  /* Generous line height */
+  }
+
+  /* --- HEADERS --- */
+  .doc-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    color: var(--heading-color);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .author {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-style: italic;
+  }
+
+  h3 {
+    color: var(--heading-color);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    color: var(--accent); /* Highlights the 3 pillars in brand color */
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* --- INTRO --- */
+  .intro-text {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--heading-color);
+  }
+
+  /* --- CALLOUTS --- */
+  .highlight-box {
+    background-color: var(--surface);
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .highlight-box h3 {
+    margin-top: 0;
+  }
+
+  .callout-text {
+    font-size: 1.2rem;
+    color: var(--heading-color);
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  /* --- LINKS --- */
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .back-link {
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .author-signoff {
+    text-align: right;
+    color: var(--text-muted);
+    margin-top: 2rem;
+  }
+
+  /* --- SPACING --- */
+  hr {
+    border: 0;
+    border-top: 1px solid var(--border-subtle);
+    margin: 3rem 0;
+  }
+
+  .pillar-section {
+    margin-bottom: 2rem;
+  }
+
+  /* --- MOBILE --- */
+  @media (max-width: 600px) {
+    .prose-content {
+      font-size: 1rem;
+    }
+    
+    h1 {
+      font-size: 1.75rem;
+    }
+  }
+</style>

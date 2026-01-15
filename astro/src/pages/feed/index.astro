@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="The Feed">
+  <header>
+    <h1>The Feed</h1>
+    <p>Official Announcements, B&R Updates, and Community Highlights.</p>
+  </header>
+
+  <hr />
+
+  <section class="feed-container">
+    
+    <article class="feed-item pinned">
+      <span class="tag">Latest Update</span>
+      <h2>Welcome to the New Website</h2>
+      <p class="date">January 2026</p>
+      <p>
+        Welcome to the official home of Tiny Leaders Reborn. 
+        We are currently migrating our archives. Stay tuned for 
+        upcoming updates and the next banlist announcement.
+      </p>
+    </article>
+
+    <div class="archive-placeholder">
+      <p><em>Archive is being digitized...</em></p>
+    </div>
+
+  </section>
+</BaseLayout>
+
+<style>
+  .feed-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .feed-item {
+    background: rgba(255,255,255,0.05);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    margin-bottom: 2rem;
+  }
+
+  .feed-item.pinned {
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .tag {
+    background: var(--accent-color);
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .date {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .archive-placeholder {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+    border-top: 1px solid #333;
+  }
+</style>

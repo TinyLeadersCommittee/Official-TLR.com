@@ -58,7 +58,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </p>
         <p>
           <a href="/rules/supplements#philosophy">
-            Read the full technical breakdown here &rarr;
+            Read a more detailed breakdown here &rarr;
           </a>
         </p>
       </aside>
@@ -104,33 +104,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <div class="philo-item">
             <dt>Metagame Diversity</dt>
             <dd>
-                A healthy format supports a variety of viable decks and strategies, avoiding 
-                excessive dominance by any single archetype.
+                A healthy format supports a variety of viable decks and strategies, 
+                avoiding excessive dominance by any single archetype.
             </dd>
         </div>
 
         <div class="philo-item">
             <dt>Competitive Balance</dt>
             <dd>
-                While power levels will vary, the format should remain balanced enough that
-                no strategy is overwhelmingly superior.
+                While power levels will vary, the format should remain balanced 
+                enough that no strategy is overwhelmingly superior.
             </dd>
         </div>
 
         <div class="philo-item">
             <dt>Counterplay & Interaction</dt>
             <dd>
-                Decks should have meaningful ways to interact with opponents, preventing 
-                non-games where one player has little agency.
+                Decks should have meaningful ways to interact with opponents, 
+                preventing non-games where one player has little agency.
             </dd>
         </div>
 
         <div class="philo-item">
             <dt>Format Identity</dt>
             <dd>
-                Tiny Leaders: Reborn retains its unique playstyle by adhering to its 
-                structural rules, such as 3 MV or lower commanders and 50-card decks, while 
-                evolving naturally over time.
+                Tiny Leaders: Reborn retains its unique playstyle by adhering 
+                to its structural rules and design elements, such as 3 MV or 
+                lower cards and 50-card decks, while evolving naturally over time.
             </dd>
         </div>
 
@@ -138,7 +138,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <dt>Player Engagement & Enjoyment</dt>
             <dd>
                 The format should be fun, rewarding to play, and accessible to a broad 
-                audience, from casual to competitive players, but leans competitively.
+                audience, from casual to competitive players, but leaning competitively.
             </dd>
         </div>
       </dl>
@@ -166,37 +166,37 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   /* Lead Text size */
   .lead {
     font-size: 1.1rem;
-    color: #ccc;
+    color: var(--text-muted); /* Fixed: matches global muted text */
     max-width: 65ch;
   }
 
   /* Styling the lists */
   .rules-list {
-    list-style: none; /* Remove bullets to use custom spacing */
+    list-style: none;
     padding: 0;
   }
   .rules-list li {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--surface); /* Fixed: adapts to theme card color */
     margin-bottom: 0.75rem;
     padding: 0.75rem;
-    border-left: 3px solid #444;
+    border-left: 3px solid var(--border-subtle); /* Fixed: adapts to theme borders */
     border-radius: 0 4px 4px 0;
   }
   .rules-list strong {
-    color: var(--accent-color);
+    color: var(--accent); /* Fixed: corrected variable name */
   }
 
   /* The Alert Box */
   .rule-callout {
-    border: 1px solid var(--accent-color);
-    background: rgba(255, 126, 103, 0.1); /* Low opacity accent */
+    border: 1px solid var(--accent);
+    background: var(--surface); /* Fixed: removed hardcoded red tint */
     padding: 1.5rem;
     border-radius: 8px;
     margin: 2rem 0;
   }
   .rule-callout h3 {
     margin-top: 0;
-    color: var(--accent-color);
+    color: var(--accent);
   }
 
   /* Philosophy Grid */
@@ -209,14 +209,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .philo-item dt {
     font-weight: bold;
     font-size: 1.1em;
-    color: #fff;
+    color: var(--accent); /* Fixed: removed hardcoded red */
     margin-bottom: 0.5rem;
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid var(--border-subtle); /* Fixed: removed hardcoded gray */
     padding-bottom: 0.25rem;
   }
   .philo-item dd {
     margin: 0;
-    color: #ccc;
+    color: var(--text-muted);
   }
   
   /* Button Link */
@@ -225,12 +225,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }
   .btn-primary {
     display: inline-block;
-    background: var(--accent-color);
-    color: #111;
+    background: var(--accent);
+    color: var(--bg); /* Trick: Ensures text contrasts with the accent button */
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     font-weight: bold;
     text-decoration: none;
+    transition: filter 0.2s ease;
   }
   .btn-primary:hover {
     filter: brightness(1.1);

@@ -48,13 +48,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <article class="nav-card">
           <h3>The Feed</h3>
           <p>Latest announcements and articles.</p>
-          <a href="/announcements">Read Announcements</a>
+          <a href="/feed">Read Announcements</a>
         </article>
 
         <article class="nav-card">
           <h3>About</h3>
-          <p>Meet the Committee and read our history.</p>
-          <a href="/about">The Team</a>
+          <p>Read about our history and meet the Committee.</p>
+          <a href="/about">Learn our History</a>
         </article>
       </nav>
     </section>
@@ -98,7 +98,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p>
           Follow us for quick updates and community highlights.
         </p>
-        <a href="https://bsky.app/profile/tinyleadersrebon.bsky.social">
+        <a href="https://bsky.app/profile/tinyleadersreborn.bsky.social">
             Follow on Bluesky
         </a>
       </div>
@@ -129,12 +129,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     gap: 1.5rem;
     margin-top: 1rem;
   }
+
   .nav-card {
-    border: 1px solid #444;
-    padding: 1rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.03);
-  }
+  /* CHANGED: Use variables so it adapts to Light/Committee themes */
+  border: 1px solid var(--border-subtle); 
+  background-color: var(--surface);
+  
+  /* Kept your original spacing */
+  padding: 1rem;
+  border-radius: 8px;
+}
+
   .media-block {
     margin-bottom: 1.5rem;
   }

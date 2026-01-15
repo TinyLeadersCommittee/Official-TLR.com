@@ -1,16 +1,151 @@
 ---
-
+// We don't use BaseLayout here because we want a 
+// totally blank canvas for the splash screen.
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <title>Tiny Leaders Reborn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@900&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #fff;
+            --accent: #ff4d00;
+        }
+
+        /* Re-applying the theme logic locally for the splash page */
+        [data-theme='light'] { --bg: #f0f0f0; --text: #111; --accent: #ff4d00; }
+        [data-theme='committee'] { --bg: #1a1a1a; --text: #eee; --accent: #9c27b0; }
+        [data-theme='charlotte'] { --bg: #111; --text: #fff; --accent: #ff69b4; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .totem-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .totem-link:hover {
+            transform: scale(1.02);
+        }
+
+        /* BIG PLAYS */
+        .slogan-top {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: -1rem; /* Overlap effect */
+            z-index: 2;
+            transform: rotate(-5deg);
+        }
+
+        /* LOGO BOX */
+        .logo-main {
+            font-size: 5rem;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .reborn-sub {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        /* THE PHRASE */
+        .baptize-phrase {
+            margin-top: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 2s forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 0.6; transform: translateY(0); }
+        }
+
+        /* THEME PICKER */
+        .theme-picker {
+            position: absolute;
+            bottom: 3rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .theme-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 2px solid #555;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .theme-btn:hover { transform: scale(1.3); }
+        .t-light { background: #fff; }
+        .t-dark { background: #333; }
+        .t-committee { background: #9c27b0; }
+        .t-charlotte { background: #ff69b4; }
+    </style>
+</head>
+<body>
+
+    <a href="/discover" class="totem-link">
+        <span class="slogan-top">Big Plays</span>
+        <h1 class="logo-main">Tiny Leaders</h1>
+        <span class="reborn-sub">Reborn</span>
+        
+        <p class="baptize-phrase">
+            Get baptized by the fire and be reborn.
+        </p>
+    </a>
+
+    <nav class="theme-picker">
+        <button class="theme-btn t-light" onclick="setTheme('light')" title="Light Theme"></button>
+        <button class="theme-btn t-dark" onclick="setTheme('dark')" title="Dark Theme"></button>
+        <button class="theme-btn t-committee" onclick="setTheme('committee')" title="Committee Theme"></button>
+        <button class="theme-btn t-charlotte" onclick="setTheme('charlotte')" title="Charlotte Theme"></button>
+    </nav>
+
+    <script is:inline>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+        
+        // Load initial
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme);
+    </script>
+</body>
 </html>

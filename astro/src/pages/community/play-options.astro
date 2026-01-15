@@ -1,0 +1,407 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout pageTitle="More Ways to Play">
+  <main class="other-play-options-page">
+
+    <header class="play-options-header">
+      <h1>More Ways to Play</h1>
+      <div class="intro-text">
+        <p>
+          Tiny Leaders: Reborn is played in many ways beyond scheduled tournaments.
+          Whether you’re looking to test decks online, try experimental variants, 
+          or find paper games in your region, these are some of the most active 
+          ways the community plays today.
+        </p>
+      </div>
+    </header>
+
+    <section class="online-play-container" aria-label="Discord and Online Play Options">
+      
+      <header class="section-header">
+        <h2>Discord & Online Play</h2>
+        <p>
+          If you're looking for online play, more than just The Official TLR 
+          Little League is coordinated through the official Discord server. 
+          Some of these events are Committee-run or community-run, regularly 
+          evolving, and designed to support both experimentation and casual play.
+        </p>
+      </header>
+
+      <div class="play-options-grid">
+
+        <article class="play-option-card">
+          <header class="card-header">
+            <h3>Weekly Tiny Brawl</h3>
+            <span class="status-tag status-ongoing">Ongoing</span>
+          </header>
+          <div class="card-body">
+            <p>
+              Weekly Tiny Brawl is a week-long, round-robin testing league 
+              designed to push Tiny Leaders: Reborn deckbuilding to the bleeding 
+              edge. Players sign up via a Discord bot and play as many matches 
+              as they can throughout the week.
+            </p>
+            <ul class="details-list">
+              <li>Games played via Cockatrice</li>
+              <li>After your first match, you may revise your deck once</li>
+              <li>Decks are locked after revisions</li>
+              <li>Any card that is spoiled and available on Cockatrice, and would normally be Tiny-legal, is allowed</li>
+              <li>Operates in an auxiliary Discord server and run by The Committee</li>
+              <li>Top seasonal performer earns the title: <strong>Most Wicked Weekly Warrior</strong></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="play-option-card">
+          <header class="card-header">
+            <h3>Tiny Cube</h3>
+            <span class="status-tag status-ongoing">Ongoing</span>
+          </header>
+          <div class="card-body">
+            <p>
+              Tiny Cube offers a draft-based Tiny Leaders: Reborn experience 
+              using custom-built cubes curated by the format’s Rules and Policy 
+              Manager. It combines traditional drafting with Tiny deck 
+              construction in a fully online environment.
+            </p>
+            <h4>How it works:</h4>
+            <ul class="details-list">
+              <li>Cubes are curated and published on Cube Cobra</li>
+              <li>Drafts are run via draftmancer.com</li>
+              <li>Players export their drafted card pools</li>
+              <li>Decks are built and played using Cockatrice</li>
+              <li>Instructions and support are provided during each event</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="play-option-card">
+          <header class="card-header">
+            <h3>Taste Testing Deckbuilding Challenges</h3>
+            <span class="status-tag status-soon">Coming Soon</span>
+          </header>
+          <div class="card-body">
+            <p>
+              Taste Testing challenges are short-form deckbuilding exercises 
+              centered around specific themes, constraints, or mechanics. 
+              These events are designed to spark creativity, discussion, and 
+              exploration of the format's depth.
+            </p>
+          </div>
+        </article>
+
+        <article class="play-option-card">
+          <header class="card-header">
+            <h3>Community Events & Variant Play</h3>
+            <span class="status-tag status-periodic">Periodic</span>
+          </header>
+          <div class="card-body">
+            <p>
+              From time to time, members of the community organize experimental 
+              or variant Tiny Leaders: Reborn events with additional rules or 
+              constraints. These events explore what Tiny can look like when 
+              pushed in new directions.
+            </p>
+            <p class="examples-text">
+              <strong>Examples:</strong> Tiny Vintage, Two-Headed Gnome 
+              (Tiny Two-Headed Giant), Pauper Tiny Leaders.
+            </p>
+            <ul class="details-list">
+              <li>Typically organized via Challonge</li>
+              <li>Games played on Cockatrice</li>
+              <li>Rules and structure vary by event</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="play-option-card">
+          <header class="card-header">
+            <h3>Looking for Games (LFG)</h3>
+            <span class="status-tag status-always">Always Available</span>
+          </header>
+          <div class="card-body">
+            <p>
+              Sometimes you just want a game. The Looking for Games channel 
+              exists for exactly that.
+            </p>
+            <h4>How it works:</h4>
+            <ul class="details-list">
+              <li>Post in the <code>#lfg</code> channel on Discord</li>
+              <li>Ping the <strong>@LFG</strong> role to notify interested players</li>
+              <li>Specialized roles exist for: Cockatrice, SpellTable, and Competitive Testing</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="paper-play-container" aria-label="Community Reported Paper Play">
+      
+      <header class="section-header">
+        <h2>Other Paper Play Opportunities</h2>
+        <p class="disclaimer">Listings are community-reported and provided for 
+          informational purposes only. Inclusion does not imply partnership or 
+          endorsement.</p>
+        <p>
+          In addition to regularly organized local events, Tiny Leaders: Reborn is occasionally played in paper across the world through community-led initiatives. These listings are reported by players and organizers and are provided for visibility only.
+        </p>
+      </header>
+
+      <div class="empty-state-message">
+        <h3>Know of a store or playgroup hosting Tiny Leaders: Reborn in paper?</h3>
+        <p>Let us know so we can help players find games in their area.</p>
+        <a href="#" class="button button-outline">Submit a Location</a>
+      </div>
+
+    </section>
+
+    <footer class="play-options-footer">
+      <p>
+        Tiny Leaders: Reborn thrives because players find new ways to play it. These options reflect the creativity and initiative of the community.
+      </p>
+    </footer>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* --- LAYOUT CONTAINER --- */
+  .other-play-options-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    color: var(--text-body);
+  }
+
+  /* --- HERO HEADER --- */
+  .play-options-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+  }
+
+  .play-options-header h1 {
+    color: var(--heading-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* --- SECTION HEADERS --- */
+  .section-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1rem;
+  }
+
+  .section-header h2 {
+    color: var(--heading-color);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header p {
+    color: var(--text-muted);
+    max-width: 70ch;
+    line-height: 1.5;
+  }
+
+  /* --- GRID LAYOUT --- */
+  .play-options-grid {
+    display: grid;
+    /* Responsive: Fits as many 320px cards as possible, then stretches */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  /* --- CARD DESIGN --- */
+  .play-option-card {
+    background-color: var(--bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .play-option-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+  }
+
+  /* --- CARD HEADER & STATUS PILLS --- */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .card-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--heading-color);
+    line-height: 1.3;
+  }
+
+  .status-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+
+  /* Status Colors */
+  .status-ongoing {
+    background-color: #e6fffa; /* Light Teal */
+    color: #047481;
+    border-color: #b2f5ea;
+  }
+
+  .status-soon {
+    background-color: #fffaf0; /* Light Orange */
+    color: #9c4221;
+    border-color: #feebc8;
+  }
+
+  .status-periodic {
+    background-color: #ebf8ff; /* Light Blue */
+    color: #2b6cb0;
+    border-color: #bee3f8;
+  }
+
+  .status-always {
+    background-color: #f0fff4; /* Light Green */
+    color: #22543d;
+    border-color: #c6f6d5;
+  }
+
+  /* --- CARD BODY CONTENT --- */
+  .card-body p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--text-body);
+  }
+
+  .examples-text {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    background-color: var(--surface);
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+
+  .card-body h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 1.5rem 0 0.5rem 0;
+    font-weight: bold;
+  }
+
+  /* --- DETAILS LIST --- */
+  .details-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    list-style-type: disc;
+  }
+
+  .details-list li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-body);
+    line-height: 1.5;
+  }
+
+  /* --- PAPER PLAY / EMPTY STATE --- */
+  .paper-play-container {
+    margin-bottom: 4rem;
+  }
+
+/* --- DISCLAIMER (Styled as a Notice) --- */
+.disclaimer {
+  background-color: var(--surface);
+  border-left: 4px solid var(--text-muted); /* Neutral Grey Accent */
+  padding: 1rem;
+  border-radius: 0 4px 4px 0;
+  
+  /* Typography */
+  font-size: 0.85rem;
+  color: var(--text-body);
+  font-style: italic;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+  .empty-state-message {
+    background-color: var(--surface);
+    border: 2px dashed var(--border-subtle);
+    border-radius: 8px;
+    padding: 3rem 1rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .empty-state-message h3 {
+    margin-top: 0;
+    color: var(--heading-color);
+  }
+
+  .button-outline {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .button-outline:hover {
+    background-color: var(--accent);
+    color: white;
+  }
+
+  /* --- FOOTER --- */
+  .play-options-footer {
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 2rem;
+    color: var(--text-muted);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* --- MOBILE TWEAKS --- */
+  @media (max-width: 600px) {
+    .play-options-header h1 {
+      font-size: 2rem;
+    }
+    
+    .play-options-grid {
+      grid-template-columns: 1fr; /* Stack cards on mobile */
+    }
+  }
+</style>

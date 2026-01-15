@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Design Philosophy">
+  <main class="design-hub">
+    
+    <header class="hub-header">
+      <h1>The Design of Tiny Leaders</h1>
+      <p class="hub-subtitle">
+        A deep dive into the rules, restrictions, and reasons that define the format.
+      </p>
+    </header>
+
+    <section class="toc-section">
+      
+      <div class="chapter-list">
+        
+        <a href="/design/understanding" class="chapter-card">
+          <span class="chap-num intro-label">Intro</span>
+          <div class="chap-info">
+            <h4>Understanding the Design</h4>
+            <p>The Intent Behind the Structure</p>
+          </div>
+        </a>
+
+        <a href="/design/rule-of-three" class="chapter-card">
+          <span class="chap-num">I</span>
+          <div class="chap-info">
+            <h4>The Rule of 3</h4>
+            <p>The Soul of the Format</p>
+          </div>
+        </a>
+
+        <a href="/design/commander-variant" class="chapter-card">
+          <span class="chap-num">II</span>
+          <div class="chap-info">
+            <h4>Commander Variant</h4>
+            <p>Familiar Language, Set Expectations</p>
+          </div>
+        </a>
+
+        <a href="/design/one-v-one" class="chapter-card">
+          <span class="chap-num">III</span>
+          <div class="chap-info">
+            <h4>1v1 Structure</h4>
+            <p>Magic in its Original Form</p>
+          </div>
+        </a>
+
+        <a href="/design/maindeck" class="chapter-card">
+          <span class="chap-num">IV</span>
+          <div class="chap-info">
+            <h4>50 Card Maindeck</h4>
+            <p>Half the Size, Double the Focus</p>
+          </div>
+        </a>
+
+        <a href="/design/sideboard" class="chapter-card">
+          <span class="chap-num">V</span>
+          <div class="chap-info">
+            <h4>10 Card Sideboard</h4>
+            <p>Adaptation Through Limitation</p>
+          </div>
+        </a>
+
+        <a href="/design/banlist" class="chapter-card">
+          <span class="chap-num">VI</span>
+          <div class="chap-info">
+            <h4>The Banlist</h4>
+            <p>Identity via Exclusion</p>
+          </div>
+        </a>
+
+        <a href="/design/modular-system" class="chapter-card">
+          <span class="chap-num infinite-symbol">∞</span>
+          <div class="chap-info">
+            <h4>A Modular System</h4>
+            <p>Thinking in Tiny</p>
+          </div>
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* --- LAYOUT --- */
+  .design-hub {
+    max-width: 750px; /* Constrained width for a readable vertical column */
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    color: var(--text-body);
+  }
+
+  /* --- HEADER --- */
+  .hub-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .hub-header h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+  }
+
+  .hub-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* --- CHAPTER LIST (Vertical Column) --- */
+  .chapter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Spacing between cards */
+  }
+
+  /* --- CHAPTER CARD (Visual Style Preserved) --- */
+  .chapter-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg);
+    border: 1px solid var(--border-subtle);
+    padding: 1.5rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .chapter-card:hover {
+    border-color: var(--accent);
+    background-color: var(--surface);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  /* --- NUMBERING / MARKERS --- */
+  .chap-num {
+    font-family: var(--font-mono, monospace);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--border-subtle); /* Faded number by default */
+    margin-right: 2rem;
+    min-width: 3rem; /* Fixed width ensures titles align perfectly */
+    text-align: right;
+    transition: color 0.2s ease;
+  }
+
+  .chapter-card:hover .chap-num {
+    color: var(--accent);
+  }
+
+  /* Intro specific style */
+  .intro-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 0.25rem; /* Visual alignment with title */
+  }
+
+  /* Infinity symbol style */
+  .infinite-symbol {
+    font-size: 2rem;
+    line-height: 1;
+    padding-bottom: 0.25rem;
+  }
+
+  /* --- INFO TEXT --- */
+  .chap-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chap-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--heading-color);
+  }
+
+  .chap-info p {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* --- MOBILE --- */
+  @media (max-width: 600px) {
+    .hub-header h1 { font-size: 2.25rem; }
+    
+    .chapter-card {
+      padding: 1.25rem;
+    }
+
+    .chap-num {
+      margin-right: 1rem;
+      min-width: 2.5rem;
+      font-size: 1.25rem;
+    }
+  }
+</style>

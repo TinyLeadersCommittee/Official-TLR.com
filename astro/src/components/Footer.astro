@@ -1,0 +1,119 @@
+---
+// src/components/Footer.astro
+---
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h3>Play</h3>
+        <ul>
+          <li><a href="/rules/overview">Format Overview</a></li>
+          <li><a href="/banlist">Banlist</a></li>
+          <li><a href="/rules/supplements">Rules Supplements</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="https://discord.com/invite/jq9KWHAdTm">Discord</a></li>
+          <li><a href="https://www.youtube.com/@TinyLeadersRebornCommittee/featured">YouTube</a></li>
+          <li><a href="https://bsky.app/profile/tinyleadersreborn.bsky.social">Bluesky</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>About</h3>
+        <ul>
+          <li><a href="/about">History & Origins</a></li>
+          <li><a href="/about/committee">Governance</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <p class="legal">
+      <strong>Tiny Leaders Original Format</strong> created by Charlotte Tackaberry 
+      with Steven Hamonic and Matthew Turnbull (2013).<br>
+      <strong>Tiny Leaders Reborn</strong> was developed by founding members: 
+      Cl&eacute;ment Silli&egrave;re, Arnaud (aka @Plaguerat), and Olivier Manin (2018).
+    </p>
+    <p class="legal">
+      <strong>Unofficial Fan Content:</strong> Tiny Leaders Reborn is a 
+      community-run format. We are not affiliated with, endorsed, sponsored, 
+      or specifically approved by Wizards of the Coast LLC.
+    </p>
+    <p class="legal">
+      <strong>Trademark:</strong> Magic: The Gathering, Wizards of the Coast, 
+      and their logos are trademarks or registered trademarks of Wizards of 
+      the Coast LLC in the U.S.A. and other countries. All rights reserved.
+    </p>
+    <p class="legal">
+      &copy; 2026 Tiny Leaders Reborn Committee. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* FOOTER */
+  .site-footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text); /* Ensure generic text inherits this */
+    padding: 4rem 1.5rem;
+    margin-top: auto;
+    border-top: 1px solid var(--border-subtle); /* Use variable */
+  }
+
+  .footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-column h3 {
+    color: var(--footer-text); /* Use the footer specific text var */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    
+    border-bottom: 1px solid var(--border-subtle); /* Use variable */
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-column li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-column a {
+    color: var(--footer-text); /* Use footer text color, not default blue/accent */
+    opacity: 0.7;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .footer-column a:hover {
+    opacity: 1;
+    color: var(--accent); /* Optional: Pop with accent color on hover */
+  }
+
+  .legal {
+    font-size: 0.75rem;
+    color: var(--text-muted); /* Use variable instead of #666 */
+    text-align: center;
+    line-height: 1.6;
+  }
+</style>

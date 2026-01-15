@@ -1,0 +1,392 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Design Philosophy">
+  <main class="design-page">
+    
+    <header class="page-header">
+      <h1>Understanding the Design of TLR</h1>
+      <p class="intro-lead">
+        Tiny Leaders: Reborn is more than a collection of deck-building rules or a curated banlist. 
+        At its core, TLR is the result of a deliberate set of design philosophies working in concert 
+        to produce a distinct Magic experience.
+      </p>
+    </header>
+
+    <hr />
+
+    <section class="prose-block">
+      <p>
+        To understand TLR is to understand the intent behind its structure. Every element exists to 
+        support a clear vision of focused gameplay, expressive deckbuilding, and meaningful 
+        decision-making under constraint.
+      </p>
+    </section>
+
+    <section class="core-philosophy">
+      <div class="core-content">
+        <h2>The Core Design Philosophy: <span class="highlight">The Rule of 3</span></h2>
+        <p>
+          At the center of TLR lies its defining principle: the Rule of 3. By restricting cards 
+          to a mana value of three or less, the format establishes an environment where efficiency, 
+          interaction, and identity intersect. This single constraint compresses the scale of the 
+          game while preserving its depth, ensuring that every spell carries weight and every 
+          decision has consequences.
+        </p>
+        <p>
+          The Rule of 3 is not merely a mechanical restriction, it is the foundation from which 
+          the rest of the format emerges. It governs pacing, shapes power expectations, and sets 
+          the proportions that define Tiny Leaders as an experience. Every other design choice 
+          exists to reinforce and support this core principle.
+        </p>
+      </div>
+    </section>
+
+    <section class="supporting-section">
+      <h3>Supporting Design Philosophies</h3>
+      <p class="section-intro">
+        Flowing outward from the Rule of 3 are several supporting design philosophies that give 
+        Tiny Leaders: Reborn its structure and texture. These elements are ordered from the 
+        most familiar to the most divergent.
+      </p>
+
+      <div class="pillars-grid">
+        <article class="pillar-card">
+          <h4>Commander Variant</h4>
+          <p>
+            TLR adopts the Commander framework: a commander in the command zone, color identity restrictions, 
+            and singleton deck construction. This anchors the format in familiar territory, providing each 
+            deck with a clear identity and strategic throughline.
+          </p>
+        </article>
+        
+        <article class="pillar-card">
+          <h4>1v1 Structure</h4>
+          <p>
+            Games are played one-on-one. This creates a focused environment with clear objectives and 
+            immediate consequences. Unlike multiplayer, there are no shifting alliances. Every decision 
+            either advances your plan or disrupts your opponent’s.
+          </p>
+        </article>
+        
+        <article class="pillar-card">
+          <h4>Deck Size (50 Cards)</h4>
+          <p>
+            TLR uses a 50-card deck, forming a compact “Tiny” configuration. This size strikes a careful 
+            balance between variance and consistency, allowing focused strategies to function reliably 
+            without collapsing into redundancy.
+          </p>
+        </article>
+        
+        <article class="pillar-card">
+          <h4>Sideboard (10 Cards)</h4>
+          <p>
+            A 10-card sideboard introduces a measured degree of adaptation. Its limited size forces 
+            meaningful trade-offs, highlights intentional weaknesses, and reflects an element of 
+            optimization associated with competitive play.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="boundary-section">
+      <div class="boundary-content">
+        <h3>Boundary-Setting Design Philosophy: The Banlist</h3>
+        <p>
+          Complementing the core and supporting philosophies is the banlist, which defines the boundaries 
+          of the format. These restrictions are not arbitrary. Some establish the format’s power ceiling, 
+          others protect pacing and play experience, and still others exclude cards that fall outside 
+          what TLR is designed to support at all.
+        </p>
+        <p>
+          Rather than reacting to individual decks or short-term trends, the banlist reinforces what 
+          Tiny Leaders: Reborn is willing to be, and, just as importantly, what it is not. It preserves 
+          the scale established by the Rule of 3.
+        </p>
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="conclusion-section prose-block">
+      <h3>A Cohesive Design</h3>
+      <p>
+        Taken together, these philosophies form a layered, intentional system. The Rule of 3 defines 
+        proportion and identity. Supporting philosophies provide structure and texture. The banlist 
+        safeguards boundaries and expectations. None of these elements operate in isolation; each 
+        reinforces the others.
+      </p>
+      <h3>Putting It All Together</h3>
+      <p>
+        Tiny Leaders: Reborn is defined by intent. Every rule, restriction, and allowance reflects a 
+        conscious design decision aimed at creating focused, expressive, and meaningful gameplay. 
+        By grounding the format in a clear core philosophy and supporting it with deliberate structural 
+        choices, TLR offers a unified experience that is both stable and rewarding to explore.
+      </p>
+    </section>
+
+    <nav class="series-nav">
+      
+      <a href="/design" class="nav-card prev">
+        <span class="nav-label">Previous</span>
+        <div class="nav-inner">
+          <span class="nav-arrow">&larr;</span>
+          <span class="chapter-title">Chapters</span>
+        </div>
+      </a>
+
+      <a href="/design/rule-of-three" class="nav-card next">
+        <span class="nav-label">First Element</span>
+        <div class="nav-inner">
+          <span class="chapter-title">The Rule of 3</span>
+          <span class="nav-arrow">&rarr;</span>
+        </div>
+      </a>
+
+    </nav>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* --- LAYOUT & TYPOGRAPHY --- */
+  .design-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    color: var(--text-body);
+  }
+
+  .prose-block {
+    max-width: 65ch;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 1.1rem;
+  }
+
+  /* --- HEADER --- */
+  .page-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .page-header h1 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .intro-lead {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* --- CORE PHILOSOPHY (Highlighted) --- */
+  .core-philosophy {
+    background-color: var(--surface);
+    border-left: 6px solid var(--accent);
+    padding: 2.5rem;
+    margin: 3rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .core-content {
+    max-width: 70ch;
+  }
+
+  .core-philosophy h2 {
+    color: var(--heading-color);
+    margin-top: 0;
+    font-size: 1.8rem;
+  }
+
+  .core-philosophy .highlight {
+    color: var(--accent);
+  }
+
+  .core-philosophy p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  /* --- SUPPORTING PILLARS (Grid) --- */
+  .supporting-section {
+    margin: 4rem 0;
+  }
+
+  .supporting-section h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    text-align: center;
+    max-width: 60ch;
+    margin: 0 auto 3rem auto;
+    color: var(--text-muted);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .pillar-card {
+    background-color: var(--bg);
+    border: 1px solid var(--border-subtle);
+    padding: 1.5rem;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+
+  .pillar-card h4 {
+    color: var(--heading-color);
+    margin-top: 0;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-subtle);
+    padding-bottom: 0.5rem;
+  }
+
+  .pillar-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* --- BOUNDARY SECTION --- */
+  .boundary-section {
+    background-color: var(--surface);
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    margin: 4rem 0;
+    text-align: center;
+  }
+
+  .boundary-content {
+    max-width: 65ch;
+    margin: 0 auto;
+  }
+
+  .boundary-section h3 {
+    margin-top: 0;
+    color: var(--heading-color);
+    font-size: 1.6rem;
+  }
+
+  /* --- CONCLUSION --- */
+  .conclusion-section h3 {
+    color: var(--heading-color);
+    margin-top: 2rem;
+    font-size: 1.5rem;
+  }
+
+  /* --- SERIES NAVIGATION --- */
+  .series-nav {
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between; /* Pushes buttons to edges */
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  .nav-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .nav-card:hover {
+    background-color: var(--surface);
+    border-color: var(--border-subtle);
+    transform: translateY(-2px);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Left Align "Previous" */
+  .prev {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* Right Align "Next" */
+  .next {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .nav-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .chapter-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--heading-color);
+  }
+
+  .nav-arrow {
+    font-size: 1.25rem;
+    color: var(--accent);
+  }
+
+  /* Mobile Stack */
+  @media (max-width: 600px) {
+    .series-nav {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .nav-card {
+      max-width: 100%;
+      align-items: center;
+      text-align: center;
+      background-color: var(--surface);
+      border-color: var(--border-subtle);
+    }
+    
+    .prev, .next { align-items: center; text-align: center; }
+  }
+
+  /* --- MOBILE --- */
+  @media (max-width: 600px) {
+    .core-philosophy {
+      padding: 1.5rem;
+      border-left-width: 4px;
+    }
+    
+    .page-header h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

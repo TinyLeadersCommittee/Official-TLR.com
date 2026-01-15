@@ -55,9 +55,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           Leaders: Reborn Committee included:
       </p>
       <ul>
-          <li>Olivier Manin (@OlivierDic&eacute;) from Paris</li>
+          <li>Cl&eacute;ment Silli&egrave;re (@noskcaj1992) from Caen</li>  
           <li>Arnaud (@Plaguerat) from Caen</li>
-          <li>Cl&eacute;ment Silli&egrave;re (@noskcaj1992) from Caen</li>
+          <li>Olivier Manin (@OlivierDic&eacute;) from Paris</li>
         </ul>
       <p>
           The TL:R team sought to refine and expand upon the original format’s 
@@ -148,10 +148,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         responsibilities ranging from rules management, meta analysis, tournament 
         support, media production, and community outreach.
       </p>
-      <p>
-        Those interested in learning more about the individual members of the 
-        Committee can find more information [here – page coming soon].
-      </p>
+      <aside class="cta-box">
+        <div class="cta-content">
+          <h3>Meet the Committee</h3>
+          <p>
+            Learn about the Core Members, Consultants, Advisors and others who 
+            keep the format running.
+          </p>
+        </div>
+        <a href="/about/committee" class="cta-button">
+          View Profiles &rarr;
+        </a>
+      </aside>
     </section>
 
     <section id="references">
@@ -164,9 +172,121 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <li><a href="https://mtg.fandom.com/wiki/Tiny_Leaders">
           "Tiny Leaders"</a>, MTG Fandom Wiki.</li>
         <li>Magic-Ville. <a href="https://www.magic-ville.com/fr/gazette/show_article?ref=590">
-          Retour sur Tiny Leaders</a>Magic-Ville Gazette, March 2024.</li>
+          Retour sur Tiny Leaders</a> Magic-Ville Gazette, March 2024.</li>
         <li>Olivier Manin, Firsthand account, June 2025.</li>
       </ol>
     </section>
   </article>
 </BaseLayout>
+
+<style>
+  /* 1. READABILITY: Limit width so lines aren't too long to scan */
+  article {
+    max-width: 750px; 
+    margin: 0 auto;
+    line-height: 1.8; /* Slightly looser spacing for history text */
+    font-size: 1.05rem;
+  }
+
+  /* 2. SECTION SPACING: Give distinct eras their own space */
+  section {
+    margin-bottom: 4rem;
+  }
+
+  /* 3. HEADINGS: Add a subtle divider line under each era */
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  /* 4. LISTS: Make the bullet points easier to scan */
+  ul {
+    padding-left: 1.5rem;
+    color: var(--text-body);
+  }
+  
+  ul li {
+    margin-bottom: 0.75rem;
+  }
+
+/* CTA BOX STYLING - High Visibility Version */
+.cta-box {
+  margin-top: 3rem; /* Extra space to separate from history text */
+  
+  /* Make it stand out with the ACCENT color instead of gray */
+  border: 2px solid var(--accent); 
+  background-color: transparent; /* distinctive from the filled reference box */
+  
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Add a hover lift so it feels clickable */
+.cta-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.cta-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--accent); /* Headings match the border */
+}
+
+.cta-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-body); /* Normal text color, not muted */
+}
+
+.cta-button {
+  background-color: var(--accent);
+  color: var(--bg);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+  /* 5. REFERENCES: "Academic" styling */
+  #references {
+    background-color: var(--surface);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    font-size: 0.9rem; /* Smaller text for citations */
+    margin-top: 4rem;
+  }
+
+  #references h2 {
+    border-bottom: none; /* Remove the line inside the box */
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  #references ol {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  #references li {
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+  }
+
+  /* Make citations clickable but subtle */
+  #references a {
+    font-weight: 600;
+  }
+</style>

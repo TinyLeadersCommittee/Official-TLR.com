@@ -1,182 +1,56 @@
 ---
-// serc/layouts/BaseLayout.astro
-// This is the "Frontmatter" (Server-side JavaScript)
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import NavSidebar from '../components/NavSidebar.astro';
+import Footer from '../components/Footer.astro';
 const { title } = Astro.props;
 ---
 
-<!Doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} | Tiny Leaders Reborn</title>
-    <style is:global>
-      :root {
-        --bg-color: #1a1a1a; /* Dark background */
-        --text-color: #f0f0f0; /* Light text */
-        --accent-color: #ff7e67; /* A splash of color for links */
-        --footer-bg: #111;
-      }
-      body {
-        margin: 0;
-        font-family: sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* Forces footer to bottom */
-        line-height: 1.6;
-      }
-      a { color: var(--accent-color); text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      
-      /* Make images responsive by default */
-      img { max-width: 100%; height: auto; }
-    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script is:inline>
+      const theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
   </head>
   <body>
-
-    <header class="site-header">
-      <nav>
-        <a href="/">Home</a> | 
-        <a href="/discover">Discover</a> | 
-        <a href="/banlist">Banlist</a> | 
-        <a href="/community">Community</a> | 
-        <a href="/about">About</a>
-      </nav>
-      <hr />
-    </header>
+    <Navigation />
+    
+    <NavSidebar />    
 
     <main>
       <slot />
     </main>
 
-    <footer>
-      <hr />
-      
-      <section class="footer-grid">
-        
-        <div class="footer-column">
-          <h3>About</h3>
-          <ul>
-            <li><a href="/about">History & Origins</a></li> 
-            <li><a href="/about/committee">Governance</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>Play</h3>
-          <ul>
-            <li><a href="/rules/overview">Format Overview</a></li>
-            <li><a href="/banlist">Ban List</a></li> 
-            <li><a href="/rules/supplements">Rules Supplements</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>Connect</h3>
-          <ul>
-            <li><a href="https://discord.gg/tiny-leaders">Discord</a></li>
-            <li>
-              <a href="https://youtube.com/@TinyLeadersRebornCommittee">
-                YouTube
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/tinyleadersrebon.bsky.social">
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-
-      </section>
-
-      <hr />
-
-      <section class="credits-text">
-        <p>
-          <small>
-            <strong>Tiny Leaders Original Format</strong> created by Charlotte 
-            Tackaberry with Steven Hamonic and Matthew Turnbull (2013).
-            <br />
-            <strong>Tiny Leaders Reborn</strong> developed by founding members: 
-            Olivier Manin, Arnaud, and Cl&eacute;ment Silli&egrave;re (2018).
-          </small>
-        </p>
-      </section>
-
-      <section class="legal-text">
-        <p>
-          <small>
-            <strong>Unofficial Fan Content:</strong> Tiny Leaders Reborn is a 
-            community-run format. We are not affiliated with, endorsed by, or 
-            sponsored by Wizards of the Coast.
-          </small>
-        </p>
-        <p>
-          <small>
-            <strong>Trademark:</strong> Magic: The Gathering and all related 
-            trademarks are &copy; Wizards of the Coast LLC.
-          </small>
-        </p>
-        <p>
-          <small>
-            &copy; 2026 Tiny Leaders Reborn Committee. All rights reserved.
-          </small>
-        </p>
-      </section>
-
-    </footer>
+    <Footer />
   </body>
 </html>
 
-<style>
-  /* Layout Styles */
-  .site-header {
-    padding: 1rem;
-    text-align: center;
+<style is:global>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
-  
+</style>
+
+<style>
+  /* MAIN CONTENT */
   main {
-    flex: 1; /* Pushes footer down if content is short */
-    padding: 1rem;
-    max-width: 800px;
-    margin: 0 auto; /* Centers content */
+    flex: 1;
+    padding: 6rem 1.5rem 4rem 1.5rem; /* Increased top padding for the header */
+    max-width: 900px;
+    margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
   }
 
-  footer {
-    padding: 2rem;
-    background-color: var(--footer-bg);
-    margin-top: 2rem;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .footer-column h3 {
-    border-bottom: 2px solid #333;
-    padding-bottom: 0.5rem;
-    margin-top: 0;
-  }
-
-  .footer-column ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .footer-column li {
-    margin-bottom: 0.5rem;
-  }
-
-  .credits-text, .legal-text {
-    text-align: center;
-    color: #888;
-  }
 </style>

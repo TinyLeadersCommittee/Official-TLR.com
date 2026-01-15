@@ -1,0 +1,199 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="en" data-theme="committee">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ritual Incomplete | The Committee</title>
+  </head>
+  <body>
+    
+    <div class="vignette-bg"></div>
+
+    <main class="restricted-container">
+      
+      <div class="hooded-figure">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
+        </svg>
+        <div class="figure-glow"></div>
+      </div>
+
+      <h1 class="archaic-title">The Ritual Is Not Complete</h1>
+      
+      <p class="lore-text">
+        You have wandered into the deeper archives. <br>
+        <span class="highlight">The Committee</span> has not yet consecrated this ground.
+      </p>
+
+      <div class="separator-line"></div>
+
+      <a href="/" class="return-btn">
+        <span class="arrow">&larr;</span> Retreat to Safety
+      </a>
+
+    </main>
+
+  </body>
+</html>
+
+<style>
+  /* If your global.css hasn't loaded yet or you want to 
+     hard-code these specific variables just for this page:
+  */
+  :root {
+    --bg: #1E1E20;
+    --surface: #2D2D30;
+    --heading-color: #F0F0F0;
+    --text-body: #CCCCCC;
+    --text-muted: #888888;
+    --accent: #A56CC1;
+    --border-subtle: rgba(255, 255, 255, 0.15);
+  }
+
+  body {
+    background-color: var(--bg); /* #1E1E20 */
+    color: var(--text-body);     /* #CCCCCC */
+    font-family: var(--font-body, sans-serif);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  /* --- BACKGROUND VIGNETTE --- */
+  /* Keeps your gray bg but adds shadow to corners */
+  .vignette-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, #151517 120%);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  .restricted-container {
+    text-align: center;
+    width: 100%;
+    max-width: 420px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 10;
+    
+    /* THEME: Surface Color */
+    background-color: var(--surface); /* #2D2D30 */
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  /* --- HOODED FIGURE --- */
+  .hooded-figure {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1.5rem;
+    color: var(--accent); /* #A56CC1 */
+    position: relative;
+    /* Soft Purple Glow */
+    filter: drop-shadow(0 0 10px rgba(165, 108, 193, 0.4));
+    animation: hover 4s infinite ease-in-out;
+  }
+
+  .figure-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    transform: translate(-50%, -50%);
+    /* Gradient using your specific Accent Purple */
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    z-index: -1;
+    opacity: 0.2; /* Subtle glow */
+    animation: pulse 5s infinite ease-in-out;
+  }
+
+  /* --- TYPOGRAPHY --- */
+  .archaic-title {
+    font-family: var(--font-heading, sans-serif);
+    color: var(--heading-color); /* #F0F0F0 */
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 800;
+    
+    /* Bottom border uses Accent */
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+
+  .lore-text {
+    color: var(--text-body); /* #CCCCCC */
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight {
+    color: var(--accent); /* #A56CC1 */
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .separator-line {
+    width: 40px;
+    height: 2px;
+    background: var(--border-subtle);
+    margin: 0 auto 2rem;
+  }
+
+  /* --- BUTTON --- */
+  .return-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    
+    /* Outline Style using Accent */
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    
+    text-decoration: none;
+    font-family: var(--font-heading, sans-serif);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+  }
+
+  .return-btn:hover {
+    background: var(--accent);
+    color: var(--bg); /* Text turns dark on hover for contrast */
+    box-shadow: 0 0 15px rgba(165, 108, 193, 0.4);
+  }
+
+  .return-btn:hover .arrow {
+    transform: translateX(-4px);
+  }
+
+  .arrow {
+    transition: transform 0.2s ease;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes hover {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.1; transform: translate(-50%, -50%) scale(1.2); }
+  }
+</style>
