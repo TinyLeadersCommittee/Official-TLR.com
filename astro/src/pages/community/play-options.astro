@@ -10,8 +10,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="intro-text">
         <p>
           Tiny Leaders: Reborn is played in many ways beyond scheduled tournaments.
-          Whether you’re looking to test decks online, try experimental variants, 
-          or find paper games in your region, these are some of the most active 
+          Whether you’re looking to test decks online, draft a custom tiny cube, 
+          or try experimental variants, these are some of the most active 
           ways the community plays today.
         </p>
       </div>
@@ -136,26 +136,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </article>
 
       </div>
-    </section>
-
-    <section class="paper-play-container" aria-label="Community Reported Paper Play">
-      
-      <header class="section-header">
-        <h2>Other Paper Play Opportunities</h2>
-        <p class="disclaimer">Listings are community-reported and provided for 
-          informational purposes only. Inclusion does not imply partnership or 
-          endorsement.</p>
-        <p>
-          In addition to regularly organized local events, Tiny Leaders: Reborn is occasionally played in paper across the world through community-led initiatives. These listings are reported by players and organizers and are provided for visibility only.
-        </p>
-      </header>
-
-      <div class="empty-state-message">
-        <h3>Know of a store or playgroup hosting Tiny Leaders: Reborn in paper?</h3>
-        <p>Let us know so we can help players find games in their area.</p>
-        <a href="#" class="button button-outline">Submit a Location</a>
-      </div>
-
     </section>
 
     <footer class="play-options-footer">
@@ -329,58 +309,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     font-size: 0.9rem;
     color: var(--text-body);
     line-height: 1.5;
-  }
-
-  /* --- PAPER PLAY / EMPTY STATE --- */
-  .paper-play-container {
-    margin-bottom: 4rem;
-  }
-
-/* --- DISCLAIMER (Styled as a Notice) --- */
-.disclaimer {
-  background-color: var(--surface);
-  border-left: 4px solid var(--text-muted); /* Neutral Grey Accent */
-  padding: 1rem;
-  border-radius: 0 4px 4px 0;
-  
-  /* Typography */
-  font-size: 0.85rem;
-  color: var(--text-body);
-  font-style: italic;
-  line-height: 1.5;
-  margin-top: 1rem;
-}
-
-  .empty-state-message {
-    background-color: var(--surface);
-    border: 2px dashed var(--border-subtle);
-    border-radius: 8px;
-    padding: 3rem 1rem;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .empty-state-message h3 {
-    margin-top: 0;
-    color: var(--heading-color);
-  }
-
-  .button-outline {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
-    border: 2px solid var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-  }
-
-  .button-outline:hover {
-    background-color: var(--accent);
-    color: white;
   }
 
   /* --- FOOTER --- */

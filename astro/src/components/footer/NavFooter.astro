@@ -1,0 +1,72 @@
+---
+// src/components/NavFooter.astro
+---
+
+<div class="footer-grid">
+  <div class="footer-column">
+    <h3>Play</h3>
+    <ul>
+      <li><a href="/rules/overview">Format Overview</a></li>
+      <li><a href="/banlist">Banlist</a></li>
+      <li><a href="/rules/supplements">Rules Supplements</a></li>
+    </ul>
+  </div>
+  <div class="footer-column">
+    <h3>Connect</h3>
+    <ul>
+      <li><a href="https://discord.com/invite/jq9KWHAdTm">Discord</a></li>
+      <li><a href="https://www.youtube.com/@TinyLeadersRebornCommittee/featured">YouTube</a></li>
+      <li><a href="https://bsky.app/profile/tinyleadersreborn.bsky.social">Bluesky</a></li>
+    </ul>
+  </div>
+  <div class="footer-column">
+    <h3>About</h3>
+    <ul>
+      <li><a href="/about">History & Origins</a></li>
+      <li><a href="/about/committee">Governance</a></li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  /* --- NAVIGATION GRID --- */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-column h3 {
+    color: var(--footer-text);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-column li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-column a {
+    color: var(--footer-text);
+    opacity: 0.7;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .footer-column a:hover {
+    opacity: 1;
+    color: var(--accent);
+  }
+</style>

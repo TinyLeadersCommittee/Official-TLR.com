@@ -1,0 +1,49 @@
+---
+// src/components/Footer.astro
+import NavFooter from './NavFooter.astro';
+import LegalFooter from './LegalFooter.astro';
+---
+
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <NavFooter />
+
+    <hr class="footer-divider" />
+
+    <LegalFooter />
+
+  </div>
+</footer>
+
+<style>
+  /* --- BASE FOOTER CONTAINER --- */
+  .site-footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 4rem 1.5rem 2rem;
+    margin-top: auto;
+    border-top: 1px solid var(--border-subtle);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* --- DIVIDER --- */
+  .footer-divider {
+    border: 0;
+    border-top: 1px solid var(--border-subtle);
+    margin: 0 0 3rem 0;
+    opacity: 0.5;
+  }
+
+  /* --- MOBILE FIXES --- */
+  @media (max-width: 600px) {
+    .site-footer {
+      padding-bottom: 40px; 
+    }
+  }
+</style>

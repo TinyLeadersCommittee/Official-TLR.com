@@ -1,6 +1,6 @@
 ---
-// We don't use BaseLayout here because we want a 
-// totally blank canvas for the splash screen.
+// src/pages/index.astro
+import LegalFooter from '../components/Footer/LegalFooter.astro';
 ---
 
 <html lang="en">
@@ -16,7 +16,6 @@
             --accent: #ff4d00;
         }
 
-        /* Re-applying the theme logic locally for the splash page */
         [data-theme='light'] { --bg: #f0f0f0; --text: #111; --accent: #ff4d00; }
         [data-theme='committee'] { --bg: #1a1a1a; --text: #eee; --accent: #9c27b0; }
         [data-theme='charlotte'] { --bg: #111; --text: #fff; --accent: #ff69b4; }
@@ -25,12 +24,12 @@
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            height: 100vh;
+            /* CHANGED: Use min-height so we can scroll if the screen is tiny */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            /* REMOVED: justify-content: center (This was causing the fight) */
+            /* REMOVED: overflow: hidden (Safety measure for small phones) */
             transition: all 0.5s ease;
             font-family: 'Montserrat', sans-serif;
         }
@@ -44,6 +43,10 @@
             cursor: pointer;
             text-align: center;
             transition: transform 0.3s ease;
+            
+            /* ADDED: This centers the logo in the available space! */
+            margin: auto; 
+            padding: 2rem 1rem; /* Adds safety buffer so it doesn't touch edges */
         }
 
         .totem-link:hover {
@@ -55,7 +58,7 @@
             font-family: 'Dancing Script', cursive;
             font-size: 3rem;
             color: var(--accent);
-            margin-bottom: -1rem; /* Overlap effect */
+            margin-bottom: -1rem;
             z-index: 2;
             transform: rotate(-5deg);
         }
@@ -94,10 +97,24 @@
             to { opacity: 0.6; transform: translateY(0); }
         }
 
-        /* THEME PICKER */
+        /* --- UPDATED FOOTER CONTAINER --- */
+        .splash-footer-container {
+            /* REMOVED: position: absolute & bottom: 0 */
+            width: 100%;
+            z-index: 5;
+            background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+            
+            /* Helps layout flow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        /* --- UPDATED THEME PICKER --- */
         .theme-picker {
-            position: absolute;
-            bottom: 3rem;
+            /* REMOVED: Absolute positioning. Now it sits naturally above the legal text */
             display: flex;
             gap: 1.5rem;
         }
@@ -130,12 +147,16 @@
         </p>
     </a>
 
-    <nav class="theme-picker">
-        <button class="theme-btn t-light" onclick="setTheme('light')" title="Light Theme"></button>
-        <button class="theme-btn t-dark" onclick="setTheme('dark')" title="Dark Theme"></button>
-        <button class="theme-btn t-committee" onclick="setTheme('committee')" title="Committee Theme"></button>
-        <button class="theme-btn t-charlotte" onclick="setTheme('charlotte')" title="Charlotte Theme"></button>
-    </nav>
+    <div class="splash-footer-container">
+        <nav class="theme-picker">
+            <button class="theme-btn t-light" onclick="setTheme('light')" title="Light Theme"></button>
+            <button class="theme-btn t-dark" onclick="setTheme('dark')" title="Dark Theme"></button>
+            <button class="theme-btn t-committee" onclick="setTheme('committee')" title="Committee Theme"></button>
+            <button class="theme-btn t-charlotte" onclick="setTheme('charlotte')" title="Charlotte Theme"></button>
+        </nav>
+
+        <LegalFooter />
+    </div>
 
     <script is:inline>
         function setTheme(theme) {
@@ -143,7 +164,6 @@
             localStorage.setItem('theme', theme);
         }
         
-        // Load initial
         const savedTheme = localStorage.getItem('theme') || 'dark';
         setTheme(savedTheme);
     </script>

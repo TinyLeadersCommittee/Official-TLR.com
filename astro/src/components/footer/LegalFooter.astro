@@ -1,0 +1,140 @@
+---
+// src/components/LegalFooter.astro
+const today = new Date();
+---
+
+<div class="legal-section">
+  
+  <div class="legal-block">
+    <h4>Credits</h4>
+    <p>
+      Tiny Leaders Original Format created by <strong>Charlotte Tackaberry</strong>, 
+      with <strong>Steven Hamonic</strong>, and <strong>Matthew Turnbull</strong> (2013).
+    </p>
+    <p>
+      Tiny Leaders: Reborn developed by founding Committee members: 
+      <strong>Clément Sillière</strong>, <strong>Arnaud Chalendard</strong>, 
+      and <strong>Olivier Manin</strong> (2018).
+    </p>
+  </div>
+
+  <div class="legal-block">
+    <h4>Unofficial Fan Content</h4>
+    <p>
+      Official-TLR.com and Tiny Leaders: Reborn is unofficial Fan Content 
+      permitted under the 
+      <a href="https://company.wizards.com/en/legal/fancontentpolicy" target="_blank" rel="noopener noreferrer">Fan Content Policy</a>. 
+      Not approved/endorsed by Wizards. Portions of the materials used are 
+      property of Wizards of the Coast. ©Wizards of the Coast LLC.
+    </p>
+  </div>
+
+  <div class="legal-block">
+    <h4>Legal & Trademarks</h4>
+    <p>
+      Magic: The Gathering, Wizards of the Coast, and their logos are 
+      trademarks or registered trademarks of Wizards of the Coast LLC in 
+      the U.S.A. and other countries. All rights reserved.
+    </p>
+    <p class="copyright">
+      &copy; {today.getFullYear()} Tiny Leaders Reborn Committee. All rights reserved.
+    </p>
+    
+    <div class="dev-credit">
+      <p>
+        Lead Developer: <a href="MY_LINK" target="_blank" class="architect-name">Mike Plata</a>
+      </p>
+      <p class="team-sub">
+        Maintained by <a href="GITHUB_OR_DISCORD_LINK" target="_blank" class="team-link">The TLC Digital Team</a>
+      </p>
+    </div>
+    
+  </div>
+
+</div>
+
+<style>
+  /* --- LEGAL SECTION STYLES --- */
+  .legal-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; 
+    text-align: center;
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .legal-block h4 {
+    color: var(--footer-text, #ccc);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .legal-block p {
+    font-size: 0.7rem;
+    color: var(--text-muted, #888);
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .legal-block a {
+    color: var(--text-muted, #888);
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+  
+  .legal-block a:hover {
+    color: var(--accent, #9c27b0);
+  }
+
+  .copyright {
+    margin-top: 0.5rem;
+    opacity: 0.5;
+  }
+
+  /* --- CREDIT STYLES --- */
+  .dev-credit {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: center; /* <--- THIS FIXES THE CENTERING */
+  }
+
+  .dev-credit p {
+    margin: 0;
+    font-size: 0.7rem;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+
+  .dev-credit:hover p {
+    opacity: 1;
+  }
+
+  /* YOUR NAME */
+  .architect-name {
+    color: var(--heading-color, #fff); 
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* TEAM NAME */
+  .team-link {
+    color: var(--accent, #9c27b0);
+    text-decoration: none;
+  }
+
+  .architect-name:hover, .team-link:hover {
+    text-decoration: underline;
+  }
+</style>
