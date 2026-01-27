@@ -1,0 +1,78 @@
+---
+// src/pages/committee/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Committee Governance">
+  <article class="governance-page">
+    
+    <header class="page-header">
+      <h1>Governance & Transparency</h1>
+      <p class="intro-text">
+        This section functions as a documentation hub for the Tiny Leaders Committee, 
+        housing the Charter, Guidebook, and formal policies.
+      </p>
+    </header>
+
+    <div class="construction-notice">
+      <h2>🚧 Work in Progress 🚧</h2>
+      <p>You have successfully navigated to <code>/committee/index.astro</code>.</p>
+      <p>According to the plan, this section will eventually host:</p>
+      <ul>
+        <li><strong>Mission Statement:</strong> Purpose and scope of the committee.</li>
+        <li><strong>The Charter:</strong> Structure and authority.</li>
+        <li><strong>The Guidebook:</strong> Policies and procedures for decision making.</li>
+      </ul>
+    </div>
+
+    <div class="back-link">
+      <a href="/about/committee">← Back to the "People" Page</a>
+    </div>
+
+  </article>
+</BaseLayout>
+
+<style>
+  .governance-page {
+    max-width: 800px; /* Narrower for reading text */
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .page-header h1 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .construction-notice {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed var(--accent);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+  }
+
+  .construction-notice h2 {
+    color: var(--accent);
+    margin-top: 0;
+  }
+
+  .construction-notice ul {
+    margin-top: 1rem;
+    line-height: 1.8;
+  }
+
+  .back-link {
+    text-align: center;
+  }
+  
+  .back-link a {
+    color: var(--heading-color);
+    text-decoration: underline;
+  }
+</style>

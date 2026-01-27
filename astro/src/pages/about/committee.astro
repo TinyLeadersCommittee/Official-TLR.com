@@ -1,307 +1,632 @@
 ---
+// src/pages/committee.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-// Member Data Structure for easy updates
-const members = [
-  {
-    role: "Core Team",
-    shape: "triangle",
-    name: "M1-K3",
-    discord: "@M1-K3",
-    img: "/images/m1k3.jpg",
-    contribution: "Blogspot Maintenance; T.O. of the SCT and Titans Tournaments",
-    region: "Los Angeles, California, U.S.A.",
-    bio: "I started playing MTG off and on since 1997, but fairly consistently since 2013. Lover of affinity I tried to play robots in every format I could which included Modern, Legacy, Vintage, and Pauper.",
-    petDeck: "Geist of Saint Traft. “I dance to one song and one song only.”",
-    faveCard: "Geist of Saint Traft. I just love that GoST!"
-  },
-  {
-    role: "Consultants",
-    shape: "circle",
-    name: "Gray",
-    discord: "@Gray",
-    img: "/images/gray.jpg",
-    contribution: "Rules and Policy Manager",
-    region: "Northeast United States",
-    bio: "I'm Gray, your friendly local(ish) L2 from northeast US. I've been playing since 2013 and judging since 2018. My first sanctioned event was the Eldritch Moon prerelease.",
-    petDeck: "I don't have pet decks as I'm currently waist deep in a cube obsession, including a TL:R cube.",
-    faveCard: "A three-way tie between Skullcrack, Decimate, and Mockingbird because flavor text is 🔥."
-  },
-  {
-    role: "LPO",
-    shape: "square",
-    name: "Joe Cantrell",
-    discord: "@Laglaunt",
-    img: "/images/laglaunt.jpg",
-    contribution: "T.O. of Reborn Rumble (TLR Comp REL Tournament)",
-    region: "Northern California, U.S.A.",
-    bio: "I'm Joe Cantrell, aka Laglaunt. I run the paper high-stakes Tiny Leaders Reborn events in Northern California. I've been playing Magic pretty consistently since 2000.",
-    petDeck: "Acererak (Control/Combo Hybrid)",
-    faveCard: "Force of Will (Overall), Barrowgoyf (TLR)"
-  },
-  {
-    role: "Advisors",
-    shape: "diamond",
-    name: "Olivier Dicé",
-    discord: "@Olivier Dicé",
-    img: "/images/olivier.jpg",
-    contribution: "General Advice and Guidance",
-    region: "Paris, France",
-    bio: "I'm Olivier MANIN (aka on social medias O'Dicé or Olivier Dicé). I've been playing since 1997. An old player I guess. I learn to play MTG with these old rule books.",
-    petDeck: "Prosperous Bloom a long time ago, probably Kroxa in tournaments, and Wilson (+ any color) for casual games",
-    faveCard: "Anje's Ravager – This card is absurd. I don't think I've ever lost a game where I solved an attack with it."
-  },
-  {
-    role: "Contributors",
-    shape: "none", // No special shape for contributors
-    name: "jonesie42",
-    discord: "@jonesie42",
-    img: null, // No image provided
-    contribution: "Server Vetted Judge - Assists by answering rules questions in #ask-a-certified-judge",
-    region: "Central Texas, U.S.A.",
-    bio: "I go by Leo, and while I haven’t been as active on the server as I’d like (webcam Magic is sadly niche), I love this format and its creative potential.",
-    petDeck: "Anafenza the Foremost",
-    faveCard: "Prismari Command"
-  }
-];
-
-// Helper function to group members by role if you ever have multiple people per role
-// But for now, we will render them in a flat list or grouped manually if preferred.
-// Let's render them as a single grid for simplicity, but grouped by Section Headings.
-const roles = ["Core Team", "Consultants", "Local Play Organizers (LPO)", "Advisors", "Contributors"];
+import { Image } from 'astro:assets';
+import { mainCommitteeSections, contributorConfig } from '../../data/committee/committee-config.js';
+import { contributorTeams } from '../../data/contributors/contributor-config.js'; 
 ---
 
 <BaseLayout title="The Committee">
   <article class="committee-page">
+    
     <header class="page-header">
-      <h1>The Tiny Leaders Committee</h1>
-      <p>
-        Dedicated to the stewardship, development, and health of the Tiny 
-        Leaders Reborn format.
+      <h1>The People Behind TLR</h1>
+      <p class="header-subtitle">Members of the Tiny Leaders Committee</p>
+      <p class="intro-text">
+        Dedicated to the stewardship, development, health, and growth of the 
+        Tiny Leaders Reborn format.
       </p>
     </header>
 
-    {roles.map(roleGroup => (
-      <section class="role-section">
-        <h2>{roleGroup}</h2>
-        <div class="cards-grid">
-          {members.filter(m => m.role === roleGroup).map(member => (
-            <details class="member-card">
-              <summary>
-                <div class={`pfp-container shape-${member.shape}`}>
-                  {member.img ? (
-                    <img src={member.img} alt={member.name} />
-                  ) : (
-                    <div class="placeholder-pfp">?</div>
-                  )}
-                </div>
-                <div class="member-name">
-                  <h3>{member.name}</h3>
-                  <span class="discord-tag">{member.discord}</span>
-                </div>
-                <span class="toggle-icon">+</span>
-              </summary>
-              
-              <div class="card-content">
-                <dl>
-                  <dt>Contribution</dt>
-                  <dd>{member.contribution}</dd>
-                  
-                  <dt>Region</dt>
-                  <dd>{member.region}</dd>
-                  
-                  <dt>Bio</dt>
-                  <dd>{member.bio}</dd>
-                  
-                  <dt>Pet Deck</dt>
-                  <dd>{member.petDeck}</dd>
-                  
-                  <dt>Favorite Card</dt>
-                  <dd>{member.faveCard}</dd>
-                </dl>
+    {/* --- PART 1: MAIN COMMITTEE (Standard Layout) --- */}
+    {mainCommitteeSections.map(section => (
+      <section class="role-section" style={`--role-color: ${section.color}`}>
+        <div class="role-header">
+            <h2>{section.title}</h2>
+            <p class="role-description">{section.description}</p>
+        </div>
+        
+        <div class="members-grid">
+          {section.members.map((member, index) => (
+            <button 
+              class="member-card" 
+              onclick={`toggleMember('${section.title.replace(/\s/g, '')}', ${index}, this)`}
+              data-member={JSON.stringify(member)}
+            >
+              <div class={`pfp-container shape-${section.shape}`}>
+                {member.img ? (
+                  <Image 
+                    src={member.img} 
+                    alt={member.name} 
+                    width={300} height={300}
+                    class="member-photo"
+                    style={member.imgStyle || ""} 
+                  />
+                ) : (
+                  <div class="placeholder-pfp">?</div>
+                )}
               </div>
-            </details>
+              <div class="member-identity">
+                <h3>{member.name}</h3>
+                <span class="discord-tag">{member.discordUsername}</span>
+              </div>
+            </button>
           ))}
+
+          {/* Hidden Detail Panel for this row */}
+          <div id={`details-${section.title.replace(/\s/g, '')}`} class="details-panel hidden">
+            <div class="details-content">
+               <button class="close-btn" onclick="closeAllDetails()">×</button>
+               <div class="details-info-col">
+                  <h4>Bio</h4>
+                  <p class="bio-target"></p>
+               </div>
+               <div class="details-stats-col">
+                  <dl>
+                    <dt>Contribution</dt> <dd class="contrib-target"></dd>
+                    <dt>Region</dt>       <dd class="region-target"></dd>
+                    <dt>Pet Deck</dt>     <dd class="deck-target"></dd>
+                    <dt>Favorite Card</dt><dd class="card-target"></dd>
+                  </dl>
+               </div>
+            </div>
+          </div>
         </div>
       </section>
     ))}
 
-    <div class="admin-footer">
-      <a href="/admin/login">π</a>
-    </div>
 
+    {/* --- PART 2: CONTRIBUTORS (Drill-Down Layout) --- */}
+    <section class="role-section contributors-section">
+        <div class="role-header">
+            <h2>Contributors</h2>
+            <p class="role-description">The dedicated teams keeping the machine running.</p>
+        </div>
+
+        {/* VIEW A: THE TEAM CARDS (Visible by Default) */}
+        <div id="contrib-teams-list" class="members-grid">
+            {contributorTeams.map(team => (
+                <button 
+                    class="member-card team-folder-card"
+                    onclick={`showTeam('${team.id}')`}
+                    style={`--role-color: ${team.color}`} /* Sets the hover color */
+                >
+                    <div class="pfp-container shape-circle">
+                         {/* Placeholder Icon for the Team */}
+                         <div class="placeholder-pfp" style="font-size: 4rem;">{team.icon}</div>
+                    </div>
+                    <div class="member-identity">
+                        <h3>{team.title}</h3>
+                        <span class="discord-tag">{team.members.length} Members</span>
+                    </div>
+                </button>
+            ))}
+        </div>
+
+        {/* VIEW B: THE INDIVIDUAL TEAM DETAILS (Hidden by Default) */}
+        {contributorTeams.map(team => (
+            <div id={`team-view-${team.id}`} class="team-detail-view hidden" style={`--role-color: ${team.color}`}>
+                
+                {/* Navigation Header */}
+                <div class="team-nav-header">
+                    <button class="back-btn" onclick="showTeamsList()">← Back to Teams</button>
+                    <h3>{team.title}</h3>
+                </div>
+
+                <div class="members-grid">
+                    {team.members.map((member, index) => (
+                        <button 
+                            class="member-card"
+                            onclick={`toggleMember('${team.id}', ${index}, this)`}
+                            data-member={JSON.stringify(member)}
+                        >
+                             <div class="pfp-container shape-circle">
+                                {member.img ? (
+                                    <Image src={member.img} alt={member.name} width={300} height={300} class="member-photo" />
+                                ) : (
+                                    <div class="placeholder-pfp">?</div>
+                                )}
+                            </div>
+                            <div class="member-identity">
+                                <h3>{member.name}</h3>
+                                <span class="discord-tag">{member.discordUsername}</span>
+                            </div>
+                        </button>
+                    ))}
+
+                    {/* Detail Panel for THIS Specific Team */}
+                    <div id={`details-${team.id}`} class="details-panel hidden">
+                        <div class="details-content">
+                            <button class="close-btn" onclick="closeAllDetails()">×</button>
+                            <div class="details-info-col">
+                                <h4>Bio</h4>
+                                <p class="bio-target"></p>
+                            </div>
+                            <div class="details-stats-col">
+                                <dl>
+                                    <dt>Contribution</dt> <dd class="contrib-target"></dd>
+                                    <dt>Region</dt>       <dd class="region-target"></dd>
+                                    <dt>Pet Deck</dt>     <dd class="deck-target"></dd>
+                                    <dt>Favorite Card</dt><dd class="card-target"></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ))}
+
+    </section>
+
+    {/* --- NEW GOVERNANCE FOOTER CTA --- */}
+    <div class="governance-cta">
+      <a href="/committee">
+        Learn about how the Committee Functions →
+      </a>
+    </div>
   </article>
 </BaseLayout>
 
+<script is:inline>
+  /* --- 1. MEMBER EXPANSION LOGIC (Reused) --- */
+  window.toggleMember = function(sectionId, index, btnElement) {
+    const sectionGrid = btnElement.parentElement;
+    const detailPanel = document.getElementById(`details-${sectionId}`);
+    
+    // Check if clicking active card to close
+    if (btnElement.classList.contains('active-card')) {
+      closeAllDetails();
+      return;
+    }
+
+    // Reset others
+    const allCards = sectionGrid.querySelectorAll('.member-card');
+    allCards.forEach(card => card.classList.remove('active-card'));
+
+    // Set Active
+    btnElement.classList.add('active-card');
+
+    // Populate Data
+    const data = JSON.parse(btnElement.dataset.member);
+    const setText = (cls, text) => {
+        const el = detailPanel.querySelector(cls);
+        if(el) el.textContent = text || "N/A";
+    };
+
+    setText('.bio-target', data.bio);
+    setText('.contrib-target', data.focusedContribution);
+    setText('.region-target', data.region);
+    setText('.deck-target', data.petDeck);
+    setText('.card-target', data.faveCard);
+
+    // Insert Panel in correct row position
+    const clickY = btnElement.offsetTop;
+    let insertionPoint = null;
+
+    for (let i = 0; i < allCards.length; i++) {
+        // Skip hidden details panel in this check
+        if(allCards[i].classList.contains('details-panel')) continue;
+        
+        if (allCards[i].offsetTop > clickY) {
+            insertionPoint = allCards[i];
+            break;
+        }
+    }
+
+    if (insertionPoint) {
+        sectionGrid.insertBefore(detailPanel, insertionPoint);
+    } else {
+        sectionGrid.appendChild(detailPanel);
+    }
+
+    // Show
+    detailPanel.classList.remove('hidden');
+    requestAnimationFrame(() => detailPanel.classList.add('open'));
+  };
+
+  window.closeAllDetails = function() {
+    document.querySelectorAll('.details-panel').forEach(p => {
+        p.classList.remove('open');
+        p.classList.add('hidden');
+    });
+    document.querySelectorAll('.member-card').forEach(c => c.classList.remove('active-card'));
+  }
+
+  /* --- 2. TEAM NAVIGATION LOGIC (New) --- */
+  window.showTeam = function(teamId) {
+    // Hide the Team List
+    document.getElementById('contrib-teams-list').style.display = 'none';
+    
+    // Show the Specific Team View
+    const teamView = document.getElementById(`team-view-${teamId}`);
+    teamView.classList.remove('hidden');
+    
+    // Scroll slightly to header so user sees they entered
+    teamView.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  window.showTeamsList = function() {
+    // Hide all Team Views
+    document.querySelectorAll('.team-detail-view').forEach(el => {
+        el.classList.add('hidden');
+    });
+
+    // Show the Team List
+    const list = document.getElementById('contrib-teams-list');
+    list.style.display = 'grid'; // Restore grid layout
+  }
+</script>
+
 <style>
   .committee-page {
-    max-width: 1000px; /* Widen the page slightly for big cards */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .page-header h1 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .header-subtitle {
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+  .intro-text {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 60ch;
     margin: 0 auto;
   }
 
+  /* --- SECTIONS --- */
   .role-section {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
 
-  .role-section h2 {
-    border-bottom: 1px solid #444;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center; /* Center the role headings too */
-    color: var(--accent-color);
+  .role-header {
+    text-align: center;
+    margin-bottom: 2rem;
   }
-
-  .cards-grid {
-    display: grid;
-    /* Increased minimum width to accommodate larger photos comfortably */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-  }
-
-  /* CARD STYLING */
-  .member-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid #333;
-    border-radius: 12px; /* A bit more rounding for a modern look */
-    overflow: hidden;
-    transition: background 0.2s, transform 0.2s;
-  }
-  
-  .member-card:hover {
-    border-color: #555;
-    transform: translateY(-2px);
-  }
-  
-  .member-card[open] {
-    background: rgba(255,255,255,0.1);
-    border-color: var(--accent-color);
-  }
-
-  summary {
-    position: relative; /* Needed to position the toggle icon */
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center;    /* Center items horizontally */
-    text-align: center;     /* Center the text itself */
-    padding: 2rem 1rem;     /* More padding for a taller card */
-    cursor: pointer;
-    list-style: none;
-  }
-  
-  /* Custom Toggle Icon - Absolutely positioned in top right */
-  .toggle-icon {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-weight: bold;
+  .role-header h2 {
+    color: var(--role-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     font-size: 1.5rem;
-    color: #666;
-    transition: transform 0.3s ease;
+    margin-bottom: 0.5rem;
   }
-  details[open] .toggle-icon {
-    transform: rotate(45deg);
-    color: var(--accent-color);
+  .role-description {
+    color: var(--text-muted);
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5; /* Added line-height for better readability */
   }
 
-  /* PFP SHAPES - SUPER SIZED */
-  .pfp-container {
-    /* Previously 60px. Now 2.5x larger at 150px */
-    width: 150px;
-    height: 150px;
-    margin-right: 0;      /* Removed horizontal margin */
-    margin-bottom: 1.5rem; /* Added vertical space between pic and name */
-    overflow: hidden;
-    background: #444;
-    flex-shrink: 0;
-    /* Adds a subtle shadow to make shapes pop off the card */
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  /* --- GRID --- */
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    align-items: start;
+    position: relative;
   }
-  
-  .pfp-container img {
+
+  /* --- MEMBER CARD (Button) --- */
+  .member-card {
+    background: transparent;
+    
+    /* DEFAULT BORDER: Uses the theme's subtle border color */
+    border: 1px solid var(--border-subtle); 
+    
+    border-radius: 12px;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+
+  .member-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--text-muted); /* Slightly lighter on hover */
+  }
+
+  /* ACTIVE STATE: Turns into the specific Role Color */
+  .member-card.active-card {
+    border-color: var(--role-color);
+    border-width: 2px; /* Make it slightly thicker to pop */
+    background: rgba(255,255,255,0.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transform: translateY(-2px); /* Keep it slightly lifted */
+  }
+
+  /* --- PFP CONTAINER --- */
+  .pfp-container {
+    margin-bottom: 1.5rem;
+    background: transparent;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Must be hidden to crop the image to the shape */
+    overflow: hidden; 
+  }
+
+  .pfp-container img, .member-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .placeholder-pfp {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem; /* Larger question mark */
-    color: #888;
-    background: rgba(255,255,255,0.1);
+  /* --- SHAPES --- */
+  
+  /* 1. TRIANGLE (Core) - INVERTED (Point Down) */
+  .shape-triangle {
+    width: 180px; 
+    height: 180px;
+    
+    /* V-Shape: Top Left, Top Right, Bottom Center */
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    
+    /* Shadow Border */
+    filter: 
+      drop-shadow(0px -3px 0px #658cfa) 
+      drop-shadow(3px 0px 0px #658cfa) 
+      drop-shadow(-3px 0px 0px #658cfa) 
+      drop-shadow(0px 3px 0px #658cfa);
   }
 
-  /* THE GEOMETRY */
-  /* Using slightly tighter clip-paths for sharper shapes at large sizes */
-  .shape-triangle {
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  /* Reset the positioning - Faces fit naturally in this shape! */
+  .shape-triangle img, 
+  .shape-triangle .member-photo {
+    object-position: center 10%; /* Focus near the top (wide part) */
+    transform: scale(1.1); /* Slight zoom to fill edges */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .shape-circle {
-    border-radius: 50%;
+  /* 2. HEXAGON (FIXED ASPECT RATIO) */
+  .shape-hexagon {
+    width: 130px; 
+    height: 150px; 
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }
+
+  /* 3. SQUARE (Sharp) */
   .shape-square {
-    border-radius: 12px; /* Softened square */
+    width: 150px; height: 150px;
   }
+
+  /* 4. DIAMOND */
   .shape-diamond {
+    width: 150px; height: 150px;
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   }
 
-  /* TEXT STYLES */
-  .member-name h3 {
+  /* 5. CIRCLE */
+  .shape-circle {
+    width: 150px; height: 150px;
+    border-radius: 50%;
+  }
+
+  /* --- NAMES --- */
+  .member-identity h3 {
     margin: 0;
-    font-size: 1.4rem; /* Larger name */
-    margin-bottom: 0.25rem;
+    color: var(--heading-color);
+    font-size: 1.3rem;
   }
   .discord-tag {
-    display: block; /* Forces it to its own line */
-    font-size: 0.9rem;
-    color: var(--accent-color);
+    color: var(--role-color);
     font-family: monospace;
     opacity: 0.8;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    display: block;
   }
 
-  /* Expanded Bio Section */
-  .card-content {
-    padding: 0 2rem 2rem 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    text-align: left; /* Keep bio text readable aligned left */
+  /* --- DETAILS PANEL (The Expanded Row) --- */
+  .details-panel {
+    grid-column: 1 / -1;
+    background: var(--surface);
+    border-top: 2px solid var(--role-color);
+    border-bottom: 2px solid var(--role-color);
+    overflow: hidden;
+    height: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    
+    max-height: 0; 
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
   }
 
-  dl { margin: 0; }
-  dt {
-    margin-top: 1.25rem;
-    font-weight: bold;
-    color: #fff; /* White headings for better contrast in bio */
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid #333;
-    padding-bottom: 0.25rem;
-    margin-bottom: 0.5rem;
-  }
-  dd {
-    margin-left: 0;
-    color: #ccc;
-    line-height: 1.6;
+  .details-panel.hidden {
+    display: none;
   }
 
-  /* ADMIN FOOTER */
-  .admin-footer {
-    text-align: center;
-    margin-top: 5rem;
-    opacity: 0.2;
-    transition: opacity 0.3s;
-  }
-  .admin-footer:hover {
+  .details-panel.open {
+    display: block;
+    max-height: 600px; /* Increased slightly to be safe */
     opacity: 1;
   }
-  .admin-footer a {
-    color: var(--accent-color);
+
+  .details-content {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: 1px solid var(--border-subtle); /* Added border to button */
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.2s;
+  }
+  .close-btn:hover { 
+    color: var(--heading-color);
+    border-color: var(--role-color);
+  }
+
+  .details-info-col h4 {
+    color: var(--role-color);
+    text-transform: uppercase;
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  #bio-target {
+    line-height: 1.6;
+    color: var(--text-body);
+  }
+
+  .details-stats-col dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem 1.5rem; /* Increased horizontal gap */
+  }
+  .details-stats-col dt {
+    font-weight: bold;
+    color: var(--heading-color);
+    text-align: right;
+    white-space: nowrap; /* Prevent labels from wrapping awkwardly */
+  }
+  .details-stats-col dd {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  /* --- MOBILE --- */
+  @media (max-width: 768px) {
+    .details-content {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+    .details-stats-col dl {
+      grid-template-columns: 1fr; 
+      gap: 0.5rem;
+    }
+    .details-stats-col dt {
+      text-align: left;
+      margin-top: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.25rem;
+      color: var(--role-color); /* Highlight headers on mobile */
+    }
+    .details-stats-col dd {
+      padding-left: 0.5rem;
+    }
+  }
+
+  /* --- NEW STYLES FOR CONTRIBUTORS --- */
+
+  .contributors-section {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 4rem;
+    margin-top: 4rem;
+  }
+
+  /* Team Folder Card Specifics */
+  .team-folder-card .member-identity h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  /* Team Navigation Header */
+  .team-nav-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .team-nav-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--role-color);
+  }
+
+  .back-btn {
+    background: transparent;
+    border: 1px solid var(--role-color);
+    color: var(--role-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+  }
+  .back-btn:hover {
+    background: var(--role-color);
+    color: #fff; /* or black depending on your theme */
+  }
+
+  /* Hidden Helper */
+  .hidden {
+    display: none;
+  }
+  
+  /* Ensure the Team Details grid behaves nicely */
+  .team-detail-view {
+    animation: fadeIn 0.3s ease;
+  }
+
+  /* --- NEW FOOTER CTA STYLE --- */
+  .governance-cta {
+    text-align: center;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  
+  .governance-cta a {
+    color: var(--heading-color);
     text-decoration: none;
     font-size: 1.2rem;
-    padding: 1rem;
+    font-weight: bold;
+    border: 2px solid var(--border-subtle);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  
+  .governance-cta a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(255,255,255,0.03);
   }
 </style>

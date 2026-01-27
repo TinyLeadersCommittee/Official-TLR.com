@@ -4,44 +4,51 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 <BaseLayout title="Discord Community">
   <header class="community-hero">
-    <h1>Your Seat at the Table is Ready</h1>
-    <p>
-      Tiny Leaders Reborn is a niche format, and finding a local playgroup 
-      can be a challenge. That’s why our Discord exists. It isn’t just a 
-      chat server, it’s the official digital watering hole for the format.
-    </p>
-    
-    <a href="https://discord.com/invite/jq9KWHAdTm" class="discord-logo-btn">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 127.14 96.36" 
-          width="180" 
-          class="discord-svg"
-          aria-label="Join the Official Discord Server">
-          <path fill="#ffffff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.09,105.09,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.89,105.89,0,0,0,126.6,80.22c1.24-23.37-3.55-47.54-19.9-72.05ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
-        </svg>
-      </a>
+    <div class="hero-grid">
+      
+      <h1>Your Seat at the Table is Ready</h1>
 
-    <p>
-      Whether you’re a thousand miles from the nearest LGS or looking for 
-      a home for your local paper group, you belong here.
-    </p>
+      <div class="hero-line"></div>
 
-    <div class="video-container">
-        <iframe 
-            width="560" 
-            height="315" 
-            src="https://www.youtube.com/embed/FnjumU1vRrk?si=rEG-zu43VlhiFT1i" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-                gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
-        </iframe>
+      <div class="hero-text-content">
+        <p>
+          Tiny Leaders Reborn is a niche format, and finding a local playgroup 
+          can be a challenge. That’s why our Discord exists. It isn’t just a 
+          chat server, it’s the official digital watering hole for the format.
+        </p>
+        <p>
+          Whether you’re a thousand miles from the nearest LGS or looking for 
+          a home for your local paper group, you belong here.
+        </p>
+        
+        <a href="https://discord.com/invite/jq9KWHAdTm" class="discord-logo-btn">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 127.14 96.36" 
+              class="discord-svg"
+              aria-label="Join the Official Discord Server">
+              <path fill="#ffffff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.09,105.09,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.89,105.89,0,0,0,126.6,80.22c1.24-23.37-3.55-47.54-19.9-72.05ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+            </svg>
+            <span>Join the Community</span>
+        </a>
+      </div>
+
+      <div class="hero-media">
+        <div class="video-container">
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/FnjumU1vRrk?si=rEG-zu43VlhiFT1i" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+      </div>
+
     </div>
-
-    
   </header>
 
   <hr />
@@ -112,19 +119,70 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  /* 1. HERO SECTION */
+  /* --- HERO SECTION --- */
   .community-hero {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 5rem auto; 
+    max-width: 1200px; 
   }
 
-  .community-hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; 
+    grid-template-rows: auto auto; /* Row 1: Title, Row 2: Content */
+    gap: 1rem 4rem; 
+    text-align: left;
   }
 
-  /* 2. RESPONSIVE VIDEO CONTAINER */
+  /* Title Position (Row 1, Col 1) */
+  .hero-grid h1 {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    font-size: 3.5rem; 
+    line-height: 1.1;
+    margin-bottom: 1rem; 
+    color: var(--heading-color);
+  }
+
+  /* Text Position (Row 2, Col 1) */
+  .hero-text-content {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  .hero-text-content p {
+    font-size: 1.1rem;
+    color: var(--text-body);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  /* Decorative Line (Row 1, Col 2) */
+  .hero-line {
+    grid-column: 2 / 3; 
+    grid-row: 1;        
+    
+    height: 1px; 
+    background-color: var(--border-subtle); 
+    
+    /* Pull left to bridge gap to text */
+    width: calc(100% + 8rem); 
+    margin-left: -8rem; 
+    
+    z-index: -1; 
+    position: relative; 
+    align-self: center; 
+    margin-top: 2rem; 
+  }
+
+  /* Video Wrapper (Row 2, Col 2) */
+  .hero-media {
+    grid-column: 2 / 3;
+    grid-row: 2; 
+    width: 100%;
+    margin-top: 2rem; /* Vertical offset */
+  }
+
+  /* Video Embed Container */
   .video-container {
     position: relative;
     width: 100%;
@@ -132,9 +190,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     height: 0;
     overflow: hidden;
     border-radius: 12px;
-    margin: 2rem 0;
     border: 1px solid var(--border-subtle);
     background-color: #000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
 
   .video-container iframe {
@@ -145,37 +203,83 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     height: 100%;
   }
 
-  /* 3. DISCORD BUTTON */
+  /* --- DISCORD BUTTON --- */
   .discord-logo-btn {
-    display: inline-flex;       /* Keeps icon centered */
-    align-items: center;        /* Vertically centers icon */
-    justify-content: center;    /* Horizontally centers icon */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
     background-color: #5865F2;
-    padding: 1.5rem 4rem;       /* BIGGER PADDING: Makes the button box larger */
-    border-radius: 12px;        /* Slightly more rounded for a modern feel */
+    padding: 0.8rem 1.5rem; 
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
     transition: transform 0.2s, background-color 0.2s;
-    margin-top: 1.5rem;
-    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4); /* Adds a subtle glow */
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+    
+    white-space: nowrap; 
+    width: fit-content; 
   }
   
-  /* This controls the actual logo size */
   .discord-svg {
-    width: 64px;               /* INCREASED: Was 40px, now 64px */
-    height: auto;              /* Keeps aspect ratio */
+    width: 28px; 
+    height: auto;
     display: block;
+    flex-shrink: 0; 
   }
 
   .discord-logo-btn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     background-color: #4752C4;
     box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
   }
+  
+  .discord-logo-btn span {
+    color: #fff;
+  }
 
-  /* 4. FEATURE LIST (Vertical Stack) */
+  /* --- MOBILE RESPONSIVE --- */
+  @media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto; 
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .hero-line {
+        display: none;
+    }
+    
+    /* Reset grid placements */
+    .hero-grid h1, 
+    .hero-text-content, 
+    .hero-media {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .hero-grid h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-media {
+        margin-top: 0;
+    }
+    
+    .discord-logo-btn {
+        margin-left: auto;
+        margin-right: auto;
+    }
+  }
+
+  /* --- SECTIONS & FEATURES --- */
   #play {
     display: flex;
-    flex-direction: column; /* Forces vertical stacking */
-    gap: 1.5rem;            /* Space between the cards */
+    flex-direction: column; 
+    gap: 1.5rem;            
     margin: 2rem 0;
   }
 
@@ -191,13 +295,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     color: var(--accent);
   }
 
-  /* 5. LIST SPACING (The Bullet Points) */
   ul li {
-    margin-bottom: 1rem; /* Increased spacing between items */
+    margin-bottom: 1rem; 
     line-height: 1.6;
   }
 
-  /* 6. DISCORD MENTIONS */
   code {
     background-color: var(--surface);
     color: var(--accent);
@@ -209,7 +311,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     border: 1px solid var(--border-subtle);
   }
 
-  /* 7. NEXT STEP */
+  /* --- NEXT STEP --- */
   .next-step {
     background: var(--surface);
     border: 1px solid var(--border-subtle);

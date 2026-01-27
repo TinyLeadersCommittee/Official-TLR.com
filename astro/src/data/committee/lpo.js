@@ -11,7 +11,14 @@
     }
 */
 
-export const localPlayOrganizers = [
+//Import images
+import JuanImg from '../../assets/images/committee/lpos/juan.jpg';
+import NathanImg from '../../assets/images/committee/lpos/nathan.jpg';
+import LucasImg from '../../assets/images/committee/lpos/lucas.jpg';
+import RorroImg from '../../assets/images/committee/lpos/rorro.jpg';
+//
+
+export const lpos = [
     {
         role: "Local Play Organizer",
         name: "Juan",
@@ -20,7 +27,8 @@ export const localPlayOrganizers = [
         region: "Monterrey, Nuevo Leon, MX",
         bio: ``,
         petDeck: ``,
-        faveCard: ``
+        faveCard: ``,
+        img: JuanImg
     },
 
     {
@@ -31,7 +39,8 @@ export const localPlayOrganizers = [
         region: "Huntsville, Alabama, USA",
         bio: ``,
         petDeck: ``,
-        faveCard: ``
+        faveCard: ``,
+        img: NathanImg
     },
 
     {
@@ -42,7 +51,8 @@ export const localPlayOrganizers = [
         region: "Newfoundland, CAN",
         bio: ``,
         petDeck: ``,
-        faveCard: ``
+        faveCard: ``,
+        img: LucasImg
     },
 
     {
@@ -53,6 +63,7 @@ export const localPlayOrganizers = [
         region: "Coquimbo, CHL",
         bio: ``,
         petDeck: ``,
-        faveCard: ``
+        faveCard: ``,
+        img: RorroImg
     }
 ]

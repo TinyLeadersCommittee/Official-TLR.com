@@ -11,6 +11,11 @@
     }
 */
 
+//Import images
+import FisheImg from '../../assets/images/committee/advisors/fishe.jpg';
+import OlivierImg from '../../assets/images/committee/advisors/olivier.jpg';
+import ArnaudImg from '../../assets/images/committee/advisors/arnaud.jpg';
+//
 export const advisors = [
     {
         role: "Advisor",
@@ -21,7 +26,8 @@ export const advisors = [
         region: "British Columbia, Canada",
         bio: ``,
         petDeck: ``,
-        faveCard: ``
+        faveCard: ``,
+        img: FisheImg
     },
 
     {
@@ -42,7 +48,8 @@ export const advisors = [
         petDeck: `Prosperous Bloom a long time ago, probably Kroxa in tournaments, 
         and Wilson (+ any color) for casual games`,
         faveCard: `Anje's Ravager – This card is absurd. I don't think I've ever 
-        lost a game where I solved an attack with it.`
+        lost a game where I solved an attack with it.`,
+        img: OlivierImg
     },
 
     {
@@ -53,6 +60,7 @@ export const advisors = [
         region: "Normandy, France",
         bio: ``,
         petDeck: ``,
-        faveCard: ``
+        faveCard: ``,
+        img: ArnaudImg
     }
 ]

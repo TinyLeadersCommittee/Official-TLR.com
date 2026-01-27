@@ -10,6 +10,11 @@
         faveCard: ``
     }
 */
+// Image Imports
+import SarahImg from '../../assets/images/committee/core-members/sarah.jpg';
+import MikeImg from '../../assets/images/committee/core-members/mike.jpg';
+import LyonImg from '../../assets/images/committee/core-members/lyon.jpg';
+//
 
 export const coreMembers = [
     {
@@ -20,7 +25,9 @@ export const coreMembers = [
         region: "Los Angeles, CA, USA",
         bio: "",
         petDeck: "",
-        faveCard: ""
+        faveCard: "",
+        img: SarahImg,
+        imgStyle: "transform: scale(1) translateY(1px);"
     },
 
     {
@@ -36,7 +43,9 @@ export const coreMembers = [
         that I wanted to play the most which I still play and that's Geist of 
         Saint Traft. “I dance to one song and one song only.`,
         faveCard: `My favorite card in Tiny, surprise, surprise. . . is Geist 
-        of Saint Traft. I just love that GoST!`
+        of Saint Traft. I just love that GoST!`,
+        img: MikeImg,
+        imgStyle: "transform: scale(1.70) translateY(30px);"
     },
 
     {
@@ -51,6 +60,8 @@ export const coreMembers = [
         petDeck: "My pet deck is Dack Fayden. I built Najeela and Ghyrson Starn",
         faveCard: `My favorite card, to name one of many: Nissa, Vital Force. I 
         loved her in Standard and she remains a pet card in Commander and Cube 
-        to this day.`
+        to this day.`,
+        img: LyonImg,
+        imgStyle: "transform: scale(1.5) translateY(-30px);"
     }
 ]

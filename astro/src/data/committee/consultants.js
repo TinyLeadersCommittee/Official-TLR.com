@@ -11,6 +11,18 @@
     }
 */
 
+//Import Images
+import GrayImg from '../../assets/images/committee/consultants/gray.jpg';
+import BastianImg from '../../assets/images/committee/consultants/bastian.png';
+import EsperImg from '../../assets/images/committee/consultants/esper.jpg';
+import AtheneImg from '../../assets/images/committee/consultants/cosmerian.png';
+import AdriImg from '../../assets/images/committee/consultants/adri.jpg';
+import CharlotteImg from '../../assets/images/committee/consultants/charlotte.jpg';
+import JoeImg from '../../assets/images/committee/consultants/joe.jpg';
+import AlexandrImg from '../../assets/images/committee/consultants/zula.jpg';
+//
+
+
 export const consultants =[
     {
         role: "Consultant",
@@ -28,7 +40,8 @@ export const consultants =[
         petDeck: `I don't have pet decks as I'm currently waist deep in a cube 
         obsession, including a TL:R cube.`,
         faveCard: `My favorite card is a three-way tie between Skullcrack, 
-        Decimate, and Mockingbird because flavor text is 🔥.`
+        Decimate, and Mockingbird because flavor text is 🔥.`,
+        img: GrayImg
     },
 
     {
@@ -48,7 +61,8 @@ export const consultants =[
         foil cube remains and is played from time to time.`,
         petDeck: `In Tiny, I play Gut (no background) since it came out and have 
         been honing it since`,
-        faveCard: " A red mage through and through, my favorite card is Mountain."
+        faveCard: " A red mage through and through, my favorite card is Mountain.",
+        img: BastianImg
     },
 
     {
@@ -65,7 +79,9 @@ export const consultants =[
         petDeck: `My pet decks include Mathas, Vadrok, and our fallen Jeska 
         Thrasios (rest its soul).`,
         faveCard: `My favorite card is probably Flame of Anor, as it perfectly 
-        sits where my love of value, interaction, and occasional gimmicks lies.`
+        sits where my love of value, interaction, and occasional gimmicks lies.`,
+        img: EsperImg
+
     },
 
     {
@@ -82,7 +98,8 @@ export const consultants =[
         petDeck: `My pet decks are Lagrella, Jirina, and Grist—oops! All bugs.`,
         faveCard: `My favorite card is probably Deflecting Palm, as while it 
         isn’t any good in this format, it is absolutely a blast in EDH, my 
-        progenitor format, and the art and flavor is just iconic.`
+        progenitor format, and the art and flavor is just iconic.`,
+        img: AtheneImg
     },
 
     {
@@ -98,7 +115,8 @@ export const consultants =[
         Tiny deck, which eventually transformed to Teysa Orzhov Scion and now 
         Sephiroth Fabled Soldier.`,
         faveCard: `My favorite card is Horde of Notions, which is not Tiny 
-        legal, but elementals are cool.`
+        legal, but elementals are cool.`,
+        img: AdriImg
     },
 
     {
@@ -109,8 +127,9 @@ export const consultants =[
         region: "Winnipeg, Canada",
         bio: ``,
         petDeck: ``,
-        faveCard: ``
-    }
+        faveCard: ``,
+        img: CharlotteImg
+    },
 
     {
         role: "Consultant/Local Play Organizer",
@@ -126,12 +145,13 @@ export const consultants =[
         Moxfield. I'm primarily a control player but enjoy piloting a variety 
         of decks.`,
         petDeck: `Acererak (Control/Combo Hybrid)`,
-        faveCard: `Force of Will (Overall), Barrowgoyf (TLR)`
+        faveCard: `Force of Will (Overall), Barrowgoyf (TLR)`,
+        img: JoeImg
     },
 
     {
         role: "Consultant/Local Play Organizer",
-        name: "Alexandr",
+        name: "Alexander",
         discordUsername: "@ZulaXao",
         focusedContribution: "Temproarily on hiatus",
         region: "Rostov-on-Don, Russia",
@@ -139,6 +159,7 @@ export const consultants =[
         welcomed a new Tiny Leader into the world in 2023. We wish he and his 
         family well and await his return.`,
         petDeck: `Magda and her Seven Dwarves`,
-        faveCard: `Classified until further notice.`
+        faveCard: `Classified until further notice.`,
+        img: AlexandrImg
     }
 ]

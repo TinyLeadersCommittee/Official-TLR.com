@@ -1,97 +1,101 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import grayImg from '../../assets/images/committee/consultants/gray.jpg';
+import { Image } from 'astro:assets';
 ---
 
 <BaseLayout title="Rules Supplements">
   <article class="supplements-content">
     
-    <h1>Rules Supplements</h1>
-
-    <section id="author">
-      <h2>Author</h2>
-      <p>
-        Authored and maintained by <strong>Gray</strong>, a Level 2 Judge and 
-        the TLR Committee's Rules/Policy Manager. These rules are indispensable
-        whether you're a player, organizer, or judge.
+    <header class="page-header">
+      <h1>Rules Supplements</h1>
+      <p class="lead">
+        These rules are indispensable whether you're a player, organizer, or judge.
       </p>
-      
-      <div class="contact-box">
-        <h3>Questions & Contributions</h3>
-        <p>
-          If you have questions regarding these documents or suggestions 
-          for the FAQ, join us on the 
-          <a href="https://discord.gg/tiny-leaders">Official TLR Discord</a>.
-        </p>
-        <ul>
-          <li>
-            <strong>General Rulings:</strong> Use the  
-            <code>#ask-a-certified-judge</code> channel.
-          </li>
-          <li>
-            <strong>Policy Concerns:</strong> Message the Rules Manager, 
-            <code>@Gray | Judge Dad | JF L2</code>.
-          </li>
-        </ul>
-        <p>
-          <em>A member of our Judge team will respond as soon as possible.</em>
-        </p>
-      </div>
-    </section>
+    </header>
 
-    <hr />
+    <hr class="header-divider" />
 
-    <section id="documents">
+    <section id="documents" class="documents-section">
       <h2>Official Rules Documents</h2>
       <p>
-        Download a PDF copy by clicking on the links provided. 
+        Select a document below to view it in your browser or download the PDF. 
         Please also review the FAQ below for common interactions.
       </p>
-      <div class="download-buttons">
-        <a href="/docs/tsmcr.pdf" class="btn-download" target="_blank">
-          📄 Download TSMCR (Comprehensive Rules)
-        </a>
-        <a href="/docs/tsmtr.pdf" class="btn-download" target="_blank">
-          📄 Download TSMTR (Tournament Rules)
-        </a>
+      
+      <div class="doc-list">
+        
+        <div class="doc-row">
+            <div class="doc-info">
+                <strong>TSMCR</strong> 
+                <span class="doc-desc">(Comprehensive Rules)</span>
+            </div>
+            <div class="doc-actions">
+                <a href="/rules/tsmcr" class="action-link">View</a>
+                <span class="separator">|</span>
+                <a href="/docs/tsmcr.pdf" target="_blank" class="action-link">Download</a>
+            </div>
+        </div>
+
+        <div class="doc-row">
+            <div class="doc-info">
+                <strong>TSMTR</strong> 
+                <span class="doc-desc">(Tournament Rules)</span>
+            </div>
+            <div class="doc-actions">
+                <a href="/rules/tsmtr" class="action-link">View</a>
+                <span class="separator">|</span>
+                <a href="/docs/tsmtr.pdf" target="_blank" class="action-link">Download</a>
+            </div>
+        </div>
+
       </div>
     </section>
-    
-    <hr />
 
-    <article id="philosophy">
-      <h2>The Discrete Philosophy Update</h2>
-      <p class="meta-date">Date: September 24, 2025</p>
+    <!-- <hr />     -->
+
+    <section id="philosophy" class="philosophy-section">
       
-      <section>
-        <h3>Result</h3>
-        <p>
-          A card is said to have multiple sets of characteristics, if it 
-          has more than one, of each of the following:
-        </p>
-        <ul>
-          <li>Name</li>
-          <li>Mana Cost</li>
-          <li>Type Line</li>
-          <li>Rules Text</li>
-        </ul>
-        <p>
-          In TL:R, every set of characteristics on a card must have a mana 
-          value &le; 3. If a card has multiple sets of characteristics that 
-          may be chosen for casting, each set must independently meet this 
-          limit.
-        </p>
-      </section>
+      <header class="philo-header-group">
+         <h2>The Discrete Philosophy Update</h2>
+         <div class="meta-date">Date: September 24, 2025</div>
+      </header>
 
-      <section>
-        <h3>The Logic</h3>
-        <p>
-          From a design perspective, cards with more than one set of 
-          characteristics are multiple cards sharing one piece of cardboard. 
-          Every card must have a mana value &le; 3 as determined by each 
-          distinct set of characteristics.
-        </p>
-      </section>
-    </article>
+      <div class="philo-content">
+        
+        <div class="philo-block">
+          <h3>The Result</h3>
+          <p>
+            A card is said to have multiple sets of characteristics if it 
+            has more than one of each of the following:
+          </p>
+          <ul class="tech-list">
+            <li>Name</li>
+            <li>Mana Cost</li>
+            <li>Type Line</li>
+            <li>Rules Text</li>
+          </ul>
+          
+          <p class="ruling-text">
+            <strong>In TL:R:</strong> Every set of characteristics on a card must have a mana 
+            value &le; 3. If a card has multiple sets of characteristics that 
+            may be chosen for casting, each set must independently meet this 
+            limit.
+          </p>
+        </div>
+
+        <div class="philo-block">
+          <h3>The Logic</h3>
+          <p>
+            From a design perspective, cards with more than one set of 
+            characteristics are multiple cards sharing one piece of cardboard. 
+            Every card must have a mana value &le; 3 as determined by each 
+            distinct set of characteristics.
+          </p>
+        </div>
+
+      </div>
+    </section>
     
     <hr />
 
@@ -270,41 +274,489 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </details>
         </div>
       </section>
+
+      <section class="author-section">
+      <div class="author-card">
+        <h2>Author</h2>
+        <div class="author-header-group">
+            <div class="author-photo-wrapper">
+                <Image src={grayImg} alt="Gray" width={160} height={160} class="author-photo" />
+            </div>
+            
+            <div class="author-info-header">
+                <div class="author-name">Gray</div>
+                <div class="author-credentials">Rules Manager • Level 2 Judge</div>
+
+                <svg class="scales-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v18" />
+                    <path d="M6 8h12" />
+                    <path d="M6 21h12" />
+                    <path d="M6 8v3a3 3 0 0 0 6 0v-3" transform="translate(-3 0)" />
+                    <path d="M6 8v3a3 3 0 0 0 6 0v-3" transform="translate(9 0)" />
+                </svg>
+            </div>
+        </div>
+        
+        <div class="author-body-text">
+            <p>
+                <strong>Gray</strong> is a Level 2 Magic Judge and the TLR 
+                Committee’s Rules Manager, responsible for authoring and 
+                maintaining the format’s supplemental rules. His work focuses 
+                on ensuring that Tiny Leaders: Reborn’s rules remain clear, 
+                internally consistent, and aligned with Magic’s comprehensive 
+                rules and policy framework.
+            </p>
+            <p>
+                Gray began judging at the Eldritch Moon prerelease and has since 
+                accumulated years of experience judging play at multiple levels, 
+                along with ongoing judge stewardship and event support. He has 
+                organized Commander Sealed Festivals, contributes to the MSMTR 
+                writer team, and continues to expand his knowledge of both general 
+                and format-specific rules.
+            </p>
+            <p>
+                Motivated by a love for the game, the communities it brings 
+                together, and the opportunities it creates, Gray approaches 
+                rules writing with the goal of supporting shared expectations, 
+                fair play, and a format that functions cleanly for players and 
+                organizers alike.
+            </p>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+      <section class="contact-section">
+        <div class="contact-box">
+            <h3>Questions & Contributions</h3>
+            <p>
+              If you have questions regarding these documents or suggestions 
+              for the FAQ, join us on the 
+              <a href="https://discord.gg/tiny-leaders">Official TLR Discord</a>.
+            </p>
+            <ul>
+              <li>
+                <strong>General Rulings:</strong> Use the <code>#ask-a-certified-judge</code> channel.
+              </li>
+              <li>
+                <strong>Policy Concerns:</strong> Message the Rules Manager, 
+                <code>@Gray | Judge Dad | JF L2</code>.
+              </li>
+            </ul>
+            <p class="contact-footer">
+              <em>A member of our Judge team will respond as soon as possible.</em>
+            </p>
+        </div>
+    </section>
   </article>
 </BaseLayout>
 
 <style>
-  /* Local Styles for FAQ Interactions */
+  /* --- PAGE HEADER --- */
+  .page-header {
+    text-align: left; /* Changed from center */
+    margin-bottom: 2rem;
+  }
+
+  .page-header h1 {
+    margin-bottom: 0.5rem;
+    color: var(--heading-color);
+  }
+
+  .lead {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-style: italic;
+    /* max-width helps left-aligned text not get too wide to read */
+    max-width: 65ch; 
+  }
+
+  .header-divider {
+    margin-bottom: 3rem;
+    opacity: 0.3;
+  }
+
+  /* --- PHILOSOPHY SECTION (Highlighted Block) --- */
+  /* --- PHILOSOPHY SECTION (Highlighted Block) --- */
+  .philosophy-section {
+    /* POSITIONING: "More on top, less on bottom" */
+    margin-top: 2rem;    /* Pushes it down (centers it visually) */
+    margin-bottom: 2rem; /* Pulls the next section closer */
+    
+    max-width: 800px;
+    margin-left: auto; 
+    margin-right: auto;
+    
+    /* Visuals */
+    border-left: 4px solid var(--accent); 
+    padding: 2rem; 
+  }
+
+  /* --- HEADER --- */
+  .philo-header-group {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle); /* subtle divider */
+    padding-bottom: 1rem;
+  }
+
+  .philo-header-group h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--heading-color);
+    text-align: left;
+  }
+
+  .meta-date {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* --- BLOCKS --- */
+  .philo-block {
+    margin-bottom: 2.5rem;
+  }
+  
+  .philo-block h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .philo-block h3::after {
+    content: "";
+    display: block;
+    height: 1px;
+    flex-grow: 1; 
+    background: var(--border-subtle);
+    opacity: 0.5;
+  }
+
+  /* --- TECH LIST (Restored Center Grid) --- */
+  .tech-list {
+    /* GRID: Centers items and makes them equal width */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+
+  .tech-list li {
+    /* Darker background for contrast against the surface */
+    background: var(--bg); 
+    padding: 0.75rem;
+    text-align: center; /* Centers the text inside the box */
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-subtle);
+    color: var(--heading-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* --- RULING HIGHLIGHT --- */
+  .ruling-text {
+    background: var(--bg); /* Inset look */
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: var(--text-body);
+  }
+
+ /* --- 1. SLEEK AUTHOR PROFILE (Wide & Compact) --- */
+  .author-section {
+    margin-bottom: 3rem;
+  }
+  
+  .author-card {
+    /* WIDE: Matches your other content width so lines are long */
+    max-width: 800px; 
+    margin: 0 auto;
+  }
+
+  /* --- FIXED: CENTER "AUTHOR" OVER PHOTO --- */
+  /* We target the H2 inside the card and restrict its width */
+  .author-card h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    
+    /* This is the magic: constrain width to match the photo (100px) */
+    width: 105px; 
+    text-align: center; 
+  }
+
+  /* --- HEADER GROUP --- */
+  .author-header-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Aligns photo and text vertically */
+    text-align: left;
+    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+    width: 100%; /* Ensures it fills the container */
+  }
+
+  .author-photo-wrapper {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 0; 
+    border: 1px solid var(--border-subtle);
+    padding: 3px;
+    background: var(--surface);
+    flex-shrink: 0; /* Prevents photo from getting squished */
+  }
+  
+  /* PUN INTENDED: PERMANENT GRAYSCALE */
+  .author-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(100%);
+  }
+
+  /* --- NAME & LINE --- */
+  .author-info-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1; /* Fills remaining space */
+    position: relative; /* Needed for the line positioning */
+  }
+
+  /* THE SCALES ICON */
+  .scales-icon {
+    position: absolute;
+    right: 0;
+    
+    /* Adjust this if it sits too high or low relative to your line */
+    bottom: 8px; 
+    
+    width: 36px; /* slightly larger to see the fine lines */
+    height: 36px;
+    
+    color: var(--accent); /* This colors the lines */
+    opacity: 0.75; /* Subtle watermark effect */
+    
+    pointer-events: none;
+  }
+  
+  /* OPTIONAL: If you want the icon to stay sharp on mobile */
+  @media (max-width: 600px) {
+    .scales-icon {
+        display: none; /* Usually better to hide decorative absolutes on mobile stacks */
+    }
+  }
+
+  /* THE CONNECTOR LINE */
+  .author-info-header::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--border-subtle);
+    margin-top: 0.5rem; 
+    opacity: 0.6;
+  }
+
+  .author-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .author-credentials {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: bold;
+    opacity: 0.9;
+  }
+
+  /* --- BODY TEXT --- */
+  .author-body-text {
+    text-align: left; 
+    max-width: 100%; 
+    margin: 0 auto;
+    font-size: 0.95rem; 
+    line-height: 1.6;
+    color: var(--text-body);
+  }
+
+  .author-body-text p {
+    margin-bottom: 0.75rem;
+  }
+
+  .author-body-text p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* --- MOBILE TWEAK --- */
+  @media (max-width: 600px) {
+    .author-header-group {
+        flex-direction: column;
+        align-items: center; /* Center everything on mobile */
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    /* On mobile, let the "Author" title expand to full width */
+    .author-card h2 {
+        width: 100%;
+    }
+    
+    /* Hide the line on mobile since layout is stacked */
+    .author-info-header::after {
+        display: none;
+    }
+  }
+
+  /* --- 2. QUESTIONS & CONTRIBUTIONS (Restored Red Border Style) --- */
+  .contact-section {
+    margin-bottom: 3rem;
+  }
   
   .contact-box {
-    background: var(--surface); /* Fixed: removed hardcoded transparency */
-    padding: 1rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent); /* Fixed: corrected var name */
+    background: var(--surface);
+    border-left: 4px solid var(--accent); /* The red accent border */
+    padding: 1.5rem 2rem;
+    border-radius: 4px; /* Slight rounding on right corners */
   }
 
-  .download-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+  .contact-box h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: var(--heading-color);
+  }
+
+  .contact-box ul {
     margin: 1rem 0;
-  }
-
-  .btn-download {
-    background: var(--surface); /* Fixed: adapts to all themes */
-    color: var(--heading-color); /* Fixed: ensures text is readable on light/dark */
-    padding: 0.75rem 1rem;
-    border-radius: 4px;
-    text-decoration: none;
-    border: 1px solid var(--border-subtle); /* Fixed: removed hardcoded border color */
-    transition: border-color 0.2s, transform 0.2s;
+    padding-left: 1.5rem;
   }
   
-  .btn-download:hover {
-    border-color: var(--accent); /* Highlighting border is safer than guessing a background color */
-    transform: translateY(-1px);
+  .contact-box li {
+    margin-bottom: 0.5rem;
+    color: var(--text-body);
   }
 
+  .contact-footer {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+  }
+
+  /* --- DOCUMENTS SECTION --- */
+  .documents-section {
+    margin-bottom: 3rem;
+  }
+  
+  .documents-section h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .documents-section p {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+  }
+
+  /* --- DOCUMENT LIST --- */
+  .doc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* No gap, we use border-bottom for separation */
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .doc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  /* Remove border from the last item so the container border handles it */
+  .doc-row:last-child {
+    border-bottom: none;
+  }
+
+  /* --- DOC INFO (Left Side) --- */
+  .doc-info {
+    font-size: 1.1rem;
+    color: var(--heading-color);
+  }
+  
+  .doc-info strong {
+    color: var(--accent); /* Highlights the Acronym (TSMCR) */
+    margin-right: 0.25rem;
+  }
+  
+  .doc-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  /* --- DOC ACTIONS (Right Side) --- */
+  .doc-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    font-family: monospace; /* Gives it a "technical" link feel */
+  }
+
+  .action-link {
+    color: var(--heading-color);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .action-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .separator {
+    color: var(--text-muted); /* Darker gray so it's visible */
+    opacity: 1;               /* Removed the transparency */
+    font-weight: 400;         /* Keeps it from looking too heavy */
+  }
+
+  /* --- MOBILE RESPONSIVE --- */
+  @media (max-width: 600px) {
+    .doc-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 1.25rem 0;
+    }
+    
+    .doc-actions {
+        width: 100%;
+        justify-content: flex-start; /* Or space-between if you prefer */
+    }
+  }
+
+  /* FAQ Styles */
   details {
     background: var(--surface); 
     border: 1px solid var(--border-subtle);
@@ -312,7 +764,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     margin-bottom: 0.5rem;
     overflow: hidden;
   }
-
+  
   summary {
     padding: 1rem;
     cursor: pointer;
@@ -321,21 +773,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     list-style: none; 
     transition: background-color 0.2s;
   }
-  
-  summary:hover {
-    /* Using --bg here creates a nice "inset" or "contrast" feel against the surface */
-    background-color: var(--bg); 
-  }
-
-  summary::marker {
-    color: var(--accent); /* Fixed: corrected var name */
-  }
-
+  summary:hover { background-color: var(--bg); }
   .faq-answer {
     padding: 1rem;
     border-top: 1px solid var(--border-subtle);
-    /* Using --bg makes the answer feel "recessed" inside the card */
     background: var(--bg); 
-    color: var(--text-body);
+    color: var(--accent);
   }
 </style>
