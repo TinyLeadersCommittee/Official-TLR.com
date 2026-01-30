@@ -1,7 +1,9 @@
-/* src/styles/global.css */
+/* =========================================
+   1. THEME VARIABLES (CONFIGURATION)
+   ========================================= */
 
+/* Default Light Theme */
 :root {
-  /* LIGHT MODE (Default) */
   --bg: #ffffff;
   --surface: #f4f4f4;
   --heading-color: #111111;
@@ -13,6 +15,7 @@
   --footer-text: #BEBDB8;
 }
 
+/* Dark Theme */
 [data-theme='dark'] {
   --bg: #121212;
   --surface: #1e1e1e;
@@ -21,73 +24,407 @@
   --text-muted: #a0a0a0;
   --accent: #ff7e67;
   --border-subtle: rgba(255, 255, 255, 0.1);
-  --footer-bg: rgba(0,0,0,0.3);
+  --footer-bg: rgba(0, 0, 0, 0.3);
   --footer-text: #ffffff;
 }
 
+/* Committee Theme (Dark Neutral + Purple) */
 [data-theme='committee'] {
-  /* BACKGROUNDS: Neutral Dark Gray (Like VS Code or GitHub Dark) */
-  --bg: #1E1E20;           /* Dark Charcoal/Slate */
-  --surface: #2D2D30;      /* Slightly lighter gray for sidebars/cards */
-  
-  /* TEXT: Clean Whites and Grays (No longer lavender/tinted) */
+  --bg: #1E1E20;            /* Dark Charcoal */
+  --surface: #2D2D30;       /* Lighter Gray */
   --heading-color: #F0F0F0; /* Bright White-Gray */
-  --text-body: #CCCCCC;     /* Standard readable Light Gray */
+  --text-body: #CCCCCC;     /* Light Gray */
   --text-muted: #888888;    /* Neutral Muted Gray */
+  --accent: #A56CC1;        /* Bright Purple */
+  --border-subtle: rgba(255, 255, 255, 0.15);
+  --footer-bg: #151517;     /* Deep Dark */
+  --footer-text: #A56CC1;   
   
-  /* ACCENTS: Keep the Purple identity here ONLY */
-  --accent: #A56CC1;        /* A slightly brighter purple to pop against gray */
-  --border-subtle: rgba(255, 255, 255, 0.15); /* White-based border for neutrality */
-  
-  /* FOOTER: Deep Dark */
-  --footer-bg: #151517;     /* Almost black, slightly off-tone */
-  --footer-text: #A56CC1;   /* Purple text to match the accent */
-
-  /* Scheme Colors (Unchanged) */
+  /* Role-Specific Colors */
   --color-core: #00ACFF;
-  --color-consultant: #11806A;
-  --color-advisor: #9B59B6;
+  --color-consultant: #9B59B6;
+  --color-advisor: #11806A;
   --color-lpo: #E67E22;
   --color-contributor: #F1C40F;
 }
 
+/* Charlotte Theme (Pink/Berry) */
 [data-theme='charlotte'] {
   --bg: #FFF0F5;            /* Lavender Blush */
-  --surface: #ffffff;       /* Pure White for contrast */
-  --heading-color: #4A0E2E; /* Deep Plum for crisp readability */
+  --surface: #ffffff;       /* Pure White */
+  --heading-color: #4A0E2E; /* Deep Plum */
   --text-body: #5D2E46;     /* Muted Berry */
   --text-muted: #B39DDB;    /* Soft Lavender */
   --accent: #FF007F;        /* Bright Neon Pink */
   --border-subtle: rgba(255, 0, 127, 0.15);
-  --footer-bg: #2D0D18;     /* Dark Berry Footer */
-  --footer-text: #FFC1E3;   /* Pastel Pink Footer Text */
+  --footer-bg: #2D0D18;     /* Dark Berry */
+  --footer-text: #FFC1E3;   
 }
 
-/* GLOBAL TAG ASSIGNMENTS */
+/* =========================================
+   2. GLOBAL RESETS (BASE HTML TAGS)
+   ========================================= */
+
 body {
   background-color: var(--bg);
   color: var(--text-body);
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden; /* Prevents horizontal scroll from full-width sections */
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
   font-family: 'Montserrat', sans-serif;
+  line-height: 1.2;
 }
 
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: opacity 0.2s;
+  font-weight: 500;
+  transition: opacity 0.2s, color 0.2s;
 }
 
 a:hover {
   opacity: 0.8;
+  text-decoration: underline;
 }
 
-hr {
+hr, .divider {
   border: 0;
   border-top: 1px solid var(--border-subtle);
+  margin: 3rem 0;
+  opacity: 0.5;
+}
+
+/* =========================================
+   3. GLOBAL UTILITIES (Layout & Typography)
+   ========================================= */
+
+/* The "Reading Container" - Standard width for all text-heavy sections */
+/* Merged: Used the values from your Essay section as they were better */
+.prose-block {
+  max-width: 65ch; 
+  margin: 0 auto;
+  line-height: 1.8; 
+  font-size: 1.15rem; 
+  color: var(--text-body);
+  padding: 0 1rem; 
+}
+
+/* Responsive Grid (Auto-fitting) */
+.grid-fluid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Full-Width Background Strip (Breakout Container) */
+/* Merged .full-width-strip and .alt-bg */
+.full-width-strip, .alt-bg {
+  background-color: var(--surface);
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Standard Page Header (Generic & Essay) */
+.page-header, .essay-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  padding: 0 1rem;
+}
+
+/* This line fixes the font size */
+.page-header h1, .essay-header h1 { 
+  font-size: 3rem; 
+  margin-bottom: 0.5rem; 
+  line-height: 1.1;
+}
+
+.page-header p { 
+  font-size: 1.2rem; 
+  color: var(--text-muted); 
+  font-style: italic; 
+  margin-top: 0.5rem; 
+}
+
+/* Sub-header labels (e.g. "Design Philosophy I") */
+.super-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+code {
+  background-color: var(--surface);
+  color: var(--accent);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Inter', system-ui, sans-serif; /* Matches body font, per your design */
+  font-weight: bold;
+  font-size: 0.9em;
+  border: 1px solid var(--border-subtle);
+}
+
+/* =========================================
+   4. COMPONENT: CARDS
+   ========================================= */
+
+/* A. Content Card (Flat, Standard) */
+.content-card {
+  background-color: var(--bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+}
+
+.content-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* B. Nav Link Card (Gradient) */
+.nav-link-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: linear-gradient(to right, var(--surface), transparent);
+  text-decoration: none; 
+  color: var(--text-body);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-link-card:hover {
+  transform: translateX(4px); 
+  border-color: var(--accent);
+  background-color: var(--surface); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.nav-link-card h3 { margin: 0 0 0.5rem 0; font-size: 1.25rem; color: var(--heading-color); }
+.nav-link-card p { margin: 0 0 1rem 0; font-size: 0.95rem; color: var(--text-muted); }
+.nav-link-card .card-action { font-weight: bold; color: var(--accent); margin-top: auto; }
+
+/* =========================================
+   5. COMPONENT: INTERACTIVE & DECORATION
+   ========================================= */
+
+/* Callout Box (Accent Left Border) */
+.callout-box {
+  background-color: var(--surface);
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  border-radius: 0 4px 4px 0;
+  color: var(--text-body);
+}
+.callout-box p { margin: 0; }
+.callout-box h3, .callout-box h4 { margin-top: 0; color: var(--accent); }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--heading-color);
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: var(--bg);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: 1px solid var(--accent);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* "Pill" Tags */
+.tag-pill {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  background-color: var(--surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+/* =========================================
+   6. THEME: DESIGN ESSAYS
+   (Centered, Story-like, "Book" feel)
+   ========================================= */
+
+.design-essay {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  color: var(--text-body);
+}
+
+/* Typography Overrides */
+.design-essay .essay-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.design-essay .lead-paragraph {
+  font-size: 1.25rem;
+  color: var(--heading-color);
+}
+
+.design-essay .subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Spacing */
+.design-essay .chapter-section {
+  padding: 3rem 0;
+}
+
+.design-essay .chapter-section h3 {
+  font-size: 1.75rem;
+  color: var(--heading-color);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.design-essay .final-statement {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--heading-color);
+  margin-top: 3rem;
+}
+
+/* =========================================
+   7. THEME: RULES DOCUMENTATION
+   (Left-aligned, Scan-able, Dense)
+   ========================================= */
+
+.rules-doc {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  color: var(--text-body);
+}
+
+/* Force Left Alignment for Docs */
+.rules-doc .page-header,
+.rules-doc h1, .rules-doc h2, .rules-doc h3 {
+  text-align: left;
+}
+
+.rules-doc .lead {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 2rem;
+  max-width: 70ch;
+}
+
+/* Standard Rules List (Gradient + Left Border) */
+.rules-list {
+  list-style: none;
+  padding: 0;
+}
+
+.rules-list li {
+  background: linear-gradient(to right, var(--surface), transparent);
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--border-subtle);
+  border-radius: 0 4px 4px 0;
+}
+
+.rules-list strong { color: var(--accent); }
+
+/* FAQ Accordions */
+.rules-doc details {
+  background: linear-gradient(to right, var(--surface), transparent);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.rules-doc summary {
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--heading-color);
+  list-style: none;
+  transition: background-color 0.2s;
+}
+
+.rules-doc summary:hover { background-color: var(--surface); }
+
+.rules-doc .faq-answer {
+  padding: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* =========================================
+   8. RESPONSIVE HELPERS
+   ========================================= */
+
+@media (max-width: 600px) {
+  .page-header h1, .essay-header h1 { font-size: 2rem; }
+  
+  .prose-block { font-size: 1rem; }
+  
+  /* Reset Breakouts on Mobile */
+  .full-width-strip, .alt-bg {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width: calc(100% + 2rem);
+    left: auto;
+    right: auto;
+  }
 }

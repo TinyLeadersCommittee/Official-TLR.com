@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeriesNav from '../../components/navs/SeriesNav.astro';
+import command from '../../assets/images/design/commandTower0.jpg';
 ---
 
-<BaseLayout title="The Commander Variant">
+<BaseLayout title="The Commander Variant" 
+bgImage={command}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: center;">
+  
   <main class="design-essay">
     
     <header class="essay-header">
@@ -15,10 +21,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <article class="prose-block">
       <p class="lead-paragraph">
-        Tiny Leaders Reborn is, at its core, a Commander-variant format. Decks are built around a commander, 
-        obey color identity, use the command zone, and follow singleton construction. If you already speak 
-        the language of Commander, the structure will feel immediately recognizable, but every element has 
-        been refined for deliberate, 1-v-1 play.
+        Tiny Leaders Reborn is, at its core, a Commander-variant format. 
+        Decks are built around a commander, obey color identity, use the 
+        command zone, and follow singleton construction. If you already speak 
+        the language of Commander, the structure will feel immediately 
+        recognizable, but every element has been refined for deliberate, 
+        1-v-1 play.
       </p>
     </article>
 
@@ -26,13 +34,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>From Pastime to Purpose</h3>
         <p>
-          Where the original Tiny Leaders emerged as a way to pass the time between multiplayer pods, 
-          TLR is built with a clearer purpose. Shaped by competitive 1v1 play in the French Magic community, 
-          the format emphasizes tempo, sequencing, and meaningful interaction from the opening turn onward.
+          Where the original Tiny Leaders emerged as a way to pass the time 
+          between multiplayer pods, TLR is built with a clearer purpose. 
+          Shaped by competitive 1v1 play in the French Magic community, 
+          the format emphasizes tempo, sequencing, and meaningful interaction 
+          from the opening turn onward.
         </p>
         <p>
-          The smaller scale naturally rewards tight decision-making, and while later design elements help 
-          support competitive strategies, they are deliberately framed as options, rather than obligations.
+          The smaller scale naturally rewards tight decision-making, and 
+          while later design elements help support competitive strategies, 
+          they are deliberately framed as options, rather than obligations.
         </p>
       </div>
     </section>
@@ -41,10 +52,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>A Spectrum of Expression</h3>
         <p>
-          That flexibility is central to the format’s identity. TLR supports the full spectrum of Commander 
-          expression, such as focused strategies, offbeat themes, and experimental builds. You can register 
-          a finely tuned list or sit down with a concept-driven deck and expect the structure of the format 
-          to meet you where you are. The format offers plenty of strategic depth but an equal amount of creativity.
+          That flexibility is central to the format’s identity. TLR supports 
+          the full spectrum of Commander expression, such as focused 
+          strategies, offbeat themes, and experimental builds. You can 
+          register a finely tuned list or sit down with a concept-driven 
+          deck and expect the structure of the format to meet you where 
+          you are. The format offers plenty of strategic depth but an 
+          equal amount of creativity.
         </p>
       </div>
     </section>
@@ -53,15 +67,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>The Gravitational Center</h3>
         <p>
-          Your commander remains the gravitational center of the deck. It defines your colors, informs your 
-          strategy, and gives your list its identity, just as it does in traditional Commander. The difference 
-          is immediacy and inevitability.
+          Your commander remains the gravitational center of the deck. It 
+          defines your colors, informs your strategy, and gives your list 
+          its identity, just as it does in traditional Commander. The 
+          difference is immediacy and inevitability.
         </p>
         
-        <div class="callout-box">
+        <div class="callout-box" style="font-style: italic;">
           <p>
-            With fewer cards and faster games, your commander matters sooner and more often, as it anchors 
-            your plan from the very beginning. Decisions come faster, stakes rise earlier, and the room for 
+            With fewer cards and faster games, your commander matters sooner 
+            and more often, as it anchors your plan from the very beginning. 
+            Decisions come faster, stakes rise earlier, and the room for 
             clever lines and surprise interactions remains intact.
           </p>
         </div>
@@ -72,212 +88,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <footer class="essay-footer prose-block">
       <p>
-        By preserving the Commander framework while refining it for 1v1 play, Tiny Leaders Reborn strikes 
-        a careful balance of being familiar without being derivative, while at the same time, competitive 
-        without being restrictive. The result is a format that welcomes Commander players through familiarity.
+        By preserving the Commander framework while refining it for 1v1 play, 
+        Tiny Leaders Reborn strikes a careful balance of being familiar 
+        without being derivative, while at the same time, competitive 
+        without being restrictive. The result is a format that welcomes 
+        Commander players through familiarity.
       </p>
       <p>
-        <strong>TLR offers a tighter, more intentional battlefield where every mana and every turn matters.</strong>
+        <strong>TLR offers a tighter, more intentional battlefield where 
+        every mana and every turn matters.</strong>
       </p>
     </footer>
 
-    <nav class="series-nav">
-      
-      <a href="/design/rule-of-three" class="nav-card prev">
-        <span class="nav-label">Previous</span>
-        <div class="nav-inner">
-          <span class="nav-arrow">&larr;</span>
-          <span class="chapter-title">The Rule of 3</span>
-        </div>
-      </a>
-
-      <a href="/design/one-v-one" class="nav-card next">
-        <span class="nav-label">Next Element</span>
-        <div class="nav-inner">
-          <span class="chapter-title">1v1 Structure</span>
-          <span class="nav-arrow">&rarr;</span>
-        </div>
-      </a>
-
-    </nav>
+    <SeriesNav 
+      prevUrl="/design/rule-of-three" 
+      prevTitle="The Rule of 3"
+      nextUrl="/design/one-v-one" 
+      nextTitle="1v1 Structure"
+    />
 
   </main>
 </BaseLayout>
-
-<style>
-  /* --- REUSING DESIGN SYSTEM STYLES --- */
-  .design-essay {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem 1rem;
-    color: var(--text-body);
-  }
-
-  .prose-block {
-    max-width: 65ch;
-    margin: 0 auto;
-    line-height: 1.8;
-    font-size: 1.15rem;
-  }
-
-  /* --- HEADER --- */
-  .essay-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .super-title {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .essay-header h1 {
-    font-size: 3rem;
-    color: var(--heading-color);
-    margin-bottom: 0.5rem;
-    line-height: 1.1;
-  }
-
-  .subtitle {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  .lead-paragraph {
-    font-size: 1.25rem;
-    color: var(--heading-color);
-  }
-
-  /* --- SECTIONS --- */
-  .chapter-section {
-    padding: 3rem 0;
-  }
-
-  .chapter-section h3 {
-    font-size: 1.75rem;
-    color: var(--heading-color);
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-  }
-
-  /* --- CALLOUT BOX --- */
-  .callout-box {
-    background-color: var(--surface);
-    border-left: 4px solid var(--accent);
-    padding: 1.5rem 2rem;
-    margin: 2rem 0;
-    font-style: italic;
-    border-radius: 0 4px 4px 0;
-  }
-
-  .callout-box p {
-    margin: 0;
-    font-size: 1.15rem;
-  }
-
-  /* --- ALT BACKGROUND --- */
-  .alt-bg {
-    background-color: var(--surface); /* Very subtle grey/off-white background */
-    margin-left: calc(-50vw + 50%); /* Break out of container to full width */
-    margin-right: calc(-50vw + 50%);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 100vw;
-  }
-
-  /* --- SERIES NAVIGATION --- */
-  .series-nav {
-    margin-top: 6rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    justify-content: space-between; /* Pushes buttons to edges */
-    align-items: flex-end; /* Aligns them to bottom if heights differ */
-    gap: 1rem;
-  }
-
-  /* Shared Card Styles */
-  .nav-card {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    width: 100%;
-    max-width: 300px;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid transparent; /* Invisible border by default */
-    transition: all 0.2s ease;
-  }
-
-  .nav-card:hover {
-    background-color: var(--surface);
-    border-color: var(--border-subtle);
-    transform: translateY(-2px);
-  }
-
-  /* Internal Layout */
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  /* Left/Right Specifics */
-  .prev {
-    align-items: flex-start; /* Aligns content to left */
-    text-align: left;
-  }
-
-  .next {
-    align-items: flex-end; /* Aligns content to right */
-    text-align: right;
-  }
-  
-  /* Flex direction row-reverse for Previous to keep arrow on outside? 
-     No, standard "Arrow Title" is fine for prev. */
-
-  .nav-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-
-  .chapter-title {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--heading-color);
-  }
-
-  .nav-arrow {
-    font-size: 1.25rem;
-    color: var(--accent);
-  }
-
-  /* Mobile: Stack them vertically */
-  @media (max-width: 600px) {
-    .series-nav {
-      flex-direction: column-reverse; /* Next on top, Prev on bottom usually better? Or standard flow */
-      flex-direction: column; 
-      gap: 2rem;
-    }
-    
-    .nav-card {
-      max-width: 100%;
-      align-items: center; /* Center them on mobile */
-      text-align: center;
-      background-color: var(--surface);
-      border-color: var(--border-subtle);
-    }
-    
-    .prev, .next { align-items: center; text-align: center; }
-  }
-</style>

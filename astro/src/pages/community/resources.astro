@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import library from '../../assets/images/community/spoilsOfTheVault.jpg'; // Reuse an existing image or swap
+---
+
+<BaseLayout title="Community Resources" 
+bgImage={library}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: center;">
+  
+  <main class="prose-block" style="max-width: 1000px;">
+    
+    <header class="page-header">
+      <h1>Player Resources</h1>
+      <p class="lead">
+        Tools, downloads, and links to help you build decks, 
+        run tournaments, and create content for Tiny Leaders: Reborn.
+      </p>
+    </header>
+
+    <hr class="divider" />
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Digital Tools</h2>
+      
+      <div class="grid-fluid">
+        
+        <article class="content-card">
+          <h3 style="margin-top: 0; color: var(--accent);">Moxfield</h3>
+          <p>
+            The preferred deckbuilder of the community. We are working with 
+            Moxfield to get full format support, but for now, use the "Tiny Leaders" 
+            format option.
+          </p>
+          <a href="https://www.moxfield.com" class="btn btn-primary" style="margin-top: 1rem;">Go to Moxfield &rarr;</a>
+        </article>
+
+        <article class="content-card">
+          <h3 style="margin-top: 0; color: var(--accent);">Cockatrice</h3>
+          <p>
+            The vast majority of online play happens here. It's free, open-source, 
+            and has a robust card database.
+          </p>
+          <a href="https://cockatrice.github.io/" class="btn" style="margin-top: 1rem;">Download Client</a>
+        </article>
+
+        <article class="content-card">
+          <h3 style="margin-top: 0; color: var(--accent);">Challonge</h3>
+          <p>
+            Used for running our Monthly Leagues and tournaments. You'll need 
+            an account here to register for events.
+          </p>
+          <a href="https://challonge.com" class="btn" style="margin-top: 1rem;">Sign Up</a>
+        </article>
+
+      </div>
+    </section>
+
+    <section style="margin-bottom: 4rem;">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Content Creator Kit</h2>
+      
+      <div class="callout-box" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <h3 style="margin-top: 0;">Logos & Branding</h3>
+        <p style="max-width: 60ch;">
+          Making a video or writing an article? Feel free to use the official 
+          Tiny Leaders: Reborn logos. Includes transparent PNGs and SVGs.
+        </p>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center;">
+            <a href="/downloads/tlr-logos.zip" class="btn btn-primary">Download Logo Pack (ZIP)</a>
+            <a href="/design/branding" class="btn">View Brand Guidelines</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="text-align: center; margin-bottom: 2rem;">Essential Reading</h2>
+      
+      <div class="grid-fluid">
+        <a href="/rules/banlist" class="content-card" style="text-decoration: none; transition: transform 0.2s;">
+            <h4 style="margin: 0; color: var(--heading-color);">The Banlist &rarr;</h4>
+            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
+                Know what you can and can't play.
+            </p>
+        </a>
+        
+        <a href="/design/rule-of-three" class="content-card" style="text-decoration: none; transition: transform 0.2s;">
+            <h4 style="margin: 0; color: var(--heading-color);">Format Philosophy &rarr;</h4>
+            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
+                Understand the "Rule of 3".
+            </p>
+        </a>
+
+        <a href="https://discord.gg/tinyleaders" class="content-card" style="text-decoration: none; transition: transform 0.2s;">
+            <h4 style="margin: 0; color: var(--heading-color);">Discord FAQ &rarr;</h4>
+            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
+                Check the pins in #general.
+            </p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>

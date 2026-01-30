@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import loot from '../assets/images/discover/loot.jpg';
-import {Image} from 'astro:assets';
+import discover from '../../assets/images/discover/discoverTheImpossible.jpg';
+import { Image } from 'astro:assets';
 ---
 
-<BaseLayout title="Discover">
-  <article>
-    <header>
+<BaseLayout title="Discover" bgImage={discover}>
+  
+  <article class="prose-block">
+    <header class="page-header">
       <h1>Discover TLR</h1>
       <p>
         Tiny Leaders: Reborn is a fast, competitive 1v1 Magic format with 50-card 
@@ -16,131 +17,200 @@ import {Image} from 'astro:assets';
       </p>
     </header>
 
-    <hr />
+    <hr class="divider" />
 
     <section id="nexus">
       <h2>Explore the Format</h2>
-      <nav class="discover-grid">
-        <article class="nav-card">
+      <nav class="grid-fluid">
+        
+        <a href="/rules/overview" class="nav-link-card">
           <h3>Rules</h3>
           <p>Master the Rule of 3 and core mechanics.</p>
-          <a href="/rules/overview">Read the Rules</a>
-        </article>
+          <span class="card-action">Read the Rules &rarr;</span>
+        </a>
 
-        <article class="nav-card">
-          <h3>Banlist</h3>
-          <p>Check the current bans and watchlist.</p>
-          <a href="/banlist">View Banlist</a>
-        </article>
-
-        <article class="nav-card">
-          <h3>Design</h3>
-          <p>Deep dives into format philosophy.</p>
-          <a href="/design">Design Philosophy</a>
-        </article>
-
-        <article class="nav-card">
+        <a href="/community" class="nav-link-card">
           <h3>Community</h3>
           <p>Online Leagues, and ways to play in paper.</p>
-          <a href="/community">Community Hub</a>
-        </article>
+          <span class="card-action">Community Hub &rarr;</span>
+        </a>
 
-        <article class="nav-card">
+        <a href="/banlist" class="nav-link-card">
+          <h3>Banlist</h3>
+          <p>Check the current bans and watchlist.</p>
+          <span class="card-action">View Banlist &rarr;</span>
+        </a>
+
+        <a href="/feed" class="nav-link-card">
           <h3>The Feed</h3>
           <p>Latest announcements and articles.</p>
-          <a href="/feed">Read Announcements</a>
-        </article>
+          <span class="card-action">Read Announcements &rarr;</span>
+        </a>
 
-        <article class="nav-card">
+        <a href="/design" class="nav-link-card">
+          <h3>Design</h3>
+          <p>Deep dives into format philosophy.</p>
+          <span class="card-action">Design Philosophy &rarr;</span>
+        </a>        
+
+        <a href="/about" class="nav-link-card">
           <h3>About</h3>
           <p>Read about our history and meet the Committee.</p>
-          <a href="/about">Learn our History</a>
-        </article>
+          <span class="card-action">Learn our History &rarr;</span>
+        </a>
+
       </nav>
     </section>
 
-    <hr />
+    <hr class="divider" />
 
     <section id="discord">
       <h2>Join the Conversation</h2>
       <p>
         Our Discord is the heartbeat of the community. Join us for:
       </p>
-      <ul>
-        <li>Competitive brewing & strategy discussions</li>
-        <li>LFG (Looking for Game) channels</li>
-        <li>Compete in an open year long, online league</li>
-        <li>Communicate directly with members of the Tiny Leaders Committee</li>
+      <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
+        <li style="margin-bottom: 0.5rem;">Competitive brewing & strategy discussions</li>
+        <li style="margin-bottom: 0.5rem;">LFG (Looking for Game) channels</li>
+        <li style="margin-bottom: 0.5rem;">Compete in an open year long, online league</li>
+        <li style="margin-bottom: 0.5rem;">Communicate directly with members of the Tiny Leaders Committee</li>
       </ul>
+      
       <p>
-        <a href="https://discord.com/invite/jq9KWHAdTm">
-          <strong>Join the Official Discord Server</strong>
+        <a href="https://discord.com/invite/jq9KWHAdTm" class="discord-logo-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" class="discord-svg">
+            <path fill="#ffffff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.09,105.09,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.89,105.89,0,0,0,126.6,80.22c1.24-23.37-3.55-47.54-19.9-72.05ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+          </svg>
+          <span>Join the Community</span>
         </a>
       </p>
     </section>
 
-    <section id="media">
+    <section id="media" style="margin-top: 3rem;">
       <h2>Watch & Follow</h2>
       
-      <div class="media-block">
-        <h3>YouTube</h3>
-        <p>
-          Watch gameplay, deck techs, and format updates on our 
-          official channel.
-        </p>
-        <a href="https://www.youtube.com/@TinyLeadersRebornCommittee/featured">
-            Visit YouTube Channel
-        </a>
-      </div>
+      <div class="grid-fluid">
+        <div class="content-card">
+            <h3>YouTube</h3>
+            <p>Watch gameplay, deck techs, and format updates on our official channel.</p>
+            <a href="https://www.youtube.com/@TinyLeadersRebornCommittee/featured" class="social-btn btn-youtube">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span>YouTube Channel</span>
+            </a>
+        </div>
 
-      <div class="media-block">
-        <h3>Bluesky</h3>
-        <p>
-          Follow us for quick updates and community highlights.
-        </p>
-        <a href="https://bsky.app/profile/tinyleadersreborn.bsky.social">
-            Follow on Bluesky
-        </a>
+        <div class="content-card">
+            <h3>Bluesky</h3>
+            <p>Follow us for quick updates and community highlights.</p>
+            <a href="https://bsky.app/profile/tinyleadersreborn.bsky.social" class="social-btn btn-bluesky">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.617 2.53 7.823 1.148.843-1.018 1.486-1.6 1.486-1.6s.643.582 1.486 1.6c1.206 1.382 2.81 4.042 7.823-1.148 4.557-5.073 1.083-6.498-2.83-7.078-.139-.016-.277-.034-.415-.056.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/>
+                </svg>
+                <span>Follow on Bluesky</span>
+            </a>
+        </div>
       </div>
     </section>
 
-    <hr />
+    <hr class="divider" />
 
-    <aside id="toolkit">
+    <aside id="toolkit" class="callout-box">
       <h3>Ready to Play?</h3>
       <p>
-        Get the tools you need: Cockatrice installation guides, 
-        Manabox support, and Moxfield templates.
+        Get the tools you need: Cockatrice installation guides, and links to
+        Manabox, Moxfield, and Challonge.
       </p>
-      <p>
-        <a href="/community/resources">
+      <p style="margin-top: 1rem;">
+        <a href="/community/resources" style="font-weight: bold;">
           Open the Player Toolkit &rarr;
         </a>
       </p>
     </aside>
+
   </article>
 </BaseLayout>
 
 <style>
-  /* Basic styling for the discover cards to maintain structure */
-  .discover-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+  /* DISCORD BUTTON (Reused from Community Page) */
+  .discord-logo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: #5865F2; /* Official Discord Blurple */
+    padding: 0.8rem 1.5rem; 
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: transform 0.2s, background-color 0.2s;
     margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+    width: fit-content; 
+  }
+  
+  .discord-svg {
+    width: 28px; 
+    height: auto;
+    display: block;
+    flex-shrink: 0; 
   }
 
-  .nav-card {
-  /* CHANGED: Use variables so it adapts to Light/Committee themes */
-  border: 1px solid var(--border-subtle); 
-  background-color: var(--surface);
-  
-  /* Kept your original spacing */
-  padding: 1rem;
-  border-radius: 8px;
-}
+  .discord-logo-btn:hover {
+    transform: translateY(-2px);
+    background-color: #4752C4;
+    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
+  }
 
-  .media-block {
-    margin-bottom: 1.5rem;
+  /* MEDIA BUTTONS */
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    margin-top: 1rem;
+  }
+  
+  .social-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(110%);
+  }
+
+  .social-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .btn-youtube { background-color: #FF0000; }
+  .btn-bluesky { background-color: #0560FF; }
+
+  /* CONTENT CARD (Basic Style for Divs) */
+  .content-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .content-card h3 {
+    margin-top: 0;
+    color: var(--heading-color);
+  }
+  
+  .content-card p {
+    flex-grow: 1;
+    margin-bottom: 0.5rem;
+    color: var(--text-body);
   }
 </style>

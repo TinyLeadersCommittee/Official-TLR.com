@@ -1,6 +1,7 @@
 ---
-// src/pages/community/little-league.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import battle from '../../assets/images/community/battleStrain.jpg';
+import { Image } from 'astro:assets';
 
 // THE DATA ZONE: Update your schedule here!
 const schedule = [
@@ -14,7 +15,10 @@ const schedule = [
 ];
 ---
 
-<BaseLayout title="Official Little League">
+<BaseLayout title="Official Little League" 
+bgImage={battle}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: center;">
   
   <header class="league-hero">
     <h1>The Official TLR Little League</h1>
@@ -85,7 +89,6 @@ const schedule = [
           </svg>
         </div>
         <h3>The Stakes</h3>
-
         <p>
           <strong>Mainly, bragging rights and a sense of accomplishment.</strong><br>
           But also, prizes for Top Scoring Tournament Supporters. And, a chance to 
@@ -202,16 +205,18 @@ const schedule = [
       the <span class="role-pill">@TLR Little League</span> role to get notified 
       when registration opens, each month.
     </p>
-    <nav>
-      <a href="https://challonge.com">Visit Challonge</a> | 
-      <a href="https://cockatrice.github.io/">Download Cockatrice</a>
+    <nav class="resource-links">
+      <a href="https://challonge.com" class="btn">Visit Challonge</a>
+      <a href="https://cockatrice.github.io/" class="btn">Download Cockatrice</a>
     </nav>
   </aside>
 
 </BaseLayout>
 
 <style>
-  /* --- GENERAL LAYOUT --- */
+  /* =========================================
+     1. HERO HEADER
+     ========================================= */
   .league-hero {
     text-align: center;
     padding: 3rem 1rem 0.5rem; 
@@ -219,15 +224,12 @@ const schedule = [
     margin: 0 auto;
   }
 
-  .league-hero h1 {
-    color: var(--heading-color);
-  }
+  .league-hero h1 { color: var(--heading-color); }
+  .league-hero p { color: var(--text-body); }
 
-  .league-hero p {
-    color: var(--text-body);
-  }
-
-  /* --- PHILOSOPHY BLOCK --- */
+  /* =========================================
+     2. PHILOSOPHY QUOTE
+     ========================================= */
   .philosophy-block {
     background-color: var(--surface);
     border-left: 4px solid var(--accent);
@@ -258,7 +260,9 @@ const schedule = [
     color: var(--accent);
   }
 
-  /* --- RULES GRID (Icons) --- */
+  /* =========================================
+     3. RULES GRID (Icons)
+     ========================================= */
   .rules-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -267,7 +271,7 @@ const schedule = [
   }
 
   .rule-card {
-    background-color: var(--bg); /* White cards */
+    background-color: var(--bg);
     padding: 1.5rem;
     border-radius: 4px;
     border: 1px solid var(--border-subtle);
@@ -277,7 +281,7 @@ const schedule = [
 
   .rule-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Subtle shadow on hover */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     border-color: var(--accent);
   }
 
@@ -286,11 +290,13 @@ const schedule = [
     margin-bottom: 1rem;
     display: inline-flex;
     padding: 12px;
-    background-color: var(--surface); /* Light grey backing for red icon */
+    background-color: var(--surface);
     border-radius: 50%;
   }
 
-  /* --- SEASONS & EVENTS --- */
+  /* =========================================
+     4. SEASONAL EVENTS
+     ========================================= */
   .events-container {
     display: flex;
     flex-direction: column;
@@ -311,10 +317,10 @@ const schedule = [
       margin-bottom: 0.25rem;
   }
 
-  /* Distinguish the Championship card slightly */
+  /* Distinguish the Championship card */
   .championship-card {
     background-color: var(--surface); 
-    border-color: var(--accent); /* Highlight the big event with red border */
+    border-color: var(--accent);
   }
 
   .event-meta {
@@ -333,13 +339,13 @@ const schedule = [
     color: var(--text-body);
   }
 
-  /* --- ALERT BOX --- */
+  /* Alert Box */
   .alert-box {
     display: flex;
     gap: 1rem;
     background-color: var(--surface);
     border: 1px solid var(--border-subtle);
-    border-left: 4px solid var(--accent); /* Red Accent */
+    border-left: 4px solid var(--accent);
     padding: 1rem;
     border-radius: 4px;
     margin-top: 1.5rem;
@@ -355,7 +361,9 @@ const schedule = [
     padding-top: 2px;
   }
 
-  /* --- SCHEDULE GRID --- */
+  /* =========================================
+     5. SCHEDULE GRID
+     ========================================= */
   .schedule-grid {
     display: flex;
     flex-direction: column;
@@ -366,7 +374,7 @@ const schedule = [
 
   .schedule-header {
     display: grid;
-    /* CHANGED: Now 3 columns (Date | Event | Type) */
+    /* Date | Event | Type */
     grid-template-columns: 180px 350px 1fr; 
     font-weight: bold;
     padding: 0.5rem 1rem;
@@ -378,7 +386,6 @@ const schedule = [
 
   .schedule-row {
     display: grid;
-    /* CHANGED: Matches Header */
     grid-template-columns: 180px 350px 1fr; 
     padding: 0.75rem 1rem;
     border-radius: 4px;
@@ -388,17 +395,17 @@ const schedule = [
     border: 1px solid transparent; 
   }
 
-  /* NEW: Style for the Type column */
   .type-col {
-    text-transform: capitalize; /* Turns "qualifier" into "Qualifier" */
+    text-transform: capitalize;
     font-size: 0.9rem;
     color: var(--text-muted);
-    text-align: left; /* Aligns nicely to the edge */
+    text-align: left;
   }
 
   /* Status Styles */
-  .schedule-row.active {
-    background-color: var(--bg); /* White bg to stand out against grey list */
+  .schedule-row.major, 
+  .schedule-row.championship {
+    background-color: var(--bg);
     border-left: 4px solid var(--accent);
     border-top: 1px solid var(--border-subtle);
     border-right: 1px solid var(--border-subtle);
@@ -406,13 +413,17 @@ const schedule = [
     font-weight: bold;
   }
 
-  .schedule-row.upcoming {
-    color: var(--text-muted);
+  /* =========================================
+     6. JOIN CTA
+     ========================================= */
+  .join-cta {
+    background-color: var(--surface);
+    padding: 2rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 3rem;
   }
 
-  /* --- DISCORD ROLE PILL --- */
-  /* Keeps the Discord Blurple because it is a brand color, 
-     but you can change this to var(--accent) if you prefer uniformity */
   .role-pill {
     display: inline-block;
     background-color: var(--accent); 
@@ -421,14 +432,6 @@ const schedule = [
     border-radius: 4px;
     font-weight: 500;
     font-size: 0.9em;
-  }
-
-  .join-cta {
-    background-color: var(--surface);
-    padding: 2rem;
-    border-radius: 4px;
-    text-align: center;
-    margin-top: 3rem;
   }
 
   .resource-links {
@@ -455,18 +458,20 @@ const schedule = [
     color: var(--heading-color);
   }
 
-  /* --- MOBILE RESPONSIVENESS --- */
+  /* =========================================
+     7. RESPONSIVE
+     ========================================= */
   @media (max-width: 600px) {
-    .schedule-header {
-      display: none;
-    }
+    /* Hide Grid Header */
+    .schedule-header { display: none; }
     
+    /* Stack Row Content */
     .schedule-row {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.25rem;
-      border-left-width: 4px; /* Ensure status colors show on mobile */
+      border-left-width: 4px; /* Ensure status colors show */
     }
 
     .date-col {
@@ -475,6 +480,7 @@ const schedule = [
       font-weight: bold;
     }
 
+    /* Style the Type Tag like a pill on mobile */
     .type-col {
       text-align: left;
       font-size: 0.8rem;

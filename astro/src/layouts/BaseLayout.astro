@@ -3,7 +3,10 @@ import '../styles/global.css';
 import Navigation from '../components/Navigation.astro';
 import NavSidebar from '../components/NavSidebar.astro';
 import Footer from '../components/footer/Footer.astro';
-const { title } = Astro.props;
+import { Image } from 'astro:assets';
+
+// 1. Add 'bgBlur' to props (defaults to undefined/false)
+const { title, bgImage, bgStyle, bgBlur } = Astro.props;
 ---
 
 <html lang="en">
@@ -22,8 +25,41 @@ const { title } = Astro.props;
     </script>
   </head>
   <body>
-    <Navigation />
     
+    {bgImage && (
+      <div class="fullscreen-bg">
+        
+        {bgBlur ? (
+          <>
+            <Image 
+              src={bgImage} 
+              alt="" 
+              aria-hidden="true" 
+              class="bg-img blur-backdrop" 
+            />
+            <Image 
+              src={bgImage} 
+              alt="" 
+              aria-hidden="true" 
+              class="bg-img blur-foreground"
+              style={bgStyle} 
+            />
+          </>
+        ) : (
+          /* OPTION B: STANDARD MODE (Normal Cover) */
+          <Image 
+            src={bgImage} 
+            alt="" 
+            aria-hidden="true" 
+            class="bg-img" 
+            style={bgStyle} 
+          />
+        )}
+
+      </div>
+    )}
+
+    <Navigation />
     <NavSidebar />    
 
     <main>
@@ -39,18 +75,87 @@ const { title } = Astro.props;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: transparent; 
+  }
+  html {
+    background-color: var(--bg); 
   }
 </style>
 
 <style>
-  /* MAIN CONTENT */
   main {
     flex: 1;
-    padding: 6rem 1.5rem 4rem 1.5rem; /* Increased top padding for the header */
+    padding: 6rem 1.5rem 4rem 1.5rem;
     max-width: 900px;
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
+    position: relative; 
+    z-index: 1; 
   }
 
+  .fullscreen-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    pointer-events: none;
+    overflow: hidden; /* Prevents blur from bleeding out */
+  }
+
+  /* BASE IMAGE STYLE */
+  /* ... existing .bg-img styles ... */
+  .bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15; 
+    filter: grayscale(100%); /* Default: B&W for dark modes */
+    transition: all 0.5s ease;
+    position: absolute; 
+    top: 0;
+    left: 0;
+  }
+
+  /* --- NEW: LIGHT THEME OVERRIDES --- */
+  html[data-theme='light'] .bg-img {
+    /* 1. Bring back the color */
+    filter: grayscale(0%); 
+    
+    /* 2. Adjust opacity (Optional) */
+    /* Color usually pops more than gray, so 0.15 might be perfect, 
+       but you can tweak this if it fights with the text. */
+    opacity: 0.20; 
+  }
+  
+  /* Optional: Fix the blur mode for light theme too */
+  html[data-theme='light'] .blur-backdrop {
+    filter: blur(20px); /* Keep the blur, but remove grayscale */
+    opacity: 0.2; /* Needs to be slightly stronger in light mode to be seen */
+  }
+
+  html[data-theme='light'] .blur-foreground {
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.2)); /* Softer shadow for light mode */
+    opacity: 0.3;
+  }
+
+  /* --- BLUR MODE STYLES --- */
+  
+  /* 1. The Backdrop: Blurry and darker */
+  .blur-backdrop {
+    object-fit: cover; /* Fills the whole screen */
+    filter: grayscale(100%) blur(20px); /* Heavy Blur */
+    opacity: 0.10; /* Slightly fainter than usual */
+    transform: scale(1.1); /* Scaling up removes blur edges */
+  }
+
+  /* 2. The Foreground: Sharp and Contained */
+  .blur-foreground {
+    object-fit: contain; /* Shows the whole image */
+    object-position: center;
+    opacity: 0.25; /* Make the main subject slightly brighter/clearer */
+    filter: grayscale(100%) drop-shadow(0 0 20px rgba(0,0,0,0.8)); /* Pop it off the background */
+  }
 </style>

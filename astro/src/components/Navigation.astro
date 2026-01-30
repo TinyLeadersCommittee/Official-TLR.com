@@ -91,6 +91,9 @@ const isFeed = pathname.startsWith('/feed');
           <span class="pipe">|</span>
           {/* Active if IS play-options */}
           <a href="/community/play-options" class={pathname.includes('/play-options') ? "active-wing" : ""}>More Ways to Play</a>
+          <span class="pipe">|</span>
+          {/* Active if IS resources */}
+          <a href="/community/resources" class={pathname.includes('/resources') ? "active-wing" : ""}>Resources</a>
         </div>
       </>
     )}

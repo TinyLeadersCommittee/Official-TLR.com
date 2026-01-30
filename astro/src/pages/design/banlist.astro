@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeriesNav from '../../components/navs/SeriesNav.astro';
+import lawmage from '../../assets/images/design/detentionSphere.jpg';
 ---
 
-<BaseLayout title="The Banlist">
+<BaseLayout title="The Banlist" 
+bgImage={lawmage}  
+bgBlur={true} 
+bgStyle="object-fit: contain; object-position: center;">
+  
   <main class="design-essay">
     
     <header class="essay-header">
@@ -21,7 +27,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         clear expectations for the format.
       </p>
       <p>
-        <strong>At its core, this philosophy isn’t only about what TLR allows, but rather it’s about clearly communicating what TLR is not.</strong>
+        <strong>At its core, this philosophy isn’t only about what TLR allows, 
+        but rather it’s about clearly communicating what TLR is not.</strong>
       </p>
     </article>
 
@@ -29,21 +36,26 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>TLR Is Intentionally Below Vintage Power</h3>
         <p>
-          TLR pulls from an Eternal card pool, but it is not built to support Vintage-level efficiency. 
-          The format is designed with a much lower baseline for mana, card draw, and resource conversion.
+          TLR pulls from an Eternal card pool, but it is not built to support 
+          Vintage-level efficiency. The format is designed with a much lower 
+          baseline for mana, card draw, and resource conversion.
         </p>
         <p>
-          Many Vintage-legal cards rely on assumptions that simply don’t hold in TLR, such as:
+          Many Vintage-legal cards rely on assumptions that simply don’t hold 
+          in TLR, such as:
         </p>
+        
         <ul class="standard-list">
           <li>Games being defined in the first one or two turns by explosive mana</li>
           <li>Zero- or one-mana card advantage at extreme rates</li>
           <li>A metagame shaped around free or near-free interaction</li>
         </ul>
+        
         <p>
-          TLR does not adopt those assumptions. As a result, some cards that are legal in Vintage are 
-          incompatible with TLR by default. These cards aren’t banned because of specific combos or 
-          dominant archetypes, they’re banned because their mere presence pushes the format toward 
+          TLR does not adopt those assumptions. As a result, some cards that are 
+          legal in Vintage are incompatible with TLR by default. These cards 
+          aren’t banned because of specific combos or dominant archetypes, 
+          they’re banned because their mere presence pushes the format toward 
           a Vintage-adjacent experience.
         </p>
       </div>
@@ -53,16 +65,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Defining the Format’s Power Ceiling</h3>
         <p>
-          Some bans exist to clearly establish how powerful TLR is willing to be. These aren’t metagame 
-          fixes or temporary safety valves. These bans define the upper bounds of the format.
+          Some bans exist to clearly establish how powerful TLR is willing to be. 
+          These aren’t metagame fixes or temporary safety valves. These bans 
+          define the upper bounds of the format.
         </p>
         <p>
-          Cards in this space tend to be at a rate that is so efficient, the rest of the format has to 
-          bend around them. Allowing them would force changes to deck construction, interaction density, 
-          and overall gameplay expectations.
+          Cards in this space tend to be at a rate that is so efficient, the 
+          rest of the format has to bend around them. Allowing them would force 
+          changes to deck construction, interaction density, and overall 
+          gameplay expectations.
         </p>
         
-        <h4>Vintage-Rate Power</h4>
+        <h4 style="margin-top: 2rem; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; font-weight: bold; letter-spacing: 0.05em;">Vintage-Rate Power</h4>
         <p>These cards are banned to reinforce that TLR is not balanced around Vintage-era efficiency:</p>
         
         <div class="card-grid">
@@ -82,9 +96,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <p class="footnote">
-          Being listed here doesn’t mean these cards are “forever impossible” to revisit, but unbanning 
-          them would require extensive testing, intentional environmental support, and a format ecosystem 
-          built to absorb their impact without collapsing into Vintage-style play.
+          Being listed here doesn’t mean these cards are “forever impossible” 
+          to revisit, but unbanning them would require extensive testing, 
+          intentional environmental support, and a format ecosystem built to 
+          absorb their impact without collapsing into Vintage-style play.
         </p>
       </div>
     </section>
@@ -93,13 +108,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Permanent Fast Mana</h3>
         <p>
-          TLR already plays quickly due to its core rule structure, particularly the Rule of 3, which 
-          compresses curves across the format. Because the baseline speed is high, permanent fast mana 
-          has an outsized effect.
+          TLR already plays quickly due to its core rule structure, particularly 
+          the Rule of 3, which compresses curves across the format. Because the 
+          baseline speed is high, permanent fast mana has an outsized effect.
         </p>
         <p>
-          Rather than simply enabling strong starts, these cards turn opening hands into deterministic 
-          lines, flatten meaningful resource development, and shrink early interaction windows.
+          Rather than simply enabling strong starts, these cards turn opening 
+          hands into deterministic lines, flatten meaningful resource development, 
+          and shrink early interaction windows.
         </p>
 
         <div class="card-grid three-col">
@@ -123,10 +139,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <p>
-          These cards aren’t completely judged in isolation, they're evaluated based on how they interact 
-          with TLR’s already-compressed cost structure. This category is also not a blanket rejection 
-          of future mana acceleration. Conditional or restrictive fast mana is evaluated on a case-by-case 
-          basis.
+          These cards aren’t completely judged in isolation, they're evaluated 
+          based on how they interact with TLR’s already-compressed cost structure. 
+          This category is also not a blanket rejection of future mana acceleration. 
+          Conditional or restrictive fast mana is evaluated on a case-by-case basis.
         </p>
       </div>
     </section>
@@ -135,8 +151,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Tutors & Singleton Pressure</h3>
         <p>
-          Singleton is a core pillar of TLR’s identity. Low-cost, unconditional tutors work directly 
-          against that goal by reducing variance and turning decks into consistent toolboxes.
+          Singleton is a core pillar of TLR’s identity. Low-cost, unconditional 
+          tutors work directly against that goal by reducing variance and turning 
+          decks into consistent toolboxes.
         </p>
         
         <div class="card-grid">
@@ -148,8 +165,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
         
         <p>
-          These bans exist to preserve uncertainty, distinct deck identities, and meaningful decisions 
-          under imperfect information.
+          These bans exist to preserve uncertainty, distinct deck identities, 
+          and meaningful decisions under imperfect information.
         </p>
       </div>
     </section>
@@ -158,9 +175,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Bans Focused on Play Experience</h3>
         <p>
-          Some cards aren’t banned to define power level, but to protect the quality of games. Because 
-          of TLR’s deck size, compact spectrum of mana values, or Commander-variant structure, these 
-          cards become disproportionately strong or disruptive.
+          Some cards aren’t banned to define power level, but to protect the 
+          quality of games. Because of TLR’s deck size, compact spectrum of 
+          mana values, or Commander-variant structure, these cards become 
+          disproportionately strong or disruptive.
         </p>
 
         <div class="ban-reason-list">
@@ -186,10 +204,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
         </div>
 
-        <h4>Designed for Multiplayer</h4>
+        <h4 style="margin-top: 2rem; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; font-weight: bold; letter-spacing: 0.05em;">Designed for Multiplayer</h4>
         <p>
-          Some cards are balanced around multiplayer politics and pressure. In 1v1 TLR, those safeguards 
-          disappear, allowing advantages to snowball uncontested.
+          Some cards are balanced around multiplayer politics and pressure. In 
+          1v1 TLR, those safeguards disappear, allowing advantages to snowball 
+          uncontested.
         </p>
         <div class="card-grid">
           <span>Court of Cunning</span>
@@ -198,7 +217,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <span>White Plume Adventurer</span>
         </div>
 
-        <h4>Physical Dexterity & Logistics</h4>
+        <h4 style="margin-top: 2rem; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; font-weight: bold; letter-spacing: 0.05em;">Physical Dexterity & Logistics</h4>
         <div class="card-grid">
           <span>Chaos Orb</span>
           <span>Falling Star</span>
@@ -209,7 +228,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <section class="chapter-section">
       <div class="prose-block">
-        <h3>Format-Level Eligibility Exclusions</h3>
+        <h3>Categorical Exclusions</h3>
         <p>Some exclusions have nothing to do with power or balance.</p>
         <ul class="standard-list">
           <li><strong>Non-Standard Frames/Stamps:</strong> Silver-bordered, gold-bordered, and Acorn-stamped cards.</li>
@@ -226,12 +245,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Banned as Tiny Leader (Commander)</h3>
         <p>
-          TLR uses a command zone. That changes how some cards function. Guaranteed access introduces 
-          inevitability and repeatability that doesn’t exist when cards must be drawn naturally.
+          TLR uses a command zone. That changes how some cards function. 
+          Guaranteed access introduces inevitability and repeatability that 
+          doesn’t exist when cards must be drawn naturally.
         </p>
         <p>
-          Cards banned as a Tiny Leader often generate overwhelming advantages, deny resources in ways 
-          that create non-games, or bypass normal risk.
+          Cards banned as a Tiny Leader often generate overwhelming advantages, 
+          deny resources in ways that create non-games, or bypass normal risk.
         </p>
 
         <div class="ban-reason-list detailed">
@@ -241,7 +261,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           </div>
           <div class="ban-item">
             <span class="card-name">Ashiok, Dream Render</span>
-            <span class="reason">Honestly, I don’t know. Somebody help here.</span>
+            <span class="reason">Repeated hybrid graveyard hate plus search denial shuts down too many archetypes for 3 mana.</span>
           </div>
           <div class="ban-item">
             <span class="card-name">Derevi, Imperial Tactician</span>
@@ -278,9 +298,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <p class="footnote">
-          These cards are generally fine in the 49, where variance and risk are reestablished. In the 
-          command zone, they centralize games around a single known effect in ways that run counter to 
-          TLR’s goals.
+          These cards are generally fine in the 49, where variance and risk are 
+          reestablished. In the command zone, they centralize games around a 
+          single known effect in ways that run counter to TLR’s goals.
         </p>
       </div>
     </section>
@@ -290,68 +310,31 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <footer class="essay-footer prose-block">
       <h3>Closing Thoughts</h3>
       <p>
-        TLR’s banlist is intentional & reactive, but not reactionary. Some bans define the ceiling. 
-        Others protect how games feel beneath it. Together, they keep the format recognizable, 
-        deliberate, and distinct.
+        TLR’s banlist is intentional & reactive, but not reactionary. Some bans 
+        define the ceiling. Others protect how games feel beneath it. Together, 
+        they keep the format recognizable, deliberate, and distinct.
       </p>
     </footer>
 
-    <nav class="series-nav">
-      
-      <a href="/design/sideboard" class="nav-card prev">
-        <span class="nav-label">Previous</span>
-        <div class="nav-inner">
-          <span class="nav-arrow">&larr;</span>
-          <span class="chapter-title">Sideboard - 10 Cards</span>
-        </div>
-      </a>
-
-      <a href="/design/modular-system" class="nav-card next">
-        <span class="nav-label">Next Element</span>
-        <div class="nav-inner">
-          <span class="chapter-title">Modular System</span>
-          <span class="nav-arrow">&rarr;</span>
-        </div>
-      </a>
-
-    </nav>
+    <SeriesNav 
+      prevUrl="/design/sideboard" 
+      prevTitle="Sideboard - 10 Cards"
+      nextUrl="/design/modular-system" 
+      nextTitle="Modular System"
+    />
 
   </main>
 
-    <div id="card-tooltip" class="hidden">
-        <img id="tooltip-img" src="" alt="Card Preview" />
-    </div>
+  <div id="card-tooltip" class="hidden">
+    <img id="tooltip-img" src="" alt="Card Preview" />
+  </div>
+
 </BaseLayout>
 
 <style>
-  /* --- REUSING DESIGN SYSTEM STYLES --- */
-  .design-essay {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem 1rem;
-    color: var(--text-body);
-  }
-
-  .prose-block {
-    max-width: 65ch;
-    margin: 0 auto;
-    line-height: 1.8;
-    font-size: 1.15rem;
-  }
-
-  /* --- HEADER --- */
-  .essay-header { text-align: center; margin-bottom: 3rem; }
-  .super-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: bold; display: block; margin-bottom: 0.5rem; }
-  .essay-header h1 { font-size: 3rem; color: var(--heading-color); margin-bottom: 0.5rem; line-height: 1.1; }
-  .subtitle { font-size: 1.25rem; color: var(--text-muted); font-style: italic; }
-  .lead-paragraph { font-size: 1.25rem; color: var(--heading-color); }
-
-  /* --- SECTIONS --- */
-  .chapter-section { padding: 3rem 0; }
-  .chapter-section h3 { font-size: 1.75rem; color: var(--heading-color); margin-top: 0; margin-bottom: 1.5rem; }
-  .chapter-section h4 { font-size: 1.25rem; color: var(--accent); margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-
-  /* --- CARD GRIDS --- */
+  /* =========================================
+     UNIQUE: CARD GRIDS (The "Banlist Look")
+     ========================================= */
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -363,23 +346,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
 
+  /* Specific typography for card names (Goudy) */
   .card-grid span {
-    /* Change to a Serif stack that looks like parchment/fantasy */
     font-family: "Goudy Old Style", "Garamond", "Georgia", serif; 
-    
-    /* Make it bold to look like the Title Bar of a card */
     font-weight: 700; 
-    
-    /* Slight spacing helps mimic the Beleren font */
     letter-spacing: 0.03em; 
-    
-    font-size: 1.05rem; /* Bumped up slightly since serifs read smaller */
+    font-size: 1.05rem;
     color: var(--heading-color);
     border-bottom: 1px solid var(--border-subtle);
     padding: 0.25rem 0;
+    cursor: help; /* Indicates interactivity */
   }
 
-  /* --- BAN REASON LIST --- */
+  /* =========================================
+     UNIQUE: BAN REASON LIST
+     ========================================= */
   .ban-reason-list {
     display: flex;
     flex-direction: column;
@@ -397,94 +378,36 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   .card-name {
     display: block;
-    
-    /* The Magic Card Title Font Stack */
     font-family: "Goudy Old Style", "Garamond", "Georgia", serif;
     font-weight: 700;
     letter-spacing: 0.03em;
-
     color: var(--heading-color);
     margin-bottom: 0.25rem;
-    font-size: 1.15rem; /* Slight bump for readability */
+    font-size: 1.15rem;
+    cursor: help;
   }
 
-  .reason {
-    font-size: 1rem;
-    color: var(--text-body);
-  }
+  .reason { font-size: 1rem; color: var(--text-body); }
 
-  /* --- LISTS --- */
-  .standard-list {
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
+  /* =========================================
+     UNIQUE: LISTS & FOOTNOTES
+     ========================================= */
+  .standard-list { padding-left: 1.5rem; margin-bottom: 1.5rem; }
   .standard-list li { margin-bottom: 0.5rem; }
+  .footnote { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 1.5rem; }
 
-  .footnote {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-style: italic;
-    margin-top: 1.5rem;
-  }
-
-  /* --- ALT BACKGROUND --- */
-  .alt-bg {
-    background-color: var(--surface);
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 100vw;
-  }
-
-  /* --- NAVIGATION --- */
-  .series-nav {
-    margin-top: 6rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1rem;
-  }
-
-  .nav-card {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    width: 100%;
-    max-width: 300px;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-  }
-
-  .nav-card:hover {
-    background-color: var(--surface);
-    border-color: var(--border-subtle);
-    transform: translateY(-2px);
-  }
-
-  .nav-inner { display: flex; align-items: center; gap: 0.75rem; }
-  .prev { align-items: flex-start; text-align: left; }
-  .next { align-items: flex-end; text-align: right; }
-  .nav-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: bold; }
-  .chapter-title { font-size: 1rem; font-weight: bold; color: var(--heading-color); }
-  .nav-arrow { font-size: 1.25rem; color: var(--accent); }
-
-  /* --- SCRYFALL TOOLTIP --- */
+  /* =========================================
+     UNIQUE: TOOLTIP STYLES
+     ========================================= */
   #card-tooltip {
-    position: fixed; /* Fixed relative to viewport so it follows mouse easily */
-    z-index: 1000;   /* On top of everything */
-    pointer-events: none; /* Let mouse clicks pass through it */
-    
-    width: 240px;    /* Standard MTG card width on screen */
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    width: 240px;
     height: auto;
-    border-radius: 10px; /* Rounded corners like a card */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* Deep shadow for float effect */
-    background-color: #000; /* Background while loading */
-    
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    background-color: transparent; 
     transition: opacity 0.2s ease;
   }
 
@@ -495,56 +418,41 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     border-radius: 10px;
   }
 
-  /* Utility to hide it */
   #card-tooltip.hidden {
     opacity: 0;
     visibility: hidden;
   }
-
-  @media (max-width: 600px) {
-    .alt-bg { margin-left: -1rem; margin-right: -1rem; width: calc(100% + 2rem); }
-    .series-nav { flex-direction: column; gap: 2rem; }
-    .nav-card { max-width: 100%; align-items: center; text-align: center; background-color: var(--surface); border-color: var(--border-subtle); }
-    .prev, .next { align-items: center; text-align: center; }
-  }
 </style>
 
 <script>
-  // 1. Select all card elements (both grid items and detailed list items)
+  // SCRYFALL TOOLTIP LOGIC
   const cardElements = document.querySelectorAll('.card-grid span, .card-name');
   const tooltip = document.getElementById('card-tooltip');
   const tooltipImg = document.getElementById('tooltip-img');
 
   cardElements.forEach(el => {
-    // 2. Mouse Enter: Fetch image and show tooltip
-    el.addEventListener('mouseenter', (e) => {
+    // MOUSE ENTER
+    el.addEventListener('mouseenter', () => {
       const cardName = el.textContent.trim();
-      const setCode = el.getAttribute('data-set'); // Check for specific set version
+      const setCode = el.getAttribute('data-set');
 
-      // Base Scryfall URL
       let imageUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}&format=image&version=normal`;
       
-      // If a set code exists, append it to the URL
       if (setCode) {
         imageUrl += `&set=${setCode}`;
       }
       
-      // Set the source
       tooltipImg.src = imageUrl;
-      
-      // Remove hidden class
       tooltip.classList.remove('hidden');
     });
 
-    // 3. Mouse Move: Follow the cursor
+    // MOUSE MOVE
     el.addEventListener('mousemove', (e) => {
-      // Offset slightly so cursor doesn't cover the card
       const xOffset = 20;
       const yOffset = 20;
 
-      // Check if card would go off right side of screen
-      // If so, flip it to the left of the cursor
-      if (e.clientX + 260 > window.innerWidth) { // 260 is approx tooltip width
+      // Smart positioning: flip left if close to right edge
+      if (e.clientX + 260 > window.innerWidth) { 
          tooltip.style.left = (e.clientX - 260) + 'px';
       } else {
          tooltip.style.left = (e.clientX + xOffset) + 'px';
@@ -553,10 +461,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       tooltip.style.top = (e.clientY + yOffset) + 'px';
     });
 
-    // 4. Mouse Leave: Hide tooltip
+    // MOUSE LEAVE
     el.addEventListener('mouseleave', () => {
       tooltip.classList.add('hidden');
-      tooltipImg.src = ''; // Clear src to prevent flashing old card next time
+      tooltipImg.src = ''; 
     });
   });
 </script>

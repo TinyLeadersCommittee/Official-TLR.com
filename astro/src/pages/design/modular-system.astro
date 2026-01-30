@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeriesNav from '../../components/navs/SeriesNav.astro';
+import module from '../../assets/images/design/module.jpg';
 ---
 
-<BaseLayout title="A System of Modularity">
+<BaseLayout title="A System of Modularity" 
+bgImage={module}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: center center;">
+  
   <main class="design-essay">
     
     <header class="essay-header">
@@ -15,13 +21,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <article class="prose-block">
       <p class="lead-paragraph">
-        One of the most telling moments in Tiny Leaders play doesn’t happen during a match, but it 
-        happens afterward. Over time, players don’t just learn the format, they begin to think in Tiny.
+        One of the most telling moments in Tiny Leaders play doesn’t happen 
+        during a match, but it happens afterward. Over time, players don’t 
+        just learn the format, they begin to think in Tiny.
       </p>
       <p>
-        “TINY” stops functioning solely as a ruleset and starts to feel like a system. A way of 
-        understanding Magic through proportion, compression, and intentional constraint. Players 
-        naturally begin asking different questions:
+        “TINY” stops functioning solely as a ruleset and starts to feel like 
+        a system. A way of understanding Magic through proportion, compression, 
+        and intentional constraint. Players naturally begin asking different 
+        questions:
       </p>
       
       <ul class="question-list">
@@ -35,15 +43,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Formats as Lenses</h3>
         <p>
-          At its core, a Magic format is a shared language. It is a collection of agreed-upon restrictions 
-          and targeted deviations from Magic’s default rules that create space for specific kinds of play. 
-          Formats are not just rulebooks, rather they are lenses. They reshape priorities, redefine value, 
-          and guide how creativity is expressed.
+          At its core, a Magic format is a shared language. It is a collection 
+          of agreed-upon restrictions and targeted deviations from Magic’s 
+          default rules that create space for specific kinds of play. Formats 
+          are not just rulebooks, rather they are lenses. They reshape 
+          priorities, redefine value, and guide how creativity is expressed.
         </p>
         <p>
-          The Tiny Leaders Committee believes in a unified primary format, Tiny Leaders: Reborn. So, 
-          players have a common foundation to meet on, compete within, and grow together. At the same time, 
-          we recognize an equally important truth, which is that Tiny itself is inherently modular.
+          The Tiny Leaders Committee believes in a unified primary format, 
+          Tiny Leaders: Reborn. So, players have a common foundation to meet 
+          on, compete within, and grow together. At the same time, we 
+          recognize an equally important truth, which is that Tiny itself 
+          is inherently modular.
         </p>
       </div>
     </section>
@@ -52,9 +63,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Resilient Design Axes</h3>
         <p>
-          The philosophies that define TLR, most notably the Rule of 3, are not brittle constraints. 
-          They are resilient design axes. Because these elements are intentional and well-defined, 
-          they can be adjusted, recombined, or isolated without losing the essence of what makes Tiny compelling.
+          The philosophies that define TLR, most notably the Rule of 3, are not 
+          brittle constraints. They are resilient design axes. Because these 
+          elements are intentional and well-defined, they can be adjusted, 
+          recombined, or isolated without losing the essence of what makes 
+          Tiny compelling.
         </p>
 
         <div class="axis-grid">
@@ -66,7 +79,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <p>
-          This mirrors the modular design philosophy at the heart of Magic: The Gathering.
+          This mirrors the modular design philosophy at the heart of Magic: 
+          The Gathering.
         </p>
       </div>
     </section>
@@ -75,9 +89,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Organic Evolution</h3>
         <p>
-          That modularity has already taken shape organically within the community. Across the broader 
-          player base and the official Discord, players have explored adjacent expressions of Tiny by 
-          tuning individual variables while preserving the core framework.
+          That modularity has already taken shape organically within the 
+          community. Across the broader player base and the official Discord, 
+          players have explored adjacent expressions of Tiny by tuning individual 
+          variables while preserving the core framework.
         </p>
 
         <div class="variant-grid">
@@ -116,21 +131,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <p>
-          None of these variants dilute Tiny Leaders: Reborn. They reinforce it. They demonstrate that 
-          Tiny is not a fragile novelty or a one-off experiment, but a durable framework that is capable 
-          of sustaining iteration, experimentation, and growth without losing its identity.
+          None of these variants dilute Tiny Leaders: Reborn. They reinforce it. 
+          They demonstrate that Tiny is not a fragile novelty or a one-off 
+          experiment, but a durable framework that is capable of sustaining 
+          iteration, experimentation, and growth without losing its identity.
         </p>
 
         <div class="callout-box">
           <p>
-            These expressions are not departures from Tiny Leaders, <strong>they are conversations with it.</strong>
+            These expressions are not departures from Tiny Leaders, 
+            <strong>they are conversations with it.</strong>
           </p>
         </div>
 
         <p>
-          Players are encouraged to explore Tiny in the ways that bring them the most enjoyment and engagement. 
-          They should experiment and iterate thoughtfully. And they should continue to draw inspiration both 
-          from the original spark of the format and from those who carried it forward into its rebirth.
+          Players are encouraged to explore Tiny in the ways that bring them 
+          the most enjoyment and engagement. They should experiment and iterate 
+          thoughtfully. And they should continue to draw inspiration both from 
+          the original spark of the format and from those who carried it 
+          forward into its rebirth.
         </p>
       </div>
     </section>
@@ -139,77 +158,42 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <footer class="essay-footer prose-block">
       <h3>Conclusion</h3>
-      <p class="final-statement large">
+      <p class="final-statement large" style="font-size: 1.8rem;">
         Tiny Leaders: Reborn is a format.<br>
         <strong>But Tiny is a language.</strong>
       </p>
       <p>
-        It is a language of proportion, restraint, and intention. By clearly articulating its design 
-        philosophies, TLR provides both a stable foundation and an open horizon, inviting players not 
-        only to play within the format, but to think through it.
+        It is a language of proportion, restraint, and intention. By clearly 
+        articulating its design philosophies, TLR provides both a stable 
+        foundation and an open horizon, inviting players not only to play 
+        within the format, but to think through it.
       </p>
       <p>
-        As long as that spirit holds, Tiny will continue to evolve, adapt, and inspire through creativity 
-        born of constraint and identity shaped by limitation, not as a single expression, but as a system 
-        of modular possibilities.
+        As long as that spirit holds, Tiny will continue to evolve, adapt, and 
+        inspire through creativity born of constraint and identity shaped by 
+        limitation, not as a single expression, but as a system of modular 
+        possibilities.
       </p>
       
-      <div class="signoff">
+      <div class="signoff" style="margin-top: 3rem; text-align: center; font-size: 1.5rem; color: var(--accent);">
         <p><strong>Stay Tiny.</strong></p>
       </div>
     </footer>
 
-    <nav class="series-nav">
-      
-      <a href="/design/banlist" class="nav-card prev">
-        <span class="nav-label">Previous</span>
-        <div class="nav-inner">
-          <span class="nav-arrow">&larr;</span>
-          <span class="chapter-title">The Banlist</span>
-        </div>
-      </a>
-
-      <a href="/design" class="nav-card next">
-        <span class="nav-label">Return to Start</span>
-        <div class="nav-inner">
-          <span class="chapter-title">Chapters</span>
-          <span class="nav-arrow">&#9776;</span>
-        </div>
-      </a>
-
-    </nav>
+    <SeriesNav 
+      prevUrl="/design/banlist" 
+      prevTitle="The Banlist"
+      nextUrl="/design" 
+      nextTitle="Return to Chapters"
+    />
 
   </main>
 </BaseLayout>
 
 <style>
-  /* --- REUSING DESIGN SYSTEM STYLES --- */
-  .design-essay {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem 1rem;
-    color: var(--text-body);
-  }
-
-  .prose-block {
-    max-width: 65ch;
-    margin: 0 auto;
-    line-height: 1.8;
-    font-size: 1.15rem;
-  }
-
-  /* --- HEADER --- */
-  .essay-header { text-align: center; margin-bottom: 3rem; }
-  .super-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: bold; display: block; margin-bottom: 0.5rem; }
-  .essay-header h1 { font-size: 3rem; color: var(--heading-color); margin-bottom: 0.5rem; line-height: 1.1; }
-  .subtitle { font-size: 1.25rem; color: var(--text-muted); font-style: italic; }
-  .lead-paragraph { font-size: 1.25rem; color: var(--heading-color); }
-
-  /* --- SECTIONS --- */
-  .chapter-section { padding: 3rem 0; }
-  .chapter-section h3 { font-size: 1.75rem; color: var(--heading-color); margin-top: 0; margin-bottom: 1.5rem; }
-
-  /* --- QUESTION LIST --- */
+  /* =========================================
+     UNIQUE: QUESTION LIST
+     ========================================= */
   .question-list {
     list-style: none;
     padding: 0;
@@ -217,10 +201,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     font-style: italic;
     color: var(--heading-color);
   }
-  .question-list li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
-  .question-list li::before { content: "?"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+  
+  .question-list li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  
+  .question-list li::before {
+    content: "?";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+  }
 
-  /* --- AXIS GRID (New) --- */
+  /* =========================================
+     UNIQUE: AXIS GRID (Pills)
+     ========================================= */
   .axis-grid {
     display: flex;
     flex-wrap: wrap;
@@ -233,23 +231,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     background-color: var(--bg);
     border: 1px solid var(--border-subtle);
     padding: 0.75rem 1.5rem;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
     font-weight: bold;
     color: var(--heading-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
 
-  /* --- VARIANT GRID WITH TOOLTIPS --- */
+  /* =========================================
+     UNIQUE: VARIANT GRID (Tooltips)
+     ========================================= */
   .variant-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     margin: 2rem 0;
-    justify-content: center; /* Centers them nicely */
+    justify-content: center;
   }
 
   .variant-tag {
-    position: relative; /* Anchor for the tooltip */
+    position: relative;
     background-color: var(--surface);
     border: 1px solid var(--accent);
     color: var(--accent);
@@ -258,37 +258,37 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     font-family: var(--font-mono, monospace);
     font-size: 0.9rem;
     font-weight: bold;
-    cursor: help; /* Changes cursor to a question mark */
+    cursor: help;
     transition: all 0.2s ease;
   }
 
   .variant-tag:hover {
     background-color: var(--accent);
-    color: white; /* Invert colors on hover */
+    color: white;
   }
 
-  /* The Tooltip Bubble */
+  /* Tooltip Bubble (CSS Only) */
   .variant-tag::after {
-    content: attr(data-tooltip); /* Grabs the text from HTML */
+    content: attr(data-tooltip);
     position: absolute;
-    bottom: 125%; /* Sits above the tag */
+    bottom: 125%;
     left: 50%;
-    transform: translateX(-50%) scale(0); /* Hidden by default */
+    transform: translateX(-50%) scale(0);
     
-    background-color: var(--heading-color); /* Dark background */
-    color: var(--bg); /* Light text */
+    background-color: var(--heading-color);
+    color: var(--bg);
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-size: 0.8rem;
-    white-space: nowrap; /* Keeps text on one line */
+    white-space: nowrap;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    pointer-events: none; /* Prevents tooltip from interfering with clicks */
+    pointer-events: none;
     opacity: 0;
     transition: all 0.2s ease;
     z-index: 10;
   }
 
-  /* The Little Triangle Arrow below the bubble */
+  /* Tooltip Triangle */
   .variant-tag::before {
     content: '';
     position: absolute;
@@ -309,83 +309,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     opacity: 1;
   }
 
-  /* --- CALLOUT BOX --- */
-  .callout-box {
-    background-color: var(--surface);
-    border-left: 4px solid var(--accent);
-    padding: 1.5rem 2rem;
-    margin: 2rem 0;
-    border-radius: 0 4px 4px 0;
-  }
-  .callout-box p { margin: 0; font-size: 1.2rem; }
-
-  /* --- ALT BACKGROUND --- */
-  .alt-bg {
-    background-color: var(--surface);
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 100vw;
-  }
-
-  /* --- CONCLUSION --- */
-  .final-statement {
-    text-align: center;
-    font-size: 1.5rem;
-    color: var(--heading-color);
-    margin-bottom: 2rem;
-  }
-  .final-statement.large { font-size: 1.8rem; }
-
-  .signoff {
-    margin-top: 3rem;
-    text-align: center;
-    font-size: 1.5rem;
-    color: var(--accent);
-  }
-
-  /* --- NAVIGATION --- */
-  .series-nav {
-    margin-top: 6rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1rem;
-  }
-
-  .nav-card {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    width: 100%;
-    max-width: 300px;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-  }
-
-  .nav-card:hover {
-    background-color: var(--surface);
-    border-color: var(--border-subtle);
-    transform: translateY(-2px);
-  }
-
-  .nav-inner { display: flex; align-items: center; gap: 0.75rem; }
-  .prev { align-items: flex-start; text-align: left; }
-  .next { align-items: flex-end; text-align: right; }
-  .nav-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: bold; }
-  .chapter-title { font-size: 1rem; font-weight: bold; color: var(--heading-color); }
-  .nav-arrow { font-size: 1.25rem; color: var(--accent); }
-
+  /* Responsive Fallback */
   @media (max-width: 600px) {
-    .alt-bg { margin-left: -1rem; margin-right: -1rem; width: calc(100% + 2rem); }
-    .series-nav { flex-direction: column; gap: 2rem; }
-    .nav-card { max-width: 100%; align-items: center; text-align: center; background-color: var(--surface); border-color: var(--border-subtle); }
-    .prev, .next { align-items: center; text-align: center; }
     .axis-grid, .variant-grid { justify-content: center; }
   }
 </style>

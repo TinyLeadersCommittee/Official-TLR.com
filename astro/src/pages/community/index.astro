@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
 ---
 
-<BaseLayout title="Discord Community">
+<BaseLayout title="Discord Community" bgImage={drowner}>
+  
   <header class="community-hero">
     <div class="hero-grid">
       
@@ -51,89 +53,109 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     </div>
   </header>
 
-  <hr />
+  <hr class="divider" />
 
-  <section id="play">
-    <h2>Where the Games Happen</h2>
-    <article class="feature">
-      <h3>The Official TLR Little League</h3>
+  <main class="prose-block">
+    
+    <section id="play" style="margin-bottom: 3rem;">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Where the Games Happen</h2>
+      
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 800px; margin: 0 auto;">
+        
+        <article class="content-card">
+          <h3 style="color: var(--accent); margin-top: 0;">The Official TLR Little League</h3>
+          <p>
+            Our year-long, free-to-play league. Every month is a new 
+            chance to find glory (and sometimes prizes!).
+          </p>
+        </article>
+
+        <article class="content-card">
+          <h3 style="color: var(--accent); margin-top: 0;">Weekly Tournaments</h3>
+          <p>Regular events for those looking for a quicker competitive fix.</p>
+        </article>
+
+        <article class="content-card">
+          <h3 style="color: var(--accent); margin-top: 0;">Digital & Paper</h3>
+          <p>
+            Most of our members play via Cockatrice, but you might find 
+            a few ready for Spelltable (paper over webcam) sessions.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="brewery" style="margin-bottom: 3rem;">
+      <h2>Brew, Refine, Conquer, or just Yap</h2>
       <p>
-        Our year-long, free-to-play league. Every month is a new 
-        chance to find glory (and sometimes prizes!).
+        From "unplayable" jank to high-level optimization, we have 
+        dedicated spaces for every mindset:
       </p>
-    </article>
-    <article class="feature">
-      <h3>Weekly Tournaments</h3>
-      <p>Regular events for those looking for a quicker competitive fix.</p>
-    </article>
-    <article class="feature">
-      <h3>Digital & Paper</h3>
+      <ul>
+        <li><strong><code>#Tavern:</code></strong> General chat and format talk.</li>
+        <li><strong><code>#Brewery:</code></strong> Exploring new deck ideas.</li>
+        <li><strong><code>#Competitive-Cellar:</code></strong> Optimization and meta-talk.</li>
+      </ul>
       <p>
-        Most of our members play via Cockatrice, but you might find 
-        a few ready for Spelltable (paper over webcam) sessions.
+        <small style="color: var(--text-muted);">
+          Note: Don’t see a forum for your favorite Leader? Head to 
+          <strong><code>#forum-requests</code></strong> and we’ll open one up for you.
+        </small>
       </p>
-    </article>
-  </section>
+    </section>
 
-  <section id="brewery">
-    <h2>Brew, Refine, Conquer, or just Yap</h2>
-    <p>
-      From "unplayable" jank to high-level optimization, we have 
-      dedicated spaces for every mindset:
-    </p>
-    <ul>
-      <li><strong><code>#Tavern:</code></strong> General chat and format talk.</li>
-      <li><strong><code>#Brewery:</code></strong> Exploring new deck ideas.</li>
-      <li><strong><code>#Competitive-Cellar:</code></strong> Optimization and meta-talk.</li>
-    </ul>
-    <p>
-      <small>
-        Note: Don’t see a forum for your favorite Leader? Head to 
-        <strong><code>#forum-requests</code></strong> and we’ll open one up for you.
-      </small>
-    </p>
-  </section>
+    <section id="governance">
+      <h2>Stay Informed</h2>
+      <p>
+        The Committee lives here. Discord is the first place to see:
+      </p>
+      <ul>
+        <li>Ban & Watchlist Announcements</li>
+        <li>Direct Rules & Committee Updates</li>
+        <li>The <code>#Suggestions</code> Channel (Your voice matters!)</li>
+      </ul>
+    </section>
 
-  <section id="governance">
-    <h2>Stay Informed</h2>
-    <p>
-      The Committee lives here. Discord is the first place to see:
-    </p>
-    <ul>
-      <li>Ban & Watchlist Announcements</li>
-      <li>Direct Rules & Committee Updates</li>
-      <li>The <code>#Suggestions</code> Channel (Your voice matters!)</li>
-    </ul>
-  </section>
+    <hr class="divider" />
 
-  <hr />
+    <aside class="callout-box" style="margin-top: 3rem;">
+      <h3>Ready to Test Your Mettle?</h3>
+      <p>
+        One of the best ways to experience the format is through the  
+        Official Little League.
+      </p>
+      <p style="margin-top: 1rem;">
+        <a href="/community/little-league" style="font-weight: bold;">Learn more about the Little League &rarr;</a>
+      </p>
+    </aside>
 
-  <aside class="next-step">
-    <h2>Ready to Test Your Mettle?</h2>
-    <p>
-      One of the best ways to experience the format is through the  
-      Official Little League.
-    </p>
-    <a href="/community/little-league">Learn more about the Little League &rarr;</a>
-  </aside>
+  </main>
+
 </BaseLayout>
 
 <style>
-  /* --- HERO SECTION --- */
+  /* =========================================
+     UNIQUE: HERO SECTION LAYOUT
+     (Specific to this landing page)
+     ========================================= */
   .community-hero {
     margin: 0 auto 5rem auto; 
-    max-width: 1200px; 
+    max-width: 1200px;
+    padding: 0 1rem;
   }
 
   .hero-grid {
     display: grid;
+    /* 2 Columns: Text side is slightly wider */
     grid-template-columns: 1.2fr 1fr; 
-    grid-template-rows: auto auto; /* Row 1: Title, Row 2: Content */
+    /* 2 Rows: Title/Line on top, Content/Video on bottom */
+    grid-template-rows: auto auto; 
     gap: 1rem 4rem; 
     text-align: left;
   }
 
-  /* Title Position (Row 1, Col 1) */
+  /* Grid Position: Top Left */
   .hero-grid h1 {
     grid-column: 1 / 2;
     grid-row: 1;
@@ -143,7 +165,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     color: var(--heading-color);
   }
 
-  /* Text Position (Row 2, Col 1) */
+  /* Grid Position: Bottom Left */
   .hero-text-content {
     grid-column: 1 / 2;
     grid-row: 2;
@@ -156,7 +178,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     line-height: 1.6;
   }
 
-  /* Decorative Line (Row 1, Col 2) */
+  /* Grid Position: Top Right (The Line) */
   .hero-line {
     grid-column: 2 / 3; 
     grid-row: 1;        
@@ -164,7 +186,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     height: 1px; 
     background-color: var(--border-subtle); 
     
-    /* Pull left to bridge gap to text */
+    /* VISUAL TRICK: Pull line left to connect with text column */
     width: calc(100% + 8rem); 
     margin-left: -8rem; 
     
@@ -174,15 +196,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     margin-top: 2rem; 
   }
 
-  /* Video Wrapper (Row 2, Col 2) */
+  /* Grid Position: Bottom Right (The Video) */
   .hero-media {
     grid-column: 2 / 3;
     grid-row: 2; 
     width: 100%;
-    margin-top: 2rem; /* Vertical offset */
+    margin-top: 2rem; 
   }
 
-  /* Video Embed Container */
   .video-container {
     position: relative;
     width: 100%;
@@ -203,12 +224,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     height: 100%;
   }
 
-  /* --- DISCORD BUTTON --- */
+  /* =========================================
+     UNIQUE: DISCORD BUTTON
+     ========================================= */
   .discord-logo-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background-color: #5865F2;
+    background-color: #5865F2; /* Official Discord Blurple */
     padding: 0.8rem 1.5rem; 
     border-radius: 8px;
     text-decoration: none;
@@ -218,7 +241,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     transition: transform 0.2s, background-color 0.2s;
     margin-top: 1rem;
     box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
-    
     white-space: nowrap; 
     width: fit-content; 
   }
@@ -236,12 +258,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
   }
   
-  .discord-logo-btn span {
-    color: #fff;
-  }
+  .discord-logo-btn span { color: #fff; }
 
-  /* --- MOBILE RESPONSIVE --- */
+  /* =========================================
+     RESPONSIVE
+     ========================================= */
   @media (max-width: 900px) {
+    /* Stack Grid to Single Column */
     .hero-grid {
         grid-template-columns: 1fr; 
         grid-template-rows: auto; 
@@ -249,11 +272,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         text-align: center;
     }
 
-    .hero-line {
-        display: none;
-    }
+    .hero-line { display: none; }
     
-    /* Reset grid placements */
+    /* Reset manual grid placements */
     .hero-grid h1, 
     .hero-text-content, 
     .hero-media {
@@ -261,75 +282,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         grid-row: auto;
     }
 
-    .hero-grid h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-media {
-        margin-top: 0;
-    }
+    .hero-grid h1 { font-size: 2.5rem; }
+    .hero-media { margin-top: 0; }
     
+    /* Center button */
     .discord-logo-btn {
         margin-left: auto;
         margin-right: auto;
     }
-  }
-
-  /* --- SECTIONS & FEATURES --- */
-  #play {
-    display: flex;
-    flex-direction: column; 
-    gap: 1.5rem;            
-    margin: 2rem 0;
-  }
-
-  .feature {
-    background-color: var(--surface);
-    border: 1px solid var(--border-subtle);
-    padding: 1.5rem;
-    border-radius: 8px;
-  }
-
-  .feature h3 {
-    margin-top: 0;
-    color: var(--accent);
-  }
-
-  ul li {
-    margin-bottom: 1rem; 
-    line-height: 1.6;
-  }
-
-  code {
-    background-color: var(--surface);
-    color: var(--accent);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-family: 'Inter', sans-serif;
-    font-weight: bold;
-    font-size: 0.9em;
-    border: 1px solid var(--border-subtle);
-  }
-
-  /* --- NEXT STEP --- */
-  .next-step {
-    background: var(--surface);
-    border: 1px solid var(--border-subtle);
-    border-left: 4px solid var(--accent);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-top: 3rem;
-  }
-
-  .next-step h2 {
-    margin-top: 0;
-    font-size: 1.5rem;
-  }
-
-  .next-step a {
-    display: inline-block;
-    margin-top: 1rem;
-    font-weight: bold;
-    font-size: 1.1rem;
   }
 </style>

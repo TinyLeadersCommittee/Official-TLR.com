@@ -1,24 +1,29 @@
 ---
-// src/pages/committee.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import sages from '../../assets/images/about/orderOfWhiteclay.jpg';
 import { Image } from 'astro:assets';
-import { mainCommitteeSections, contributorConfig } from '../../data/committee/committee-config.js';
+import { mainCommitteeSections } from '../../data/committee/committee-config.js';
 import { contributorTeams } from '../../data/contributors/contributor-config.js'; 
 ---
 
-<BaseLayout title="The Committee">
+<BaseLayout title="The Committee" 
+bgImage={sages}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: center;">
+  
   <article class="committee-page">
     
     <header class="page-header">
       <h1>The People Behind TLR</h1>
-      <p class="header-subtitle">Members of the Tiny Leaders Committee</p>
-      <p class="intro-text">
+      <p class="subtitle" style="color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; font-weight: bold; font-size: 0.9rem;">
+        Members of the Tiny Leaders Committee
+      </p>
+      <p class="lead">
         Dedicated to the stewardship, development, health, and growth of the 
         Tiny Leaders Reborn format.
       </p>
     </header>
 
-    {/* --- PART 1: MAIN COMMITTEE (Standard Layout) --- */}
     {mainCommitteeSections.map(section => (
       <section class="role-section" style={`--role-color: ${section.color}`}>
         <div class="role-header">
@@ -58,16 +63,16 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
             <div class="details-content">
                <button class="close-btn" onclick="closeAllDetails()">×</button>
                <div class="details-info-col">
-                  <h4>Bio</h4>
-                  <p class="bio-target"></p>
+                 <h4>Bio</h4>
+                 <p class="bio-target"></p>
                </div>
                <div class="details-stats-col">
-                  <dl>
-                    <dt>Contribution</dt> <dd class="contrib-target"></dd>
-                    <dt>Region</dt>       <dd class="region-target"></dd>
-                    <dt>Pet Deck</dt>     <dd class="deck-target"></dd>
-                    <dt>Favorite Card</dt><dd class="card-target"></dd>
-                  </dl>
+                 <dl>
+                   <dt>Contribution</dt> <dd class="contrib-target"></dd>
+                   <dt>Region</dt>       <dd class="region-target"></dd>
+                   <dt>Pet Deck</dt>     <dd class="deck-target"></dd>
+                   <dt>Favorite Card</dt><dd class="card-target"></dd>
+                 </dl>
                </div>
             </div>
           </div>
@@ -76,7 +81,6 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     ))}
 
 
-    {/* --- PART 2: CONTRIBUTORS (Drill-Down Layout) --- */}
     <section class="role-section contributors-section">
         <div class="role-header">
             <h2>Contributors</h2>
@@ -89,10 +93,9 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
                 <button 
                     class="member-card team-folder-card"
                     onclick={`showTeam('${team.id}')`}
-                    style={`--role-color: ${team.color}`} /* Sets the hover color */
+                    style={`--role-color: ${team.color}`}
                 >
                     <div class="pfp-container shape-circle">
-                         {/* Placeholder Icon for the Team */}
                          <div class="placeholder-pfp" style="font-size: 4rem;">{team.icon}</div>
                     </div>
                     <div class="member-identity">
@@ -158,17 +161,16 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
 
     </section>
 
-    {/* --- NEW GOVERNANCE FOOTER CTA --- */}
-    <div class="governance-cta">
-      <a href="/committee">
-        Learn about how the Committee Functions →
-      </a>
+    <div class="callout-box" style="text-align: center; margin-top: 5rem; cursor: pointer;" onclick="window.location.href='/committee'">
+      <h3 style="margin-top: 0; color: var(--accent);">How does this all work?</h3>
+      <p>Learn about how the Committee Functions, Votes, and Governs.</p>
     </div>
+
   </article>
 </BaseLayout>
 
 <script is:inline>
-  /* --- 1. MEMBER EXPANSION LOGIC (Reused) --- */
+  /* --- 1. MEMBER EXPANSION LOGIC --- */
   window.toggleMember = function(sectionId, index, btnElement) {
     const sectionGrid = btnElement.parentElement;
     const detailPanel = document.getElementById(`details-${sectionId}`);
@@ -199,7 +201,7 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     setText('.deck-target', data.petDeck);
     setText('.card-target', data.faveCard);
 
-    // Insert Panel in correct row position
+    // Insert Panel in correct row position (Responsive Insertion)
     const clickY = btnElement.offsetTop;
     let insertionPoint = null;
 
@@ -221,6 +223,7 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
 
     // Show
     detailPanel.classList.remove('hidden');
+    // Using RAF ensures transition plays
     requestAnimationFrame(() => detailPanel.classList.add('open'));
   };
 
@@ -232,7 +235,7 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     document.querySelectorAll('.member-card').forEach(c => c.classList.remove('active-card'));
   }
 
-  /* --- 2. TEAM NAVIGATION LOGIC (New) --- */
+  /* --- 2. TEAM NAVIGATION LOGIC --- */
   window.showTeam = function(teamId) {
     // Hide the Team List
     document.getElementById('contrib-teams-list').style.display = 'none';
@@ -258,40 +261,18 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
 </script>
 
 <style>
+  /* =========================================
+     UNIQUE: LAYOUT & INTERACTION
+     ========================================= */
   .committee-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
   }
 
-  .page-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-  .page-header h1 {
-    color: var(--heading-color);
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-  }
-  .header-subtitle {
-    font-size: 0.9rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-  }
-  .intro-text {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 60ch;
-    margin: 0 auto;
-  }
-
-  /* --- SECTIONS --- */
+  /* =========================================
+     UNIQUE: SECTIONS & ROLES
+     ========================================= */
   .role-section {
     margin-bottom: 4rem;
   }
@@ -312,10 +293,12 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     font-style: italic;
     max-width: 700px;
     margin: 0 auto;
-    line-height: 1.5; /* Added line-height for better readability */
+    line-height: 1.5;
   }
 
-  /* --- GRID --- */
+  /* =========================================
+     UNIQUE: GRID & CARDS
+     ========================================= */
   .members-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -324,13 +307,9 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     position: relative;
   }
 
-  /* --- MEMBER CARD (Button) --- */
   .member-card {
     background: transparent;
-    
-    /* DEFAULT BORDER: Uses the theme's subtle border color */
     border: 1px solid var(--border-subtle); 
-    
     border-radius: 12px;
     padding: 2rem 1rem;
     display: flex;
@@ -343,19 +322,18 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
 
   .member-card:hover {
     transform: translateY(-5px);
-    border-color: var(--text-muted); /* Slightly lighter on hover */
+    border-color: var(--text-muted);
   }
 
-  /* ACTIVE STATE: Turns into the specific Role Color */
   .member-card.active-card {
     border-color: var(--role-color);
-    border-width: 2px; /* Make it slightly thicker to pop */
+    border-width: 2px;
     background: rgba(255,255,255,0.03);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transform: translateY(-2px); /* Keep it slightly lifted */
+    transform: translateY(-2px);
   }
 
-  /* --- PFP CONTAINER --- */
+  /* PFP Container */
   .pfp-container {
     margin-bottom: 1.5rem;
     background: transparent;
@@ -363,7 +341,6 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Must be hidden to crop the image to the shape */
     overflow: hidden; 
   }
 
@@ -373,58 +350,49 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     object-fit: cover;
   }
 
-  /* --- SHAPES --- */
+  /* =========================================
+     UNIQUE: SHAPES
+     ========================================= */
   
-  /* 1. TRIANGLE (Core) - INVERTED (Point Down) */
+  /* TRIANGLE (Inverted) */
   .shape-triangle {
     width: 180px; 
     height: 180px;
-    
-    /* V-Shape: Top Left, Top Right, Bottom Center */
     clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-    
-    /* Shadow Border */
     filter: 
       drop-shadow(0px -3px 0px #658cfa) 
       drop-shadow(3px 0px 0px #658cfa) 
       drop-shadow(-3px 0px 0px #658cfa) 
       drop-shadow(0px 3px 0px #658cfa);
   }
-
-  /* Reset the positioning - Faces fit naturally in this shape! */
-  .shape-triangle img, 
-  .shape-triangle .member-photo {
-    object-position: center 10%; /* Focus near the top (wide part) */
-    transform: scale(1.1); /* Slight zoom to fill edges */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .shape-triangle img {
+    object-position: center 10%; /* Focus top */
+    transform: scale(1.1);
   }
-  /* 2. HEXAGON (FIXED ASPECT RATIO) */
+
+  /* HEXAGON */
   .shape-hexagon {
     width: 130px; 
     height: 150px; 
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }
 
-  /* 3. SQUARE (Sharp) */
-  .shape-square {
-    width: 150px; height: 150px;
-  }
+  /* SQUARE */
+  .shape-square { width: 150px; height: 150px; }
 
-  /* 4. DIAMOND */
+  /* DIAMOND */
   .shape-diamond {
     width: 150px; height: 150px;
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   }
 
-  /* 5. CIRCLE */
+  /* CIRCLE */
   .shape-circle {
     width: 150px; height: 150px;
     border-radius: 50%;
   }
 
-  /* --- NAMES --- */
+  /* Names */
   .member-identity h3 {
     margin: 0;
     color: var(--heading-color);
@@ -439,9 +407,11 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     display: block;
   }
 
-  /* --- DETAILS PANEL (The Expanded Row) --- */
+  /* =========================================
+     UNIQUE: DETAILS PANEL
+     ========================================= */
   .details-panel {
-    grid-column: 1 / -1;
+    grid-column: 1 / -1; /* Spans full width of grid */
     background: var(--surface);
     border-top: 2px solid var(--role-color);
     border-bottom: 2px solid var(--role-color);
@@ -455,13 +425,10 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     transition: max-height 0.4s ease, opacity 0.3s ease;
   }
 
-  .details-panel.hidden {
-    display: none;
-  }
-
+  .details-panel.hidden { display: none; }
   .details-panel.open {
     display: block;
-    max-height: 600px; /* Increased slightly to be safe */
+    max-height: 600px;
     opacity: 1;
   }
 
@@ -478,7 +445,7 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     top: 1rem;
     right: 1rem;
     background: none;
-    border: 1px solid var(--border-subtle); /* Added border to button */
+    border: 1px solid var(--border-subtle);
     border-radius: 50%;
     width: 32px;
     height: 32px;
@@ -505,65 +472,37 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
     margin-bottom: 1rem;
   }
   
-  #bio-target {
-    line-height: 1.6;
-    color: var(--text-body);
-  }
-
   .details-stats-col dl {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 0.75rem 1.5rem; /* Increased horizontal gap */
+    gap: 0.75rem 1.5rem;
   }
   .details-stats-col dt {
     font-weight: bold;
     color: var(--heading-color);
     text-align: right;
-    white-space: nowrap; /* Prevent labels from wrapping awkwardly */
+    white-space: nowrap;
   }
   .details-stats-col dd {
     margin: 0;
     color: var(--text-muted);
   }
 
-  /* --- MOBILE --- */
-  @media (max-width: 768px) {
-    .details-content {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem;
-    }
-    .details-stats-col dl {
-      grid-template-columns: 1fr; 
-      gap: 0.5rem;
-    }
-    .details-stats-col dt {
-      text-align: left;
-      margin-top: 1rem;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 0.25rem;
-      color: var(--role-color); /* Highlight headers on mobile */
-    }
-    .details-stats-col dd {
-      padding-left: 0.5rem;
-    }
-  }
-
-  /* --- NEW STYLES FOR CONTRIBUTORS --- */
-
+  /* =========================================
+     UNIQUE: CONTRIBUTORS SECTION
+     ========================================= */
   .contributors-section {
     border-top: 1px solid var(--border-subtle);
     padding-top: 4rem;
     margin-top: 4rem;
   }
 
-  /* Team Folder Card Specifics */
   .team-folder-card .member-identity h3 {
     font-size: 1.2rem;
     font-weight: bold;
   }
   
-  /* Team Navigation Header */
+  /* Team Nav */
   .team-nav-header {
     display: flex;
     align-items: center;
@@ -591,42 +530,34 @@ import { contributorTeams } from '../../data/contributors/contributor-config.js'
   }
   .back-btn:hover {
     background: var(--role-color);
-    color: #fff; /* or black depending on your theme */
+    color: #fff;
   }
 
-  /* Hidden Helper */
-  .hidden {
-    display: none;
-  }
-  
-  /* Ensure the Team Details grid behaves nicely */
-  .team-detail-view {
-    animation: fadeIn 0.3s ease;
-  }
+  .hidden { display: none; }
+  .team-detail-view { animation: fadeIn 0.3s ease; }
 
-  /* --- NEW FOOTER CTA STYLE --- */
-  .governance-cta {
-    text-align: center;
-    margin-top: 5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-subtle);
-  }
-  
-  .governance-cta a {
-    color: var(--heading-color);
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: 2px solid var(--border-subtle);
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    transition: all 0.2s;
-    display: inline-block;
-  }
-  
-  .governance-cta a:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(255,255,255,0.03);
+  /* =========================================
+     RESPONSIVE
+     ========================================= */
+  @media (max-width: 768px) {
+    .details-content {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+    .details-stats-col dl {
+      grid-template-columns: 1fr; 
+      gap: 0.5rem;
+    }
+    .details-stats-col dt {
+      text-align: left;
+      margin-top: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.25rem;
+      color: var(--role-color);
+    }
+    .details-stats-col dd {
+      padding-left: 0.5rem;
+    }
   }
 </style>

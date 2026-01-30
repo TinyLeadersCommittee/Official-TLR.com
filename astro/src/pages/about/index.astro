@@ -1,116 +1,124 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import founding from '../../assets/images/about/foundingTheThirdPath.jpg';
+// Removed unused Image import
 ---
 
-<BaseLayout title="History of TLR">
-  <article>
-    <h1>Tiny Leaders Reborn: A History</h1>
-    <p>
-      Tiny Leaders Reborn (TL:R) is a player-driven Magic: The Gathering 
-      variant format that evolved from the original Tiny Leaders format (TL:O). 
-      Developed by members of the French Magic community, TL:R emphasizes 
-      active metagame monitoring, expanded deck-building options, and grassroots 
-      organization through digital platforms. It is played using 50-card 
-      singleton decks, led by a commander, with all cards having a mana value (MV) 
-      of three or less.
-    </p>
+<BaseLayout title="History of TLR" 
+bgImage={founding}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: 10% center;">
+  
+  <article class="prose-block">
+    
+    <header class="page-header">
+      <h1>Tiny Leaders Reborn: <br>A History</h1>
+      <p class="lead" style="text-align: left; font-style: normal; color: var(--text-body);">
+        Tiny Leaders Reborn (TL:R) is a player-driven Magic: The Gathering 
+        variant format that evolved from the original Tiny Leaders format (TL:O). 
+        Developed by members of the French Magic community, TL:R emphasizes 
+        active metagame monitoring, expanded deck-building options, and grassroots 
+        organization through digital platforms.
+      </p>
+    </header>
+
+    <hr class="divider" />
 
     <section id="origins">
       <h2>Origins of Tiny Leaders (TL:O)</h2>
       <p>
-          The original Tiny Leaders format was created in 2013 by Charlotte 
-          Tackaberry, developed with Steven Hamonic, and later with their 
-          friend and Level 2 Judge, Matthew Turnbull. The format, often
-          described as a hybrid between Commander (EDH) and Legacy, gained
-          early popularity in North America and was featured on platforms 
-          such as 
-          <a href="https://magic.wizards.com/en/news/feature/tiny-leaders-big-fun-2015-02-17">
-            Magic: The Gathering’s official website
-          </a>, TCGPlayer, and ChannelFireball.
+        The original Tiny Leaders format was created in 2013 by Charlotte 
+        Tackaberry, developed with Steven Hamonic, and later with their 
+        friend and Level 2 Judge, Matthew Turnbull. The format, often
+        described as a hybrid between Commander (EDH) and Legacy, gained
+        early popularity in North America and was featured on platforms 
+        such as 
+        <a href="https://magic.wizards.com/en/news/feature/tiny-leaders-big-fun-2015-02-17">
+          Magic: The Gathering’s official website
+        </a>, TCGPlayer, and ChannelFireball.
       </p>
       <p>
-          In Europe, particularly in France, the format spread quickly in cities 
-          like Paris and Caen. Tournaments of 20+ players became common during the 
-          years of 2016 & 2017, and Tiny Leaders was included in high-profile 
-          events such as Demonic Tournament Commander, drawing over 50 players 
-          each day during its debut weekend.
+        In Europe, particularly in France, the format spread quickly in cities 
+        like Paris and Caen. Tournaments of 20+ players became common during the 
+        years of 2016 & 2017, and Tiny Leaders was included in high-profile 
+        events such as Demonic Tournament Commander, drawing over 50 players 
+        each day during its debut weekend.
       </p>
       <p>
-          However, by late 2017, concerns over format balance emerged due to the 
-          dominance of a deck known as Mono-Blue High Tide. At a major event, 
-          three identical Baral, Chief of Compliance (Mono-Blue High Tide) decks 
-          made the Top 4 on both tournament days, prompting concerns that the 
-          format had become stagnant. Although the format's progenitor's, also 
-          known as The Overlords, later banned High Tide and The Tabernacle at 
-          Pendrell Vale, the delay in response contributed to a growing perception 
-          that the format was "solved" and lacking support.
+        However, by late 2017, concerns over format balance emerged due to the 
+        dominance of a deck known as Mono-Blue High Tide. At a major event, 
+        three identical Baral, Chief of Compliance (Mono-Blue High Tide) decks 
+        made the Top 4 on both tournament days, prompting concerns that the 
+        format had become stagnant. Although the format's progenitors, also 
+        known as The Overlords, later banned High Tide and The Tabernacle at 
+        Pendrell Vale, the delay in response contributed to a growing perception 
+        that the format was "solved" and lacking support.
       </p>
     </section>
 
     <section id="founding">
       <h2>Founding of Tiny Leaders Reborn</h2>
       <p>
-          In response, a group of French players founded Tiny Leaders Reborn 
-          in early 2018, aiming to revitalize the format. The founding Tiny 
-          Leaders: Reborn Committee included:
+        In response, a group of French players founded Tiny Leaders Reborn 
+        in early 2018, aiming to revitalize the format. The founding Tiny 
+        Leaders: Reborn Committee included:
       </p>
       <ul>
-          <li>Cl&eacute;ment Silli&egrave;re (@noskcaj1992) from Caen</li>  
-          <li>Arnaud Chalendard (@Plaguerat) from Caen</li>
-          <li>Olivier Manin (@OlivierDic&eacute;) from Paris</li>
-        </ul>
+        <li>Cl&eacute;ment Silli&egrave;re from Caen</li>  
+        <li>Arnaud Chalendard from Caen</li>
+        <li>Olivier Manin from Paris</li>
+      </ul>
       <p>
-          The TL:R team sought to refine and expand upon the original format’s 
-          framework by introducing:
+        The TL:R team sought to refine and expand upon the original format’s 
+        framework by introducing:
       </p>
       <ul>
-          <li>
-            In  order to encourage more aggressive strategies a reduction in 
-            starting life total from 25 to 20.
-            </li>
-          <li>
-            To broaden deck design space, a change was made allowing commanders 
-            with a color identity of four and five colors as long as their MV is 
-            three or less.
-          </li>
-          <li>Frequent banlist updates, testing cycles, and metagame analysis.</li>
-          <li>
-            Modern rule alignments, such as updating the mulligan system to adopt 
-            Wizards’ own mulligan system used for their official formats.
-          </li>
-          <li>
-            Community-driven tools, including a Discord server with strategy-specific 
-            channels and attempted a deck database support via 
-            <a href="https://www.moxfield.com/">
-              Moxfield
-            </a>, which is still in the works.
-          </li>
-        </ul>
+        <li>
+          In order to encourage more aggressive strategies a reduction in 
+          starting life total from 25 to 20.
+        </li>
+        <li>
+          To broaden deck design space, a change was made allowing commanders 
+          with a color identity of four and five colors as long as their MV is 
+          three or less.
+        </li>
+        <li>Frequent banlist updates, testing cycles, and metagame analysis.</li>
+        <li>
+          Modern rule alignments, such as updating the mulligan system to adopt 
+          Wizards’ own mulligan system used for their official formats.
+        </li>
+        <li>
+          Community-driven tools, including a Discord server with strategy-specific 
+          channels and attempted a deck database support via 
+          <a href="https://www.moxfield.com/">Moxfield</a>, which is still in 
+          the works.
+        </li>
+      </ul>
     </section>
 
     <section id="tlo-relationship">
       <h2>Relationship with TL:O</h2>
       <p>
-          The TL:R team attempted to merge the two format branches by contacting 
-          Steven Hamonic. Early conversations were positive, but talks ultimately 
-          broke down over disagreements about color identity restrictions. TL:R's 
-          openness to four-color and five-color commanders conflicted with TL:O’s 
-          strict three-color cap.
+        The TL:R team attempted to merge the two format branches by contacting 
+        Steven Hamonic. Early conversations were positive, but talks ultimately 
+        broke down over disagreements about color identity restrictions. TL:R's 
+        openness to four-color and five-color commanders conflicted with TL:O’s 
+        strict three-color cap.
       </p>
       <p>
-          Rather than focusing on this divergence, TL:R shifted toward building a 
-          self-sustaining infrastructure. While TL:O has remained inactive in 
-          recent years, community members and leaders from TL:R prefer to respect 
-          the legacy of the original project and emphasize that both efforts had 
-          their place in the evolution of the format.
+        Rather than focusing on this divergence, TL:R shifted toward building a 
+        self-sustaining infrastructure. While TL:O has remained inactive in 
+        recent years, community members and leaders from TL:R prefer to respect 
+        the legacy of the original project and emphasize that both efforts had 
+        their place in the evolution of the format.
       </p>
       <p>
-          However, in 2025, with the inclusion of Charlotte, the Original Creator of
-          Tiny Leaders, into the Tiny Leaders Committee, a formal relationship between
-          the two formats was established. TLO, including its rules and Blogspot 
-          archive, would remain in stasis, preserving the history, origins, and 
-          foundational work of Charlotte, Steven, and Matt. In this way, TLO 
-          functions as a time capsule, documenting the beginnings of the format.
+        However, in 2025, with the inclusion of Charlotte, the Original Creator of
+        Tiny Leaders, into the Tiny Leaders Committee, a formal relationship between
+        the two formats was established. TLO, including its rules and Blogspot 
+        archive, would remain in stasis, preserving the history, origins, and 
+        foundational work of Charlotte, Steven, and Matt. In this way, TLO 
+        functions as a time capsule, documenting the beginnings of the format.
       </p>
     </section>
 
@@ -135,7 +143,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         marked a handoff from its original local foundations toward a broader, 
         more distributed committee model.
       </p>
-      <h2>Current State of The Committee</h2>
+      
+      <h3>Current State of The Committee</h3>
       <p>
         At the beginning of 2025, the Core Committee underwent another leadership 
         transition, Since then, the Tiny Leaders Reborn Committee has 
@@ -148,21 +157,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         responsibilities ranging from rules management, meta analysis, tournament 
         support, media production, and community outreach.
       </p>
-      <aside class="cta-box">
-        <div class="cta-content">
-          <h3>Meet the Committee</h3>
-          <p>
+      
+      <aside class="callout-box" style="margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between;">
+        <div style="flex: 1; min-width: 250px;">
+          <h3 style="margin-top: 0; color: var(--accent);">Meet the Committee</h3>
+          <p style="margin-bottom: 0;">
             It takes a team to keep the format running. Learn about the people 
             behind TLR.
           </p>
         </div>
-        <a href="/about/committee" class="cta-button">
+        <a href="/about/committee" class="btn btn-primary" style="white-space: nowrap;">
           View Profiles &rarr;
         </a>
       </aside>
     </section>
 
-    <section id="references">
+    <hr class="divider" />
+
+    <section class="references-section">
       <h2>References</h2>
       <ol>
         <li>Verhey, Gavin. <a href="https://magic.wizards.com/en/news/feature/tiny-leaders-big-fun-2015-02-17">
@@ -176,117 +188,49 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <li>Olivier Manin, Firsthand account, June 2025.</li>
       </ol>
     </section>
+
   </article>
 </BaseLayout>
 
 <style>
-  /* 1. READABILITY: Limit width so lines aren't too long to scan */
-  article {
-    max-width: 750px; 
-    margin: 0 auto;
-    line-height: 1.8; /* Slightly looser spacing for history text */
-    font-size: 1.05rem;
-  }
-
-  /* 2. SECTION SPACING: Give distinct eras their own space */
-  section {
-    margin-bottom: 4rem;
-  }
-
-  /* 3. HEADINGS: Add a subtle divider line under each era */
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  /* 4. LISTS: Make the bullet points easier to scan */
-  ul {
-    padding-left: 1.5rem;
-    color: var(--text-body);
-  }
-  
-  ul li {
-    margin-bottom: 0.75rem;
-  }
-
-/* CTA BOX STYLING - High Visibility Version */
-.cta-box {
-  margin-top: 3rem; /* Extra space to separate from history text */
-  
-  /* Make it stand out with the ACCENT color instead of gray */
-  border: 2px solid var(--accent); 
-  background-color: transparent; /* distinctive from the filled reference box */
-  
-  border-radius: 8px;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Add a hover lift so it feels clickable */
-.cta-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.cta-content h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
-  color: var(--accent); /* Headings match the border */
-}
-
-.cta-content p {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--text-body); /* Normal text color, not muted */
-}
-
-.cta-button {
-  background-color: var(--accent);
-  color: var(--bg);
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-  /* 5. REFERENCES: "Academic" styling */
-  #references {
+  /* =========================================
+     UNIQUE: REFERENCES
+     ========================================= */
+  .references-section {
     background-color: var(--surface);
     padding: 2rem;
     border-radius: 8px;
     border: 1px solid var(--border-subtle);
-    font-size: 0.9rem; /* Smaller text for citations */
+    font-size: 0.9rem; /* Keep text small */
     margin-top: 4rem;
   }
 
-  #references h2 {
-    border-bottom: none; /* Remove the line inside the box */
+  .references-section h2 {
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1rem;
+    border-bottom: none;
+    margin-top: 0;
   }
 
-  #references ol {
+  .references-section ol {
     margin: 0;
     padding-left: 1.5rem;
   }
 
-  #references li {
+  .references-section li {
     margin-bottom: 0.5rem;
     color: var(--text-muted);
   }
 
-  /* Make citations clickable but subtle */
-  #references a {
+  .references-section a {
     font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  
+  .references-section a:hover {
+    text-decoration: underline;
   }
 </style>

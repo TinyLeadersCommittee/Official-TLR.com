@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SeriesNav from '../../components/navs/SeriesNav.astro';
+import contest from '../../assets/images/design/magesContest.jpg';
 ---
 
-<BaseLayout title="1v1 Structure">
+<BaseLayout title="1v1 Structure" 
+bgImage={contest}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: center;">
+  
   <main class="design-essay">
     
     <header class="essay-header">
@@ -15,9 +21,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <article class="prose-block">
       <p class="lead-paragraph">
-        Tiny Leaders Reborn is designed from the ground up as a one-on-one format. 1v1 play is the game’s 
-        original form and TLR embraces that structure, allowing it to inform how decks are built, how games 
-        progress, and how players approach each decision.
+        Tiny Leaders Reborn is designed from the ground up as a one-on-one format. 
+        1v1 play is the game’s original form and TLR embraces that structure, 
+        allowing it to inform how decks are built, how games progress, and how 
+        players approach each decision.
       </p>
     </article>
 
@@ -25,15 +32,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>The Unambiguous Objective</h3>
         <p>
-          In a 1v1 environment, the objective is unambiguous. A player must defeat the opponent across the 
-          table. There are no shifting alliances, no shared threats, and no table politics to absorb pressure 
-          or redistribute responsibility.
+          In a 1v1 environment, the objective is unambiguous. A player must 
+          defeat the opponent across the table. There are no shifting alliances, 
+          no shared threats, and no table politics to absorb pressure or 
+          redistribute responsibility.
         </p>
+        
         <div class="focus-box">
           <p>
-            Every spell, attack, and interaction is aimed at a single opponent who is actively contesting 
-            your plan. That clarity produces a level of focus and tension that multiplayer formats simply 
-            don’t provide.
+            Every spell, attack, and interaction is aimed at a single opponent 
+            who is actively contesting your plan. That clarity produces a level 
+            of focus and tension that multiplayer formats simply don’t provide.
           </p>
         </div>
       </div>
@@ -43,17 +52,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Removing the Safety Valves</h3>
         <p>
-          Multiplayer Commander often rewards patience and positioning, waiting for openings, leveraging 
-          diplomacy, or letting the table correct imbalances. In 1v1, those safety valves disappear.
+          Multiplayer Commander often rewards patience and positioning, waiting 
+          for openings, leveraging diplomacy, or letting the table correct 
+          imbalances. In 1v1, those safety valves disappear.
         </p>
+        
         <ul class="contrast-list">
           <li>Pressure must be applied proactively.</li>
           <li>Threats must be answered directly.</li>
           <li>Closing a game is your responsibility alone.</li>
         </ul>
+        
         <p>
-          Errors are punished more quickly, and advantages are something you establish and maintain, 
-          not something you can negotiate away.
+          Errors are punished more quickly, and advantages are something you 
+          establish and maintain, not something you can negotiate away.
         </p>
       </div>
     </section>
@@ -62,16 +74,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="prose-block">
         <h3>Sharper Play</h3>
         <p>
-          This structure naturally incentivizes sharper play, even when decks themselves are not fully 
-          optimized. Pacing, resource management, and inevitability matter from the opening turns. 
-          Interaction becomes more purposeful, and strategies must function without assuming additional 
+          This structure naturally incentivizes sharper play, even when decks 
+          themselves are not fully optimized. Pacing, resource management, and 
+          inevitability matter from the opening turns. Interaction becomes more 
+          purposeful, and strategies must function without assuming additional 
           opponents or extended setup windows.
         </p>
         <p>
-          Importantly, 1v1 does not narrow expression, rather it refines it. Creativity still thrives, 
-          but expectations shift. Decks are built to engage an opponent head-on, whether through focused 
-          execution, disruption, or prolonged interactive play. With multiplayer dynamics removed, those 
-          choices resolve more cleanly and carry more weight.
+          Importantly, 1v1 does not narrow expression, rather it refines it. 
+          Creativity still thrives, but expectations shift. Decks are built to 
+          engage an opponent head-on, whether through focused execution, 
+          disruption, or prolonged interactive play. With multiplayer dynamics 
+          removed, those choices resolve more cleanly and carry more weight.
         </p>
       </div>
     </section>
@@ -80,101 +94,32 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <footer class="essay-footer prose-block">
       <p>
-        By committing to a 1v1 identity, Tiny Leaders Reborn roots itself in Magic’s most direct form 
-        of play while clearly distinguishing itself from multiplayer Commander. The result is a format 
-        defined by clarity, agency, and intentional interaction.
+        By committing to a 1v1 identity, Tiny Leaders Reborn roots itself in 
+        Magic’s most direct form of play while clearly distinguishing itself 
+        from multiplayer Commander. The result is a format defined by clarity, 
+        agency, and intentional interaction.
       </p>
       <p>
-        <strong>TLR is designed so that every match is a contest between two players, and every outcome is earned turn by turn.</strong>
+        <strong>TLR is designed so that every match is a contest between two 
+        players, and every outcome is earned turn by turn.</strong>
       </p>
     </footer>
 
-    <nav class="series-nav">
-      
-      <a href="/design/commander-variant" class="nav-card prev">
-        <span class="nav-label">Previous</span>
-        <div class="nav-inner">
-          <span class="nav-arrow">&larr;</span>
-          <span class="chapter-title">A Commander Variant</span>
-        </div>
-      </a>
-
-      <a href="/design/maindeck" class="nav-card next">
-        <span class="nav-label">Next Element</span>
-        <div class="nav-inner">
-          <span class="chapter-title">Deck Size</span>
-          <span class="nav-arrow">&rarr;</span>
-        </div>
-      </a>
-
-    </nav>
+    <SeriesNav 
+      prevUrl="/design/commander-variant" 
+      prevTitle="A Commander Variant"
+      nextUrl="/design/maindeck" 
+      nextTitle="Deck Size"
+    />
 
   </main>
 </BaseLayout>
 
 <style>
-  /* --- REUSING DESIGN SYSTEM STYLES --- */
-  .design-essay {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem 1rem;
-    color: var(--text-body);
-  }
-
-  .prose-block {
-    max-width: 65ch;
-    margin: 0 auto;
-    line-height: 1.8;
-    font-size: 1.15rem;
-  }
-
-  /* --- HEADER --- */
-  .essay-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .super-title {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .essay-header h1 {
-    font-size: 3rem;
-    color: var(--heading-color);
-    margin-bottom: 0.5rem;
-    line-height: 1.1;
-  }
-
-  .subtitle {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  .lead-paragraph {
-    font-size: 1.25rem;
-    color: var(--heading-color);
-  }
-
-  /* --- SECTIONS --- */
-  .chapter-section {
-    padding: 3rem 0;
-  }
-
-  .chapter-section h3 {
-    font-size: 1.75rem;
-    color: var(--heading-color);
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-  }
-
-  /* --- FOCUS BOX (New for this page) --- */
+  /* =========================================
+     UNIQUE COMPONENT: FOCUS BOX
+     (Top/Bottom Borders, Centered)
+     ========================================= */
   .focus-box {
     border-top: 2px solid var(--border-subtle);
     border-bottom: 2px solid var(--border-subtle);
@@ -185,7 +130,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     text-align: center;
   }
 
-  /* --- CONTRAST LIST (New for this page) --- */
+  /* =========================================
+     UNIQUE COMPONENT: CONTRAST LIST
+     (Exclamation points)
+     ========================================= */
   .contrast-list {
     list-style: none;
     padding: 0;
@@ -208,97 +156,5 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     font-weight: 900;
     font-family: monospace;
     font-size: 1.2rem;
-  }
-
-  /* --- ALT BACKGROUND --- */
-  .alt-bg {
-    background-color: var(--surface);
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 100vw;
-  }
-
-  /* --- NAVIGATION --- */
-  .series-nav {
-    margin-top: 6rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 1rem;
-  }
-
-  .nav-card {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    width: 100%;
-    max-width: 300px;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-  }
-
-  .nav-card:hover {
-    background-color: var(--surface);
-    border-color: var(--border-subtle);
-    transform: translateY(-2px);
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .prev { align-items: flex-start; text-align: left; }
-  .next { align-items: flex-end; text-align: right; }
-
-  .nav-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-
-  .chapter-title {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--heading-color);
-  }
-
-  .nav-arrow {
-    font-size: 1.25rem;
-    color: var(--accent);
-  }
-
-  /* Mobile Fix */
-  @media (max-width: 600px) {
-    .alt-bg {
-      margin-left: -1rem;
-      margin-right: -1rem;
-      width: calc(100% + 2rem);
-    }
-    
-    .series-nav {
-      flex-direction: column; 
-      gap: 2rem;
-    }
-    
-    .nav-card {
-      max-width: 100%;
-      align-items: center;
-      text-align: center;
-      background-color: var(--surface);
-      border-color: var(--border-subtle);
-    }
-    
-    .prev, .next { align-items: center; text-align: center; }
   }
 </style>

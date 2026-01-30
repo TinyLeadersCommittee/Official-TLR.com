@@ -1,11 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import grayImg from '../../assets/images/committee/consultants/gray.jpg';
 import { Image } from 'astro:assets';
+import grayImg from '../../assets/images/committee/consultants/gray.jpg';
+import zimone from '../../assets/images/rules/zimone.jpg';
 ---
 
-<BaseLayout title="Rules Supplements">
-  <article class="supplements-content">
+<BaseLayout title="Rules Supplements" 
+bgImage={zimone}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: center;">
+  
+  <article class="rules-doc">
     
     <header class="page-header">
       <h1>Rules Supplements</h1>
@@ -14,7 +19,7 @@ import { Image } from 'astro:assets';
       </p>
     </header>
 
-    <hr class="header-divider" />
+    <hr class="divider" />
 
     <section id="documents" class="documents-section">
       <h2>Official Rules Documents</h2>
@@ -51,8 +56,6 @@ import { Image } from 'astro:assets';
 
       </div>
     </section>
-
-    <!-- <hr />     -->
 
     <section id="philosophy" class="philosophy-section">
       
@@ -97,11 +100,11 @@ import { Image } from 'astro:assets';
       </div>
     </section>
     
-    <hr />
+    <hr class="divider" />
 
     <section id="faq">
         <h2>Rules FAQ</h2>
-        <p>Last updated: September 24, 2025</p>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Last updated: September 24, 2025</p>
   
         <div class="faq-grid">
           <details>
@@ -273,11 +276,13 @@ import { Image } from 'astro:assets';
             </div>
           </details>
         </div>
-      </section>
+    </section>
 
-      <section class="author-section">
-      <div class="author-card">
+    <section class="author-section">
+      <div class="unified-card">
+        
         <h2>Author</h2>
+        
         <div class="author-header-group">
             <div class="author-photo-wrapper">
                 <Image src={grayImg} alt="Gray" width={160} height={160} class="author-photo" />
@@ -322,81 +327,91 @@ import { Image } from 'astro:assets';
                 organizers alike.
             </p>
         </div>
-      </div>
-    </section>
 
-    <hr />
-
-      <section class="contact-section">
-        <div class="contact-box">
+        <div class="author-footer">
             <h3>Questions & Contributions</h3>
             <p>
               If you have questions regarding these documents or suggestions 
               for the FAQ, join us on the 
               <a href="https://discord.gg/tiny-leaders">Official TLR Discord</a>.
             </p>
-            <ul>
+            <ul class="contact-list">
               <li>
-                <strong>General Rulings:</strong> Use the <code>#ask-a-certified-judge</code> channel.
+                <strong>General Rulings:</strong> Use the <code class="tag-code">#ask-a-certified-judge</code> channel.
               </li>
               <li>
                 <strong>Policy Concerns:</strong> Message the Rules Manager, 
-                <code>@Gray | Judge Dad | JF L2</code>.
+                <code class="tag-code">@Gray | Judge Dad | JF L2</code>.
               </li>
             </ul>
-            <p class="contact-footer">
+            <p class="contact-note">
               <em>A member of our Judge team will respond as soon as possible.</em>
             </p>
         </div>
+
+      </div>
     </section>
+
   </article>
 </BaseLayout>
 
 <style>
-  /* --- PAGE HEADER --- */
-  .page-header {
-    text-align: left; /* Changed from center */
-    margin-bottom: 2rem;
+  /* =========================================
+     EXISTING STYLES (Documents, Philo, FAQ)
+     ========================================= */
+  .documents-section { margin-bottom: 3rem; }
+  .documents-section h2 { margin-bottom: 0.5rem; }
+  .documents-section p { margin-bottom: 1.5rem; color: var(--text-body); }
+
+  .doc-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
   }
 
-  .page-header h1 {
-    margin-bottom: 0.5rem;
+  .doc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .doc-row:last-child { border-bottom: none; }
+
+  .doc-info { font-size: 1.1rem; color: var(--heading-color); }
+  .doc-info strong { color: var(--accent); margin-right: 0.25rem; }
+  .doc-desc { color: var(--text-body); font-size: 0.95rem; }
+
+  .doc-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    font-family: monospace;
+  }
+
+  .action-link {
     color: var(--heading-color);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.2s;
   }
+  .action-link:hover { color: var(--accent); text-decoration: underline; }
+  .separator { color: var(--text-muted); opacity: 1; font-weight: 400; }
 
-  .lead {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    font-style: italic;
-    /* max-width helps left-aligned text not get too wide to read */
-    max-width: 65ch; 
-  }
-
-  .header-divider {
-    margin-bottom: 3rem;
-    opacity: 0.3;
-  }
-
-  /* --- PHILOSOPHY SECTION (Highlighted Block) --- */
-  /* --- PHILOSOPHY SECTION (Highlighted Block) --- */
+  /* Philosophy Sidebar */
   .philosophy-section {
-    /* POSITIONING: "More on top, less on bottom" */
-    margin-top: 2rem;    /* Pushes it down (centers it visually) */
-    margin-bottom: 2rem; /* Pulls the next section closer */
-    
+    margin: 2rem auto; 
     max-width: 800px;
-    margin-left: auto; 
-    margin-right: auto;
-    
-    /* Visuals */
     border-left: 4px solid var(--accent); 
     padding: 2rem; 
   }
 
-  /* --- HEADER --- */
   .philo-header-group {
     margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border-subtle); /* subtle divider */
+    border-bottom: 1px solid var(--border-subtle);
     padding-bottom: 1rem;
   }
 
@@ -404,19 +419,15 @@ import { Image } from 'astro:assets';
     margin: 0 0 0.5rem 0;
     font-size: 1.5rem;
     color: var(--heading-color);
-    text-align: left;
   }
 
   .meta-date {
     font-family: monospace;
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: var(--text-body);
   }
 
-  /* --- BLOCKS --- */
-  .philo-block {
-    margin-bottom: 2.5rem;
-  }
+  .philo-block { margin-bottom: 2.5rem; }
   
   .philo-block h3 {
     font-size: 1rem;
@@ -438,23 +449,20 @@ import { Image } from 'astro:assets';
     opacity: 0.5;
   }
 
-  /* --- TECH LIST (Restored Center Grid) --- */
+  /* Grid List inside Philosophy */
   .tech-list {
-    /* GRID: Centers items and makes them equal width */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1rem;
-    
     list-style: none;
     padding: 0;
     margin: 1.5rem 0;
   }
 
   .tech-list li {
-    /* Darker background for contrast against the surface */
     background: var(--bg); 
     padding: 0.75rem;
-    text-align: center; /* Centers the text inside the box */
+    text-align: center;
     border-radius: 4px;
     font-weight: bold;
     font-size: 0.9rem;
@@ -463,9 +471,8 @@ import { Image } from 'astro:assets';
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
-  /* --- RULING HIGHLIGHT --- */
   .ruling-text {
-    background: var(--bg); /* Inset look */
+    background: var(--bg);
     border-left: 3px solid var(--accent);
     padding: 1rem;
     margin-top: 1.5rem;
@@ -473,37 +480,41 @@ import { Image } from 'astro:assets';
     color: var(--text-body);
   }
 
- /* --- 1. SLEEK AUTHOR PROFILE (Wide & Compact) --- */
-  .author-section {
-    margin-bottom: 3rem;
-  }
+  /* =========================================
+     UPDATED: UNIFIED AUTHOR CARD
+     ========================================= */
+  .author-section { margin-top: 4rem; margin-bottom: 3rem; }
   
-  .author-card {
-    /* WIDE: Matches your other content width so lines are long */
-    max-width: 800px; 
+  .unified-card {
+    max-width: 800px;
     margin: 0 auto;
+    background-color: var(--surface); /* Unified Background */
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
 
-  /* --- FIXED: CENTER "AUTHOR" OVER PHOTO --- */
-  /* We target the H2 inside the card and restrict its width */
-  .author-card h2 {
-    margin-bottom: 1rem;
+  .unified-card h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
     font-size: 1.5rem;
-    
-    /* This is the magic: constrain width to match the photo (100px) */
-    width: 105px; 
-    text-align: center; 
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.5rem;
+    display: inline-block;
   }
 
-  /* --- HEADER GROUP --- */
+  /* Header Group (Preserved Layout) */
   .author-header-group {
     display: flex;
     flex-direction: row;
-    align-items: center; /* Aligns photo and text vertically */
+    align-items: center;
     text-align: left;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     gap: 1.5rem;
-    width: 100%; /* Ensures it fills the container */
   }
 
   .author-photo-wrapper {
@@ -511,14 +522,12 @@ import { Image } from 'astro:assets';
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 0; 
     border: 1px solid var(--border-subtle);
     padding: 3px;
-    background: var(--surface);
-    flex-shrink: 0; /* Prevents photo from getting squished */
+    background: var(--bg); /* Slight contrast against surface */
+    flex-shrink: 0;
   }
   
-  /* PUN INTENDED: PERMANENT GRAYSCALE */
   .author-photo {
     width: 100%;
     height: 100%;
@@ -527,40 +536,14 @@ import { Image } from 'astro:assets';
     filter: grayscale(100%);
   }
 
-  /* --- NAME & LINE --- */
   .author-info-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-grow: 1; /* Fills remaining space */
-    position: relative; /* Needed for the line positioning */
+    flex-grow: 1;
+    position: relative;
   }
 
-  /* THE SCALES ICON */
-  .scales-icon {
-    position: absolute;
-    right: 0;
-    
-    /* Adjust this if it sits too high or low relative to your line */
-    bottom: 8px; 
-    
-    width: 36px; /* slightly larger to see the fine lines */
-    height: 36px;
-    
-    color: var(--accent); /* This colors the lines */
-    opacity: 0.75; /* Subtle watermark effect */
-    
-    pointer-events: none;
-  }
-  
-  /* OPTIONAL: If you want the icon to stay sharp on mobile */
-  @media (max-width: 600px) {
-    .scales-icon {
-        display: none; /* Usually better to hide decorative absolutes on mobile stacks */
-    }
-  }
-
-  /* THE CONNECTOR LINE */
   .author-info-header::after {
     content: "";
     display: block;
@@ -569,6 +552,17 @@ import { Image } from 'astro:assets';
     background: var(--border-subtle);
     margin-top: 0.5rem; 
     opacity: 0.6;
+  }
+
+  .scales-icon {
+    position: absolute;
+    right: 0;
+    bottom: 8px; 
+    width: 36px;
+    height: 36px;
+    color: var(--accent);
+    opacity: 0.75;
+    pointer-events: none;
   }
 
   .author-name {
@@ -589,159 +583,64 @@ import { Image } from 'astro:assets';
     opacity: 0.9;
   }
 
-  /* --- BODY TEXT --- */
   .author-body-text {
     text-align: left; 
-    max-width: 100%; 
-    margin: 0 auto;
     font-size: 0.95rem; 
     line-height: 1.6;
     color: var(--text-body);
   }
+  .author-body-text p { margin-bottom: 0.75rem; }
 
-  .author-body-text p {
+  /* NEW AUTHOR FOOTER (Integrated Contact) */
+  .author-footer {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle); /* Divider */
+    /* Pull content to edges to span padding */
+    margin-left: -2.5rem; 
+    margin-right: -2.5rem;
+    margin-bottom: -2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 2.5rem;
+    background: rgba(var(--accent-rgb), 0.03); /* Subtle tint */
+    border-radius: 0 0 8px 8px;
+  }
+
+  .author-footer h3 {
+    margin-top: 0;
+    color: var(--accent);
+    font-size: 1.2rem;
     margin-bottom: 0.75rem;
   }
 
-  .author-body-text p:last-child {
-    margin-bottom: 0;
+  .contact-list {
+    padding-left: 1.2rem;
+    margin: 1rem 0;
+    color: var(--text-body);
   }
   
-  /* --- MOBILE TWEAK --- */
-  @media (max-width: 600px) {
-    .author-header-group {
-        flex-direction: column;
-        align-items: center; /* Center everything on mobile */
-        text-align: center;
-        gap: 1rem;
-    }
-    
-    /* On mobile, let the "Author" title expand to full width */
-    .author-card h2 {
-        width: 100%;
-    }
-    
-    /* Hide the line on mobile since layout is stacked */
-    .author-info-header::after {
-        display: none;
-    }
-  }
+  .contact-list li { margin-bottom: 0.5rem; }
 
-  /* --- 2. QUESTIONS & CONTRIBUTIONS (Restored Red Border Style) --- */
-  .contact-section {
-    margin-bottom: 3rem;
-  }
-  
-  .contact-box {
-    background: var(--surface);
-    border-left: 4px solid var(--accent); /* The red accent border */
-    padding: 1.5rem 2rem;
-    border-radius: 4px; /* Slight rounding on right corners */
-  }
-
-  .contact-box h3 {
-    margin-top: 0;
-    font-size: 1.3rem;
+  .tag-code {
+    background: var(--bg);
+    border: 1px solid var(--border-subtle);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: monospace;
     color: var(--heading-color);
   }
 
-  .contact-box ul {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-  }
-  
-  .contact-box li {
-    margin-bottom: 0.5rem;
-    color: var(--text-body);
-  }
-
-  .contact-footer {
+  .contact-note {
     font-size: 0.9rem;
     color: var(--text-muted);
     margin-top: 1rem;
   }
 
-  /* --- DOCUMENTS SECTION --- */
-  .documents-section {
-    margin-bottom: 3rem;
-  }
-  
-  .documents-section h2 {
-    margin-bottom: 0.5rem;
-  }
-  
-  .documents-section p {
-    margin-bottom: 1.5rem;
-    color: var(--text-muted);
-  }
-
-  /* --- DOCUMENT LIST --- */
-  .doc-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0; /* No gap, we use border-bottom for separation */
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .doc-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  
-  /* Remove border from the last item so the container border handles it */
-  .doc-row:last-child {
-    border-bottom: none;
-  }
-
-  /* --- DOC INFO (Left Side) --- */
-  .doc-info {
-    font-size: 1.1rem;
-    color: var(--heading-color);
-  }
-  
-  .doc-info strong {
-    color: var(--accent); /* Highlights the Acronym (TSMCR) */
-    margin-right: 0.25rem;
-  }
-  
-  .doc-desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-  }
-
-  /* --- DOC ACTIONS (Right Side) --- */
-  .doc-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    font-family: monospace; /* Gives it a "technical" link feel */
-  }
-
-  .action-link {
-    color: var(--heading-color);
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .action-link:hover {
-    color: var(--accent);
-    text-decoration: underline;
-  }
-
-  .separator {
-    color: var(--text-muted); /* Darker gray so it's visible */
-    opacity: 1;               /* Removed the transparency */
-    font-weight: 400;         /* Keeps it from looking too heavy */
-  }
-
-  /* --- MOBILE RESPONSIVE --- */
+  /* =========================================
+     RESPONSIVE
+     ========================================= */
   @media (max-width: 600px) {
     .doc-row {
         flex-direction: column;
@@ -749,35 +648,24 @@ import { Image } from 'astro:assets';
         gap: 0.5rem;
         padding: 1.25rem 0;
     }
-    
-    .doc-actions {
-        width: 100%;
-        justify-content: flex-start; /* Or space-between if you prefer */
-    }
-  }
+    .doc-actions { width: 100%; justify-content: flex-start; }
 
-  /* FAQ Styles */
-  details {
-    background: var(--surface); 
-    border: 1px solid var(--border-subtle);
-    border-radius: 6px;
-    margin-bottom: 0.5rem;
-    overflow: hidden;
-  }
-  
-  summary {
-    padding: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--heading-color);
-    list-style: none; 
-    transition: background-color 0.2s;
-  }
-  summary:hover { background-color: var(--bg); }
-  .faq-answer {
-    padding: 1rem;
-    border-top: 1px solid var(--border-subtle);
-    background: var(--bg); 
-    color: var(--accent);
+    .author-header-group {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    .author-info-header::after { display: none; }
+    .scales-icon { display: none; }
+    .unified-card { padding: 1.5rem; }
+    
+    /* Reset footer negative margins on mobile if needed */
+    .author-footer {
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        margin-bottom: -1.5rem;
+        padding: 1.5rem;
+    }
   }
 </style>

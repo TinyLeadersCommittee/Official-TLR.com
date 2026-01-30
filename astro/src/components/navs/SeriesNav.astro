@@ -1,0 +1,143 @@
+---
+interface Props {
+  prevUrl?: string;
+  prevTitle?: string;
+  nextUrl?: string;
+  nextTitle?: string;
+}
+
+const { prevUrl, prevTitle, nextUrl, nextTitle } = Astro.props;
+---
+
+<nav class="series-nav">
+  
+  {/* PREVIOUS BUTTON */}
+  {prevUrl ? (
+    <a href={prevUrl} class="nav-card prev">
+      <span class="nav-label">Previous</span>
+      <div class="nav-inner">
+        <span class="nav-arrow">&larr;</span>
+        <span class="chapter-title">{prevTitle}</span>
+      </div>
+    </a>
+  ) : (
+    <div class="nav-spacer"></div>
+  )}
+
+  {/* NEXT BUTTON */}
+  {nextUrl ? (
+    <a href={nextUrl} class="nav-card next">
+      <span class="nav-label">Next</span>
+      <div class="nav-inner">
+        <span class="chapter-title">{nextTitle}</span>
+        <span class="nav-arrow">&rarr;</span>
+      </div>
+    </a>
+  ) : (
+    <div class="nav-spacer"></div>
+  )}
+
+</nav>
+
+<style>
+  /* --- CONTAINER --- */
+  .series-nav {
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Aligns them to bottom on desktop */
+    gap: 1rem;
+  }
+
+  /* --- CARD SHARED STYLES --- */
+  .nav-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .nav-card:hover {
+    background-color: var(--surface);
+    border-color: var(--border-subtle);
+    transform: translateY(-2px);
+  }
+
+  /* --- INTERNAL ELEMENTS --- */
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .chapter-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--heading-color);
+  }
+
+  .nav-arrow {
+    font-size: 1.25rem;
+    color: var(--accent);
+  }
+
+  /* --- DESKTOP ALIGNMENT --- */
+  .prev {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .next {
+    align-items: flex-end;
+    text-align: right;
+  }
+  
+  /* Spacer keeps the "Next" button on the right if "Previous" is missing */
+  .nav-spacer {
+    flex: 1; 
+  }
+
+  /* --- MOBILE RESPONSIVE --- */
+  @media (max-width: 600px) {
+    .series-nav {
+      /* This is the magic line: flips the order so Next is on top */
+      flex-direction: column-reverse; 
+      gap: 1.5rem;
+      align-items: stretch; /* Make full width */
+    }
+    
+    .nav-card {
+      max-width: 100%;
+      /* Center align text for cleaner mobile look */
+      align-items: center;
+      text-align: center;
+      
+      /* Add a background so they look like big buttons */
+      background-color: var(--surface);
+      border-color: var(--border-subtle);
+    }
+    
+    /* Ensure internal flex stays centered */
+    .prev .nav-inner, .next .nav-inner {
+        justify-content: center;
+    }
+    
+    .nav-spacer { display: none; } /* Don't take up space if empty on mobile */
+  }
+</style>

@@ -11,18 +11,14 @@ export const mainCommitteeSections = [
     members: coreMembers,
     shape: "triangle",
     color: "#658cfa", // Light Royal Blue
-    description: `The stewards of the format. The Core Team manages the website, 
-    organizes major tournaments, maintains the banlist, and steers the overall 
-    direction of Tiny Leaders Reborn.`
+    description: `We're Blue`
   },
   {
     title: "Consultants",
     members: consultants,
     shape: "hexagon", 
     color: "#9d4edd", // Purple
-    description: `Specialized experts who manage specific domains of the format, 
-    such as the Rules & Policy documents, specific competitive initiatives, or 
-    web development.`
+    description: `We're Purple`
   },
   {
     title: "Local Play Organizers (LPO)",

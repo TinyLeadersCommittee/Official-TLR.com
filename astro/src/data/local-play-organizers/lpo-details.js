@@ -39,7 +39,7 @@ export const lpoDetails = [
         name: "Juan",
         discordUsername: "@Nushio",
         location: `Monterrey, Nuevo Leon, MX`,
-        details: `Venga y juegue con nosotros los Vierneses en Goblin Depot!`,
+        details: `Venga y juegue con nosotros los Sabados en Goblin Depot!`,
         places: [
             {
                 place: `Goblin Depot`,
@@ -55,13 +55,14 @@ export const lpoDetails = [
         name: "Nathan",
         discordUsername: "@vvhizard",
         location: `Huntsville, Alabama, USA`,
-        details: `Come play Tiny Leaders every week at JC's House of Cards! We 
-        have a great community and welcome new players of all skill levels.`,
+        details: `Sunday TLR Locals! We have a proxy-friendly community of Tiny 
+        Leaders players, and we're always looking for more people to share the 
+        format with!`,
         places: [
             {
                 place: `JC's House of Cards`,
-                location: `Madison, AL, USA`,
-                frequency: `Weekly - Sundays`,
+                location: `7425 Hwy 72 W, Madison, AL 35758, USA`,
+                frequency: `Every Sunday at 12:00 PM CST`,
                 website: `https://www.facebook.com/Jcshouseofcards`
             }
         ]
@@ -71,15 +72,16 @@ export const lpoDetails = [
         role: "Local Play Organizer",
         name: "Lucas",
         discordUsername: "@Xaggaroth",
-        location: `Newfoundland, CAN`,
-        details: `Drop by The Great North Game Shop to play Tiny Leaders! We host
-        events sporadically and have a growing community.`,
+        location: `Grand Falls-Windsor, Newfoundland, CAN`,
+        details: `All are welcome to come to the exploits lanes alley to 
+        participate in tiny leaders tournaments and casual nights! Lots of 
+        people to help with the format and deck building!`,
         places: [
             {
-                place: `The Great North Game Shop`,
-                location: `67 Elizabeth Ave, St. John's, NL, CAN`,
-                frequency: `Sporadic`,
-                website: `thegreatnorthgameshop.com`
+                place: `Exploits Lanes`,
+                location: `20 Lincoln Rd, Grand Falls-Windsor, NL, CAN`,
+                frequency: `Fridays/Saturdays. Tournaments being held once a month!`,
+                website: `https://www.facebook.com/share/1At2ZYRFXD/`
             }
         ]
     },

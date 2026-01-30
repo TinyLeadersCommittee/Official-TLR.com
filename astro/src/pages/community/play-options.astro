@@ -1,8 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import swindler from '../../assets/images/community/tavernSwindler.jpg';
+import {Image} from 'astro:assets';
 ---
 
-<BaseLayout pageTitle="More Ways to Play">
+<BaseLayout title="More Ways to Play" 
+bgImage={swindler}
+bgBlur={true}
+bgStyle="object-fit: contain; object-position: center;">
   <main class="other-play-options-page">
 
     <header class="play-options-header">
@@ -140,7 +145,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <footer class="play-options-footer">
       <p>
-        Tiny Leaders: Reborn thrives because players find new ways to play it. These options reflect the creativity and initiative of the community.
+        Tiny Leaders: Reborn thrives because players find new ways to play it. 
+        These options reflect the creativity and initiative of the community.
       </p>
     </footer>
 
@@ -148,7 +154,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  /* --- LAYOUT CONTAINER --- */
+  /* =========================================
+     1. LAYOUT
+     ========================================= */
   .other-play-options-page {
     max-width: 1100px;
     margin: 0 auto;
@@ -156,7 +164,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     color: var(--text-body);
   }
 
-  /* --- HERO HEADER --- */
+  /* =========================================
+     2. HEADER
+     ========================================= */
   .play-options-header {
     text-align: center;
     max-width: 800px;
@@ -175,7 +185,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     color: var(--text-muted);
   }
 
-  /* --- SECTION HEADERS --- */
+  /* =========================================
+     3. SECTION HEADER
+     ========================================= */
   .section-header {
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--border-subtle);
@@ -194,16 +206,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     line-height: 1.5;
   }
 
-  /* --- GRID LAYOUT --- */
+  /* =========================================
+     4. GRID & CARDS
+     ========================================= */
   .play-options-grid {
     display: grid;
-    /* Responsive: Fits as many 320px cards as possible, then stretches */
+    /* Responsive: Fits cards, min 320px width */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     margin-bottom: 5rem;
   }
 
-  /* --- CARD DESIGN --- */
   .play-option-card {
     background-color: var(--bg);
     border: 1px solid var(--border-subtle);
@@ -220,7 +233,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     border-color: var(--accent);
   }
 
-  /* --- CARD HEADER & STATUS PILLS --- */
+  /* Header inside Card */
   .card-header {
     display: flex;
     justify-content: space-between;
@@ -236,6 +249,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     line-height: 1.3;
   }
 
+  /* Status Tags */
   .status-tag {
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -249,30 +263,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   /* Status Colors */
   .status-ongoing {
-    background-color: #e6fffa; /* Light Teal */
-    color: #047481;
-    border-color: #b2f5ea;
+    background-color: rgba(4, 116, 129, 0.1); 
+    color: #047481; /* Teal */
+    border-color: rgba(4, 116, 129, 0.2);
   }
 
   .status-soon {
-    background-color: #fffaf0; /* Light Orange */
-    color: #9c4221;
-    border-color: #feebc8;
+    background-color: rgba(156, 66, 33, 0.1); 
+    color: #9c4221; /* Orange */
+    border-color: rgba(156, 66, 33, 0.2);
   }
 
   .status-periodic {
-    background-color: #ebf8ff; /* Light Blue */
-    color: #2b6cb0;
-    border-color: #bee3f8;
+    background-color: rgba(43, 108, 176, 0.1); 
+    color: #2b6cb0; /* Blue */
+    border-color: rgba(43, 108, 176, 0.2);
   }
 
   .status-always {
-    background-color: #f0fff4; /* Light Green */
-    color: #22543d;
-    border-color: #c6f6d5;
+    background-color: rgba(34, 84, 61, 0.1); 
+    color: #22543d; /* Green */
+    border-color: rgba(34, 84, 61, 0.2);
   }
 
-  /* --- CARD BODY CONTENT --- */
+  /* Card Body */
   .card-body p {
     font-size: 0.95rem;
     line-height: 1.6;
@@ -297,7 +311,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     font-weight: bold;
   }
 
-  /* --- DETAILS LIST --- */
+  /* Lists */
   .details-list {
     margin: 0;
     padding-left: 1.2rem;
@@ -311,7 +325,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     line-height: 1.5;
   }
 
-  /* --- FOOTER --- */
+  /* =========================================
+     5. FOOTER
+     ========================================= */
   .play-options-footer {
     text-align: center;
     border-top: 1px solid var(--border-subtle);
@@ -322,14 +338,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     margin: 0 auto;
   }
 
-  /* --- MOBILE TWEAKS --- */
+  /* =========================================
+     6. RESPONSIVE
+     ========================================= */
   @media (max-width: 600px) {
-    .play-options-header h1 {
-      font-size: 2rem;
-    }
+    .play-options-header h1 { font-size: 2rem; }
     
     .play-options-grid {
-      grid-template-columns: 1fr; /* Stack cards on mobile */
+      grid-template-columns: 1fr; /* Force stack on small screens */
     }
   }
 </style>
