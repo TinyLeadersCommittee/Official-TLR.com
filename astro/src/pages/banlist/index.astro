@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
+
+// Import the data lists from your data file
+import { watchlist, categoryBans, commanderBans, cardBans } from '../../data/banlist/banlist.js';
+import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
 ---
 
 <BaseLayout title="Banlist & Watchlist" bgImage={judgement}>
@@ -16,6 +20,12 @@ import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
       </p>
     </header>
 
+    <!-- <nav class="jump-nav">
+        <a href="#announcement">Latest Updates</a>
+        <a href="#watchlist">Watchlist</a>
+        <a href="#banned-main">Full Banlist</a>
+    </nav> -->
+
     <section id="methodology">
       <p>
         <strong>Schedule:</strong> Regularly scheduled ban and 
@@ -25,27 +35,24 @@ import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
     </section>
 
     <section id="announcement" class="callout-box" style="margin: 2rem 0;">
-      <h2 style="margin-top: 0; font-size: 1.5rem;">Latest Update: November 25, 2025</h2>
-      <p style="color: var(--text-muted); margin-bottom: 1rem;"><em>Avatar: The Last Airbender — Post-Release Update</em></p>
+      <h2 style="margin-top: 0; font-size: 1.5rem;">
+        Latest Update: {latestAnnouncement.date}
+      </h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">
+        <em>{latestAnnouncement.title}</em>
+      </p>
       
       <ul>
-        <li>
-          <strong>Underworld Breach:</strong> Remains on Watchlist. 
-          Observation continues.
-        </li>
-        <li>
-          <strong>Edric, Spymaster of Trest:</strong> 
-          Unbanned (Legal in 50) & moved to Watchlist.
-        </li>
-        <li>
-          <strong>Metalworker:</strong> 
-          Unbanned (Legal in 50) & moved to Watchlist.
-        </li>
+        {latestAnnouncement.changes.map((change) => (
+          <li>
+            <strong>{change.card}:</strong> {change.status}
+          </li>
+        ))}
       </ul>
       
       <p style="margin-top: 1rem;">
         For the full reasoning regarding these shifts, read the 
-        <a href="/design" style="font-weight: bold;">Full Announcement &rarr;</a>
+        <a href={latestAnnouncement.link} style="font-weight: bold;">Full Announcement &rarr;</a>
       </p>
     </section>
 
@@ -59,9 +66,9 @@ import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
         These are subject to future changes.
       </p>
       <ul class="card-list">
-        <li>Edric, Spymaster of Trest</li>
-        <li>Metalworker</li>
-        <li>Underworld Breach</li>
+         {watchlist.map((card) => (
+           <li class="card-trigger" data-set={card.set}>{card.name}</li>
+         ))}
       </ul>
     </section>
 
@@ -69,113 +76,72 @@ import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
 
     <section id="banned-main">
       <h2>Banned in Tiny Leaders: Reborn</h2>
-      
+
       <div class="visual-list-container">
         <span class="visual-list-label">View Visual Banned List on Moxfield:</span>
         <a href="https://moxfield.com/decks/0d5HuyeAb0G8rboL7cabXg" target="_blank" rel="noopener noreferrer" class="moxfield-btn">
-          <svg class="moxfield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-3.5-5.5 2.5 2.5 5-5-1.41-1.41L11 14.17 9.91 13.09 8.5 14.5z"/>
-             <path d="M18.5 5h-2.2c-.6 0-1.1.3-1.4.8L12 10.2 9.1 5.8c-.3-.5-.8-.8-1.4-.8H5.5C4.7 5 4 5.7 4 6.5v11c0 .8.7 1.5 1.5 1.5h2c.8 0 1.5-.7 1.5-1.5V9.3l2.2 3.3c.3.4.8.4 1.1 0l2.2-3.3v8.2c0 .8.7 1.5 1.5 1.5h2c.8 0 1.5-.7 1.5-1.5v-11c0-.8-.7-1.5-1.5-1.5z" opacity="0" /> 
-             <path d="M19.333 4H16.5c-.736 0-1.414.406-1.77 1.059L12 9.222l-2.73-4.163C8.914 4.406 8.236 4 7.5 4H4.667C4.298 4 4 4.298 4 4.667v14.666c0 .369.298.667.667.667h2.666c.369 0 .667-.298.667-.667V9.333l3.393 5.175c.18.274.485.438.813.438s.633-.164.813-.438l3.393-5.175v10c0 .369.298.667.667.667h2.666c.369 0 .667-.298.667-.667V4.667C20 4.298 19.702 4 19.333 4z" />
-          </svg>
-          <span>Moxfield</span>
+          <img 
+            src="https://assets.moxfield.net/assets/images/logo-text.svg" 
+            alt="Moxfield" 
+            class="moxfield-img" 
+          />
         </a>
       </div>
+
+      <div class="search-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+            type="text" 
+            id="ban-search" 
+            placeholder="Search for a card..." 
+            class="search-input"
+        />
+      </div>
       
-      <div class="ban-category">
+      <div class="ban-category searchable-section">
         <h3>1. Categorically Excluded Cards</h3>
-        <p>The following cards are banned from the 50-card deck (and command zone):</p>
+        <p>The following cards are banned from the 50-card deck (and command zone). Click a category to view the cards on Scryfall.</p>
         <ul class="category-list">
-          <li>Silver-bordered, Gold-bordered, or Acorn-stamped cards</li>
-          <li>Cards with the card type Conspiracy</li>
-          <li>Racially or culturally offensive cards</li>
-          <li>Cards that reference playing for ante</li>
-          <li>Cards that bring stickers or attractions into the game</li>
+          {categoryBans.map((category) => (
+            <li>
+              <a 
+                href={`https://scryfall.com/search?q=${encodeURIComponent(category.query)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="category-link"
+              >
+                {category.label}
+                <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
-      <div class="ban-category">
+      <div class="ban-category searchable-section">
         <h3>2. Banned as Tiny Leader (Commander) Only</h3>
         <p>These cards <strong>can</strong> be played in your 49-card deck, but <strong>cannot</strong> be your Commander.</p>
         <ul class="card-list multi-column">
-          <li>Ajani, Nacatl Pariah</li>
-          <li>Ashiok, Dream Render</li>
-          <li>Derevi, Imperial Tactician</li>
-          <li>Erayo, Soratami Ascendant</li>
-          <li>Jeska, Thrice Reborn</li>
-          <li>Ketramose, the New Dawn</li>
-          <li>Nadu, Winged Wisdom</li>
-          <li>Rofellos, Llanowar Emissary</li>
-          <li>Uro, Titan of Nature’s Wrath</li>
-          <li>Wrenn and Six</li>
+          {commanderBans.map((card) => (
+            <li class="card-trigger" data-set={card.set}>{card.name}</li>
+          ))}
         </ul>
       </div>
 
-      <div class="ban-category">
+      <div class="ban-category searchable-section">
         <h3>3. Individual Card Bans</h3>
         <p>Banned in both the Deck and Command Zone.</p>
         <ul class="card-list multi-column">
-          <li>Ancestral Recall</li>
-          <li>Black Lotus</li>
-          <li>Balance</li>
-          <li>Channel</li>
-          <li>Chaos Orb</li>
-          <li>Chrome Mox</li>
-          <li>Counterbalance</li>
-          <li>Court of Cunning</li>
-          <li>Deflecting Swat</li>
-          <li>Demonic Tutor</li>
-          <li>Earthcraft</li>
-          <li>Falling Star</li>
-          <li>Fastbond</li>
-          <li>Fierce Guardianship</li>
-          <li>Forth Eorlingas!</li>
-          <li>Gaea’s Cradle</li>
-          <li>Grindstone</li>
-          <li>Hermit Druid</li>
-          <li>High Tide</li>
-          <li>Imperial Seal</li>
-          <li>Jeweled Lotus</li>
-          <li>Karakas</li>
-          <li>Library of Alexandria</li>
-          <li>Lion’s Eye Diamond</li>
-          <li>Lutri, the Spellchaser</li>
-          <li>Maddening Hex</li>
-          <li>Mana Crypt</li>
-          <li>Mana Vault</li>
-          <li>Mind Twist</li>
-          <li>Mishra’s Workshop</li>
-          <li>Mox Amber</li>
-          <li>Mox Diamond</li>
-          <li>Mox Emerald</li>
-          <li>Mox Jet</li>
-          <li>Mox Opal</li>
-          <li>Mox Pearl</li>
-          <li>Mox Ruby</li>
-          <li>Mox Sapphire</li>
-          <li>Mystical Tutor</li>
-          <li>Necropotence</li>
-          <li>Oko, Thief of Crowns</li>
-          <li>Price of Progress</li>
-          <li>Shahrazad</li>
-          <li>Skullclamp</li>
-          <li>Sol Ring</li>
-          <li>Strip Mine</li>
-          <li>Survival of the Fittest</li>
-          <li>Tasha’s Hideous Laughter</li>
-          <li>Teferi, Time Raveler</li>
-          <li>Thassa’s Oracle</li>
-          <li>The Tabernacle at Pendrell Vale</li>
-          <li>Time Vault</li>
-          <li>Time Walk</li>
-          <li>Timetwister</li>
-          <li>Tolarian Academy</li>
-          <li>True-Name Nemesis</li>
-          <li>Umezawa’s Jitte</li>
-          <li>Vampiric Tutor</li>
-          <li>Wheel of Fortune</li>
-          <li>White Plume Adventurer</li>
-          <li>Yawgmoth’s Will</li>
+          {cardBans.map((card) => (
+            <li class="card-trigger" data-set={card.set}>{card.name}</li>
+          ))}
         </ul>
       </div>
 
@@ -183,10 +149,218 @@ import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
   </article>
 </BaseLayout>
 
-<style>
+<script>
+  // Import functions
+  import { initCardPreview } from '../../scripts/cardPreview.js';
+  import { initListSearch } from '../../scripts/listSearch.js';
+
+  // 1. Initialize Systems
+  initCardPreview();
+  initListSearch('ban-search', 'searchable-section');
+
+  // 2. Ensure all card lists have the trigger class
+  const cardListItems = document.querySelectorAll('.card-list li');
+  cardListItems.forEach(li => {
+    li.classList.add('card-trigger');
+  });
+</script>
+
+<style is:global>
   /* =========================================
-     MOXFIELD BRANDING
+     MODAL STYLES (REQUIRED FOR POPUP)
      ========================================= */
+  .card-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s;
+  }
+
+  .card-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .card-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+  }
+
+  .card-modal-content {
+    position: relative;
+    z-index: 10001;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  #card-modal-img {
+    max-height: 85vh;
+    max-width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    display: none;
+  }
+
+  .card-loader {
+    color: #fff;
+    font-family: monospace;
+    font-size: 1.2rem;
+  }
+
+  .card-modal-caption {
+    text-align: center;
+    color: white;
+    margin-top: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  }
+
+  /* Close Button */
+  .card-modal-close {
+    position: absolute;
+    top: -40px;
+    right: -10px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10011;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .card-modal-close:hover {
+    color: #fff;
+    transform: scale(1.1);
+  }
+
+  /* Navigation Arrows - FIXED positioning on screen edges */
+  .modal-nav {
+    position: fixed; 
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10010;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0 0 4px 0;
+  }
+
+  .modal-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+
+  .nav-prev { left: 2rem; }
+  .nav-next { right: 2rem; }
+
+  /* Mobile Adjustments for Arrows */
+  @media (max-width: 768px) {
+    .nav-prev { left: 10px; width: 45px; height: 45px; font-size: 1.5rem; }
+    .nav-next { right: 10px; width: 45px; height: 45px; font-size: 1.5rem; }
+  }
+
+  /* =========================================
+     PAGE SPECIFIC STYLES
+     ========================================= */
+
+  /* Jump Links */
+  .jump-nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1rem;
+  }
+
+  .jump-nav a {
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 0.9rem;
+    background: var(--surface);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+    transition: all 0.2s;
+  }
+
+  .jump-nav a:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* Search Bar */
+  .search-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    font-size: 1.1rem;
+    font-family: inherit;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--text-body);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background-color: var(--bg);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.2);
+  }
+  
+  .search-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  /* Moxfield Branding */
   .visual-list-container {
     margin-bottom: 3rem;
     display: flex;
@@ -204,37 +378,29 @@ import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
   .moxfield-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    background-color: #312D4B; /* Official Dark Purple */
-    color: #fff;
-    padding: 0.6rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 700;
+    justify-content: center;
+    background-color: #312D4B;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
     text-decoration: none;
     transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 10px rgba(49, 45, 75, 0.25);
-    font-size: 1.1rem;
   }
 
   .moxfield-btn:hover {
-    background-color: #433e63; /* Slightly lighter on hover */
+    background-color: #433e63;
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(49, 45, 75, 0.35);
-    color: #fff;
   }
 
-  .moxfield-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
+  .moxfield-img {
+    height: 32px;
+    width: auto;
+    display: block;
   }
 
-  /* =========================================
-     BAN CATEGORIES
-     ========================================= */
-  .ban-category {
-    margin-top: 4rem;
-  }
+  /* Ban Categories */
+  .ban-category { margin-top: 4rem; }
 
   .ban-category h3 {
     margin-bottom: 1rem;
@@ -243,23 +409,44 @@ import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
     padding-bottom: 0.5rem;
   }
 
-  /* =========================================
-     MULTI-COLUMN LISTS
-     ========================================= */
+  /* Category Links */
+  .category-link {
+    text-decoration: none;
+    color: var(--text-body);
+    border-bottom: 1px dotted var(--text-muted);
+    transition: color 0.2s, border-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .category-link:hover {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+  }
+
+  .external-icon {
+    width: 0.9em;
+    height: 0.9em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  
+  .category-link:hover .external-icon {
+    opacity: 1;
+  }
+
+  /* Multi-Column Lists */
   .multi-column {
     column-count: 1;
     column-gap: 3rem; 
   }
   
   @media (min-width: 600px) {
-    .multi-column {
-      column-count: 2;
-    }
+    .multi-column { column-count: 2; }
   }
   
   @media (min-width: 900px) {
-    .multi-column {
-      column-count: 3;
-    }
+    .multi-column { column-count: 3; }
   }
 </style>
