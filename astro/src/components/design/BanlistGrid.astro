@@ -1,0 +1,63 @@
+---
+// src/components/design/BanlistGrid.astro
+const { cards, threeCol = false } = Astro.props;
+---
+
+<div class:list={['card-grid', { 'three-col': threeCol }]}>
+  {cards.map(card => (
+    <a 
+      href={`https://scryfall.com/search?q=!"${card.name}"${card.set ? ` e:${card.set}` : ''}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-set={card.set} 
+      style={card.status === 'initial' ? 'color: var(--accent);' : ''}
+    >
+      {card.name}
+    </a>
+  ))}
+</div>
+
+<style>
+  /* We moved these styles from the main page to here.
+     Now they only load when this component is used.
+  */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.5rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .card-grid a { /* Changed from span to a */
+    display: block; /* Anchors are inline by default, this fixes layout */
+    text-decoration: none; /* Remove default blue underline */
+    font-family: "Goudy Old Style", "Garamond", "Georgia", serif; 
+    font-weight: 700; 
+    letter-spacing: 0.03em; 
+    font-size: 1.05rem;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0.25rem 0;
+    cursor: pointer; /* Changed from help to pointer */
+    transition: color 0.2s;
+  }
+
+  .card-grid a:hover {
+    color: var(--accent) !important; /* Force hover color */
+  }
+
+  .three-col {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .card-grid span {
+    font-family: "Goudy Old Style", "Garamond", "Georgia", serif; 
+    font-weight: 700; 
+    letter-spacing: 0.03em; 
+    font-size: 1.05rem;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0.25rem 0;
+    cursor: help; 
+  }
+</style>

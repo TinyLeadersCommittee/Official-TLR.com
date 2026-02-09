@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import mirari from '../../assets/images/rules/absoluteLaw.jpg';
+
+// Import Content Data
+import { keyRules, additionalRules, philosophyPoints } from '../../data/rules/rulesData.js';
 ---
 
 <BaseLayout title="Rules Overview" 
@@ -25,30 +28,11 @@ bgStyle="object-fit: contain; object-position: center;">
     <section id="key-rules">
       <h2>Key Rules</h2>
       <ul class="rules-list">
-        <li>
-          <strong>1v1 Play:</strong> Intended for one-on-one games.
-        </li>
-        <li>
-          <strong>3 Mana Value Restriction*:</strong> Every card must have a mana 
-          value of 3 or less.
-        </li>
-        <li>
-          <strong>Commander Requirement:</strong> A legendary creature or planeswalker 
-          must be designated as a commander.
-        </li>
-        <li>
-          <strong>Deck Size:</strong> Exactly 50 cards, including commander(s).
-        </li>
-        <li>
-          <strong>Sideboard:</strong> No more than 10 cards.
-        </li>
-        <li>
-          <strong>Singleton Rule:</strong> Every card (except basic lands) must have 
-          a different English name.
-        </li>
-        <li>
-          <strong>Starting Life Total:</strong> Each player begins with 20 life.
-        </li>
+        {keyRules.map(rule => (
+          <li>
+            <strong>{rule.label}:</strong> {rule.text}
+          </li>
+        ))}
       </ul>
 
       <aside class="callout-box" style="margin-top: 2rem;">
@@ -67,25 +51,11 @@ bgStyle="object-fit: contain; object-position: center;">
     <section id="additional-rules" style="margin-top: 3rem;">
       <h2>Additional Rules</h2>
       <ul class="rules-list">
-        <li>
-          <strong>Color Identity:</strong> All cards in your deck must fit within 
-          the color identity of your commander(s). Identity includes mana symbols 
-          in the cost and rules text, plus any color indicators.
-        </li>
-        <li>
-          <strong>Commander Tax:</strong> {2} for each previous time cast from the command zone.
-        </li>
-        <li>
-          <strong>Commander Movement:</strong> May move to command zone from graveyard 
-          or exile as a state-based action.
-        </li>
-        <li>
-          <strong>Forced Mulligan:</strong> With multiple commanders, draw 7 and put 
-          one on the bottom. Counts as the first mulligan.
-        </li>
-        <li>
-          <strong>Wish Effects:</strong> May only choose cards from the sideboard.
-        </li>
+        {additionalRules.map(rule => (
+          <li>
+            <strong>{rule.label}:</strong> {rule.text}
+          </li>
+        ))}
       </ul>
     </section>
 
@@ -96,43 +66,12 @@ bgStyle="object-fit: contain; object-position: center;">
       <p style="margin-bottom: 2rem;">The Format and Play Experience is built upon several key principles:</p>
       
       <dl class="philosophy-grid">
-        <div class="philo-item">
-          <dt>Metagame Diversity</dt>
-          <dd>
-            A healthy format supports a variety of viable decks and strategies, 
-            avoiding excessive dominance by any single archetype.
-          </dd>
-        </div>
-        <div class="philo-item">
-          <dt>Competitive Balance</dt>
-          <dd>
-            While power levels will vary, the format should remain balanced 
-            enough that no strategy is overwhelmingly superior.
-          </dd>
-        </div>
-        <div class="philo-item">
-          <dt>Counterplay & Interaction</dt>
-          <dd>
-            Decks should have meaningful ways to interact with opponents, 
-            preventing non-games where one player has little agency.
-          </dd>
-        </div>
-        <div class="philo-item">
-          <dt>Format Identity</dt>
-          <dd>
-            Tiny Leaders: Reborn retains its unique playstyle by adhering to its 
-            structural rules and design elements, such as 3 MV or lower cards 
-            and 50-card decks, while evolving naturally over time.
-          </dd>
-        </div>
-        <div class="philo-item">
-          <dt>Player Engagement & Enjoyment</dt>
-          <dd>
-            The format should be fun, rewarding to play, and accessible to a 
-            broad audience, from casual to competitive players, but leaning 
-            competitively.
-          </dd>
-        </div>
+        {philosophyPoints.map(point => (
+          <div class="philo-item">
+            <dt>{point.title}</dt>
+            <dd>{point.text}</dd>
+          </div>
+        ))}
       </dl>
 
       <div class="closing-statement">
@@ -158,10 +97,10 @@ bgStyle="object-fit: contain; object-position: center;">
 
 <style>
   /* =========================================
-     UNIQUE: PHILOSOPHY GRID
-     (Specific to Overview Page)
+     PAGE SPECIFIC STYLES
      ========================================= */
   
+  /* Philosophy Grid Layout */
   .philosophy-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -184,9 +123,7 @@ bgStyle="object-fit: contain; object-position: center;">
     line-height: 1.5;
   }
 
-  /* =========================================
-     UNIQUE: CLOSING GRADIENT BOX
-     ========================================= */
+  /* Closing Gradient Box */
   .closing-statement {
     margin: 3rem 0;
     padding: 1.5rem 2rem;

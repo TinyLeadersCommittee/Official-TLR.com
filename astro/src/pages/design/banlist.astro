@@ -1,11 +1,28 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SeriesNav from '../../components/navs/SeriesNav.astro';
-import lawmage from '../../assets/images/design/detentionSphere.jpg';
+import detentionSphere from '../../assets/images/design/detentionSphere.jpg';
+
+// 1. Components
+import LineageComparison from '../../components/design/LineageComparison.astro';
+import BanlistGrid from '../../components/design/BanlistGrid.astro';
+import BanlistInteractiveTools from '../../components/design/BanlistInteractiveTools.astro';
+
+// 2. Data
+import { 
+  vintageRatePowerBans, 
+  fastManaBans, 
+  tutorBans, 
+  formatStructureBans, 
+  multiPlayerDesignBans, 
+  logisticsBans,
+  playExperienceBans,
+  commanderBans
+} from '../../data/design/tlrBanlist.js';
 ---
 
 <BaseLayout title="The Banlist" 
-bgImage={lawmage}  
+bgImage={detentionSphere}  
 bgBlur={true} 
 bgStyle="object-fit: contain; object-position: center;">
   
@@ -21,42 +38,73 @@ bgStyle="object-fit: contain; object-position: center;">
 
     <article class="prose-block">
       <p class="lead-paragraph">
-        In TLR, not all bans serve the same role. Some define what TLR is allowed 
-        to be. Others exist to protect how games feel and play. Understanding 
-        that difference is important for discussing future changes, and setting 
-        clear expectations for the format.
+        In TLR, not every ban serves the same role. Some define the boundaries 
+        of what the format is allowed to be, while others are there to protect 
+        the actual gameplay experience once you sit down at the table. 
+        Recognizing that difference is important when we talk about specific 
+        cards or look at future changes.
       </p>
-      <p>
-        <strong>At its core, this philosophy isn’t only about what TLR allows, 
-        but rather it’s about clearly communicating what TLR is not.</strong>
+      <p class="design-note">
+        At its core, this philosophy isn’t just about what you can do in TLR, 
+        it’s about being upfront and clear about what this format isn't.
       </p>
     </article>
+
+    <section class="chapter-section alt-bg">
+      <div class="prose-block">
+        <h3>A Heritage of Balance: The Lineage</h3>
+        <p>
+          The TLR banlist is the result of a decade-long evolution. It traces its 
+          foundational DNA back to the most stable competitive format in Magic: 
+          <strong>Legacy</strong>.
+        </p>
+        <p>
+          Instead of guessing what a healthy power level looks like, TLO, and by 
+          extension TLR, started with a framework that was already proven to 
+          work. From there, the list was adapted to fit a 50-card deck and the 
+          unique feel of a Commander-style format.
+        </p>
+
+        <LineageComparison />
+
+        <p class="design-note">
+          This lineage establishes a shared starting point. By grounding our 
+          earliest decisions in a system players already know and trust, we’ve 
+          made sure TLR is built on clear, established expectations rather 
+          than arbitrary guesses.
+        </p>
+      </div>
+    </section>
 
     <section class="chapter-section">
       <div class="prose-block">
         <h3>TLR Is Intentionally Below Vintage Power</h3>
         <p>
-          TLR pulls from an Eternal card pool, but it is not built to support 
-          Vintage-level efficiency. The format is designed with a much lower 
-          baseline for mana, card draw, and resource conversion.
+          Even though TLR pulls from across Magic’s history, it isn’t built to 
+          support the kind of "win-now" efficiency you see in Vintage. This 
+          format is designed with a much lower baseline for fast mana, massive 
+          card draw, and easy resource conversion.
         </p>
         <p>
-          Many Vintage-legal cards rely on assumptions that simply don’t hold 
-          in TLR, such as:
+          Many cards that thrive in Vintage rely on things that just don’t have 
+          a place in TLR, such as:
         </p>
         
         <ul class="standard-list">
-          <li>Games being defined in the first one or two turns by explosive mana</li>
-          <li>Zero- or one-mana card advantage at extreme rates</li>
-          <li>A metagame shaped around free or near-free interaction</li>
+          <li><strong>Games being decided in the first turn or two</strong> by explosive mana.</li>
+          <li><strong>Extreme card advantage</strong> that costs zero or one mana.</li>
+          <li><strong>A metagame defined by "free" spells</strong> and interaction.</li>
         </ul>
         
         <p>
-          TLR does not adopt those assumptions. As a result, some cards that are 
-          legal in Vintage are incompatible with TLR by default. These cards 
-          aren’t banned because of specific combos or dominant archetypes, 
-          they’re banned because their mere presence pushes the format toward 
-          a Vintage-adjacent experience.
+          We’ve made a conscious choice to move away from those elements. Because 
+          of this, some cards are incompatible with TLR by default. They aren’t 
+          banned because of a specific combo or a single dominant deck, they’re 
+          banned because their mere presence would push TLR toward a 
+          Vintage-adjacent experience.
+        </p>
+        <p class="design-note">
+          This decision underpins every ban that follows.
         </p>
       </div>
     </section>
@@ -65,41 +113,28 @@ bgStyle="object-fit: contain; object-position: center;">
       <div class="prose-block">
         <h3>Defining the Format’s Power Ceiling</h3>
         <p>
-          Some bans exist to clearly establish how powerful TLR is willing to be. 
-          These aren’t metagame fixes or temporary safety valves. These bans 
-          define the upper bounds of the format.
+          Once the baseline is set, some bans exist simply to draw a line in 
+          the sand. These aren't temporary fixes or responses to a specific 
+          deck, they define exactly how powerful TLR is willing to be at its core.
         </p>
         <p>
-          Cards in this space tend to be at a rate that is so efficient, the 
-          rest of the format has to bend around them. Allowing them would force 
-          changes to deck construction, interaction density, and overall 
-          gameplay expectations.
+          The cards in this category are so efficient that the rest of the 
+          format would warp around them just to keep up. Including them would 
+          change how everyone builds their decks, shrink the windows where you 
+          can actually interact, and completely shift what players expect from 
+          a typical game.
         </p>
-        
-        <h4 style="margin-top: 2rem; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; font-weight: bold; letter-spacing: 0.05em;">Vintage-Rate Power</h4>
-        <p>These cards are banned to reinforce that TLR is not balanced around Vintage-era efficiency:</p>
-        
-        <div class="card-grid">
-          <span>Ancestral Recall</span>
-          <span>Balance</span>
-          <span>Channel</span>
-          <span>Fastbond</span>
-          <span>Library of Alexandria</span>
-          <span>Necropotence</span>
-          <span>Skullclamp</span>
-          <span>Strip Mine</span>
-          <span>Time Vault</span>
-          <span>Time Walk</span>
-          <span>Timetwister</span>
-          <span>Wheel of Fortune</span>
-          <span>Yawgmoth’s Will</span>
-        </div>
-
+        <h4 class="category-title">Vintage-Rate Power</h4>
+        <BanlistGrid cards={vintageRatePowerBans} />
         <p class="footnote">
-          Being listed here doesn’t mean these cards are “forever impossible” 
-          to revisit, but unbanning them would require extensive testing, 
-          intentional environmental support, and a format ecosystem built to 
-          absorb their impact without collapsing into Vintage-style play.
+          Being on this list doesn't mean these cards are 'forever banned' with 
+          no hope of return. However, bringing them back would require a massive 
+          amount of testing and a format stable enough to handle them without 
+          turning back into a 'Vintage-style' game.
+        </p>
+        <p class="design-note">
+          Essentially, every other category on this page exists to protect and 
+          preserve this power ceiling.
         </p>
       </div>
     </section>
@@ -108,128 +143,129 @@ bgStyle="object-fit: contain; object-position: center;">
       <div class="prose-block">
         <h3>Permanent Fast Mana</h3>
         <p>
-          TLR already plays quickly due to its core rule structure, particularly 
-          the Rule of 3, which compresses curves across the format. Because the 
-          baseline speed is high, permanent fast mana has an outsized effect.
+          One of the fastest ways for a format to break its own power ceiling 
+          is through permanent fast mana. Because TLR already plays so quickly 
+          with its low mana costs, having access to early resource boosts has 
+          a massive impact.
         </p>
         <p>
-          Rather than simply enabling strong starts, these cards turn opening 
-          hands into deterministic lines, flatten meaningful resource development, 
-          and shrink early interaction windows.
+          It’s not just about enabling strong starts. Permanent fast mana can 
+          turn a starting hand into a scripted win. It flattens the game by 
+          letting one player skip the 'early game' entirely, which kills the 
+          chance for meaningful interaction in those first few turns.
         </p>
-
-        <div class="card-grid three-col">
-          <span data-set="leb">Black Lotus</span>
-          <span data-set="">Chrome Mox</span>
-          <span>Gaea’s Cradle</span>
-          <span>Jeweled Lotus</span>
-          <span data-set="mir">Lion’s Eye Diamond</span>
-          <span>Mana Crypt</span>
-          <span>Mana Vault</span>
-          <span>Mishra’s Workshop</span>
-          <span>Mox Amber</span>
-          <span>Mox Diamond</span>
-          <span>Mox Emerald</span>
-          <span>Mox Jet</span>
-          <span>Mox Opal</span>
-          <span>Mox Ruby</span>
-          <span>Mox Sapphire</span>
-          <span>Sol Ring</span>
-          <span>Tolarian Academy</span>
-        </div>
-
-        <p>
-          These cards aren’t completely judged in isolation, they're evaluated 
-          based on how they interact with TLR’s already-compressed cost structure. 
-          This category is also not a blanket rejection of future mana acceleration. 
-          Conditional or restrictive fast mana is evaluated on a case-by-case basis.
-        </p>
-      </div>
-    </section>
-
-    <section class="chapter-section">
-      <div class="prose-block">
-        <h3>Tutors & Singleton Pressure</h3>
-        <p>
-          Singleton is a core pillar of TLR’s identity. Low-cost, unconditional 
-          tutors work directly against that goal by reducing variance and turning 
-          decks into consistent toolboxes.
-        </p>
-        
-        <div class="card-grid">
-          <span>Demonic Tutor</span>
-          <span>Imperial Seal</span>
-          <span>Mystical Tutor</span>
-          <span>Survival of the Fittest</span>
-          <span>Vampiric Tutor</span>
-        </div>
-        
-        <p>
-          These bans exist to preserve uncertainty, distinct deck identities, 
-          and meaningful decisions under imperfect information.
+        <BanlistGrid cards={fastManaBans} threeCol={true} />
+        <p class="design-note">
+          These bans aren't really about any single card, they’re about making 
+          sure the power ceiling actually means something when you’re sitting 
+          across the table from an opponent.
         </p>
       </div>
     </section>
 
     <section class="chapter-section alt-bg">
       <div class="prose-block">
-        <h3>Bans Focused on Play Experience</h3>
+        <h3>Tutors & Singleton Play</h3>
         <p>
-          Some cards aren’t banned to define power level, but to protect the 
-          quality of games. Because of TLR’s deck size, compact spectrum of 
-          mana values, or Commander-variant structure, these cards become 
-          disproportionately strong or disruptive.
+          Playing with singletons is a core pillar of what makes TLR special. 
+          Low-cost, 'no-strings-attached' tutors work directly against that goal. 
+          They kill the variety we love by turning decks into predictable 
+          toolboxes where the best answer is always just one mana away.
         </p>
+        <BanlistGrid cards={tutorBans} />
+        <p class="design-note">
+          By limiting these effects, we keep a bit of healthy uncertainty in 
+          the game. It preserves the unique identity of your deck and makes 
+          sure that winning comes down to making the right choices with the 
+          cards you actually draw.
+        </p>
+      </div>
+    </section>
 
-        <div class="ban-reason-list">
-          <div class="ban-item">
-            <span class="card-name">Counterbalance</span>
-            <span class="reason">With only four mana values (0–3), it becomes excessively consistent.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Karakas</span>
-            <span class="reason">Almost antithetical to the spirit of playing with a commander and almost always has a valid target.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Lutri, the Spellchaser</span>
-            <span class="reason">Singleton nature of the format does not meaningfully restrict it.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Price of Progress</span>
-            <span class="reason">Nonbasic-heavy singleton manabases turn this into a near-guaranteed finisher.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Tasha’s Hideous Laughter</span>
-            <span class="reason">Small decks and low mana values push it far beyond intent.</span>
-          </div>
-        </div>
-
-        <h4 style="margin-top: 2rem; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; font-weight: bold; letter-spacing: 0.05em;">Designed for Multiplayer</h4>
+    <section class="chapter-section">
+      <div class="prose-block">
+        <h3>Bans Driven by Format Structure</h3>
         <p>
-          Some cards are balanced around multiplayer politics and pressure. In 
-          1v1 TLR, those safeguards disappear, allowing advantages to snowball 
-          uncontested.
+          Not every ban is about raw power. Some cards only become a problem 
+          when you drop them into the specific way TLR is built, like our 
+          smaller 50-card decks, the narrow range of mana costs, or the fact 
+          that you always have access to a Commander.
         </p>
-        <div class="card-grid">
-          <span>Court of Cunning</span>
-          <span>Forth Eorlingas!</span>
-          <span>Maddening Hex</span>
-          <span>White Plume Adventurer</span>
-        </div>
+        <BanlistGrid cards={formatStructureBans} threeCol={true} />
+        <p class="design-note">
+          Within these constraints, certain effects get a massive 'unintended 
+          boost.' They aren't necessarily broken on their own, but the format 
+          itself amplifies them until they become way more disruptive than they 
+          were ever meant to be.
+        </p>
+      </div>
+    </section>
 
-        <h4 style="margin-top: 2rem; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; font-weight: bold; letter-spacing: 0.05em;">Physical Dexterity & Logistics</h4>
-        <div class="card-grid">
-          <span>Chaos Orb</span>
-          <span>Falling Star</span>
-          <span>Shahrazad</span>
-        </div>
+    <section class="chapter-section alt-bg">
+      <div class="prose-block">
+        <h3>Designed for Multiplayer</h3>
+        <p>
+          Some cards are balanced for Commander games with four players, where 
+          table politics and having three opponents act as a natural check on 
+          runaway leads.
+        </p>
+        <BanlistGrid cards={multiPlayerDesignBans} />
+        <p class="design-note">
+          In 1v1 TLR, those safeguards vanish. Without other players to help 
+          reset the scales, these cards often create 'lock-out' states where 
+          an opponent is simply pushed out of the game.
+        </p>
+      </div>
+    </section>
+
+    <section class="chapter-section">
+      <div class="prose-block">
+        <h3>Physical Dexterity & Logistics</h3>
+        <p>
+          We also set aside cards that rely more on physical dexterity (flipping 
+          cards from a height) than strategic skill, or cards that create 
+          difficult logistical burdens (like sub-games).
+        </p>
+        <BanlistGrid cards={logisticsBans} />
+        <p class="design-note">
+          By removing these 'logistical headaches,' we keep the focus on the 
+          game and ensure that every player, regardless of physical ability, 
+          can compete on a level playing field.
+        </p>
+      </div>
+    </section>
+
+    <section class="chapter-section alt-bg">
+      <div class="prose-block">
+        <h3>Protecting the Play Experience</h3>
+        <p>
+          Even within a set power level, some cards just consistently get in the 
+          way of a good game. We’ve found that certain effects lead to 
+          repetitive patterns or 'non-games' that feel more oppressive than strategic.
+        </p>
+        <p>
+          Because Tiny Leaders: Reborn uses smaller decks and is a fast-paced 1v1 
+          format, these issues can take over as early as turn two or three, 
+          leaving you with almost no room to adapt.
+        </p>
+        <BanlistGrid cards={playExperienceBans} />
+        <p class="design-note">
+          We view these specific bans as a final safety net, a way to catch those 
+          'failure states' that still crop up even after our other rules are in 
+          place.
+        </p>
       </div>
     </section>
 
     <section class="chapter-section">
       <div class="prose-block">
         <h3>Categorical Exclusions</h3>
-        <p>Some exclusions have nothing to do with power or balance.</p>
+        <p>
+          Not every exclusion is about a card being 'too good.' Sometimes, a 
+          card just doesn't fit the scope of what we’re building here. These 
+          aren't judgments on the cards themselves, but rather clear boundaries 
+          that help define what TLR is.
+        </p>
         <ul class="standard-list">
           <li><strong>Non-Standard Frames/Stamps:</strong> Silver-bordered, gold-bordered, and Acorn-stamped cards.</li>
           <li><strong>Conspiracy Cards:</strong> They bypass in-game decision-making.</li>
@@ -238,81 +274,43 @@ bgStyle="object-fit: contain; object-position: center;">
           <li><strong>Stickers and Attractions:</strong> Added logistics burden.</li>
           <li><strong>Digital-Only Cards:</strong> TLR is a paper-only format.</li>
         </ul>
+        <p class="design-note">
+          These rules are here to keep things consistent and accessible, making 
+          sure the format stays true to its identity as a competitive, 
+          paper-based game you can actually sit down and play.
+        </p>
       </div>
     </section>
 
-    <section class="chapter-section">
+    <section class="chapter-section alt-bg">
       <div class="prose-block">
         <h3>Banned as Tiny Leader (Commander)</h3>
         <p>
-          TLR uses a command zone. That changes how some cards function. 
-          Guaranteed access introduces inevitability and repeatability that 
-          doesn’t exist when cards must be drawn naturally.
+          The Command Zone changes everything. Having guaranteed access to a 
+          card every single game adds a level of consistency you just don’t 
+          get when you have to hope for a lucky draw.
         </p>
         <p>
-          Cards banned as a Tiny Leader often generate overwhelming advantages, 
-          deny resources in ways that create non-games, or bypass normal risk.
+          When certain cards are always available in the Command Zone, they 
+          can lead to overwhelming leads or 'lock-outs' that skip the usual 
+          risks of high-level play.
         </p>
-
-        <div class="ban-reason-list detailed">
-          <div class="ban-item">
-            <span class="card-name">Ajani, Nacatl Pariah</span>
-            <span class="reason">A low mana investment that quickly snowballs into repeatable pressure, removal, and damage.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Ashiok, Dream Render</span>
-            <span class="reason">Repeated hybrid graveyard hate plus search denial shuts down too many archetypes for 3 mana.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Derevi, Imperial Tactician</span>
-            <span class="reason">Circumvents commander tax, creating persistent mana/tempo advantages and resource denial.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Erayo, Soratami Ascendant</span>
-            <span class="reason">Command‑zone access dramatically lowers the setup cost for establishing a near‑lock state.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Jeska, Thrice Reborn</span>
-            <span class="reason">Enables disproportionate burst damage that scales over the game with minimal board commitment.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Ketramose, the New Dawn</span>
-            <span class="reason">Powerful card draw allows early advantage and rapid recovery, overwhelming normal pacing.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Nadu, Winged Wisdom</span>
-            <span class="reason">Enables explosive value chains of card draw and mana acceleration, compressing interaction windows.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Rofellos, Llanowar Emissary</span>
-            <span class="reason">Provides extreme mana acceleration by default, invalidating normal development curves.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Uro, Titan of Nature’s Wrath</span>
-            <span class="reason">Repeated access to ramp, card draw, and life gain creates inevitability with minimal disruption.</span>
-          </div>
-          <div class="ban-item">
-            <span class="card-name">Wrenn and Six</span>
-            <span class="reason">Recursive fetchland access improves consistency; repeated land destruction (Wasteland) can lock opponents out.</span>
-          </div>
-        </div>
-
-        <p class="footnote">
-          These cards are generally fine in the 49, where variance and risk are 
-          reestablished. In the command zone, they centralize games around a 
-          single known effect in ways that run counter to TLR’s goals.
+        <BanlistGrid cards={commanderBans} threeCol={true} />
+        <p class="design-note">
+          Most of these cards are perfectly fine within your 49-card deck, where 
+          variance and a little bit of luck still matter. But as a Tiny Leader, 
+          they tend to warp every game around a single effect, which just isn't 
+          what we’re aiming for with this format.
         </p>
       </div>
     </section>
-
-    <hr />
 
     <footer class="essay-footer prose-block">
       <h3>Closing Thoughts</h3>
       <p>
-        TLR’s banlist is intentional & reactive, but not reactionary. Some bans 
-        define the ceiling. Others protect how games feel beneath it. Together, 
-        they keep the format recognizable, deliberate, and distinct.
+        TLR’s banlist is intentional & responsive, but not reactionary. Some bans 
+        define the ceiling. Others preserve play beneath it. Together, 
+        they ensure the format remains deliberate, recognizable, and distinct.
       </p>
     </footer>
 
@@ -325,146 +323,61 @@ bgStyle="object-fit: contain; object-position: center;">
 
   </main>
 
-  <div id="card-tooltip" class="hidden">
-    <img id="tooltip-img" src="" alt="Card Preview" />
-  </div>
+  <BanlistInteractiveTools />
 
 </BaseLayout>
 
 <style>
   /* =========================================
-     UNIQUE: CARD GRIDS (The "Banlist Look")
+     PAGE-SPECIFIC STYLES
      ========================================= */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 0.5rem 1.5rem;
-    margin: 1.5rem 0;
+
+  .category-title {
+    margin-top: 2rem; 
+    color: var(--accent); 
+    text-transform: uppercase; 
+    font-size: 0.9rem; 
+    font-weight: bold; 
+    letter-spacing: 0.05em;
   }
 
-  .three-col {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  .standard-list { 
+    padding-left: 1.5rem; 
+    margin-bottom: 1.5rem; 
+  }
+  
+  .standard-list li { 
+    margin-bottom: 0.5rem; 
   }
 
-  /* Specific typography for card names (Goudy) */
-  .card-grid span {
-    font-family: "Goudy Old Style", "Garamond", "Georgia", serif; 
-    font-weight: 700; 
-    letter-spacing: 0.03em; 
-    font-size: 1.05rem;
-    color: var(--heading-color);
-    border-bottom: 1px solid var(--border-subtle);
-    padding: 0.25rem 0;
-    cursor: help; /* Indicates interactivity */
+  /* The Old Footnote (kept for minor clarifications) */
+  .footnote { 
+    font-size: 0.9rem; 
+    color: var(--text-muted); 
+    font-style: italic; 
+    margin-top: 1.5rem; 
   }
 
-  /* =========================================
-     UNIQUE: BAN REASON LIST
-     ========================================= */
-  .ban-reason-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 2rem 0;
+  /* NEW: The Standardized Design Note (For Key Takeaways) */
+  .design-note {
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid var(--accent);
+    background-color: var(--surface); /* Default look */
+    color: var(--text-body);
+    font-weight: 500;
+    font-style: italic;
   }
 
-  .ban-item {
+  /* When inside an alt-bg (Gray) section, make the note White to pop */
+  .alt-bg .design-note {
     background-color: var(--bg);
     border: 1px solid var(--border-subtle);
     border-left: 4px solid var(--accent);
-    padding: 1rem;
-    border-radius: 4px;
   }
 
-  .card-name {
-    display: block;
-    font-family: "Goudy Old Style", "Garamond", "Georgia", serif;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    color: var(--heading-color);
-    margin-bottom: 0.25rem;
-    font-size: 1.15rem;
-    cursor: help;
-  }
-
-  .reason { font-size: 1rem; color: var(--text-body); }
-
-  /* =========================================
-     UNIQUE: LISTS & FOOTNOTES
-     ========================================= */
-  .standard-list { padding-left: 1.5rem; margin-bottom: 1.5rem; }
-  .standard-list li { margin-bottom: 0.5rem; }
-  .footnote { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 1.5rem; }
-
-  /* =========================================
-     UNIQUE: TOOLTIP STYLES
-     ========================================= */
-  #card-tooltip {
-    position: fixed;
-    z-index: 1000;
-    pointer-events: none;
-    width: 240px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    background-color: transparent; 
-    transition: opacity 0.2s ease;
-  }
-
-  #tooltip-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-  }
-
-  #card-tooltip.hidden {
-    opacity: 0;
-    visibility: hidden;
+  .essay-footer {
+    /* Match the spacing of a standard section */
+    padding-top: 3rem;
   }
 </style>
-
-<script>
-  // SCRYFALL TOOLTIP LOGIC
-  const cardElements = document.querySelectorAll('.card-grid span, .card-name');
-  const tooltip = document.getElementById('card-tooltip');
-  const tooltipImg = document.getElementById('tooltip-img');
-
-  cardElements.forEach(el => {
-    // MOUSE ENTER
-    el.addEventListener('mouseenter', () => {
-      const cardName = el.textContent.trim();
-      const setCode = el.getAttribute('data-set');
-
-      let imageUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}&format=image&version=normal`;
-      
-      if (setCode) {
-        imageUrl += `&set=${setCode}`;
-      }
-      
-      tooltipImg.src = imageUrl;
-      tooltip.classList.remove('hidden');
-    });
-
-    // MOUSE MOVE
-    el.addEventListener('mousemove', (e) => {
-      const xOffset = 20;
-      const yOffset = 20;
-
-      // Smart positioning: flip left if close to right edge
-      if (e.clientX + 260 > window.innerWidth) { 
-         tooltip.style.left = (e.clientX - 260) + 'px';
-      } else {
-         tooltip.style.left = (e.clientX + xOffset) + 'px';
-      }
-
-      tooltip.style.top = (e.clientY + yOffset) + 'px';
-    });
-
-    // MOUSE LEAVE
-    el.addEventListener('mouseleave', () => {
-      tooltip.classList.add('hidden');
-      tooltipImg.src = ''; 
-    });
-  });
-</script>

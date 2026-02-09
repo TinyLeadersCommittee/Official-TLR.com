@@ -1,0 +1,240 @@
+---
+// src/components/design/BanlistInteractiveTools.astro
+
+import { legacyBans2013 } from '../../data/design/legacy2013Banlist.js';
+import { tloCardBans } from '../../data/design/tlo2018Banlist.js';
+import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
+---
+
+<div id="card-tooltip" class="hidden">
+  <img id="tooltip-img" src="" alt="Card Preview" />
+</div>
+
+<div id="list-modal" class="modal-overlay hidden">
+  <button id="prev-list" class="nav-arrow left">&lsaquo;</button>
+  <div class="modal-content">
+    <header class="modal-header">
+      <h3 id="modal-title">Banlist</h3>
+      <button id="close-modal">&times;</button>
+    </header>
+    <div id="modal-body" class="modal-grid"></div>
+  </div>
+  <button id="next-list" class="nav-arrow right">&rsaquo;</button>
+</div>
+
+<style>
+  /* --- TOOLTIP --- */
+  #card-tooltip {
+    position: fixed;
+    z-index: 3000;
+    pointer-events: none;
+    width: 240px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    background: transparent;
+  }
+  #tooltip-img { width: 100%; border-radius: 10px; }
+  .hidden { display: none !important; }
+
+  /* --- MODAL OVERLAY --- */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+
+  /* --- MODAL BOX (UPDATED WIDTH) --- */
+  .modal-content {
+    background: var(--bg);
+    width: 95%;          /* Take up most of the screen width */
+    max-width: 1200px;   /* Cap it at a nice wide size (was 800px) */
+    max-height: 85vh;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    overflow-y: auto;    /* Scroll if it barely overflows */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- NEW: THE GRID LAYOUT --- */
+  .modal-grid {
+    display: grid;
+    /* This creates as many 180px columns as fit on the screen */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.5rem 1rem; /* Space between items */
+    margin-top: 1rem;
+  }
+
+  /* --- NEW: THE ITEM STYLE (Global because created by JS) --- */
+  :global(.modal-item) {
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0.25rem 0;
+    font-family: "Goudy Old Style", serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--heading-color);
+    cursor: pointer;
+    white-space: nowrap;      /* Force one line */
+    overflow: hidden;         /* Cut off long names */
+    text-overflow: ellipsis;  /* Add ... if too long */
+    transition: color 0.2s;
+  }
+
+  :global(.modal-item:hover) {
+    color: var(--accent) !important;
+  }
+
+  /* --- HEADER & CONTROLS --- */
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  #modal-title { margin: 0; color: var(--heading-color); }
+
+  #close-modal {
+    background: none; border: none; font-size: 2rem; 
+    color: var(--text-muted); cursor: pointer;
+  }
+
+  .nav-arrow {
+    background: none; border: none; color: white;
+    font-size: 4rem; cursor: pointer; padding: 20px;
+    transition: color 0.2s; z-index: 2100;
+  }
+  .nav-arrow:hover { color: var(--accent); }
+  .nav-arrow.left { position: absolute; left: 2%; }
+  .nav-arrow.right { position: absolute; right: 2%; }
+
+  @media (max-width: 900px) {
+    .nav-arrow { display: none; }
+    /* On mobile, force fewer columns so text is readable */
+    .modal-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  }
+</style>
+
+<script define:vars={{ legacyBans2013, tloCardBans, initialCardBans }}>
+  const modal = document.getElementById('list-modal');
+  const modalBody = document.getElementById('modal-body');
+  const modalTitle = document.getElementById('modal-title');
+  const closeBtn = document.getElementById('close-modal');
+  
+  const banlistData = [
+    { title: "2013 Legacy Banlist", data: legacyBans2013 },
+    { title: "2018 TLO Banlist", data: tloCardBans },
+    { title: "2018 Initial TLR Banlist", data: initialCardBans }
+  ];
+
+  let currentIndex = 0;
+
+  function renderModal(index) {
+    currentIndex = index;
+    const { title, data } = banlistData[index];
+    const otherLists = banlistData.filter((_, i) => i !== index).map(l => l.data);
+
+    modalTitle.textContent = title;
+    modalBody.innerHTML = '';
+
+    data.forEach(card => {
+      const isUnique = !otherLists[0].some(c => c.name === card.name) && 
+                       !otherLists[1].some(c => c.name === card.name);
+      
+      const link = document.createElement('a');
+      link.textContent = card.name;
+      link.setAttribute('data-set', card.set);
+      
+      // Add the class we defined in CSS (much cleaner than inline styles)
+      link.classList.add('modal-item');
+
+      // Scryfall Link
+      const query = `!"${card.name}"${card.set ? ` e:${card.set}` : ''}`;
+      link.href = `https://scryfall.com/search?q=${encodeURIComponent(query)}`;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+
+      // Unique Highlight Logic
+      if (isUnique) {
+        link.style.backgroundColor = "rgba(var(--accent-rgb), 0.15)";
+        link.style.borderLeft = "3px solid var(--accent)";
+        link.style.paddingLeft = "8px";
+      }
+      
+      modalBody.appendChild(link);
+    });
+
+    attachTooltipListeners();
+  }
+
+  // --- Event Listeners ---
+
+  document.querySelectorAll('.view-full-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      renderModal(parseInt(btn.dataset.index));
+      modal.classList.remove('hidden');
+    });
+  });
+
+  const prevBtn = document.getElementById('prev-list');
+  const nextBtn = document.getElementById('next-list');
+
+  if(prevBtn) prevBtn.onclick = () => {
+    currentIndex = (currentIndex - 1 + banlistData.length) % banlistData.length;
+    renderModal(currentIndex);
+  };
+
+  if(nextBtn) nextBtn.onclick = () => {
+    currentIndex = (currentIndex + 1) % banlistData.length;
+    renderModal(currentIndex);
+  };
+
+  if(closeBtn) closeBtn.onclick = () => modal.classList.add('hidden');
+  window.onclick = (e) => { if(e.target == modal) modal.classList.add('hidden'); };
+
+  function attachTooltipListeners() {
+    const cardElements = document.querySelectorAll('.card-grid a, .mini-card-list a, .modal-item');
+    const tooltip = document.getElementById('card-tooltip');
+    const tooltipImg = document.getElementById('tooltip-img');
+
+    if (!tooltip || !tooltipImg) return;
+
+    cardElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        const cardName = el.textContent.trim();
+        const setCode = el.getAttribute('data-set');
+        let imageUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}&format=image&version=normal`;
+        if (setCode) imageUrl += `&set=${setCode}`;
+        tooltipImg.src = imageUrl;
+        tooltip.classList.remove('hidden');
+      });
+
+      el.addEventListener('mousemove', (e) => {
+        const xOffset = 20;
+        const yOffset = 20;
+        if (e.clientX + 260 > window.innerWidth) { 
+           tooltip.style.left = (e.clientX - 260) + 'px';
+        } else {
+           tooltip.style.left = (e.clientX + xOffset) + 'px';
+        }
+        tooltip.style.top = (e.clientY + yOffset) + 'px';
+      });
+
+      el.addEventListener('mouseleave', () => {
+        tooltip.classList.add('hidden');
+        tooltipImg.src = ''; 
+      });
+    });
+  }
+
+  attachTooltipListeners();
+</script>

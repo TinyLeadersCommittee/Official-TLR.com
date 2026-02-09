@@ -1,0 +1,163 @@
+---
+// src/components/docs/DocsSidebar.astro
+
+interface Props {
+  title: string;
+  backLink: string;
+  backLabel: string;
+  navLinks: { title: string; url: string; isActive: boolean }[];
+  // Optional props
+  downloadLink?: string;
+  crossLink?: { title: string; url: string };
+}
+
+const { title, backLink, backLabel, navLinks, downloadLink, crossLink } = Astro.props;
+---
+
+<aside class="docs-sidebar">
+  
+  <div class="sidebar-header">
+    <a href={backLink} class="back-link">&larr; {backLabel}</a>
+    <h3>{title}</h3>
+    
+    {downloadLink && (
+      <a href={downloadLink} download class="pdf-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download PDF
+      </a>
+    )}
+  </div>
+  
+  <nav class="sidebar-nav">
+    <ul>
+      {navLinks.map(link => (
+        <li>
+          <a href={link.url} class={link.isActive ? 'active' : ''}>
+            {link.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  {crossLink && (
+    <div class="sidebar-footer">
+      <span class="footer-label">Also See:</span>
+      <a href={crossLink.url} class="switch-doc-btn">
+        {crossLink.title} &rarr;
+      </a>
+    </div>
+  )}
+
+</aside>
+
+<style>
+  /* =========================================
+     SIDEBAR STYLES (Moved from Page)
+     ========================================= */
+  .docs-sidebar {
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1.5rem;
+    
+    /* Sticky Positioning */
+    position: sticky;
+    top: 2rem;
+    
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Header Group */
+  .sidebar-header h3 {
+    margin: 0.5rem 0 1rem 0;
+    color: var(--heading-color);
+    font-size: 1.2rem;
+  }
+
+  .back-link {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  /* Buttons */
+  .pdf-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--accent);
+    padding: 0.6rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid var(--border-subtle);
+    transition: all 0.2s;
+  }
+  .pdf-btn:hover {
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+
+  /* Navigation List */
+  .sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
+  .sidebar-nav li { margin-bottom: 0.25rem; }
+
+  .sidebar-nav a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-body);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+
+  .sidebar-nav a:hover {
+    background: var(--bg);
+    color: var(--heading-color);
+  }
+
+  .sidebar-nav a.active {
+    background: var(--bg);
+    color: var(--accent);
+    font-weight: bold;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* Footer (Cross-Link) */
+  .sidebar-footer {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1rem;
+  }
+
+  .footer-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+
+  .switch-doc-btn {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-body);
+    font-weight: 600;
+  }
+  .switch-doc-btn:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+</style>

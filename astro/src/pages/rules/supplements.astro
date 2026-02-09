@@ -3,6 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import grayImg from '../../assets/images/committee/consultants/gray.jpg';
 import zimone from '../../assets/images/rules/zimone.jpg';
+
+// Import Content Data
+// CHANGED: We now import 'faqSections' instead of 'faqItems'
+import { officialDocs, philosophyUpdate, faqSections, authorProfile } from '../../data/rules/supplementsData.js';
 ---
 
 <BaseLayout title="Rules Supplements" 
@@ -29,31 +33,19 @@ bgStyle="object-fit: contain; object-position: center;">
       </p>
       
       <div class="doc-list">
-        
-        <div class="doc-row">
+        {officialDocs.map((doc) => (
+          <div class="doc-row">
             <div class="doc-info">
-                <strong>TSMCR</strong> 
-                <span class="doc-desc">(Comprehensive Rules)</span>
+              <strong>{doc.acronym}</strong> 
+              <span class="doc-desc">({doc.title})</span>
             </div>
             <div class="doc-actions">
-                <a href="/rules/tsmcr" class="action-link">View</a>
-                <span class="separator">|</span>
-                <a href="/docs/tsmcr.pdf" target="_blank" class="action-link">Download</a>
+              <a href={doc.viewLink} class="action-link">View</a>
+              <span class="separator">|</span>
+              <a href={doc.downloadLink} target="_blank" class="action-link">Download</a>
             </div>
-        </div>
-
-        <div class="doc-row">
-            <div class="doc-info">
-                <strong>TSMTR</strong> 
-                <span class="doc-desc">(Tournament Rules)</span>
-            </div>
-            <div class="doc-actions">
-                <a href="/rules/tsmtr" class="action-link">View</a>
-                <span class="separator">|</span>
-                <a href="/docs/tsmtr.pdf" target="_blank" class="action-link">Download</a>
-            </div>
-        </div>
-
+          </div>
+        ))}
       </div>
     </section>
 
@@ -61,42 +53,30 @@ bgStyle="object-fit: contain; object-position: center;">
       
       <header class="philo-header-group">
          <h2>The Discrete Philosophy Update</h2>
-         <div class="meta-date">Date: September 24, 2025</div>
+         <div class="meta-date">Date: {philosophyUpdate.date}</div>
       </header>
 
       <div class="philo-content">
-        
-        <div class="philo-block">
-          <h3>The Result</h3>
-          <p>
-            A card is said to have multiple sets of characteristics if it 
-            has more than one of each of the following:
-          </p>
-          <ul class="tech-list">
-            <li>Name</li>
-            <li>Mana Cost</li>
-            <li>Type Line</li>
-            <li>Rules Text</li>
-          </ul>
-          
-          <p class="ruling-text">
-            <strong>In TL:R:</strong> Every set of characteristics on a card must have a mana 
-            value &le; 3. If a card has multiple sets of characteristics that 
-            may be chosen for casting, each set must independently meet this 
-            limit.
-          </p>
-        </div>
+        {philosophyUpdate.blocks.map((block) => (
+          <div class="philo-block">
+            <h3>{block.title}</h3>
+            <p>{block.text}</p>
+            
+            {/* Conditional Render: Bulleted List */}
+            {block.list && (
+              <ul class="tech-list">
+                {block.list.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
 
-        <div class="philo-block">
-          <h3>The Logic</h3>
-          <p>
-            From a design perspective, cards with more than one set of 
-            characteristics are multiple cards sharing one piece of cardboard. 
-            Every card must have a mana value &le; 3 as determined by each 
-            distinct set of characteristics.
-          </p>
-        </div>
-
+            {/* Conditional Render: Ruling Text */}
+            {block.ruling && (
+              <p class="ruling-text" set:html={block.ruling.replace(/\n/g, '<br/>')} />
+            )}
+          </div>
+        ))}
       </div>
     </section>
     
@@ -104,177 +84,24 @@ bgStyle="object-fit: contain; object-position: center;">
 
     <section id="faq">
         <h2>Rules FAQ</h2>
-        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Last updated: September 24, 2025</p>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">Last updated: {philosophyUpdate.date}</p>
   
-        <div class="faq-grid">
-          <details>
-            <summary>How do I know if a meld card is legal?</summary>
-            <div class="faq-answer">
-              <p>
-                We only look at the front face. The back is ignored when 
-                considering Mana Value, Color Identity, or other restrictions.
-              </p>
+        <div class="faq-container">
+          {faqSections.map((section) => (
+            <div class="faq-group">
+              <h3 class="faq-group-title">{section.header}</h3>
+              <div class="faq-grid">
+                {section.items.map((item) => (
+                  <details>
+                    <summary>{item.q}</summary>
+                    <div class="faq-answer">
+                      <p set:html={item.a} />
+                    </div>
+                  </details>
+                ))}
+              </div>
             </div>
-          </details>
-    
-          <details>
-            <summary>How does Partner / Background work?</summary>
-            <div class="faq-answer">
-              <p>
-                As long as both cards meet deckbuilding restrictions, you 
-                can use them. If you play with more than one commander, you 
-                start the game with a forced mulligan.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>Can I change my Commander between games/matches?</summary>
-            <div class="faq-answer">
-              <p>
-                No. Your configuration is locked at the start of the event. 
-                You can swap cards between your 49 and sideboard, but the 
-                Commander(s) never change.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>Can I use cards with X in the casting cost?</summary>
-            <div class="faq-answer">
-              <p>
-                Yes. We look at the mana value with X=0. If the card has 
-                MV 3 or less with X=0, it is legal.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>Can I use Adventure cards?</summary>
-            <div class="faq-answer">
-              <p>
-                <strong>Discrete Philosophy Check:</strong> Every part of the 
-                card must be MV 3 or less. You must check the creature 
-                AND the Adventure spell. If either part is MV 4+, the 
-                entire card is illegal.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>How do I determine Mana Value of MDFCs?</summary>
-            <div class="faq-answer">
-              <p>
-                <strong>Discrete Philosophy Check:</strong> For Modal Double-Faced 
-                Cards, both sides must, independent of the other, meet the MV 3 
-                restriction and the color identity of your Commander(s).
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>How many colors can I play?</summary>
-            <div class="faq-answer">
-              <p>
-                There is no limit aside from your Commander's identity. 
-                If you find a legal 5-color Commander, you can play 5 colors.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>Can I use a Companion?</summary>
-            <div class="faq-answer">
-              <p>
-                Yes. Your companion and your deck/commander(s) must 
-                all meet the Companion's restrictions and the TSMCR.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>Can I use Split Cards (such as Fire//Ice)?</summary>
-            <div class="faq-answer">
-              <p>
-                <strong>Discrete Philosophy Check:</strong> Split cards are 
-                evaluated by checking each half independently. All halves 
-                must have a mana value of 3 or less for the card to be legal.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>How do I determine Color Identity?</summary>
-            <div class="faq-answer">
-              <p>
-                Identity includes all colors in the Mana Cost, Rules Text, 
-                and Color Indicators. For double-faced cards, always 
-                check the back side (except for Meld cards).
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>How do I know if I can use a flip card?</summary>
-            <div class="faq-answer">
-              <p>
-                We only look at the "default" (unflipped) characteristics. 
-                The flipped state is ignored for legality.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>Does having multiple Commanders affect my hand?</summary>
-            <div class="faq-answer">
-              <p>
-                Yes. If you have more than one, you take a forced mulligan 
-                at the start of the game.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>Can I use digital-only or Alchemy cards?</summary>
-            <div class="faq-answer">
-              <p>
-                No. TLR is a paper format. All cards use their Oracle 
-                text found on Gatherer.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>How does the forced mulligan work?</summary>
-            <div class="faq-answer">
-              <p>
-                Draw an opening seven, then put one on the bottom of your 
-                library. This counts as your first mulligan.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>Can I use Serum Powder on the forced mulligan?</summary>
-            <div class="faq-answer">
-              <p>
-                No. Since the first mulligan is forced and involves no 
-                choice, Serum Powder cannot replace it. It can apply 
-                to future mulligans.
-              </p>
-            </div>
-          </details>
-    
-          <details>
-            <summary>How does Urza's Bauble work?</summary>
-            <div class="faq-answer">
-              <p>
-                Looking at a card is a one-sided reveal. Your hand remains 
-                your hand. In a physical game, looking at a card with an 
-                opponent is essentially looking at it together.
-              </p>
-            </div>
-          </details>
+          ))}
         </div>
     </section>
 
@@ -285,12 +112,12 @@ bgStyle="object-fit: contain; object-position: center;">
         
         <div class="author-header-group">
             <div class="author-photo-wrapper">
-                <Image src={grayImg} alt="Gray" width={160} height={160} class="author-photo" />
+                <Image src={grayImg} alt={authorProfile.name} width={160} height={160} class="author-photo" />
             </div>
             
             <div class="author-info-header">
-                <div class="author-name">Gray</div>
-                <div class="author-credentials">Rules Manager • Level 2 Judge</div>
+                <div class="author-name">{authorProfile.name}</div>
+                <div class="author-credentials">{authorProfile.credentials}</div>
 
                 <svg class="scales-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3v18" />
@@ -303,29 +130,9 @@ bgStyle="object-fit: contain; object-position: center;">
         </div>
         
         <div class="author-body-text">
-            <p>
-                <strong>Gray</strong> is a Level 2 Magic Judge and the TLR 
-                Committee’s Rules Manager, responsible for authoring and 
-                maintaining the format’s supplemental rules. His work focuses 
-                on ensuring that Tiny Leaders: Reborn’s rules remain clear, 
-                internally consistent, and aligned with Magic’s comprehensive 
-                rules and policy framework.
-            </p>
-            <p>
-                Gray began judging at the Eldritch Moon prerelease and has since 
-                accumulated years of experience judging play at multiple levels, 
-                along with ongoing judge stewardship and event support. He has 
-                organized Commander Sealed Festivals, contributes to the MSMTR 
-                writer team, and continues to expand his knowledge of both general 
-                and format-specific rules.
-            </p>
-            <p>
-                Motivated by a love for the game, the communities it brings 
-                together, and the opportunities it creates, Gray approaches 
-                rules writing with the goal of supporting shared expectations, 
-                fair play, and a format that functions cleanly for players and 
-                organizers alike.
-            </p>
+            {authorProfile.bio.map((paragraph) => (
+              <p set:html={paragraph} />
+            ))}
         </div>
 
         <div class="author-footer">
@@ -333,7 +140,7 @@ bgStyle="object-fit: contain; object-position: center;">
             <p>
               If you have questions regarding these documents or suggestions 
               for the FAQ, join us on the 
-              <a href="https://discord.gg/tiny-leaders">Official TLR Discord</a>.
+              <a href={authorProfile.discordLink}>Official TLR Discord</a>.
             </p>
             <ul class="contact-list">
               <li>
@@ -341,7 +148,7 @@ bgStyle="object-fit: contain; object-position: center;">
               </li>
               <li>
                 <strong>Policy Concerns:</strong> Message the Rules Manager, 
-                <code class="tag-code">@Gray | Judge Dad | JF L2</code>.
+                <code class="tag-code">@{authorProfile.name} | Judge Dad | JF L2</code>.
               </li>
             </ul>
             <p class="contact-note">
@@ -357,7 +164,7 @@ bgStyle="object-fit: contain; object-position: center;">
 
 <style>
   /* =========================================
-     EXISTING STYLES (Documents, Philo, FAQ)
+     EXISTING STYLES (Preserved)
      ========================================= */
   .documents-section { margin-bottom: 3rem; }
   .documents-section h2 { margin-bottom: 0.5rem; }
@@ -449,7 +256,6 @@ bgStyle="object-fit: contain; object-position: center;">
     opacity: 0.5;
   }
 
-  /* Grid List inside Philosophy */
   .tech-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -480,15 +286,71 @@ bgStyle="object-fit: contain; object-position: center;">
     color: var(--text-body);
   }
 
+  /* NEW: FAQ GROUP STYLES */
+  .faq-group {
+    margin-bottom: 2.5rem;
+  }
+  
+  .faq-group-title {
+    font-size: 1.2rem;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  details {
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, var(--surface), transparent);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  summary {
+    padding: rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-body);
+    transition: background-color 0.2s;
+    list-style: none; /* Hide default arrow in some browsers */
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover {
+    background-color: var(--bg);
+  }
+
+  .faq-answer {
+    padding: 1rem;
+    padding-top: 0.5rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    
+    /* CHANGED: Set answer text to accent color */
+    color: var(--accent); 
+    
+    border-top: 1px solid var(--border-subtle);
+  }
+  
+  /* Optional: If you have <p> tags inside, force them to inherit the color */
+  .faq-answer p {
+    margin: 0;
+    color: inherit; 
+  }
+
   /* =========================================
-     UPDATED: UNIFIED AUTHOR CARD
+     AUTHOR CARD
      ========================================= */
   .author-section { margin-top: 4rem; margin-bottom: 3rem; }
   
   .unified-card {
     max-width: 800px;
     margin: 0 auto;
-    background-color: var(--surface); /* Unified Background */
+    background-color: var(--surface); 
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
     padding: 2.5rem;
@@ -507,7 +369,6 @@ bgStyle="object-fit: contain; object-position: center;">
     display: inline-block;
   }
 
-  /* Header Group (Preserved Layout) */
   .author-header-group {
     display: flex;
     flex-direction: row;
@@ -524,7 +385,7 @@ bgStyle="object-fit: contain; object-position: center;">
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     padding: 3px;
-    background: var(--bg); /* Slight contrast against surface */
+    background: var(--bg);
     flex-shrink: 0;
   }
   
@@ -591,19 +452,17 @@ bgStyle="object-fit: contain; object-position: center;">
   }
   .author-body-text p { margin-bottom: 0.75rem; }
 
-  /* NEW AUTHOR FOOTER (Integrated Contact) */
   .author-footer {
     margin-top: 2.5rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--border-subtle); /* Divider */
-    /* Pull content to edges to span padding */
+    border-top: 1px solid var(--border-subtle); 
     margin-left: -2.5rem; 
     margin-right: -2.5rem;
     margin-bottom: -2.5rem;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     padding-bottom: 2.5rem;
-    background: rgba(var(--accent-rgb), 0.03); /* Subtle tint */
+    background: rgba(var(--accent-rgb), 0.03); 
     border-radius: 0 0 8px 8px;
   }
 
@@ -660,7 +519,6 @@ bgStyle="object-fit: contain; object-position: center;">
     .scales-icon { display: none; }
     .unified-card { padding: 1.5rem; }
     
-    /* Reset footer negative margins on mobile if needed */
     .author-footer {
         margin-left: -1.5rem;
         margin-right: -1.5rem;

@@ -1,0 +1,248 @@
+---
+// src/components/design/LineageComparison.astro
+
+// 1. Data Imports
+import { legacyBans2013 } from '../../data/design/legacy2013Banlist.js';
+import { tloCardBans, tloCommanderBans } from '../../data/design/tlo2018Banlist.js';
+import { initialCardBans, initialCommanderBans } from '../../data/design/tlr2018Banlist.js';
+
+// 2. Helper Logic
+const isUniqueInitial = (cardName, listA, listB) => {
+  return !listA.some(c => c.name === cardName) && !listB.some(c => c.name === cardName);
+};
+
+// 3. Helper: Generate Scryfall URL
+const getScryfallUrl = (name, set) => {
+  const query = `!"${name}"${set ? ` e:${set}` : ''}`;
+  return `https://scryfall.com/search?q=${encodeURIComponent(query)}`;
+};
+---
+
+<h4 class="lineage-label">The Banned List DNA (Entire Deck)</h4>
+<div class="lineage-comparison">
+  
+  <div class="lineage-col">
+    <header><strong>2013 Legacy</strong><span>Foundation</span></header>
+    <div class="mini-card-list">
+      {legacyBans2013.slice(0, 8).map(card => (
+        <a 
+          href={getScryfallUrl(card.name, card.set)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-set={card.set} 
+          class={isUniqueInitial(card.name, tloCardBans, initialCardBans) ? 'unique-highlight' : ''}
+        >
+          {card.name}
+        </a>
+      ))}
+      <button class="view-full-btn" data-index="0">View Full List</button>
+    </div>
+  </div>
+
+  <div class="lineage-arrow">→</div>
+
+  <div class="lineage-col">
+    <header><strong>2018 TLO</strong><span>Adaptation</span></header>
+    <div class="mini-card-list">
+      {tloCardBans.slice(0, 8).map(card => (
+        <a 
+          href={getScryfallUrl(card.name, card.set)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-set={card.set}
+          class={isUniqueInitial(card.name, legacyBans2013, initialCardBans) ? 'unique-highlight' : ''}
+        >
+          {card.name}
+        </a>
+      ))}
+      <button class="view-full-btn" data-index="1">View Full List</button>
+    </div>
+  </div>
+
+  <div class="lineage-arrow">→</div>
+
+  <div class="lineage-col highlighted">
+    <header><strong>2018 TLR</strong><span>Divergence</span></header>
+    <div class="mini-card-list">
+      {initialCardBans.slice(0, 8).map(card => (
+        <a 
+          href={getScryfallUrl(card.name, card.set)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-set={card.set}
+          class={isUniqueInitial(card.name, legacyBans2013, tloCardBans) ? 'unique-highlight' : ''}
+        >
+          {card.name}
+        </a>
+      ))}
+      <button class="view-full-btn" data-index="2">View Full List</button>
+    </div>
+  </div>
+</div>
+
+<h4 class="lineage-label">The Banned as Tiny Leader DNA (Command Zone Only)</h4>
+<div class="lineage-comparison mini">
+  <div class="lineage-col">
+    <header><strong>2018 TLO Leaders</strong></header>
+    <div class="mini-card-list">
+      {tloCommanderBans.map(card => (
+        <a 
+          href={getScryfallUrl(card.name, card.set)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-set={card.set}
+        >
+          {card.name}
+        </a>
+      ))}
+    </div>
+  </div>
+  <div class="lineage-arrow">≈</div>
+  <div class="lineage-col highlighted">
+    <header><strong>2018 TLR Leaders</strong></header>
+    <div class="mini-card-list">
+      {initialCommanderBans.map(card => (
+        <a 
+          href={getScryfallUrl(card.name, card.set)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-set={card.set}
+        >
+          {card.name}
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* =========================================
+     1. LAYOUT CONTAINERS
+     ========================================= */
+  .lineage-comparison {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin: 1rem 0 2rem 0;
+  }
+
+  .lineage-comparison.mini {
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .lineage-label {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  /* =========================================
+     2. COLUMN STYLES
+     ========================================= */
+  .lineage-col {
+    flex: 1;
+    background: rgba(var(--accent-rgb), 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lineage-col.highlighted {
+    border-color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.08);
+  }
+
+  .lineage-col header strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--heading-color);
+  }
+
+  .lineage-col header span {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* =========================================
+     3. CARD LIST STYLES
+     ========================================= */
+  .mini-card-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  /* UPDATED: We explicitly force the Color and Font here 
+     so it ignores default <a> tag styles (blue/underline).
+  */
+  .mini-card-list a {
+    display: block;
+    text-decoration: none;
+    font-family: "Goudy Old Style", serif; /* Restored Font */
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px 0;
+    
+    /* VISUAL RESTORATION */
+    color: var(--heading-color); /* Restored Dark Color */
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .mini-card-list a:hover {
+    color: var(--accent);
+  }
+
+  .unique-highlight {
+    background-color: rgba(var(--accent-rgb), 0.15);
+    border-left: 2px solid var(--accent);
+    padding-left: 6px !important;
+    font-style: italic;
+  }
+
+  /* =========================================
+     4. UTILITIES & INTERACTION
+     ========================================= */
+  .lineage-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+    font-weight: bold;
+    font-family: serif;
+    font-size: 1.5rem;
+  }
+
+  .view-full-btn {
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .view-full-btn:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  @media (max-width: 900px) {
+    .lineage-comparison { flex-direction: column; }
+    .lineage-arrow { transform: rotate(90deg); justify-content: center; }
+  }
+</style>

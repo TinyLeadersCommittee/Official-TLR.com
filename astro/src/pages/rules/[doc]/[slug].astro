@@ -1,0 +1,159 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import DocsSidebar from '../../../components/docs/DocsSidebar.astro'; // <--- NEW IMPORT
+import tamiyo from '../../../assets/images/rules/tamiyoMeetsTheStoryCircle.jpg';
+
+// Import metadata to get PDF links and Cross-links automatically
+import { officialDocs } from '../../../data/rules/supplementsData.js';
+
+export async function getStaticPaths() {
+  const allRules = await getCollection('rules');
+  return allRules.map(entry => {
+    const [doc, slug] = entry.slug.split('/');
+    return {
+      params: { doc, slug },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// 1. Prepare Navigation Data
+const allRules = await getCollection('rules');
+const navLinks = allRules
+  .filter(r => r.data.docId === entry.data.docId)
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(link => {
+    // We map the raw collection data into a clean object for the component
+    const [d, s] = link.slug.split('/');
+    return {
+      title: link.data.title,
+      url: `/rules/${d}/${s}`,
+      isActive: link.slug === entry.slug
+    };
+  });
+
+// 2. Prepare Metadata
+const currentDocMeta = officialDocs.find(d => d.acronym.toLowerCase() === entry.data.docId);
+const otherDocMeta = officialDocs.find(d => d.acronym.toLowerCase() !== entry.data.docId);
+---
+
+<BaseLayout 
+  title={`${entry.data.docTitle} - ${entry.data.title}`} 
+  bgImage={tamiyo} 
+  bgBlur={true}
+  bgStyle="object-fit: contain; object-position: 25% center;">
+
+  <div class="docs-layout">
+    
+    <DocsSidebar 
+      title={entry.data.docTitle}
+      backLink="/rules/supplements"
+      backLabel="Back to Supplements"
+      navLinks={navLinks}
+      downloadLink={currentDocMeta?.downloadLink}
+      crossLink={otherDocMeta ? { 
+        title: otherDocMeta.title, 
+        url: otherDocMeta.viewLink 
+      } : undefined}
+    />
+
+    <article class="prose-block docs-content">
+      <header class="section-header">
+        <span class="meta-badge">{entry.data.docId.toUpperCase()}</span>
+        <h1>{entry.data.title}</h1>
+        {entry.data.lastUpdated && (
+           <p class="last-updated">Last Updated: {entry.data.lastUpdated}</p>
+        )}
+      </header>
+      
+      <div class="content-body">
+        <Content />
+      </div>
+    </article>
+
+  </div>
+</BaseLayout>
+
+<style>
+  /* =========================================
+     PAGE LAYOUT ONLY
+     (Sidebar styles moved to component)
+     ========================================= */
+  .docs-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 900px) {
+    .docs-layout {
+      grid-template-columns: 280px 1fr; /* Fixed Sidebar | Fluid Content */
+      align-items: start;
+    }
+  }
+
+  /* =========================================
+     CONTENT AREA STYLES
+     ========================================= */
+  .docs-content {
+    margin: 0; 
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Header */
+  .section-header {
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h1 { 
+    margin-top: 0.5rem; 
+    margin-bottom: 0; 
+  }
+
+  .meta-badge {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .last-updated {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  /* Content Body */
+  .content-body h2 { 
+    color: var(--heading-color); 
+    margin-top: 2.5rem; 
+    border-bottom: 1px solid var(--border-subtle); 
+    padding-bottom: 0.5rem;
+  }
+
+  .content-body strong { 
+    color: var(--heading-color); 
+  }
+
+  .content-body blockquote { 
+    border-left: 4px solid var(--accent);
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--surface); 
+    font-style: italic;
+    color: var(--text-muted);
+  }
+</style>

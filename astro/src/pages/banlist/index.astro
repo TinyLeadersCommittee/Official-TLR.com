@@ -2,9 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
 
-// Import the data lists from your data file
+// Import Data
 import { watchlist, categoryBans, commanderBans, cardBans } from '../../data/banlist/banlist.js';
-import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
+import { latestAnnouncement } from '../../data/banlist/latestUpdate.js';
+
+// Import Icon Helper
+import { getIcon } from '../../data/cardIcons.js';
 ---
 
 <BaseLayout title="Banlist & Watchlist" bgImage={judgement}>
@@ -12,19 +15,13 @@ import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
   <article class="prose-block">
     
     <header class="page-header" style="text-align: left; margin-left: 0; max-width: 100%;">
-      <h1>Banlist & Watchlist</h1>
+      <h1>Banned & Watch Lists</h1>
       <p class="lead">
         The Tiny Leaders: Reborn ban list is divided into two 
         categories: cards banned in the 50-card deck and cards 
         banned <strong>only as a Tiny Leader (commander)</strong>.
       </p>
     </header>
-
-    <!-- <nav class="jump-nav">
-        <a href="#announcement">Latest Updates</a>
-        <a href="#watchlist">Watchlist</a>
-        <a href="#banned-main">Full Banlist</a>
-    </nav> -->
 
     <section id="methodology">
       <p>
@@ -35,12 +32,14 @@ import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
     </section>
 
     <section id="announcement" class="callout-box" style="margin: 2rem 0;">
-      <h2 style="margin-top: 0; font-size: 1.5rem;">
-        Latest Update: {latestAnnouncement.date}
-      </h2>
-      <p style="color: var(--text-muted); margin-bottom: 1rem;">
-        <em>{latestAnnouncement.title}</em>
-      </p>
+      <header class="announcement-header">
+          <h2 style="margin-top: 0; font-size: 1.5rem;">
+            Latest Update: {latestAnnouncement.date}
+          </h2>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">
+            <em>{latestAnnouncement.title}</em>
+          </p>
+      </header>
       
       <ul>
         {latestAnnouncement.changes.map((change) => (
@@ -58,16 +57,21 @@ import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
 
     <hr class="divider" />
 
-    <section id="watchlist">
+    <section id="watchlist" class="searchable-section">
       <h2>Watchlist</h2>
-      <p>
-        Cards on the watchlist are under close observation due to 
-        potential concerns regarding their impact on the format. 
-        These are subject to future changes.
-      </p>
       <ul class="card-list">
          {watchlist.map((card) => (
-           <li class="card-trigger" data-set={card.set}>{card.name}</li>
+           <li 
+             class="card-trigger icon-item" 
+             data-set={card.set}
+             data-date={card.date}
+             data-reason={card.reason} 
+             data-announcement={card.announcement}
+             data-status="watchlist" 
+           >
+             <span class="card-icon" set:html={getIcon(card.type)} /> 
+             <span class="card-name">{card.name}</span>
+           </li>
          ))}
       </ul>
     </section>
@@ -96,30 +100,57 @@ import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
         <input 
             type="text" 
             id="ban-search" 
-            placeholder="Search for a card..." 
+            placeholder="Search the TLR Banned List..." 
             class="search-input"
         />
+      </div>
+
+      <div id="no-results-msg" style="display: none; text-align: center; margin-top: 2rem; color: var(--text-muted);">
+        <p>No cards found matching your search.</p>
       </div>
       
       <div class="ban-category searchable-section">
         <h3>1. Categorically Excluded Cards</h3>
         <p>The following cards are banned from the 50-card deck (and command zone). Click a category to view the cards on Scryfall.</p>
+        
         <ul class="category-list">
           {categoryBans.map((category) => (
             <li>
-              <a 
-                href={`https://scryfall.com/search?q=${encodeURIComponent(category.query)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="category-link"
-              >
-                {category.label}
-                <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
+              {category.parts ? (
+                /* OPTION A: Multi-link Line */
+                <span class="complex-line">
+                  {category.parts.map((part) => (
+                    part.query ? (
+                      <a 
+                        href={`https://scryfall.com/search?q=${encodeURIComponent(part.query)}`}
+                        target="_blank" rel="noopener noreferrer" class="category-link"
+                      >
+                        {part.label}
+                        <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </a>
+                    ) : (
+                      <span>{part.label}</span>
+                    )
+                  ))}
+                </span>
+              ) : (
+                /* OPTION B: Single Link */
+                <a 
+                  href={`https://scryfall.com/search?q=${encodeURIComponent(category.query)}`}
+                  target="_blank" rel="noopener noreferrer" class="category-link"
+                >
+                  {category.label}
+                  <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -130,17 +161,35 @@ import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
         <p>These cards <strong>can</strong> be played in your 49-card deck, but <strong>cannot</strong> be your Commander.</p>
         <ul class="card-list multi-column">
           {commanderBans.map((card) => (
-            <li class="card-trigger" data-set={card.set}>{card.name}</li>
+            <li 
+              class="card-trigger icon-item" 
+              data-set={card.set}
+              data-date={card.date}
+              data-reason={card.reason} 
+              data-announcement={card.announcement}
+            >
+              <span class="card-icon" set:html={getIcon(card.type)} />
+              <span class="card-name">{card.name}</span>
+            </li>
           ))}
         </ul>
       </div>
 
       <div class="ban-category searchable-section">
-        <h3>3. Individual Card Bans</h3>
-        <p>Banned in both the Deck and Command Zone.</p>
+        <h3>3. Banned from Deck Construction</h3>
+        <p>Banned in the Command Zone, Deck, & Sideboard.</p>
         <ul class="card-list multi-column">
           {cardBans.map((card) => (
-            <li class="card-trigger" data-set={card.set}>{card.name}</li>
+            <li 
+              class="card-trigger icon-item" 
+              data-set={card.set}
+              data-date={card.date}
+              data-reason={card.reason} 
+              data-announcement={card.announcement}
+            >
+              <span class="card-icon" set:html={getIcon(card.type)} />
+              <span class="card-name">{card.name}</span>
+            </li>
           ))}
         </ul>
       </div>
@@ -150,15 +199,14 @@ import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
 </BaseLayout>
 
 <script>
-  // Import functions
   import { initCardPreview } from '../../scripts/cardPreview.js';
   import { initListSearch } from '../../scripts/listSearch.js';
 
-  // 1. Initialize Systems
+  // Initialize Logic
   initCardPreview();
   initListSearch('ban-search', 'searchable-section');
 
-  // 2. Ensure all card lists have the trigger class
+  // Redundancy Check: Ensure the triggers are set
   const cardListItems = document.querySelectorAll('.card-list li');
   cardListItems.forEach(li => {
     li.classList.add('card-trigger');
@@ -167,157 +215,171 @@ import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
 
 <style is:global>
   /* =========================================
-     MODAL STYLES (REQUIRED FOR POPUP)
+     1. CARD ICONS (The SVG/Mask System)
      ========================================= */
-  .card-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
+  ul.card-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .icon-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+  }
+  
+  .icon-item:hover {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+  
+  .card-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s;
+    width: 20px; 
+    height: 20px;
+    flex-shrink: 0; 
   }
 
-  .card-modal.active {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .card-modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+  /* This class is injected by your getIcon() helper. 
+     It uses the image as a mask to apply the accent color.
+     NOTE: This requires transparency in the source image! */
+  .type-symbol {
+    display: block;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(5px);
+    background-color: var(--accent);
+    
+    /* Standard & Webkit Masks for Cross-Browser Support */
+    -webkit-mask: var(--icon-url) no-repeat center / contain;
+    mask: var(--icon-url) no-repeat center / contain;
+    
+    transition: background-color 0.2s;
   }
 
-  .card-modal-content {
-    position: relative;
-    z-index: 10001;
-    max-width: 90vw;
-    max-height: 90vh;
+  /* Make the icon pop (brighten) on hover */
+  .icon-item:hover .type-symbol {
+    filter: brightness(1.3); 
   }
 
-  #card-modal-img {
-    max-height: 85vh;
-    max-width: 100%;
-    border-radius: 14px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    display: none;
-  }
-
-  .card-loader {
-    color: #fff;
-    font-family: monospace;
-    font-size: 1.2rem;
-  }
-
-  .card-modal-caption {
-    text-align: center;
-    color: white;
-    margin-top: 15px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-  }
-
-  /* Close Button */
-  .card-modal-close {
-    position: absolute;
-    top: -40px;
-    right: -10px;
-    background: none;
-    border: none;
-    color: rgba(255,255,255,0.7);
-    font-size: 2.5rem;
-    cursor: pointer;
-    z-index: 10011;
-    line-height: 1;
-    transition: color 0.2s;
-  }
-  .card-modal-close:hover {
-    color: #fff;
-    transform: scale(1.1);
-  }
-
-  /* Navigation Arrows - FIXED positioning on screen edges */
-  .modal-nav {
-    position: fixed; 
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10010;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 2rem;
-    line-height: 1;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    padding: 0 0 4px 0;
-  }
-
-  .modal-nav:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 0 15px rgba(255,255,255,0.3);
-  }
-
-  .nav-prev { left: 2rem; }
-  .nav-next { right: 2rem; }
-
-  /* Mobile Adjustments for Arrows */
-  @media (max-width: 768px) {
-    .nav-prev { left: 10px; width: 45px; height: 45px; font-size: 1.5rem; }
-    .nav-next { right: 10px; width: 45px; height: 45px; font-size: 1.5rem; }
-  }
 
   /* =========================================
-     PAGE SPECIFIC STYLES
+     2. STATUS BADGES (Watchlist, etc.)
      ========================================= */
+  .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      width: 100%;
+  }
 
-  /* Jump Links */
-  .jump-nav {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
+  .watchlist-badge {
+      background-color: rgba(255, 193, 7, 0.2); /* Semi-transparent yellow */
+      color: #ffc107; /* Bright Yellow text */
+      border: 1px solid rgba(255, 193, 7, 0.4);
+  }
+
+
+  /* =========================================
+     3. LAYOUT & CATEGORIES
+     ========================================= */
+  .ban-category { margin-top: 4rem; }
+
+  .ban-category h3 {
+    margin-bottom: 1rem;
+    color: var(--heading-color);
     border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
   }
 
-  .jump-nav a {
+  .multi-column {
+    column-count: 1;
+    column-gap: 3rem; 
+  }
+  
+  @media (min-width: 600px) { .multi-column { column-count: 2; } }
+  @media (min-width: 900px) { .multi-column { column-count: 3; } }
+
+
+  /* =========================================
+     4. EXTERNAL LINKS (Scryfall, Moxfield)
+     ========================================= */
+  .category-link {
     text-decoration: none;
+    color: var(--text-body);
+    border-bottom: 1px dotted var(--text-muted);
+    transition: color 0.2s, border-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .category-link:hover {
     color: var(--accent);
-    font-weight: bold;
-    font-size: 0.9rem;
-    background: var(--surface);
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    border: 1px solid var(--border-subtle);
-    transition: all 0.2s;
+    border-bottom: 1px solid var(--accent);
   }
 
-  .jump-nav a:hover {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
+  .external-icon {
+    width: 0.9em;
+    height: 0.9em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  
+  .category-link:hover .external-icon { opacity: 1; }
+
+  /* Moxfield Container */
+  .visual-list-container {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 
-  /* Search Bar */
+  .visual-list-label {
+    font-weight: 700;
+    color: var(--heading-color);
+    font-size: 1.05rem;
+  }
+
+  .moxfield-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #312D4B;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(49, 45, 75, 0.25);
+  }
+
+  .moxfield-btn:hover {
+    background-color: #433e63;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(49, 45, 75, 0.35);
+  }
+
+  .moxfield-img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+
+
+  /* =========================================
+     5. SEARCH BAR
+     ========================================= */
   .search-wrapper {
     position: relative;
     width: 100%;
@@ -360,93 +422,213 @@ import {latestAnnouncement} from '../../data/banlist/latestUpdate.js';
     opacity: 0.7;
   }
 
-  /* Moxfield Branding */
-  .visual-list-container {
-    margin-bottom: 3rem;
+
+  /* =========================================
+     6. UTILITIES (Jump Nav)
+     ========================================= */
+  .jump-nav {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-
-  .visual-list-label {
-    font-weight: 700;
-    color: var(--heading-color);
-    font-size: 1.05rem;
-  }
-
-  .moxfield-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #312D4B;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 10px rgba(49, 45, 75, 0.25);
-  }
-
-  .moxfield-btn:hover {
-    background-color: #433e63;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(49, 45, 75, 0.35);
-  }
-
-  .moxfield-img {
-    height: 32px;
-    width: auto;
-    display: block;
-  }
-
-  /* Ban Categories */
-  .ban-category { margin-top: 4rem; }
-
-  .ban-category h3 {
-    margin-bottom: 1rem;
-    color: var(--heading-color);
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
     border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
   }
 
-  /* Category Links */
-  .category-link {
+  .jump-nav a {
     text-decoration: none;
-    color: var(--text-body);
-    border-bottom: 1px dotted var(--text-muted);
-    transition: color 0.2s, border-color 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-  }
-
-  .category-link:hover {
     color: var(--accent);
-    border-bottom: 1px solid var(--accent);
+    font-weight: bold;
+    font-size: 0.9rem;
+    background: var(--surface);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+    transition: all 0.2s;
   }
 
-  .external-icon {
-    width: 0.9em;
-    height: 0.9em;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+  .jump-nav a:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
   }
-  
-  .category-link:hover .external-icon {
+
+
+  /* =========================================
+     7. MODAL STYLES (Popup & Content)
+     ========================================= */
+  .card-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s;
+  }
+
+  .card-modal.active {
     opacity: 1;
+    visibility: visible;
   }
 
-  /* Multi-Column Lists */
-  .multi-column {
-    column-count: 1;
-    column-gap: 3rem; 
+  .card-modal-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+  }
+
+  /* Force transparency so we don't see white box corners behind the card */
+  .card-modal-content, 
+  .modal-body {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .card-modal-content {
+    position: relative;
+    z-index: 10001;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  /* The actual Card Image */
+  #card-modal-img {
+    max-height: 85vh;
+    max-width: 100%;
+    /* Smooth rounded corners for the card */
+    border-radius: 18px; 
+    background-color: transparent; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    display: block; 
+  }
+
+  /* --- Modal Details (Text/Date/Link) --- */
+  .has-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+    max-width: 500px;
+  }
+
+  .has-details #card-modal-img {
+    max-height: 60vh; /* Smaller image when text is present */
+    margin: 0 auto;
   }
   
-  @media (min-width: 600px) {
-    .multi-column { column-count: 2; }
+  .card-details {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .details-title {
+    color: var(--accent);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
   
-  @media (min-width: 900px) {
-    .multi-column { column-count: 3; }
+  .details-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .details-text {
+    color: #eee;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .initial-ban-text {
+    font-size: 0.9rem;
+    color: #aaa;
+    font-style: italic;
+    display: block;
+    margin-top: 1rem;
+  }
+  
+  .details-link {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  
+  .details-link:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+  }
+
+  /* Modal Loader & Controls */
+  .card-loader {
+    color: #fff;
+    font-family: monospace;
+    font-size: 1.2rem;
+  }
+
+  .card-modal-close {
+    position: absolute;
+    top: -40px; right: -10px;
+    background: none; border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10011;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .card-modal-close:hover {
+    color: #fff;
+    transform: scale(1.1);
+  }
+
+  /* Navigation Arrows */
+  .modal-nav {
+    position: fixed; 
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10010;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center; justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0 0 4px 0;
+  }
+
+  .modal-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+
+  .nav-prev { left: 2rem; }
+  .nav-next { right: 2rem; }
+
+  @media (max-width: 768px) {
+    .nav-prev { left: 10px; width: 45px; height: 45px; font-size: 1.5rem; }
+    .nav-next { right: 10px; width: 45px; height: 45px; font-size: 1.5rem; }
   }
 </style>
