@@ -1,0 +1,57 @@
+---
+// Takes an array of card data as its "constructor argument"
+const { cards } = Astro.props;
+---
+
+<ul class="card-gallery-grid">
+  {cards.map(card => {
+    // Safely extract the image URI just like we did in the text list
+    const imgUri = card.image_uris?.normal || card.card_faces?.[0]?.image_uris?.normal || '';
+    
+    return (
+      <li class="gallery-item">
+        {/* We add 'card-trigger' here so your existing JS instantly recognizes it! */}
+        <img 
+          src={imgUri} 
+          alt={card.name} 
+          title={card.name}
+          loading="lazy" 
+          class="gallery-img card-trigger" 
+          data-image={imgUri} 
+        />
+      </li>
+    )
+  })}
+</ul>
+
+<style>
+  /* Encapsulated styles that only affect this specific gallery */
+  .card-gallery-grid {
+    display: grid;
+    /* Automatically creates as many 140px columns as will fit, then wraps */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Strips the default bullet points */
+  }
+
+  .gallery-item {
+    display: flex;
+    justify-content: center;
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: auto;
+    border-radius: 4.75% / 3.5%; /* The mathematical corner radius of an MTG card */
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .gallery-img:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+  }
+</style>

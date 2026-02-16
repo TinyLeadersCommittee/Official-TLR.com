@@ -1,18 +1,15 @@
 ---
+// 1. Layout & Assets
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import battle from '../../assets/images/community/battleStrain.jpg';
-import { Image } from 'astro:assets';
+import join from '../../assets/images/community/kellanJoinsUp.jpg';
 
-// THE DATA ZONE: Update your schedule here!
-const schedule = [
-  { date: "Jan 5 - Jan 25", event: "Tiny Titans '25/'26 Championship", type: "championship" },
-  { date: "Jan 26 - Feb 22", event: "February Monthly", type: "qualifier" },
-  { date: "Mar 2 - Mar 29", event: "March Monthly", type: "qualifier" },
-  { date: "Apr 6 - May 3", event: "April Monthly", type: "qualifier" },
-  { date: "May 15 - Jun 28", event: "Spring SCT", type: "major" }, // Major event
-  { date: "May 18 - Jun 21", event: "Spring Monthly", type: "standard" },
-  // ... add the rest of your dates here
-];
+// 2. Data Imports
+import { 
+  leagueSchedule, 
+  leagueRules, 
+  seasonalEvents 
+} from '../../data/community/littleLeagueData.js';
 ---
 
 <BaseLayout title="Official Little League" 
@@ -20,7 +17,7 @@ bgImage={battle}
 bgBlur={true}
 bgStyle="object-fit: contain; object-position: center;">
   
-  <header class="league-hero">
+  <header class="page-header">
     <h1>The Official TLR Little League</h1>
     <p>
       Whether you're a seasoned vet or new to the format, the Little League is 
@@ -32,7 +29,7 @@ bgStyle="object-fit: contain; object-position: center;">
     </p>
   </header>
 
-  <section class="philosophy-block">
+  <section class="callout-box">
     <blockquote>
       "The monthly leagues are there to offer everyone a place to play 
       <strong>organized</strong>, <strong>accessible</strong>, 
@@ -47,128 +44,96 @@ bgStyle="object-fit: contain; object-position: center;">
   <hr />
 
   <section id="monthlies">
-    <h2>The Core Events: Monthly Swiss</h2>
-    <p>
-      Your regular dose of Tiny Leaders. Every month, the Committee hosts 
-      a flexible, community-friendly tournament.
-    </p>
+    <div class="prose-block" style="text-align: center; margin-bottom: 2rem;">
+        <h2>The Core Events: Monthly Swiss</h2>
+        <p>
+          Your regular dose of Tiny Leaders. Every month, the Committee hosts 
+          a flexible, community-friendly tournament.
+        </p>
+    </div>
 
     <div class="rules-grid">
-      <article class="rule-card">
-        <div class="icon-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-            <path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3z"/>
-          </svg>
-        </div>
-        <h3>The Format</h3>
-        <p>
-          <strong>Swiss Pairings.</strong> <br>
-          Typically 4 rounds. You have one full week per round to 
-          schedule and play your match.
-        </p>
-      </article>
-
-      <article class="rule-card">
-        <div class="icon-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-            <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v2h12v-2l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
-          </svg>
-        </div>
-        <h3>The Platform</h3>
-        <p>
-          Registration and brackets run on <strong>Challonge</strong>. 
-          Match communication happens in our <strong>Discord</strong>.
-          Games typically take place via <strong>Cockatrice</strong>.
-        </p>
-      </article>
-
-      <article class="rule-card">
-        <div class="icon-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-            <path d="M9.68 13.69L12 11.93l2.31 1.76-.88-2.85L15.75 9h-2.84L12 6.19 11.09 9H8.25l2.31 1.84-.88 2.85zM20 10c0-4.42-3.58-8-8-8s-8 3.58-8 8c0 2.03.76 3.87 2 5.28V23l6-2 6 2v-7.72c1.24-1.41 2-3.25 2-5.28zm-8-6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6z"/>
-          </svg>
-        </div>
-        <h3>The Stakes</h3>
-        <p>
-          <strong>Mainly, bragging rights and a sense of accomplishment.</strong><br>
-          But also, prizes for Top Scoring Tournament Supporters. And, a chance to 
-          qualifify for the SCT.
-        </p>
-      </article>
-
-      <article class="rule-card">
-        <div class="icon-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-            <path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 2l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/>
-          </svg>
-        </div>
-        <h3>The Goal</h3>
-        <p>
-          <strong>Have Fun. Meet cool people.</strong><br>
-          And possibly, qualify for the Tiny Titans Top 8 Championship.
-        </p>
-      </article>
+      {leagueRules.map((rule) => (
+        <article class="media-card">
+          <div 
+            class="media-card-img" 
+            style={`
+                background-image: url('${rule.image.src}'); 
+                background-position: ${rule.position || 'center'}; 
+                height: 160px;
+            `}
+          ></div>
+          
+          <div class="media-card-body text-center">
+            <div class="icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                <path d={rule.iconPath}/>
+              </svg>
+            </div>
+            <h3>{rule.title}</h3>
+            <p set:html={rule.text} />
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 
   <section id="seasons">
-    <h2>The Road to Glory: Seasonal Play</h2>
-    <p>
-      Although we play <i>almost</i> every month, the year is divided into two major 
-      competitive seasons: <strong>Spring</strong> and <strong>Fall</strong>.
-    </p>
+    <div class="prose-block" style="text-align: center; margin-top: 3rem;">
+        <h2>The Road to Glory: Seasonal Play</h2>
+        <p>
+          Although we play <i>almost</i> every month, the year is divided into two major 
+          competitive seasons: <strong>Spring</strong> and <strong>Fall</strong>.
+        </p>
+    </div>
     
     <div class="events-container">
-        <article class="major-event sct-card">
-            <header>
-                <h3>The Second Chances Tournament (SCT)</h3>
-                <span class="event-meta">Double Elimination | End of Season</span>
-            </header>
-            <p>
-                Held bianually, a double-elim bracket where every win counts, 
-                but everyone gets a second chance.
-            </p>
-            <ul class="specs-list">
-                <li><strong>Qualification:</strong> Place in the Top 14 at the end of the current season</li>
-                <li><strong>Cost:</strong> Free for qualified players</li>
-                <li><strong>Prizes:</strong> Awards for Top 3 finishers and the Top 4 qualify for Tiny Titans</li>
-            </ul>
+      {seasonalEvents.map((event) => (
+        <article class={`media-card ${event.cssClass}`}>
             
-            <div class="alert-box warning">
-                <div class="alert-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                        <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
-                    </svg>
-                </div>
-                <p>
-                    <strong>Important:</strong> If you qualify for Tiny Titans in the 
-                    Spring, you cannot play in the Fall SCT. We save those seats for 
-                    new challengers!
-                </p>
+            <div 
+                class="media-card-img" 
+                style={`
+                    background-image: url('${event.image.src}');
+                    background-position: ${event.position || 'center'};
+                    height: 300px;
+                `}
+            ></div>
+
+            <div class="media-card-body">
+                <header>
+                    <h3>{event.title}</h3>
+                    <span class="event-meta">{event.meta}</span>
+                </header>
+                <p set:html={event.description} />
+                
+                <ul class="specs-list">
+                    {event.specs.map((spec) => (
+                        <li set:html={spec} />
+                    ))}
+                </ul>
+                
+                {/* Conditional Rendering: Warning Box */}
+                {event.warning && (
+                    <div class="alert-box warning">
+                        <div class="alert-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                <path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                            </svg>
+                        </div>
+                        <p set:html={event.warning} />
+                    </div>
+                )}
             </div>
         </article>
-
-        <article class="major-event championship-card">
-            <header>
-                <h3>Tiny Titans Top 8 Championship</h3>
-                <span class="event-meta">Single Elimination | January</span>
-            </header>
-            <p>
-                <strong>The Pinnacle.</strong> An annual event where the best 
-                of the best face off in January to kick off the new year.
-            </p>
-            <ul class="specs-list">
-                <li><strong>Qualification:</strong> Top 4 Spring SCT + Top 4 Fall SCT</li>
-                <li><strong>The Prize:</strong> Cash prizes and the title of <strong>Mightiest Tiniest Leader</strong>.</li>
-            </ul>
-        </article>
+      ))}
     </div>
   </section>
 
   <hr />
 
   <section id="schedule">
-    <h2>2026 Tentative Schedule</h2>
+    <h2 style="text-align: center;">2026 Tentative Schedule</h2>
     
     <div class="schedule-grid">
       <div class="schedule-header">
@@ -177,7 +142,7 @@ bgStyle="object-fit: contain; object-position: center;">
         <span>Type</span> 
       </div>
       
-      {schedule.map((item) => (
+      {leagueSchedule.map((item) => (
         <div class={`schedule-row ${item.type}`}>
           <div class="date-col">{item.date}</div>
           <div class="event-col">
@@ -188,7 +153,8 @@ bgStyle="object-fit: contain; object-position: center;">
             )}
           </div>
           <div class="type-col">
-            {item.type.replace("-", " ")} </div>
+            {item.type.replace("-", " ")} 
+          </div>
         </div>
       ))}
     </div>
@@ -196,73 +162,40 @@ bgStyle="object-fit: contain; object-position: center;">
 
   <hr />
 
-  <aside id="resources" class="join-cta">
-    <h3>Ready to Join?</h3>
-    <p>
-      Visit the <strong>Official TLR Little League</strong> section in Discord 
-      and click on <strong>#tlr-little-league-info</strong> for more detailed 
-      information. Then, head to <strong>#channels-and-roles</strong> and select 
-      the <span class="role-pill">@TLR Little League</span> role to get notified 
-      when registration opens, each month.
-    </p>
-    <nav class="resource-links">
-      <a href="https://challonge.com" class="btn">Visit Challonge</a>
-      <a href="https://cockatrice.github.io/" class="btn">Download Cockatrice</a>
-    </nav>
-  </aside>
+  <aside id="resources" class="media-card join-card">
+    
+    <div 
+      class="media-card-img" 
+      style={`
+        background-image: url('${join.src}'); 
+        background-position: center 15%;
+        height: 250px; 
+      `}
+    ></div>
 
+    <div class="media-card-body text-center">
+      <h3>Ready to Join?</h3>
+      <p>
+        Visit the <strong>Official TLR Little League</strong> section in Discord 
+        and click on <strong>#tlr-little-league-info</strong> for more detailed 
+        information. Then, head to <strong>#channels-and-roles</strong> and select
+        the <span class="tag-pill">@TLR Little League</span> role to get notified
+        when registration opens, each month.
+      </p>
+      <nav class="resource-links">
+        <a href="https://challonge.com" class="btn" target="_blank" rel="noopener noreferrer">Visit Challonge</a>
+        <a href="https://cockatrice.github.io/" class="btn" target="_blank" rel="noopener noreferrer">Download Cockatrice</a>
+      </nav>
+    </div>
+
+  </aside>
 </BaseLayout>
 
 <style>
   /* =========================================
-     1. HERO HEADER
+     1. PAGE LAYOUTS & GRIDS
      ========================================= */
-  .league-hero {
-    text-align: center;
-    padding: 3rem 1rem 0.5rem; 
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .league-hero h1 { color: var(--heading-color); }
-  .league-hero p { color: var(--text-body); }
-
-  /* =========================================
-     2. PHILOSOPHY QUOTE
-     ========================================= */
-  .philosophy-block {
-    background-color: var(--surface);
-    border-left: 4px solid var(--accent);
-    padding: 2rem;
-    margin: 1rem 0 2rem; 
-    border-radius: 0 4px 4px 0;
-  }
-
-  .philosophy-block blockquote {
-    font-size: 1.1rem;
-    margin: 0 0 1rem 0;
-    line-height: 1.6;
-    font-style: italic;
-    color: var(--text-body);
-  }
-
-  .citation {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .read-more {
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--accent);
-  }
-
-  /* =========================================
-     3. RULES GRID (Icons)
-     ========================================= */
+  
   .rules-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -270,33 +203,32 @@ bgStyle="object-fit: contain; object-position: center;">
     margin-top: 2rem;
   }
 
-  .rule-card {
-    background-color: var(--bg);
-    padding: 1.5rem;
-    border-radius: 4px;
-    border: 1px solid var(--border-subtle);
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* NEW: Tighten spacing specifically for Rules Cards */
+  .rules-grid .media-card-body h3 {
+    margin-top: 0;      /* Remove top gap */
+    margin-bottom: 0.50rem; /* Pull paragraph closer */
+    font-size: 1.2rem;  /* Optional: slightly smaller header fits better */
   }
 
-  .rule-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    border-color: var(--accent);
+  .rules-grid .media-card-body p {
+    margin-top: 0;      /* Remove top gap */
+    margin-bottom: 0;
+    line-height: 1.4;   /* Slightly tighter text leading */
+    font-size: 0.95rem;
   }
-
+  
+  /* Update your existing .icon-wrapper to ensure it doesn't push too hard */
   .icon-wrapper {
     color: var(--accent);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Keep this small */
     display: inline-flex;
     padding: 12px;
     background-color: var(--surface);
     border-radius: 50%;
+    border: 1px solid var(--border-subtle);
   }
 
-  /* =========================================
-     4. SEASONAL EVENTS
-     ========================================= */
+  /* Seasonal Events Layout */
   .events-container {
     display: flex;
     flex-direction: column;
@@ -304,42 +236,63 @@ bgStyle="object-fit: contain; object-position: center;">
     margin-top: 2rem;
   }
 
-  .major-event {
-    padding: 2rem;
-    border-radius: 4px;
-    border: 1px solid var(--border-subtle);
-    background-color: var(--bg);
+  /* =========================================
+     ... inside .events-container section ...
+     ========================================= */
+
+  /* NEW: Tighten spacing for Event Cards */
+  .events-container .media-card-body h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem; /* Pulls the meta-data closer */
+    font-size: 1.5rem;
   }
 
-  .sct-card header h3, 
-  .championship-card header h3 {
-      color: var(--heading-color);
-      margin-bottom: 0.25rem;
-  }
-
-  /* Distinguish the Championship card */
-  .championship-card {
-    background-color: var(--surface); 
-    border-color: var(--accent);
-  }
-
-  .event-meta {
-    display: block;
+  .events-container .event-meta {
+    margin-bottom: 1rem;    /* Reduces gap before the description */
+    color: var(--text-muted);
     font-size: 0.85rem;
+    font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--text-muted);
+  }
+
+  .events-container .media-card-body p {
+    margin-top: 0;          /* Removes gap between meta and text */
     margin-bottom: 1rem;
-    font-weight: bold;
+    line-height: 1.5;
   }
 
-  .specs-list {
-    margin: 1rem 0;
+  .events-container .specs-list {
+    margin-top: 0;          /* Pulls the list up to the text */
+    margin-bottom: 1.5rem;
     padding-left: 1.2rem;
-    color: var(--text-body);
   }
 
-  /* Alert Box */
+  /* Footer Links Layout */
+  .resource-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap; 
+  }
+
+  /* =========================================
+     2. LOCAL COMPONENTS
+     ========================================= */
+
+  /* Icon Wrapper (Used in Rules Cards) */
+  .icon-wrapper {
+    color: var(--accent);
+    margin-bottom: 0.5rem; 
+    display: inline-flex;
+    padding: 12px;
+    background-color: var(--surface);
+    border-radius: 50%;
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* Alert Box (Used in Event Cards) */
   .alert-box {
     display: flex;
     gap: 1rem;
@@ -356,25 +309,65 @@ bgStyle="object-fit: contain; object-position: center;">
   .alert-icon {
     color: var(--accent);
     flex-shrink: 0;
-    display: flex;
-    align-items: flex-start;
     padding-top: 2px;
   }
 
+  /* Philosophy Block Typography */
+  .callout-box blockquote {
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .citation {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .read-more {
+    font-weight: bold;
+    font-size: 0.85rem;
+  }
+
+  /* Event Card Details */
+  .event-meta {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  .specs-list {
+    margin: 1rem 0;
+    padding-left: 1.2rem;
+    color: var(--text-body);
+  }
+
+  /* Specific Card Override: Championship */
+  .championship-card {
+    background-color: var(--surface); 
+    border-color: var(--accent);
+  }
+
   /* =========================================
-     5. SCHEDULE GRID
+     3. SCHEDULE GRID (Complex Table Layout)
      ========================================= */
   .schedule-grid {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     margin-top: 1.5rem;
-    font-family: inherit; 
   }
 
   .schedule-header {
     display: grid;
-    /* Date | Event | Type */
     grid-template-columns: 180px 350px 1fr; 
     font-weight: bold;
     padding: 0.5rem 1rem;
@@ -399,10 +392,9 @@ bgStyle="object-fit: contain; object-position: center;">
     text-transform: capitalize;
     font-size: 0.9rem;
     color: var(--text-muted);
-    text-align: left;
   }
 
-  /* Status Styles */
+  /* Schedule Status Colors */
   .schedule-row.major, 
   .schedule-row.championship {
     background-color: var(--bg);
@@ -413,81 +405,40 @@ bgStyle="object-fit: contain; object-position: center;">
     font-weight: bold;
   }
 
-  /* =========================================
-     6. JOIN CTA
-     ========================================= */
-  .join-cta {
-    background-color: var(--surface);
-    padding: 2rem;
-    border-radius: 4px;
-    text-align: center;
-    margin-top: 3rem;
+  .schedule-row.qualifier {
+    border-left: 4px solid var(--text-muted); 
   }
 
-  .role-pill {
-    display: inline-block;
-    background-color: var(--accent); 
-    color: white; 
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 0.9em;
-  }
-
-  .resource-links {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .btn {
-    padding: 0.5rem 1rem;
-    background-color: var(--bg);
-    border: 1px solid var(--border-subtle);
-    border-radius: 4px;
-    text-decoration: none;
-    color: var(--text-body);
-    font-weight: 600;
-    transition: all 0.2s;
-  }
-
-  .btn:hover {
-    border-color: var(--text-muted);
-    background-color: var(--surface);
-    color: var(--heading-color);
+  .schedule-row.special {
+    border-left: 4px solid #FFD700; /* Gold */
   }
 
   /* =========================================
-     7. RESPONSIVE
+     4. RESPONSIVE
      ========================================= */
   @media (max-width: 600px) {
-    /* Hide Grid Header */
     .schedule-header { display: none; }
     
-    /* Stack Row Content */
     .schedule-row {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.25rem;
-      border-left-width: 4px; /* Ensure status colors show */
+      border-left-width: 4px; 
     }
-
-    .date-col {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: bold;
+    
+    .date-col { 
+      font-size: 0.85rem; 
+      color: var(--text-muted); 
+      font-weight: bold; 
     }
-
-    /* Style the Type Tag like a pill on mobile */
+    
     .type-col {
-      text-align: left;
-      font-size: 0.8rem;
       background-color: var(--border-subtle);
       padding: 2px 8px;
       border-radius: 4px;
       margin-top: 4px;
+      font-size: 0.8rem;
     }
   }
 </style>

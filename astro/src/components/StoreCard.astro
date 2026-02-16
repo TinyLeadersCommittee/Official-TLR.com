@@ -1,0 +1,81 @@
+---
+// src/components/StoreCard.astro
+const { store } = Astro.props;
+
+// Make sure this path exactly matches your default image's name/location!
+import defaultBanner from '../assets/images/gameStores/obscuraStorefront.jpg'; 
+---
+
+<article class="media-card community-store-card">
+  <div 
+    class="store-banner-wrapper" 
+    style={{ backgroundColor: store.bgColor || 'var(--surface)' }}
+  >
+    {store.image ? (
+      <img src={store.image.src} alt={`${store.name} storefront`} class="store-banner" loading="lazy" />
+    ) : (
+      <img src={defaultBanner.src} alt="TLR Play Venue" class="store-banner" loading="lazy" />
+    )}
+  </div>
+
+  <div class="store-content-wrapper">
+    <div class="store-info">
+      {store.website ? (
+        <a href={store.website} target="_blank" rel="nofollow noreferrer" class="store-name">
+          {store.name}
+        </a>
+      ) : (
+        <span class="store-name">{store.name}</span>
+      )}
+      <span class="store-location">{store.location}</span>
+    </div>
+    
+    <span class="store-frequency">{store.frequency}</span>
+  </div>
+</article>
+
+<style>
+  /* Base Card adjustments */
+  .community-store-card {
+    padding: 0; 
+    display: flex; 
+    flex-direction: column; 
+    height: 100%;
+    overflow: hidden; 
+  }
+
+  .store-banner-wrapper {
+    width: 100%;
+    height: 120px; 
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .store-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem; /* Gives the logos some breathing room from the edges */
+    display: block;
+  }
+
+  .store-content-wrapper {
+    padding: 1.5rem; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    justify-content: space-between;
+  }
+
+  .store-info { display: flex; flex-direction: column; margin-bottom: 1rem; }
+  .store-name { font-weight: bold; color: var(--heading-color); text-decoration: none; font-size: 1.1rem; margin-bottom: 0.25rem; }
+  .store-name:hover { color: var(--accent); text-decoration: underline; }
+  .store-location { font-size: 0.85rem; color: var(--text-muted); }
+
+  .store-frequency {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold; color: var(--accent);
+    background-color: var(--surface); padding: 0.25rem 0.6rem; border-radius: 4px; align-self: flex-start; 
+  }
+</style>

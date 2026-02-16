@@ -1,0 +1,48 @@
+---
+const { item } = Astro.props;
+---
+
+<article class="media-card">
+  <div 
+    class="media-card-img" 
+    style={`
+      background-image: url('${item.image.src || item.image}'); 
+      background-position: ${item.position || 'center'};
+    `}
+  ></div>
+  <div class="media-card-body text-center">
+    <h3 class="community-title">{item.title}</h3>
+    <p class="community-desc">{item.description}</p>
+  </div>
+</article>
+
+<style>
+  .media-card-img {
+    height: 180px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .community-title {
+    margin-top: 0; 
+    color: var(--accent);
+    min-height: 3rem; 
+    display: flex;
+    align-items: flex-end; 
+    justify-content: center;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .community-desc {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .community-title {
+      min-height: auto;
+      display: block;
+    }
+  }
+</style>

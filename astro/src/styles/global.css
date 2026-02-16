@@ -230,6 +230,175 @@ code {
 .nav-link-card .card-action { font-weight: bold; color: var(--accent); margin-top: auto; }
 
 /* =========================================
+   COMPONENT: MEDIA CARD (Image Top + Content)
+   Extends basic card styles but removes padding
+   ========================================= */
+
+.media-card {
+  /* Inherit base card styles (border, radius, bg) */
+  background-color: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  
+  /* Reset layout for full-bleed image */
+  padding: 0; 
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+}
+
+.media-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent);
+}
+
+/* The Image Container */
+.media-card-img {
+  width: 100%;
+  height: 200px; /* Default height, can be overridden inline */
+  background-color: var(--border-subtle); /* Placeholder color */
+  background-size: cover;
+  background-position: center;
+}
+
+/* The Content Container */
+.media-card-body {
+  padding: 1.5rem;
+  flex-grow: 1; /* Ensures footer/buttons push to bottom if needed */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Optional: Utility for centered text in body */
+.media-card-body.text-center {
+  text-align: center;
+  align-items: center;
+}
+
+/* =========================================
+   COMPONENT: EVENT POSTER (Hybrid WotC Style)
+   ========================================= */
+.event-poster {
+  position: relative;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background-color: #000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+  
+  /* Flexbox pushes content to bottom */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+}
+
+.event-poster:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  border-color: var(--accent);
+}
+
+/* 1. The Background Art */
+.event-poster-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  
+  /* CHANGED: Focus on the top of the image so faces show above the glass */
+  background-position: center top; 
+  
+  z-index: 1;
+  transition: transform 0.5s ease;
+}
+
+.event-poster:hover .event-poster-bg {
+  transform: scale(1.05);
+}
+
+/* 2. The Text Panel (Glass Overlay) */
+.event-poster-body {
+  position: relative;
+  z-index: 2;
+  
+  /* CHANGED: Fixed height ensures the "waterline" is identical on all cards.
+     60% of 500px = 300px, which fits the largest card (Brawl) comfortably. */
+  height: 60%; 
+  /* width: 100%; */
+
+  /* FIX 2: Add box-sizing to ensure padding doesn't expand the box */
+  box-sizing: border-box;
+
+  /* CHANGED: Slightly more transparent (0.9 -> 0.85) */
+  background-color: rgba(15, 15, 15, 0.85); 
+  backdrop-filter: blur(2px); 
+  
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  
+  /* Ensure content flows nicely inside the fixed box */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. The Anchor Tag */
+.event-poster-tag {
+  position: absolute;
+  top: -16px; 
+  left: 1.5rem; 
+  
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  z-index: 3;
+}
+
+/* Status Colors */
+.status-ongoing { background-color: #00ACFF; }
+.status-soon { background-color: #E67E22; }
+.status-periodic { background-color: #9B59B6; }
+.status-always { background-color: #11806A; }
+
+/* Content Styling */
+.event-poster h3 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin: 0.5rem 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.event-poster p {
+  color: #cccccc;
+  font-size: 0.95rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.event-poster ul {
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 1rem;
+  padding-left: 1.2rem;
+  margin: 0;
+  color: #999;
+  font-size: 0.85rem;
+  
+  /* Optional: If list is too long, it can scroll nicely inside the fixed height */
+  /* overflow-y: auto; */ 
+}
+
+.event-poster li {
+  margin-bottom: 0.4rem;
+}
+
+/* =========================================
    5. COMPONENT: INTERACTIVE & DECORATION
    ========================================= */
 
@@ -249,7 +418,7 @@ code {
 .btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background-color: var(--surface);
+  background-color: var(--bg);
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
   color: var(--heading-color);
@@ -264,6 +433,24 @@ code {
   border-color: var(--accent);
   color: var(--accent);
   background-color: var(--bg);
+}
+
+/* Add to global.css */
+.button-outline {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.button-outline:hover {
+  background-color: var(--accent);
+  color: white;
 }
 
 .btn-primary {
@@ -474,6 +661,41 @@ code {
   padding: 10px;
 }
 
+/* =========================================
+   CARD PREVIEW LIGHTBOX - NAVIGATION ARROWS
+   ========================================= */
+
+.modal-nav {
+  position: absolute; 
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 2rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  z-index: 10; 
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px); 
+}
+
+.modal-nav:hover {
+  background: var(--accent); /* Pops to your theme color */
+  border-color: transparent;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Pulls the arrows just outside the left and right edges of the card */
+.nav-prev {
+  left: -5rem; 
+}
+
+.nav-next {
+  right: -5rem; 
+}
+
 /* Make triggers look interactive */
 .card-trigger {
   cursor: pointer;
@@ -483,6 +705,21 @@ code {
 .card-trigger:hover {
   color: var(--accent);
   border-bottom-color: var(--accent);
+}
+
+/* Normalizes the upgraded cardPreview.js <dialog> element */
+dialog#card-modal {
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+}
+
+/* We hide the native backdrop because cardPreview.js already uses <div class="card-modal-overlay"> */
+dialog#card-modal::backdrop {
+  background: transparent;
 }
 
 /* =========================================
@@ -501,5 +738,16 @@ code {
     width: calc(100% + 2rem);
     left: auto;
     right: auto;
+  }
+}
+
+/* On mobile/tablets, move them slightly inside the image so they don't get cut off the screen */
+@media (max-width: 768px) {
+  .nav-prev { left: 0.5rem; }
+  .nav-next { right: 0.5rem; }
+  /* Scales the buttons down slightly to save space on mobile */
+  .modal-nav { 
+    padding: 0.75rem 1rem; 
+    font-size: 1.5rem; 
   }
 }

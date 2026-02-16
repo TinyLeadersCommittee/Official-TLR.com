@@ -1,14 +1,37 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import library from '../../assets/images/community/spoilsOfTheVault.jpg'; // Reuse an existing image or swap
+import ToolCard from '../../components/ToolCard.astro';
+import CardGallery from '../../components/cardGallery.astro'; 
+import library from '../../assets/images/community/weaponsMan.jpg'; 
+import { 
+  buildTools, 
+  playTools, 
+  mtgoGuideSteps, 
+  competeTools 
+} from '../../data/community/resourceData.js';
+
+// Import our new build-time fetcher
+import { getRuleOfThreeCards } from '../../utils/scryfallAPI.js';
+
+// Fetch the data at build time
+const legalSplit = await getRuleOfThreeCards('game:paper is:split');
+const legalAdventure = await getRuleOfThreeCards('game:paper is:adventure');
+const legalMDFC = await getRuleOfThreeCards('game:paper is:mdfc');
+
+// Structure it for the UI
+const scryfallCategories = [
+  { id: 'modal-split', title: 'Split Cards', desc: 'View all format-legal split cards.', cards: legalSplit },
+  { id: 'modal-adv', title: 'Adventure Cards', desc: 'View all format-legal adventure cards.', cards: legalAdventure },
+  { id: 'modal-mdfc', title: 'MDFCs', desc: 'View all format-legal MDFCs.', cards: legalMDFC }
+];
 ---
 
-<BaseLayout title="Community Resources" 
+<BaseLayout title="Player Resources" 
 bgImage={library}
 bgBlur={true}
 bgStyle="object-fit: contain; object-position: center;">
   
-  <main class="prose-block" style="max-width: 1000px;">
+  <main class="prose-block" style="max-width: 1200px;">
     
     <header class="page-header">
       <h1>Player Resources</h1>
@@ -20,84 +43,309 @@ bgStyle="object-fit: contain; object-position: center;">
 
     <hr class="divider" />
 
-    <section style="margin-bottom: 4rem;">
-      <h2 style="text-align: center; margin-bottom: 2rem;">Digital Tools</h2>
+    <section id="build" class="resource-section">
+      <h2 class="section-title">Build</h2>
+      <p class="section-lead">The right tools to craft your 49+1 masterpiece.</p>
       
-      <div class="grid-fluid">
-        
-        <article class="content-card">
-          <h3 style="margin-top: 0; color: var(--accent);">Moxfield</h3>
-          <p>
-            The preferred deckbuilder of the community. We are working with 
-            Moxfield to get full format support, but for now, use the "Tiny Leaders" 
-            format option.
-          </p>
-          <a href="https://www.moxfield.com" class="btn btn-primary" style="margin-top: 1rem;">Go to Moxfield &rarr;</a>
-        </article>
-
-        <article class="content-card">
-          <h3 style="margin-top: 0; color: var(--accent);">Cockatrice</h3>
-          <p>
-            The vast majority of online play happens here. It's free, open-source, 
-            and has a robust card database.
-          </p>
-          <a href="https://cockatrice.github.io/" class="btn" style="margin-top: 1rem;">Download Client</a>
-        </article>
-
-        <article class="content-card">
-          <h3 style="margin-top: 0; color: var(--accent);">Challonge</h3>
-          <p>
-            Used for running our Monthly Leagues and tournaments. You'll need 
-            an account here to register for events.
-          </p>
-          <a href="https://challonge.com" class="btn" style="margin-top: 1rem;">Sign Up</a>
-        </article>
-
+      <div class="tool-grid-3">
+        {buildTools.map((tool) => <ToolCard tool={tool} />)}
       </div>
-    </section>
 
-    <section style="margin-bottom: 4rem;">
-      <h2 style="text-align: center; margin-bottom: 2rem;">Content Creator Kit</h2>
-      
-      <div class="callout-box" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <h3 style="margin-top: 0;">Logos & Branding</h3>
-        <p style="max-width: 60ch;">
-          Making a video or writing an article? Feel free to use the official 
-          Tiny Leaders: Reborn logos. Includes transparent PNGs and SVGs.
-        </p>
-        <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center;">
-            <a href="/downloads/tlr-logos.zip" class="btn btn-primary">Download Logo Pack (ZIP)</a>
-            <a href="/design/branding" class="btn">View Brand Guidelines</a>
+      <div class="scryfall-section">
+         <div class="scryfall-header">
+            <h3>Legal Multi-Part Cards</h3>
+            <p>
+              Browse complete lists of complex card types playable in the format according to the <strong>Rule of 3</strong>.
+            </p>
+            <div class="rule-callout">
+               <strong>The Rule of 3:</strong> TLR evaluates cards differently than standard Magic. For multi-part cards (Adventures, Split Cards, MDFCs), <em>every</em> face or spell on the card must independently meet the MV 3 limit.
+            </div>
+        </div>
+
+        <div class="scryfall-grid">
+            {scryfallCategories.map((cat) => (
+              <button class="scryfall-card" onclick={`document.getElementById('${cat.id}').showModal()`}>
+                <div class="scryfall-content">
+                    <h4>{cat.title}</h4>
+                    <p>{cat.desc}</p>
+                </div>
+                <div class="scryfall-code-display">
+                    <code>{cat.cards.length} Legal Cards</code>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </div>
+              </button>
+            ))}
         </div>
       </div>
     </section>
 
-    <section>
-      <h2 style="text-align: center; margin-bottom: 2rem;">Essential Reading</h2>
-      
-      <div class="grid-fluid">
-        <a href="/rules/banlist" class="content-card" style="text-decoration: none; transition: transform 0.2s;">
-            <h4 style="margin: 0; color: var(--heading-color);">The Banlist &rarr;</h4>
-            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
-                Know what you can and can't play.
-            </p>
-        </a>
-        
-        <a href="/design/rule-of-three" class="content-card" style="text-decoration: none; transition: transform 0.2s;">
-            <h4 style="margin: 0; color: var(--heading-color);">Format Philosophy &rarr;</h4>
-            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
-                Understand the "Rule of 3".
-            </p>
-        </a>
+    {scryfallCategories.map((cat) => (
+      <dialog id={cat.id} class="guide-modal list-modal">
+        <div class="modal-content">
+          <header class="modal-header">
+            <h3>Legal {cat.title} <span style="color: var(--text-muted); font-size: 1rem;">({cat.cards.length})</span></h3>
+            <button class="close-btn" onclick={`document.getElementById('${cat.id}').close()`}>&times;</button>
+          </header>
+          
+          <div class="modal-body list-modal-body">
+             {/* Here is the magic. You just pass the array into the component. 
+                 It handles the HTML, the mapping, and the CSS scoping automatically. 
+             */}
+             <CardGallery cards={cat.cards} />
+          </div>
+          
+        </div>
+      </dialog>
+    ))}
 
-        <a href="https://discord.gg/tinyleaders" class="content-card" style="text-decoration: none; transition: transform 0.2s;">
-            <h4 style="margin: 0; color: var(--heading-color);">Discord FAQ &rarr;</h4>
-            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--text-muted);">
-                Check the pins in #general.
-            </p>
-        </a>
+    <section id="play" class="resource-section">
+      <h2 class="section-title">Play</h2>
+      <p class="section-lead">The digital spaces where the games happen.</p>
+      
+      <div class="tool-grid-3">
+        {playTools.map((tool) => <ToolCard tool={tool} />)}
+      </div>
+
+      <dialog id="mtgo-modal" class="guide-modal">
+        <div class="modal-content">
+          <header class="modal-header">
+            <h3>How to Play on MTGO</h3>
+            <button id="close-mtgo-guide" class="close-btn">&times;</button>
+          </header>
+          <div class="modal-body">
+            <ol>
+              {mtgoGuideSteps.map(step => <li set:html={step}></li>)}
+            </ol>
+          </div>
+        </div>
+      </dialog>
+    </section>
+
+    <section id="compete" class="resource-section-tight">
+      <h2 class="section-title">Compete</h2>
+      <p class="section-lead">Join tournaments, track your record, and climb the Tiny Leaders: Reborn leaderboards.</p>
+      
+      <div class="tool-grid-1">
+        {competeTools.filter(tool => tool.title === "Challonge").map((tool) => 
+          <ToolCard tool={tool} />
+        )}
       </div>
     </section>
 
   </main>
 </BaseLayout>
+
+<script>
+  import { initCardPreview } from '../../scripts/cardPreview.js';
+
+  // Initialize your global card viewer
+  initCardPreview();
+
+  // Handle MTGO Modal
+  const mtgoModal = document.getElementById('mtgo-modal') as HTMLDialogElement;
+  const mtgoOpenBtn = document.getElementById('open-mtgo-guide');
+  const mtgoCloseBtn = document.getElementById('close-mtgo-guide');
+
+  if (mtgoOpenBtn && mtgoModal && mtgoCloseBtn) {
+    mtgoOpenBtn.addEventListener('click', () => mtgoModal.showModal());
+    mtgoCloseBtn.addEventListener('click', () => mtgoModal.close());
+    mtgoModal.addEventListener('click', (e) => {
+      if (e.target === mtgoModal) mtgoModal.close();
+    });
+  }
+
+  // Handle clicking outside the Scryfall List Modals to close them
+  const listModals = document.querySelectorAll('.list-modal');
+  listModals.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) (modal as HTMLDialogElement).close();
+    });
+  });
+</script>
+
+<style>
+  /* =========================================
+     1. LAYOUT & TYPOGRAPHY
+     ========================================= */
+
+  .resource-section { margin-bottom: 5rem; }
+  .resource-section-tight { margin-bottom: 2rem; }
+  .section-title { font-size: 2rem; color: var(--heading-color); margin-bottom: 0.5rem; }
+  .section-lead { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+  .tool-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem;
+    margin-bottom: 3rem; 
+  }
+  
+  .tool-grid-1 {
+    max-width: 450px; 
+    margin: 0 auto;   
+  }
+
+  /* =========================================
+     2. SCRYFALL SCAFFOLDING
+     ========================================= */
+  
+  .scryfall-section {
+    background-color: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .scryfall-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1.5rem;
+  }
+  
+  .scryfall-header h3 { margin: 0 0 0.5rem 0; color: var(--heading-color); font-size: 1.5rem; }
+  .scryfall-header p { margin: 0 0 1rem 0; color: var(--text-muted); }
+
+  .rule-callout {
+    background-color: var(--bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    border-radius: 0 4px 4px 0;
+    color: var(--text-body);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .scryfall-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.5rem;
+  }
+
+  .scryfall-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--bg); 
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 1.25rem;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .scryfall-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .scryfall-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--heading-color);
+    font-size: 1.1rem;
+  }
+
+  .scryfall-content p {
+    margin: 0 0 1rem 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .scryfall-code-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--surface);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+    color: var(--accent);
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  /* =========================================
+     3. MODAL STYLES (MTGO & Scryfall Lists)
+     ========================================= */
+
+  .guide-modal {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 600px;
+    width: 90%;
+    background-color: var(--surface);
+    color: var(--text-body);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+  
+  .guide-modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(3px);
+  }
+
+  .modal-content { padding: 2rem; }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1rem;
+  }
+
+  .modal-header h3 { margin: 0; color: var(--heading-color); font-size: 1.5rem;}
+
+  .close-btn {
+    background: none; border: none; font-size: 2rem;
+    line-height: 1; cursor: pointer; color: var(--text-muted);
+  }
+  .close-btn:hover { color: var(--accent); }
+
+  .modal-body ol { padding-left: 1.2rem; margin: 0; }
+  .modal-body li { margin-bottom: 0.75rem; line-height: 1.6; font-size: 1.05rem;}
+
+  /* Scryfall Card List Grid Specifics */
+  .list-modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+  }
+
+  .card-list-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .card-list-grid a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .card-list-grid a:hover {
+    text-decoration: underline;
+  }
+
+  /* =========================================
+     4. RESPONSIVE BREAKPOINTS
+     ========================================= */
+
+  @media (max-width: 900px) {
+    .tool-grid-3, .scryfall-grid {
+      grid-template-columns: 1fr; 
+    }
+    .card-list-grid {
+      grid-template-columns: 1fr; 
+    }
+  }
+</style>

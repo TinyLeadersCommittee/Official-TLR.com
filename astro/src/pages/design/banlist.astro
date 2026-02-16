@@ -56,7 +56,7 @@ bgStyle="object-fit: contain; object-position: center;">
         <p>
           The TLR banlist is the result of a decade-long evolution. It traces its 
           foundational DNA back to the most stable competitive format in Magic: 
-          <strong>Legacy</strong>.
+          <a href="https://www.mtgbans.info/formats/legacy" target="_blank" rel="noopener noreferrer" class="text-link"><strong>Legacy</strong></a>.
         </p>
         <p>
           Instead of guessing what a healthy power level looks like, TLO, and by 
@@ -126,6 +126,9 @@ bgStyle="object-fit: contain; object-position: center;">
         </p>
         <h4 class="category-title">Vintage-Rate Power</h4>
         <BanlistGrid cards={vintageRatePowerBans} />
+        <p class="legend-note">
+          (<span class="legend-highlight">Highlighted Cards</span> are from the original 2018 banlist)
+        </p>
         <p class="footnote">
           Being on this list doesn't mean these cards are 'forever banned' with 
           no hope of return. However, bringing them back would require a massive 
@@ -155,6 +158,9 @@ bgStyle="object-fit: contain; object-position: center;">
           chance for meaningful interaction in those first few turns.
         </p>
         <BanlistGrid cards={fastManaBans} threeCol={true} />
+        <p class="legend-note">
+          (<span class="legend-highlight">Highlighted Cards</span> are from the original 2018 banlist)
+        </p>
         <p class="design-note">
           These bans aren't really about any single card, they’re about making 
           sure the power ceiling actually means something when you’re sitting 
@@ -173,6 +179,9 @@ bgStyle="object-fit: contain; object-position: center;">
           toolboxes where the best answer is always just one mana away.
         </p>
         <BanlistGrid cards={tutorBans} />
+        <p class="legend-note">
+          (<span class="legend-highlight">Highlighted Cards</span> are from the original 2018 banlist)
+        </p>
         <p class="design-note">
           By limiting these effects, we keep a bit of healthy uncertainty in 
           the game. It preserves the unique identity of your deck and makes 
@@ -192,6 +201,9 @@ bgStyle="object-fit: contain; object-position: center;">
           that you always have access to a Commander.
         </p>
         <BanlistGrid cards={formatStructureBans} threeCol={true} />
+        <p class="legend-note">
+          (<span class="legend-highlight">Highlighted Cards</span> are from the original 2018 banlist)
+        </p>
         <p class="design-note">
           Within these constraints, certain effects get a massive 'unintended 
           boost.' They aren't necessarily broken on their own, but the format 
@@ -227,6 +239,9 @@ bgStyle="object-fit: contain; object-position: center;">
           difficult logistical burdens (like sub-games).
         </p>
         <BanlistGrid cards={logisticsBans} />
+        <p class="legend-note">
+          (<span class="legend-highlight">Highlighted Cards</span> are from the original 2018 banlist)
+        </p>
         <p class="design-note">
           By removing these 'logistical headaches,' we keep the focus on the 
           game and ensure that every player, regardless of physical ability, 
@@ -239,20 +254,28 @@ bgStyle="object-fit: contain; object-position: center;">
       <div class="prose-block">
         <h3>Protecting the Play Experience</h3>
         <p>
-          Even within a set power level, some cards just consistently get in the 
-          way of a good game. We’ve found that certain effects lead to 
-          repetitive patterns or 'non-games' that feel more oppressive than strategic.
+          Even at a high power level, some cards consistently invalidate the 
+          core mechanics of Magic. We focus here on effects that simplify the 
+          game state to the point where one player is effectively spectating. 
+          This covers strategies that remove the stack as a zone of interaction, 
+          neutralize card text entirely, or bypass the board to win without 
+          opposition.
         </p>
         <p>
-          Because Tiny Leaders: Reborn uses smaller decks and is a fast-paced 1v1 
-          format, these issues can take over as early as turn two or three, 
-          leaving you with almost no room to adapt.
+          In a fast-paced 1v1 format with small deck sizes, these "must-answer" 
+          threats resolve too consistently to allow for meaningful adaptation. 
+          Without the variance of larger decks or the self-correction of 
+          multiplayer, these strategies often dictate the outcome before an 
+          opponent can develop their board.
         </p>
         <BanlistGrid cards={playExperienceBans} />
+        <p class="legend-note">
+          (<span class="legend-highlight">Highlighted Cards</span> are from the original 2018 banlist)
+        </p>
         <p class="design-note">
-          We view these specific bans as a final safety net, a way to catch those 
-          'failure states' that still crop up even after our other rules are in 
-          place.
+          We view these specific bans as a necessary safety net, a final measure 
+          to catch those rare "failure states" where the game ends before it 
+          truly begins.
         </p>
       </div>
     </section>
@@ -296,6 +319,9 @@ bgStyle="object-fit: contain; object-position: center;">
           risks of high-level play.
         </p>
         <BanlistGrid cards={commanderBans} threeCol={true} />
+        <p class="legend-note">
+          (<span class="legend-highlight">Highlighted Cards</span> are from the original 2018 banlist)
+        </p>
         <p class="design-note">
           Most of these cards are perfectly fine within your 49-card deck, where 
           variance and a little bit of luck still matter. But as a Tiny Leader, 
@@ -332,6 +358,18 @@ bgStyle="object-fit: contain; object-position: center;">
      PAGE-SPECIFIC STYLES
      ========================================= */
 
+  /* Link Styling for Legacy Citation */
+  .text-link {
+    color: var(--heading-color);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+  .text-link:hover {
+    color: var(--accent);
+  }
+
   .category-title {
     margin-top: 2rem; 
     color: var(--accent); 
@@ -339,6 +377,20 @@ bgStyle="object-fit: contain; object-position: center;">
     font-size: 0.9rem; 
     font-weight: bold; 
     letter-spacing: 0.05em;
+  }
+
+  /* New Legend Styling */
+  .legend-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .legend-highlight {
+    color: var(--accent);
+    font-weight: bold;
   }
 
   .standard-list { 

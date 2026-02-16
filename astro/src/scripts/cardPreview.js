@@ -146,7 +146,6 @@ async function fetchAndDisplayImage(data) {
 // --- DOM & EVENT HELPERS ---
 
 function openModal(triggerElement) {
-    // Find siblings to create the gallery group
     const parentList = triggerElement.closest('ul');
     if (parentList) {
         currentGroup = Array.from(parentList.querySelectorAll('.card-trigger'));
@@ -156,6 +155,9 @@ function openModal(triggerElement) {
     
     const index = currentGroup.indexOf(triggerElement);
     
+    // ADDED: Push this to the browser's Top Layer natively
+    modal.showModal(); 
+    
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -164,10 +166,13 @@ function openModal(triggerElement) {
 }
 
 function closeModal() {
+    // ADDED: Remove it from the Top Layer natively
+    modal.close(); 
+    
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    modalImg.src = ''; // Clear image to prevent flash on next open
+    modalImg.src = ''; 
 }
 
 function updateNavButtons() {
@@ -213,11 +218,14 @@ function ensureModalExists() {
     if (document.getElementById('card-modal')) return;
 
     const modalHtml = `
-        <div id="card-modal" class="card-modal" aria-hidden="true">
+        <dialog id="card-modal" class="card-modal" aria-hidden="true">
             <div class="card-modal-overlay"></div>
-            <button class="modal-nav nav-prev" aria-label="Previous Card">&#10094;</button>
-            <button class="modal-nav nav-next" aria-label="Next Card">&#10095;</button>
-            <div class="card-modal-content">
+            
+            <div class="card-modal-content" style="position: relative;">
+                
+                <button class="modal-nav nav-prev" aria-label="Previous Card">&#10094;</button>
+                <button class="modal-nav nav-next" aria-label="Next Card">&#10095;</button>
+                
                 <button class="card-modal-close" aria-label="Close">&times;</button>
                 <div class="card-loader">Loading...</div>
                 <div class="modal-body">
@@ -230,7 +238,7 @@ function ensureModalExists() {
                     </div>
                 </div>
             </div>
-        </div>
+        </dialog>
     `;
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 }

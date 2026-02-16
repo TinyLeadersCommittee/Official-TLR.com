@@ -1,0 +1,63 @@
+---
+// Takes the card's name (for the text) and the image URL (for the hover)
+const { name, imageUri } = Astro.props;
+---
+
+<span class="card-hover-wrapper card-trigger" data-image={imageUri}>
+  <span class="card-name">{name}</span>
+  
+  {/* The hidden image that reveals on hover */}
+  {imageUri && (
+    <img src={imageUri} alt={name} class="card-hover-img" loading="lazy" />
+  )}
+</span>
+
+<style>
+  /* 1. THE WRAPPER 
+    Acts as the anchor point for the floating image.
+  */
+  .card-hover-wrapper {
+    position: relative;
+    display: inline-block;
+    color: var(--accent); 
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 1px dotted var(--accent); /* Classic tooltip visual indicator */
+    transition: color 0.2s;
+  }
+
+  .card-hover-wrapper:hover {
+    color: var(--heading-color);
+  }
+
+  /* 2. THE FLOATING IMAGE 
+    Hidden by default, positioned absolutely above the text.
+  */
+  .card-hover-img {
+    position: absolute;
+    bottom: 130%; /* Pushes it just above the text */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* Starts slightly lower for animation */
+    
+    width: 220px; /* Standard MTG card readability size */
+    height: auto;
+    border-radius: 4.75% / 3.5%; /* MTG corner math */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Prevents the image from messing with the user's mouse */
+    z-index: 1000; /* Forces it above everything else on the page */
+    
+    transition: all 0.2s ease-out;
+  }
+
+  /* 3. THE HOVER MAGIC 
+    When the mouse hits the text, the image fades in and floats up.
+  */
+  .card-hover-wrapper:hover .card-hover-img {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>

@@ -1,17 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CommunityCard from '../../components/CommunityCard.astro'; // <-- Import new component
 import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
+import mettleImg from '../../assets/images/community/pathOfMettle.jpg'; 
+import { playOptions } from '../../data/community/communityData.js';
 ---
 
 <BaseLayout title="Discord Community" bgImage={drowner}>
   
   <header class="community-hero">
     <div class="hero-grid">
-      
       <h1>Your Seat at the Table is Ready</h1>
-
       <div class="hero-line"></div>
-
       <div class="hero-text-content">
         <p>
           Tiny Leaders Reborn is a niche format, and finding a local playgroup 
@@ -22,34 +22,18 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
           Whether you’re a thousand miles from the nearest LGS or looking for 
           a home for your local paper group, you belong here.
         </p>
-        
         <a href="https://discord.com/invite/jq9KWHAdTm" class="discord-logo-btn">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 127.14 96.36" 
-              class="discord-svg"
-              aria-label="Join the Official Discord Server">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" class="discord-svg" aria-label="Join the Official Discord Server">
               <path fill="#ffffff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.09,105.09,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.89,105.89,0,0,0,126.6,80.22c1.24-23.37-3.55-47.54-19.9-72.05ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
             </svg>
             <span>Join the Community</span>
         </a>
       </div>
-
       <div class="hero-media">
         <div class="video-container">
-            <iframe 
-                width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/FnjumU1vRrk?si=rEG-zu43VlhiFT1i" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/FnjumU1vRrk?si=rEG-zu43VlhiFT1i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
-
     </div>
   </header>
 
@@ -57,32 +41,11 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
 
   <main class="prose-block">
     
-    <section id="play" style="margin-bottom: 3rem;">
+    <section id="play" style="margin-bottom: 5rem;">
       <h2 style="text-align: center; margin-bottom: 2rem;">Where the Games Happen</h2>
       
-      <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 800px; margin: 0 auto;">
-        
-        <article class="content-card">
-          <h3 style="color: var(--accent); margin-top: 0;">The Official TLR Little League</h3>
-          <p>
-            Our year-long, free-to-play league. Every month is a new 
-            chance to find glory (and sometimes prizes!).
-          </p>
-        </article>
-
-        <article class="content-card">
-          <h3 style="color: var(--accent); margin-top: 0;">Weekly Tournaments</h3>
-          <p>Regular events for those looking for a quicker competitive fix.</p>
-        </article>
-
-        <article class="content-card">
-          <h3 style="color: var(--accent); margin-top: 0;">Digital & Paper</h3>
-          <p>
-            Most of our members play via Cockatrice, but you might find 
-            a few ready for Spelltable (paper over webcam) sessions.
-          </p>
-        </article>
-
+      <div class="community-card-grid">
+        {playOptions.map((item) => <CommunityCard item={item} />)}
       </div>
     </section>
 
@@ -119,15 +82,30 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
 
     <hr class="divider" />
 
-    <aside class="callout-box" style="margin-top: 3rem;">
-      <h3>Ready to Test Your Mettle?</h3>
-      <p>
-        One of the best ways to experience the format is through the  
-        Official Little League.
-      </p>
-      <p style="margin-top: 1rem;">
-        <a href="/community/little-league" style="font-weight: bold;">Learn more about the Little League &rarr;</a>
-      </p>
+    <aside class="media-card" style="margin-top: 3rem;">
+      <div 
+        class="media-card-img" 
+        style={`
+          background-image: url('${mettleImg.src}'); 
+          background-position: center; 
+          height: 400px; /* Much larger frame for the artwork */
+        `}
+      ></div>
+      
+      <div class="media-card-body text-center">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h3 style="margin-bottom: 0.5rem;">Ready to Test Your Mettle?</h3>
+            <p style="margin-bottom: 0.5rem; line-height: 1.4;">
+              One of the best ways to experience the format is through the  
+              Official Little League.
+            </p>
+            <p style="margin-top: 0.5rem;">
+              <a href="/community/little-league" style="color: var(--accent); font-weight: bold; text-decoration: none;">
+                Learn more about the Little League &rarr;
+              </a>
+            </p>
+        </div>
+      </div>
     </aside>
 
   </main>
@@ -136,8 +114,7 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
 
 <style>
   /* =========================================
-     UNIQUE: HERO SECTION LAYOUT
-     (Specific to this landing page)
+     UNIQUE: HERO SECTION
      ========================================= */
   .community-hero {
     margin: 0 auto 5rem auto; 
@@ -147,15 +124,12 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
 
   .hero-grid {
     display: grid;
-    /* 2 Columns: Text side is slightly wider */
     grid-template-columns: 1.2fr 1fr; 
-    /* 2 Rows: Title/Line on top, Content/Video on bottom */
     grid-template-rows: auto auto; 
     gap: 1rem 4rem; 
     text-align: left;
   }
 
-  /* Grid Position: Top Left */
   .hero-grid h1 {
     grid-column: 1 / 2;
     grid-row: 1;
@@ -165,7 +139,6 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
     color: var(--heading-color);
   }
 
-  /* Grid Position: Bottom Left */
   .hero-text-content {
     grid-column: 1 / 2;
     grid-row: 2;
@@ -178,25 +151,19 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
     line-height: 1.6;
   }
 
-  /* Grid Position: Top Right (The Line) */
   .hero-line {
     grid-column: 2 / 3; 
     grid-row: 1;        
-    
     height: 1px; 
     background-color: var(--border-subtle); 
-    
-    /* VISUAL TRICK: Pull line left to connect with text column */
     width: calc(100% + 8rem); 
     margin-left: -8rem; 
-    
     z-index: -1; 
     position: relative; 
     align-self: center; 
     margin-top: 2rem; 
   }
 
-  /* Grid Position: Bottom Right (The Video) */
   .hero-media {
     grid-column: 2 / 3;
     grid-row: 2; 
@@ -207,7 +174,7 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
   .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 56.25%; /* 16:9 */
     height: 0;
     overflow: hidden;
     border-radius: 12px;
@@ -218,20 +185,27 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
 
   .video-container iframe {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
   }
 
   /* =========================================
-     UNIQUE: DISCORD BUTTON
+     NEW: COMMUNITY GRID
+     ========================================= */
+  .community-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  /* =========================================
+     BUTTONS
      ========================================= */
   .discord-logo-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background-color: #5865F2; /* Official Discord Blurple */
+    background-color: #5865F2;
     padding: 0.8rem 1.5rem; 
     border-radius: 8px;
     text-decoration: none;
@@ -241,54 +215,51 @@ import drowner from '../../assets/images/community/drownerOfSecrets.jpg';
     transition: transform 0.2s, background-color 0.2s;
     margin-top: 1rem;
     box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
-    white-space: nowrap; 
     width: fit-content; 
   }
   
   .discord-svg {
-    width: 28px; 
-    height: auto;
-    display: block;
-    flex-shrink: 0; 
+    width: 28px; height: auto; display: block; flex-shrink: 0; 
   }
 
   .discord-logo-btn:hover {
     transform: translateY(-2px);
     background-color: #4752C4;
-    box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
   }
   
-  .discord-logo-btn span { color: #fff; }
-
   /* =========================================
      RESPONSIVE
      ========================================= */
   @media (max-width: 900px) {
-    /* Stack Grid to Single Column */
     .hero-grid {
         grid-template-columns: 1fr; 
-        grid-template-rows: auto; 
         gap: 2rem;
         text-align: center;
     }
+    
+    /* RESPONSIVE GRID FIX: Stack them on mobile/tablet */
+    .community-card-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Remove the fixed height on mobile since they stack anyway */
+    .community-card-grid h3 {
+        min-height: auto;
+        display: block;
+    }
 
+    /* ... existing responsive styles ... */
     .hero-line { display: none; }
     
-    /* Reset manual grid placements */
-    .hero-grid h1, 
-    .hero-text-content, 
-    .hero-media {
-        grid-column: auto;
-        grid-row: auto;
+    .hero-grid h1, .hero-text-content, .hero-media {
+        grid-column: auto; grid-row: auto;
     }
 
     .hero-grid h1 { font-size: 2.5rem; }
     .hero-media { margin-top: 0; }
     
-    /* Center button */
     .discord-logo-btn {
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: auto; margin-right: auto;
     }
   }
 </style>
