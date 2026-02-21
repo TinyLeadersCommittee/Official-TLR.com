@@ -1,6 +1,6 @@
-/* =========================================
-   1. THEME VARIABLES (CONFIGURATION)
-   ========================================= */
+/* ======================================================================== */
+/* 1. THEME VARIABLES (CONFIGURATION)                                       */
+/* ======================================================================== */
 
 /* Default Light Theme */
 :root {
@@ -41,11 +41,11 @@
   --footer-text: #A56CC1;   
   
   /* Role-Specific Colors */
-  --color-core: #00ACFF;
-  --color-consultant: #9B59B6;
+  --color-core: #3498db;
+  --color-consultant: #9b59b6;
   --color-advisor: #11806A;
   --color-lpo: #E67E22;
-  --color-contributor: #F1C40F;
+  --color-contributor: #e6ad0e;
 }
 
 /* Charlotte Theme (Pink/Berry) */
@@ -61,9 +61,9 @@
   --footer-text: #FFC1E3;   
 }
 
-/* =========================================
-   2. GLOBAL RESETS (BASE HTML TAGS)
-   ========================================= */
+/* ======================================================================== */
+/* 2. GLOBAL RESETS (BASE HTML TAGS)                                        */
+/* ======================================================================== */
 
 body {
   background-color: var(--bg);
@@ -71,7 +71,7 @@ body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
-  overflow-x: hidden; /* Prevents horizontal scroll from full-width sections */
+  overflow-x: hidden; /* Prevents horiz scroll from full-width sections */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -99,12 +99,11 @@ hr, .divider {
   opacity: 0.5;
 }
 
-/* =========================================
-   3. GLOBAL UTILITIES (Layout & Typography)
-   ========================================= */
+/* ======================================================================== */
+/* 3. GLOBAL UTILITIES (Layout & Typography)                                */
+/* ======================================================================== */
 
-/* The "Reading Container" - Standard width for all text-heavy sections */
-/* Merged: Used the values from your Essay section as they were better */
+/* The "Reading Container" - Standard width for text-heavy sections */
 .prose-block {
   max-width: 65ch; 
   margin: 0 auto;
@@ -123,7 +122,6 @@ hr, .divider {
 }
 
 /* Full-Width Background Strip (Breakout Container) */
-/* Merged .full-width-strip and .alt-bg */
 .full-width-strip, .alt-bg {
   background-color: var(--surface);
   position: relative;
@@ -132,10 +130,7 @@ hr, .divider {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem 1rem;
 }
 
 /* Standard Page Header (Generic & Essay) */
@@ -146,7 +141,6 @@ hr, .divider {
   padding: 0 1rem;
 }
 
-/* This line fixes the font size */
 .page-header h1, .essay-header h1 { 
   font-size: 3rem; 
   margin-bottom: 0.5rem; 
@@ -162,203 +156,117 @@ hr, .divider {
 
 /* Sub-header labels (e.g. "Design Philosophy I") */
 .super-title {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  font-weight: bold;
-  display: block;
+  font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--accent); font-weight: bold; display: block;
   margin-bottom: 0.5rem;
 }
 
 code {
-  background-color: var(--surface);
-  color: var(--accent);
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: 'Inter', system-ui, sans-serif; /* Matches body font, per your design */
-  font-weight: bold;
-  font-size: 0.9em;
-  border: 1px solid var(--border-subtle);
+  background-color: var(--surface); color: var(--accent);
+  padding: 0.2rem 0.4rem; border-radius: 4px;
+  font-family: 'Inter', system-ui, sans-serif; font-weight: bold;
+  font-size: 0.9em; border: 1px solid var(--border-subtle);
 }
 
-/* =========================================
-   4. COMPONENT: CARDS
-   ========================================= */
+/* ======================================================================== */
+/* 4. COMPONENT: CARDS & POSTERS                                            */
+/* ======================================================================== */
 
 /* A. Content Card (Flat, Standard) */
 .content-card {
-  background-color: var(--bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
+  background-color: var(--bg); border: 1px solid var(--border-subtle);
+  border-radius: 8px; padding: 1.5rem;
+  display: flex; flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
 }
 
 .content-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: var(--accent);
-  text-decoration: none;
+  transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent); text-decoration: none;
 }
 
 /* B. Nav Link Card (Gradient) */
 .nav-link-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-subtle);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-subtle);
   background: linear-gradient(to right, var(--surface), transparent);
-  text-decoration: none; 
-  color: var(--text-body);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none; color: var(--text-body);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s;
 }
 
 .nav-link-card:hover {
-  transform: translateX(4px); 
-  border-color: var(--accent);
-  background-color: var(--surface); 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transform: translateX(4px); border-color: var(--accent);
+  background-color: var(--surface); box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.nav-link-card h3 { margin: 0 0 0.5rem 0; font-size: 1.25rem; color: var(--heading-color); }
-.nav-link-card p { margin: 0 0 1rem 0; font-size: 0.95rem; color: var(--text-muted); }
-.nav-link-card .card-action { font-weight: bold; color: var(--accent); margin-top: auto; }
+.nav-link-card h3 { 
+  margin: 0 0 0.5rem 0; font-size: 1.25rem; color: var(--heading-color); 
+}
+.nav-link-card p { 
+  margin: 0 0 1rem 0; font-size: 0.95rem; color: var(--text-muted); 
+}
+.nav-link-card .card-action { 
+  font-weight: bold; color: var(--accent); margin-top: auto; 
+}
 
-/* =========================================
-   COMPONENT: MEDIA CARD (Image Top + Content)
-   Extends basic card styles but removes padding
-   ========================================= */
-
+/* C. Media Card (Image Top + Content) */
 .media-card {
-  /* Inherit base card styles (border, radius, bg) */
-  background-color: var(--surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  
-  /* Reset layout for full-bleed image */
-  padding: 0; 
-  overflow: hidden; 
-  display: flex;
-  flex-direction: column;
+  background-color: var(--surface); border: 1px solid var(--border-subtle);
+  border-radius: 8px; padding: 0; overflow: hidden; 
+  display: flex; flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
 }
 
 .media-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-color: var(--accent);
 }
 
-/* The Image Container */
 .media-card-img {
-  width: 100%;
-  height: 200px; /* Default height, can be overridden inline */
-  background-color: var(--border-subtle); /* Placeholder color */
-  background-size: cover;
-  background-position: center;
+  width: 100%; height: 200px; background-color: var(--border-subtle); 
+  background-size: cover; background-position: center;
 }
 
-/* The Content Container */
 .media-card-body {
-  padding: 1.5rem;
-  flex-grow: 1; /* Ensures footer/buttons push to bottom if needed */
-  display: flex;
-  flex-direction: column;
+  padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;
 }
+.media-card-body.text-center { text-align: center; align-items: center; }
 
-/* Optional: Utility for centered text in body */
-.media-card-body.text-center {
-  text-align: center;
-  align-items: center;
-}
-
-/* =========================================
-   COMPONENT: EVENT POSTER (Hybrid WotC Style)
-   ========================================= */
+/* D. Event Poster (Hybrid WotC Style) */
 .event-poster {
-  position: relative;
-  height: 500px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  background-color: #000;
+  position: relative; height: 500px; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border-subtle); background-color: #000;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
-  
-  /* Flexbox pushes content to bottom */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; 
+  display: flex; flex-direction: column; justify-content: flex-end; 
 }
 
 .event-poster:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   border-color: var(--accent);
 }
 
-/* 1. The Background Art */
 .event-poster-bg {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-size: cover;
-  
-  /* CHANGED: Focus on the top of the image so faces show above the glass */
-  background-position: center top; 
-  
-  z-index: 1;
-  transition: transform 0.5s ease;
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover; background-position: center top; 
+  z-index: 1; transition: transform 0.5s ease;
 }
 
-.event-poster:hover .event-poster-bg {
-  transform: scale(1.05);
-}
+.event-poster:hover .event-poster-bg { transform: scale(1.05); }
 
-/* 2. The Text Panel (Glass Overlay) */
 .event-poster-body {
-  position: relative;
-  z-index: 2;
-  
-  /* CHANGED: Fixed height ensures the "waterline" is identical on all cards.
-     60% of 500px = 300px, which fits the largest card (Brawl) comfortably. */
-  height: 60%; 
-  /* width: 100%; */
-
-  /* FIX 2: Add box-sizing to ensure padding doesn't expand the box */
-  box-sizing: border-box;
-
-  /* CHANGED: Slightly more transparent (0.9 -> 0.85) */
-  background-color: rgba(15, 15, 15, 0.85); 
-  backdrop-filter: blur(2px); 
-  
+  position: relative; z-index: 2; height: 60%; box-sizing: border-box;
+  background-color: rgba(15, 15, 15, 0.85); backdrop-filter: blur(2px); 
   padding: 2rem 1.5rem 1.5rem 1.5rem;
   border-top: 1px solid rgba(255,255,255,0.1);
-  
-  /* Ensure content flows nicely inside the fixed box */
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
 }
 
-/* 3. The Anchor Tag */
 .event-poster-tag {
-  position: absolute;
-  top: -16px; 
-  left: 1.5rem; 
-  
-  padding: 4px 12px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  z-index: 3;
+  position: absolute; top: -16px; left: 1.5rem; padding: 4px 12px;
+  font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.05em; color: #fff; border-radius: 2px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 3;
 }
 
 /* Status Colors */
@@ -367,387 +275,218 @@ code {
 .status-periodic { background-color: #9B59B6; }
 .status-always { background-color: #11806A; }
 
-/* Content Styling */
 .event-poster h3 {
-  color: #fff;
-  font-size: 1.4rem;
-  margin: 0.5rem 0 0.5rem 0;
-  line-height: 1.2;
+  color: #fff; font-size: 1.4rem; margin: 0.5rem 0; line-height: 1.2;
 }
-
 .event-poster p {
-  color: #cccccc;
-  font-size: 0.95rem;
-  margin: 0 0 1rem 0;
-  line-height: 1.5;
+  color: #cccccc; font-size: 0.95rem; margin: 0 0 1rem 0; line-height: 1.5;
 }
-
 .event-poster ul {
-  border-top: 1px solid rgba(255,255,255,0.15);
-  padding-top: 1rem;
-  padding-left: 1.2rem;
-  margin: 0;
-  color: #999;
-  font-size: 0.85rem;
-  
-  /* Optional: If list is too long, it can scroll nicely inside the fixed height */
-  /* overflow-y: auto; */ 
+  border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1rem;
+  padding-left: 1.2rem; margin: 0; color: #999; font-size: 0.85rem;
 }
+.event-poster li { margin-bottom: 0.4rem; }
 
-.event-poster li {
-  margin-bottom: 0.4rem;
-}
+/* ======================================================================== */
+/* 5. COMPONENT: BUTTONS, TAGS & CALLOUTS                                   */
+/* ======================================================================== */
 
-/* =========================================
-   5. COMPONENT: INTERACTIVE & DECORATION
-   ========================================= */
-
-/* Callout Box (Accent Left Border) */
 .callout-box {
-  background-color: var(--surface);
-  border-left: 4px solid var(--accent);
-  padding: 1.5rem 2rem;
-  margin: 2rem 0;
-  border-radius: 0 4px 4px 0;
+  background-color: var(--surface); border-left: 4px solid var(--accent);
+  padding: 1.5rem 2rem; margin: 2rem 0; border-radius: 0 4px 4px 0;
   color: var(--text-body);
 }
 .callout-box p { margin: 0; }
 .callout-box h3, .callout-box h4 { margin-top: 0; color: var(--accent); }
 
-/* Buttons */
+/* Base Button Geometry (Eliminates Redundancy) */
+.btn, .button-outline, .btn-primary {
+  display: inline-block; padding: 0.75rem 1.5rem; border-radius: 4px;
+  font-weight: bold; text-decoration: none; text-align: center;
+  cursor: pointer; transition: all 0.2s ease;
+}
+
+/* Specific Button Styles */
 .btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--bg);
-  border: 1px solid var(--border-subtle);
-  border-radius: 4px;
+  background-color: var(--bg); border: 1px solid var(--border-subtle);
   color: var(--heading-color);
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-align: center;
 }
-
 .btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background-color: var(--bg);
+  border-color: var(--accent); color: var(--accent);
 }
 
-/* Add to global.css */
 .button-outline {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--accent);
+  background-color: transparent; border: 2px solid var(--accent);
   color: var(--accent);
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  text-align: center;
 }
-
-.button-outline:hover {
-  background-color: var(--accent);
-  color: white;
-}
+.button-outline:hover { background-color: var(--accent); color: #fff; }
 
 .btn-primary {
-  background-color: var(--accent);
+  background-color: var(--accent); border: 1px solid var(--accent);
   color: #ffffff;
-  border: 1px solid var(--accent);
 }
-
-.btn-primary:hover {
-  filter: brightness(1.1);
-  color: #ffffff;
-  text-decoration: none;
-}
+.btn-primary:hover { filter: brightness(1.1); }
 
 /* "Pill" Tags */
 .tag-pill {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: bold;
-  background-color: var(--surface);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
+  display: inline-block; padding: 0.25rem 0.75rem; border-radius: 50px;
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;
+  font-weight: bold; background-color: var(--surface);
+  border: 1px solid var(--border-subtle); color: var(--text-muted);
 }
 
-/* =========================================
-   6. THEME: DESIGN ESSAYS
-   (Centered, Story-like, "Book" feel)
-   ========================================= */
+/* ======================================================================== */
+/* 6. THEME: DESIGN ESSAYS                                                  */
+/* ======================================================================== */
 
 .design-essay {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
+  max-width: 900px; margin: 0 auto; padding: 3rem 1rem;
   color: var(--text-body);
 }
 
-/* Typography Overrides */
-.design-essay .essay-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.design-essay .lead-paragraph {
-  font-size: 1.25rem;
-  color: var(--heading-color);
-}
-
-.design-essay .subtitle {
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-/* Spacing */
-.design-essay .chapter-section {
-  padding: 3rem 0;
-}
-
+.design-essay .essay-header { text-align: center; margin-bottom: 3rem; }
+.design-essay .lead-paragraph { font-size: 1.25rem; color: var(--heading-color); }
+.design-essay .subtitle { font-size: 1.25rem; color: var(--text-muted); font-style: italic; }
+.design-essay .chapter-section { padding: 3rem 0; }
 .design-essay .chapter-section h3 {
-  font-size: 1.75rem;
-  color: var(--heading-color);
-  margin-top: 0;
-  margin-bottom: 1.5rem;
+  font-size: 1.75rem; color: var(--heading-color); margin: 0 0 1.5rem 0;
 }
-
 .design-essay .final-statement {
-  text-align: center;
-  font-size: 1.5rem;
-  color: var(--heading-color);
+  text-align: center; font-size: 1.5rem; color: var(--heading-color);
   margin-top: 3rem;
 }
 
-/* =========================================
-   7. THEME: RULES DOCUMENTATION
-   (Left-aligned, Scan-able, Dense)
-   ========================================= */
+/* ======================================================================== */
+/* 7. THEME: RULES DOCUMENTATION                                            */
+/* ======================================================================== */
 
 .rules-doc {
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
+  max-width: 850px; margin: 0 auto; padding: 3rem 1rem;
   color: var(--text-body);
 }
 
-/* Force Left Alignment for Docs */
-.rules-doc .page-header,
-.rules-doc h1, .rules-doc h2, .rules-doc h3 {
+.rules-doc .page-header, .rules-doc h1, .rules-doc h2, .rules-doc h3 {
   text-align: left;
 }
 
 .rules-doc .lead {
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  font-style: italic;
-  margin-bottom: 2rem;
-  max-width: 70ch;
+  font-size: 1.2rem; color: var(--text-muted); font-style: italic;
+  margin-bottom: 2rem; max-width: 70ch;
 }
 
-/* Standard Rules List (Gradient + Left Border) */
-.rules-list {
-  list-style: none;
-  padding: 0;
-}
-
+/* Standard Rules List */
+.rules-list { list-style: none; padding: 0; }
 .rules-list li {
   background: linear-gradient(to right, var(--surface), transparent);
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 1rem;
-  border-left: 3px solid var(--border-subtle);
-  border-radius: 0 4px 4px 0;
+  margin-bottom: 0.75rem; padding: 0.75rem 1rem;
+  border-left: 3px solid var(--border-subtle); border-radius: 0 4px 4px 0;
 }
-
 .rules-list strong { color: var(--accent); }
 
 /* FAQ Accordions */
 .rules-doc details {
   background: linear-gradient(to right, var(--surface), transparent);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-  overflow: hidden;
+  border: 1px solid var(--border-subtle); border-radius: 6px;
+  margin-bottom: 0.5rem; overflow: hidden;
 }
-
 .rules-doc summary {
-  padding: 1rem;
-  cursor: pointer;
-  font-weight: bold;
-  color: var(--heading-color);
-  list-style: none;
+  padding: 1rem; cursor: pointer; font-weight: bold;
+  color: var(--heading-color); list-style: none;
   transition: background-color 0.2s;
 }
-
 .rules-doc summary:hover { background-color: var(--surface); }
-
 .rules-doc .faq-answer {
-  padding: 1rem;
-  border-top: 1px solid var(--border-subtle);
-  color: var(--text-body);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  padding: 1rem; border-top: 1px solid var(--border-subtle);
+  color: var(--text-body); font-size: 0.95rem; line-height: 1.6;
 }
+
+
+/* ======================================================================== */
+/* 8. COMPONENT: MODALS & LIGHTBOXES                                        */
+/* ======================================================================== */
 
 /* Card Viewer Modal */
 .card-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: opacity 0.2s ease, visibility 0.2s;
 }
 
-.card-modal.active {
-  opacity: 1;
-  visibility: visible;
-}
+.card-modal.active { opacity: 1; visibility: visible; }
 
 .card-modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px);
 }
 
 .card-modal-content {
-  position: relative;
-  z-index: 10001;
-  max-width: 90%;
-  max-height: 90vh;
+  position: relative; z-index: 10001; max-width: 90%; max-height: 90vh;
 }
 
 #card-modal-img {
-  max-height: 85vh;
-  max-width: 100%;
-  border-radius: 12px; /* Smooth corners like real cards */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  display: none; /* Hidden until loaded */
+  max-height: 85vh; max-width: 100%; border-radius: 12px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; 
 }
 
-.card-loader {
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
+.card-loader { color: #fff; font-weight: bold; font-size: 1.2rem; }
 
 .card-modal-close {
-  position: absolute;
-  top: -40px;
-  right: -20px;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 10px;
+  position: absolute; top: -40px; right: -20px; background: none; border: none;
+  color: #fff; font-size: 2rem; cursor: pointer; padding: 10px;
 }
 
-/* =========================================
-   CARD PREVIEW LIGHTBOX - NAVIGATION ARROWS
-   ========================================= */
-
+/* Card Preview Lightbox - Navigation Arrows */
 .modal-nav {
-  position: absolute; 
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 2rem;
-  padding: 1rem 1.25rem;
-  cursor: pointer;
-  z-index: 10; 
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(4px); 
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6); color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2); font-size: 2rem;
+  padding: 1rem 1.25rem; cursor: pointer; z-index: 10; border-radius: 8px;
+  transition: all 0.2s ease; backdrop-filter: blur(4px); 
 }
 
 .modal-nav:hover {
-  background: var(--accent); /* Pops to your theme color */
-  border-color: transparent;
+  background: var(--accent); border-color: transparent;
   transform: translateY(-50%) scale(1.05);
 }
 
-/* Pulls the arrows just outside the left and right edges of the card */
-.nav-prev {
-  left: -5rem; 
-}
-
-.nav-next {
-  right: -5rem; 
-}
+.nav-prev { left: -5rem; }
+.nav-next { right: -5rem; }
 
 /* Make triggers look interactive */
 .card-trigger {
-  cursor: pointer;
-  border-bottom: 1px dotted var(--text-muted); /* Subtle hint it's clickable */
+  cursor: pointer; border-bottom: 1px dotted var(--text-muted); 
   transition: color 0.2s;
 }
 .card-trigger:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--accent); border-bottom-color: var(--accent);
 }
 
 /* Normalizes the upgraded cardPreview.js <dialog> element */
 dialog#card-modal {
-  border: none;
-  background: transparent;
-  padding: 0;
-  max-width: none;
-  max-height: none;
-  overflow: visible;
+  border: none; background: transparent; padding: 0;
+  max-width: none; max-height: none; overflow: visible;
 }
 
-/* We hide the native backdrop because cardPreview.js already uses <div class="card-modal-overlay"> */
-dialog#card-modal::backdrop {
-  background: transparent;
-}
+dialog#card-modal::backdrop { background: transparent; }
 
-/* =========================================
-   8. RESPONSIVE HELPERS
-   ========================================= */
+/* ======================================================================== */
+/* 9. RESPONSIVE HELPERS                                                    */
+/* ======================================================================== */
 
 @media (max-width: 600px) {
   .page-header h1, .essay-header h1 { font-size: 2rem; }
-  
   .prose-block { font-size: 1rem; }
   
   /* Reset Breakouts on Mobile */
   .full-width-strip, .alt-bg {
-    margin-left: -1rem;
-    margin-right: -1rem;
-    width: calc(100% + 2rem);
-    left: auto;
-    right: auto;
+    margin-left: -1rem; margin-right: -1rem; width: calc(100% + 2rem);
+    left: auto; right: auto;
   }
 }
 
-/* On mobile/tablets, move them slightly inside the image so they don't get cut off the screen */
 @media (max-width: 768px) {
+  /* Pull modal arrows inside the image area */
   .nav-prev { left: 0.5rem; }
   .nav-next { right: 0.5rem; }
-  /* Scales the buttons down slightly to save space on mobile */
-  .modal-nav { 
-    padding: 0.75rem 1rem; 
-    font-size: 1.5rem; 
-  }
+  .modal-nav { padding: 0.75rem 1rem; font-size: 1.5rem; }
 }

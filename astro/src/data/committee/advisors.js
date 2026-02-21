@@ -7,7 +7,13 @@
         region: "",
         bio: ``,
         petDeck: ``,
-        faveCard: ``
+        faveCard: ``,
+        img: ,
+        // --- MTG CUSTOMIZATION (Optional) ---
+        faveCardImg: ``, // String URL (e.g., a Scryfall image link)
+        mtgMana: ``,     // e.g., "{1}{W}{U}"
+        mtgType: ``,     // e.g., "Legendary Creature — Core Member"
+        mtgPT: ``        // e.g., "2 / 2" (or set to false to hide the box)
     }
 */
 

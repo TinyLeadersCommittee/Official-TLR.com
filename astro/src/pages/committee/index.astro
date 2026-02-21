@@ -1,78 +1,397 @@
 ---
-// src/pages/committee/index.astro
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
 ---
 
-<BaseLayout title="Committee Governance">
-  <article class="governance-page">
+<html lang="en" data-theme="committee">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Committee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  </head>
+  
+  <body class="clean-body">
     
-    <header class="page-header">
-      <h1>Governance & Transparency</h1>
-      <p class="intro-text">
-        This section functions as a documentation hub for the Tiny Leaders Committee, 
-        housing the Charter, Guidebook, and formal policies.
-      </p>
-    </header>
+    <main class="hub-container">
+      
+      <header class="hub-header">
+        <span class="the-prefix">THE</span>
+        <h1 class="main-title">Tiny Leaders Committee</h1>
+        <p class="mandate">Governance &bull; Stewardship &bull; Transparency</p>
+      </header>
 
-    <div class="construction-notice">
-      <h2>🚧 Work in Progress 🚧</h2>
-      <p>You have successfully navigated to <code>/committee/index.astro</code>.</p>
-      <p>According to the plan, this section will eventually host:</p>
-      <ul>
-        <li><strong>Mission Statement:</strong> Purpose and scope of the committee.</li>
-        <li><strong>The Charter:</strong> Structure and authority.</li>
-        <li><strong>The Guidebook:</strong> Policies and procedures for decision making.</li>
-      </ul>
-    </div>
+      <div class="doc-notice">
+        <p>The future home of the Tiny Leaders Committee Documentation Hub.</p>
+      </div>
 
-    <div class="back-link">
-      <a href="/about/committee">← Back to the "People" Page</a>
-    </div>
+      <div class="form-wrapper">
+        
+        <form id="contact-form" class="standard-form active-form">
+          <h2>Contact the Committee</h2>
+          <p class="form-desc">Submit inquiries regarding format philosophy, rules clarifications, or community feedback.</p>
+          
+          <div class="input-group">
+            <label>Name / Identifier</label>
+            <input type="text" id="contact-name" placeholder="Your name..." required />
+          </div>
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="contact-email" placeholder="For our reply..." required />
+          </div>
+          <div class="input-group">
+            <label>Message</label>
+            <textarea id="contact-message" rows="5" placeholder="How can we help?" required></textarea>
+          </div>
+          <button type="submit" id="contact-submit" class="btn-primary">Send Message</button>
+        </form>
 
-  </article>
-</BaseLayout>
+        <form id="login-form" class="standard-form hidden-form" onsubmit="event.preventDefault();">
+          <h2>Committee Access</h2>
+          <p class="form-desc">Authenticate to access the CMS and publish official updates.</p>
+          
+          <div class="input-group">
+            <label>Clearance ID</label>
+            <input type="text" placeholder="Admin Username" required />
+          </div>
+          <div class="input-group">
+            <label>Passcode</label>
+            <input type="password" placeholder="••••••••••••" required />
+          </div>
+          <button type="submit" class="btn-primary btn-secure">Authenticate</button>
+        </form>
+
+      </div>
+
+      <div class="motto-container">
+        <span class="subtitle">We're not just a Rules Committee</span>
+      </div>
+
+      <div class="secret-trigger" id="toggle-trigger" title="∆">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="12,4 22,20 2,20" />
+        </svg>
+      </div>
+
+      <div class="return-link">
+        <a href="/">&larr; Return to Main Site</a>
+      </div>
+
+    </main>
+
+    <script is:inline>
+      // --- 1. SECRET LOGIN TOGGLE ---
+      const trigger = document.getElementById('toggle-trigger');
+      const contactForm = document.getElementById('contact-form');
+      const loginForm = document.getElementById('login-form');
+
+      trigger.addEventListener('click', () => {
+        if (contactForm.classList.contains('active-form')) {
+          contactForm.classList.remove('active-form');
+          contactForm.classList.add('hidden-form');
+          loginForm.classList.remove('hidden-form');
+          loginForm.classList.add('active-form');
+        } else {
+          loginForm.classList.remove('active-form');
+          loginForm.classList.add('hidden-form');
+          contactForm.classList.remove('hidden-form');
+          contactForm.classList.add('active-form');
+        }
+      });
+
+      // --- 2. DISCORD WEBHOOK LOGIC ---
+      // PASTE YOUR DISCORD WEBHOOK URL HERE
+      const webhookURL = "https://discord.com/api/webhooks/1474658758289526814/JfDa5i9q59d8GioFa_x2NdMHbAuu72dwxdxoBBTF5rDb00vtPN_dH8qBWRrZhGczLR6t"; 
+
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Stop the page from reloading
+
+        const name = document.getElementById('contact-name').value;
+        const email = document.getElementById('contact-email').value;
+        const message = document.getElementById('contact-message').value;
+        const submitBtn = document.getElementById('contact-submit');
+
+        // Visual feedback so the user knows it's working
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = "Transmitting...";
+        submitBtn.disabled = true;
+
+        // Construct the Discord Embed Payload
+        const payload = {
+          username: "Committee Terminal", // Name of the bot in Discord
+          embeds: [{
+            title: "New Public Channel Transmission",
+            color: 10233776, // Committee Purple in decimal format
+            fields: [
+              { name: "Designation", value: name, inline: true },
+              { name: "Contact Email", value: email, inline: true },
+              { name: "Transmission", value: message }
+            ],
+            timestamp: new Date().toISOString()
+          }]
+        };
+
+        try {
+          const response = await fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (response.ok) {
+            submitBtn.innerText = "Transmission Sent";
+            submitBtn.style.backgroundColor = "#4ade80"; // Turn button green
+            contactForm.reset(); // Clear the form
+          } else {
+            submitBtn.innerText = "Error. Try Again.";
+            submitBtn.style.backgroundColor = "#f87171"; // Turn button red
+          }
+        } catch (error) {
+          submitBtn.innerText = "Network Error.";
+          submitBtn.style.backgroundColor = "#f87171";
+        }
+
+        // Reset the button back to normal after 3.5 seconds
+        setTimeout(() => {
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.backgroundColor = ""; // Resets to CSS default
+        }, 3500);
+      });
+    </script>
+  </body>
+</html>
 
 <style>
-  .governance-page {
-    max-width: 800px; /* Narrower for reading text */
-    margin: 0 auto;
-    padding: 2rem 1rem;
+  /* --- BASE SETUP --- */
+  .clean-body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg);
+    color: var(--text-body);
+    font-family: 'Montserrat', var(--font-body, sans-serif);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
   }
 
-  .page-header {
+  .hub-container {
+    width: 100%;
+    max-width: 900px; 
+    padding: 0 1.5rem;
+  }
+
+  /* --- HEADER --- */
+  .hub-header {
     text-align: center;
-    margin-bottom: 3rem;
-  }
-  
-  .page-header h1 {
-    color: var(--heading-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
   }
 
-  .construction-notice {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px dashed var(--accent);
-    padding: 2rem;
+  .the-prefix {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; 
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    letter-spacing: 4px;
+    margin-bottom: -0.5rem;
+  }
+
+  .main-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; 
+    font-size: 3.5rem; 
+    color: var(--heading-color);
+    margin: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .mandate {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: var(--heading-color);
+    letter-spacing: 6px;
+    margin: 1rem 0 0 0;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* --- DOCUMENTATION NOTICE --- */
+  .doc-notice {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .doc-notice p {
+    display: inline-block;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.5rem;
+    margin: 0;
+  }
+
+  /* --- FORMS --- */
+  .form-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
     border-radius: 12px;
-    margin-bottom: 3rem;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    min-height: 450px;
+    max-width: 550px;
+    margin: 0 auto;
   }
 
-  .construction-notice h2 {
-    color: var(--accent);
-    margin-top: 0;
+  .standard-form {
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
-  .construction-notice ul {
-    margin-top: 1rem;
-    line-height: 1.8;
+  .active-form {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .back-link {
-    text-align: center;
+  .hidden-form {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  .back-link a {
+
+  .standard-form h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
     color: var(--heading-color);
-    text-decoration: underline;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+  }
+
+  .form-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 2rem 0;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--heading-color);
+  }
+
+  .standard-form input,
+  .standard-form textarea {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    color: var(--text-body);
+    padding: 0.8rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .standard-form input:focus,
+  .standard-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
+  }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #b036c8; 
+    transform: translateY(-2px);
+  }
+
+  .btn-secure {
+    background: #333;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .btn-secure:hover {
+    background: var(--accent);
+  }
+
+  /* --- MOTTO & TRIGGER --- */
+  .motto-container {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .subtitle {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .secret-trigger {
+    width: 20px;
+    height: 20px;
+    margin: 0.5rem auto 2rem auto; 
+    color: var(--text-muted);
+    opacity: 0.15;
+    cursor: pointer;
+    transition: opacity 0.3s, color 0.3s;
+  }
+
+  .secret-trigger:hover {
+    opacity: 1;
+    color: var(--accent);
+  }
+
+  /* --- FOOTER --- */
+  .return-link {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .return-link a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .return-link a:hover {
+    color: var(--heading-color);
+  }
+
+  @media (max-width: 600px) {
+    .main-title { font-size: 2.2rem; }
+    .form-wrapper { padding: 1.5rem; }
+    .mandate { font-size: 0.8rem; letter-spacing: 2px; }
   }
 </style>

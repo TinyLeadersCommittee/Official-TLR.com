@@ -10,21 +10,21 @@ export const mainCommitteeSections = [
     title: "Core Members",
     members: coreMembers,
     shape: "triangle",
-    color: "#658cfa", // Light Royal Blue
+    color: "#3498db", // Light Royal Blue
     description: `We're Blue`
   },
   {
     title: "Consultants",
     members: consultants,
     shape: "hexagon", 
-    color: "#9d4edd", // Purple
+    color: "#9b59b6", // Purple
     description: `We're Purple`
   },
   {
     title: "Local Play Organizers (LPO)",
     members: lpos,
     shape: "square",
-    color: "#fb8500", // Orange
+    color: "#e67e22", // Orange
     description: `The boots on the ground. LPOs run paper events, build local 
     communities, and serve as the bridge between the global online community 
     and local game stores.`
@@ -33,7 +33,7 @@ export const mainCommitteeSections = [
     title: "Advisors",
     members: advisors,
     shape: "diamond",
-    color: "#8FBC8F", // Sage Green
+    color: "#11806a", // Sage Green
     description: `Veterans of the format who provide historical context, guidance 
     on difficult decisions, and sanity checks for the Core Team's proposals.`
   }
@@ -42,7 +42,7 @@ export const mainCommitteeSections = [
 export const contributorConfig = {
     title: "Contributors",
     shape: "circle",
-    color: "#888888",
+    color: "#e6ad0e",
     description: `Dedicated community members who help keep the machine running, 
     from discord moderation and judge calls to content creation and playtesting.`
 };

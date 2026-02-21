@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MemberCard from '../../components/MemberCard.astro';
+import DetailsPanel from '../../components/DetailsPanel.astro';
 import sages from '../../assets/images/about/orderOfWhiteclay.jpg';
-import { Image } from 'astro:assets';
-import { mainCommitteeSections } from '../../data/committee/committee-config.js';
+import { mainCommitteeSections, contributorConfig } from '../../data/committee/committee-config.js';
 import { contributorTeams } from '../../data/contributors/contributor-config.js'; 
 ---
 
@@ -19,148 +20,88 @@ bgStyle="object-fit: contain; object-position: center;">
         Members of the Tiny Leaders Committee
       </p>
       <p class="lead">
-        Dedicated to the stewardship, development, health, and growth of the 
+        Dedicated to the stewardship, development, health, and growth of the <br> 
         Tiny Leaders Reborn format.
       </p>
     </header>
 
-    {mainCommitteeSections.map(section => (
-      <section class="role-section" style={`--role-color: ${section.color}`}>
-        <div class="role-header">
-            <h2>{section.title}</h2>
-            <p class="role-description">{section.description}</p>
-        </div>
-        
-        <div class="members-grid">
-          {section.members.map((member, index) => (
-            <button 
-              class="member-card" 
-              onclick={`toggleMember('${section.title.replace(/\s/g, '')}', ${index}, this)`}
-              data-member={JSON.stringify(member)}
-            >
-              <div class={`pfp-container shape-${section.shape}`}>
-                {member.img ? (
-                  <Image 
-                    src={member.img} 
-                    alt={member.name} 
-                    width={300} height={300}
-                    class="member-photo"
-                    style={member.imgStyle || ""} 
-                  />
-                ) : (
-                  <div class="placeholder-pfp">?</div>
-                )}
-              </div>
-              <div class="member-identity">
-                <h3>{member.name}</h3>
-                <span class="discord-tag">{member.discordUsername}</span>
-              </div>
-            </button>
-          ))}
+    {/* =========================================
+        CORE COMMITTEE SECTIONS (Collapsible)
+        ========================================= */}
+    {mainCommitteeSections.map(section => {
+      const sectionId = section.title.replace(/\s/g, '');
+      // If it's the LPO section, use parallelogram. Otherwise, use what's in the data or default to circle.
+      const rowShape = section.title.includes('Local Play') ? 'parallelogram' : (section.shape || 'circle');
 
-          {/* Hidden Detail Panel for this row */}
-          <div id={`details-${section.title.replace(/\s/g, '')}`} class="details-panel hidden">
-            <div class="details-content">
-               <button class="close-btn" onclick="closeAllDetails()">×</button>
-               <div class="details-info-col">
-                 <h4>Bio</h4>
-                 <p class="bio-target"></p>
-               </div>
-               <div class="details-stats-col">
-                 <dl>
-                   <dt>Contribution</dt> <dd class="contrib-target"></dd>
-                   <dt>Region</dt>       <dd class="region-target"></dd>
-                   <dt>Pet Deck</dt>     <dd class="deck-target"></dd>
-                   <dt>Favorite Card</dt><dd class="card-target"></dd>
-                 </dl>
-               </div>
+      return (
+        <section class="role-section" style={`--role-color: ${section.color}`}>
+          
+          {/* THE NEW COLLAPSIBLE HEADER */}
+          <button class="role-header accordion-toggle" onclick={`toggleAccordion('${sectionId}')`}>
+            <div class="header-content">
+              <h2>{section.title}</h2>
+              <p class="role-description">{section.description}</p>
+            </div>
+            <span id={`icon-${sectionId}`} class="accordion-icon">▼</span>
+          </button>
+          
+          {/* THE WRAPPER THAT COLLAPSES */}
+          <div id={`wrapper-${sectionId}`} class="section-wrapper open">
+            <div class="members-grid">
+              {section.members.map((member, index) => (
+                <MemberCard member={member} sectionId={sectionId} index={index} shape={rowShape} />
+              ))}
+              <DetailsPanel sectionId={sectionId} />
             </div>
           </div>
+
+        </section>
+      )
+    })}
+
+    {/* =========================================
+        CONTRIBUTOR TEAMS SECTION
+        ========================================= */}
+    <section class="role-section contributors-section" style={`--role-color: ${contributorConfig.color}`}>
+        
+        <div class="role-header" style="cursor: default; pointer-events: none;">
+            <div class="header-content">
+                {/* Use the dynamic title and description! */}
+                <h2 style="color: var(--role-color);">{contributorConfig.title}</h2>
+                <p class="role-description">{contributorConfig.description}</p>
+            </div>
         </div>
-      </section>
-    ))}
 
-
-    <section class="role-section contributors-section">
-        <div class="role-header">
-            <h2>Contributors</h2>
-            <p class="role-description">The dedicated teams keeping the machine running.</p>
-        </div>
-
-        {/* VIEW A: THE TEAM CARDS (Visible by Default) */}
+        {/* VIEW A: TEAM FOLDERS (Visible by default) */}
         <div id="contrib-teams-list" class="members-grid">
             {contributorTeams.map(team => (
-                <button 
-                    class="member-card team-folder-card"
-                    onclick={`showTeam('${team.id}')`}
-                    style={`--role-color: ${team.color}`}
-                >
-                    <div class="pfp-container shape-circle">
-                         <div class="placeholder-pfp" style="font-size: 4rem;">{team.icon}</div>
-                    </div>
-                    <div class="member-identity">
-                        <h3>{team.title}</h3>
-                        <span class="discord-tag">{team.members.length} Members</span>
-                    </div>
-                </button>
+              <div style={`--role-color: ${team.color}; width: 100%;`}>
+                <MemberCard member={team} shape={team.shape || 'nonagon'} />
+              </div>
             ))}
         </div>
 
-        {/* VIEW B: THE INDIVIDUAL TEAM DETAILS (Hidden by Default) */}
+        {/* VIEW B: INDIVIDUAL TEAM DETAILS (Hidden by default) */}
         {contributorTeams.map(team => (
             <div id={`team-view-${team.id}`} class="team-detail-view hidden" style={`--role-color: ${team.color}`}>
                 
-                {/* Navigation Header */}
                 <div class="team-nav-header">
                     <button class="back-btn" onclick="showTeamsList()">← Back to Teams</button>
                     <h3>{team.title}</h3>
                 </div>
 
                 <div class="members-grid">
+                    {/* Hardcoding the nonagon shape for the inner members! */}
                     {team.members.map((member, index) => (
-                        <button 
-                            class="member-card"
-                            onclick={`toggleMember('${team.id}', ${index}, this)`}
-                            data-member={JSON.stringify(member)}
-                        >
-                             <div class="pfp-container shape-circle">
-                                {member.img ? (
-                                    <Image src={member.img} alt={member.name} width={300} height={300} class="member-photo" />
-                                ) : (
-                                    <div class="placeholder-pfp">?</div>
-                                )}
-                            </div>
-                            <div class="member-identity">
-                                <h3>{member.name}</h3>
-                                <span class="discord-tag">{member.discordUsername}</span>
-                            </div>
-                        </button>
+                        <MemberCard member={member} sectionId={team.id} index={index} shape="nonagon" />
                     ))}
-
-                    {/* Detail Panel for THIS Specific Team */}
-                    <div id={`details-${team.id}`} class="details-panel hidden">
-                        <div class="details-content">
-                            <button class="close-btn" onclick="closeAllDetails()">×</button>
-                            <div class="details-info-col">
-                                <h4>Bio</h4>
-                                <p class="bio-target"></p>
-                            </div>
-                            <div class="details-stats-col">
-                                <dl>
-                                    <dt>Contribution</dt> <dd class="contrib-target"></dd>
-                                    <dt>Region</dt>       <dd class="region-target"></dd>
-                                    <dt>Pet Deck</dt>     <dd class="deck-target"></dd>
-                                    <dt>Favorite Card</dt><dd class="card-target"></dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
+                    <DetailsPanel sectionId={team.id} />
                 </div>
             </div>
         ))}
-
     </section>
 
+    {/* FOOTER CALLOUT */}
     <div class="callout-box" style="text-align: center; margin-top: 5rem; cursor: pointer;" onclick="window.location.href='/committee'">
       <h3 style="margin-top: 0; color: var(--accent);">How does this all work?</h3>
       <p>Learn about how the Committee Functions, Votes, and Governs.</p>
@@ -169,395 +110,63 @@ bgStyle="object-fit: contain; object-position: center;">
   </article>
 </BaseLayout>
 
-<script is:inline>
-  /* --- 1. MEMBER EXPANSION LOGIC --- */
-  window.toggleMember = function(sectionId, index, btnElement) {
-    const sectionGrid = btnElement.parentElement;
-    const detailPanel = document.getElementById(`details-${sectionId}`);
-    
-    // Check if clicking active card to close
-    if (btnElement.classList.contains('active-card')) {
-      closeAllDetails();
-      return;
-    }
-
-    // Reset others
-    const allCards = sectionGrid.querySelectorAll('.member-card');
-    allCards.forEach(card => card.classList.remove('active-card'));
-
-    // Set Active
-    btnElement.classList.add('active-card');
-
-    // Populate Data
-    const data = JSON.parse(btnElement.dataset.member);
-    const setText = (cls, text) => {
-        const el = detailPanel.querySelector(cls);
-        if(el) el.textContent = text || "N/A";
-    };
-
-    setText('.bio-target', data.bio);
-    setText('.contrib-target', data.focusedContribution);
-    setText('.region-target', data.region);
-    setText('.deck-target', data.petDeck);
-    setText('.card-target', data.faveCard);
-
-    // Insert Panel in correct row position (Responsive Insertion)
-    const clickY = btnElement.offsetTop;
-    let insertionPoint = null;
-
-    for (let i = 0; i < allCards.length; i++) {
-        // Skip hidden details panel in this check
-        if(allCards[i].classList.contains('details-panel')) continue;
-        
-        if (allCards[i].offsetTop > clickY) {
-            insertionPoint = allCards[i];
-            break;
-        }
-    }
-
-    if (insertionPoint) {
-        sectionGrid.insertBefore(detailPanel, insertionPoint);
-    } else {
-        sectionGrid.appendChild(detailPanel);
-    }
-
-    // Show
-    detailPanel.classList.remove('hidden');
-    // Using RAF ensures transition plays
-    requestAnimationFrame(() => detailPanel.classList.add('open'));
-  };
-
-  window.closeAllDetails = function() {
-    document.querySelectorAll('.details-panel').forEach(p => {
-        p.classList.remove('open');
-        p.classList.add('hidden');
-    });
-    document.querySelectorAll('.member-card').forEach(c => c.classList.remove('active-card'));
-  }
-
-  /* --- 2. TEAM NAVIGATION LOGIC --- */
-  window.showTeam = function(teamId) {
-    // Hide the Team List
-    document.getElementById('contrib-teams-list').style.display = 'none';
-    
-    // Show the Specific Team View
-    const teamView = document.getElementById(`team-view-${teamId}`);
-    teamView.classList.remove('hidden');
-    
-    // Scroll slightly to header so user sees they entered
-    teamView.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  window.showTeamsList = function() {
-    // Hide all Team Views
-    document.querySelectorAll('.team-detail-view').forEach(el => {
-        el.classList.add('hidden');
-    });
-
-    // Show the Team List
-    const list = document.getElementById('contrib-teams-list');
-    list.style.display = 'grid'; // Restore grid layout
-  }
-</script>
+<script src="../../scripts/committeeDetails.js"></script>
 
 <style>
-  /* =========================================
-     UNIQUE: LAYOUT & INTERACTION
-     ========================================= */
-  .committee-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
+  .committee-page { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+  .role-section { margin-bottom: 4rem; }
 
-  /* =========================================
-     UNIQUE: SECTIONS & ROLES
-     ========================================= */
-  .role-section {
-    margin-bottom: 4rem;
+  /* Accordion Header Styles */
+  .role-header { 
+    width: 100%; text-align: center; margin-bottom: 2rem; 
+    background: transparent; border: none; cursor: pointer; 
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    padding: 1rem; border-radius: 8px; transition: background 0.2s;
   }
-
-  .role-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .role-header h2 {
-    color: var(--role-color);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .role-description {
-    color: var(--text-muted);
-    font-style: italic;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.5;
-  }
-
-  /* =========================================
-     UNIQUE: GRID & CARDS
-     ========================================= */
-  .members-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
-    align-items: start;
-    position: relative;
-  }
-
-  .member-card {
-    background: transparent;
-    border: 1px solid var(--border-subtle); 
-    border-radius: 12px;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    text-align: center;
-  }
-
-  .member-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--text-muted);
-  }
-
-  .member-card.active-card {
-    border-color: var(--role-color);
-    border-width: 2px;
-    background: rgba(255,255,255,0.03);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transform: translateY(-2px);
-  }
-
-  /* PFP Container */
-  .pfp-container {
-    margin-bottom: 1.5rem;
-    background: transparent;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; 
-  }
-
-  .pfp-container img, .member-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* =========================================
-     UNIQUE: SHAPES
-     ========================================= */
+  .role-header:hover { background: rgba(255,255,255,0.03); }
   
-  /* TRIANGLE (Inverted) */
-  .shape-triangle {
-    width: 180px; 
-    height: 180px;
-    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-    filter: 
-      drop-shadow(0px -3px 0px #658cfa) 
-      drop-shadow(3px 0px 0px #658cfa) 
-      drop-shadow(-3px 0px 0px #658cfa) 
-      drop-shadow(0px 3px 0px #658cfa);
+  .header-content { display: flex; flex-direction: column; align-items: center; }
+  .header-content h2 { 
+    color: var(--role-color, var(--heading-color)); 
+    text-transform: uppercase; letter-spacing: 0.1em; 
+    font-size: 1.5rem; margin: 0 0 0.5rem 0; 
   }
-  .shape-triangle img {
-    object-position: center 10%; /* Focus top */
-    transform: scale(1.1);
-  }
-
-  /* HEXAGON */
-  .shape-hexagon {
-    width: 130px; 
-    height: 150px; 
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  }
-
-  /* SQUARE */
-  .shape-square { width: 150px; height: 150px; }
-
-  /* DIAMOND */
-  .shape-diamond {
-    width: 150px; height: 150px;
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  }
-
-  /* CIRCLE */
-  .shape-circle {
-    width: 150px; height: 150px;
-    border-radius: 50%;
-  }
-
-  /* Names */
-  .member-identity h3 {
-    margin: 0;
-    color: var(--heading-color);
-    font-size: 1.3rem;
-  }
-  .discord-tag {
-    color: var(--role-color);
-    font-family: monospace;
-    opacity: 0.8;
-    font-size: 0.9rem;
-    margin-top: 0.25rem;
-    display: block;
-  }
-
-  /* =========================================
-     UNIQUE: DETAILS PANEL
-     ========================================= */
-  .details-panel {
-    grid-column: 1 / -1; /* Spans full width of grid */
-    background: var(--surface);
-    border-top: 2px solid var(--role-color);
-    border-bottom: 2px solid var(--role-color);
-    overflow: hidden;
-    height: auto;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    
-    max-height: 0; 
-    opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.3s ease;
-  }
-
-  .details-panel.hidden { display: none; }
-  .details-panel.open {
-    display: block;
-    max-height: 600px;
-    opacity: 1;
-  }
-
-  .details-content {
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    position: relative;
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: 1px solid var(--border-subtle);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--text-muted);
-    cursor: pointer;
-    line-height: 1;
-    transition: all 0.2s;
-  }
-  .close-btn:hover { 
-    color: var(--heading-color);
-    border-color: var(--role-color);
-  }
-
-  .details-info-col h4 {
-    color: var(--role-color);
-    text-transform: uppercase;
-    margin-top: 0;
-    border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+  .role-description { 
+    color: var(--text-muted); font-style: italic; max-width: 700px; 
+    margin: 0 auto; line-height: 1.5; 
   }
   
-  .details-stats-col dl {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.75rem 1.5rem;
+  .accordion-icon { color: var(--role-color); font-size: 1.2rem; transition: transform 0.3s ease; }
+
+  /* Section Wrapper Collapsing Logic */
+  .section-wrapper { 
+    display: grid; 
+    grid-template-rows: 0fr; 
+    transition: grid-template-rows 0.4s ease; 
   }
-  .details-stats-col dt {
-    font-weight: bold;
-    color: var(--heading-color);
-    text-align: right;
-    white-space: nowrap;
-  }
-  .details-stats-col dd {
-    margin: 0;
-    color: var(--text-muted);
+  .section-wrapper.open { grid-template-rows: 1fr; }
+  .section-wrapper > div { overflow: hidden; }
+
+  .members-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 2rem; align-items: start; position: relative; padding-top: 1rem;
   }
 
-  /* =========================================
-     UNIQUE: CONTRIBUTORS SECTION
-     ========================================= */
-  .contributors-section {
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 4rem;
-    margin-top: 4rem;
+  /* Contributor Styles */
+  .contributors-section { border-top: 1px solid var(--border-subtle); padding-top: 4rem; margin-top: 4rem; }
+  .team-nav-header { 
+    display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; 
+    padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); 
   }
-
-  .team-folder-card .member-identity h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
+  .team-nav-header h3 { margin: 0; font-size: 1.5rem; color: var(--role-color); }
   
-  /* Team Nav */
-  .team-nav-header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-subtle);
+  .back-btn { 
+    background: transparent; border: 1px solid var(--role-color); color: var(--role-color); 
+    padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: bold; transition: all 0.2s; 
   }
-
-  .team-nav-header h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: var(--role-color);
-  }
-
-  .back-btn {
-    background: transparent;
-    border: 1px solid var(--role-color);
-    color: var(--role-color);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.2s;
-  }
-  .back-btn:hover {
-    background: var(--role-color);
-    color: #fff;
-  }
-
+  .back-btn:hover { background: var(--role-color); color: #fff; }
+  
   .hidden { display: none; }
   .team-detail-view { animation: fadeIn 0.3s ease; }
-
-  /* =========================================
-     RESPONSIVE
-     ========================================= */
-  @media (max-width: 768px) {
-    .details-content {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem;
-    }
-    .details-stats-col dl {
-      grid-template-columns: 1fr; 
-      gap: 0.5rem;
-    }
-    .details-stats-col dt {
-      text-align: left;
-      margin-top: 1rem;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 0.25rem;
-      color: var(--role-color);
-    }
-    .details-stats-col dd {
-      padding-left: 0.5rem;
-    }
-  }
 </style>

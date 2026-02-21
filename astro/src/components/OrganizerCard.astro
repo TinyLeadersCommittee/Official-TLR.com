@@ -81,23 +81,25 @@ const initials = getInitials(lpo.name);
           {lpo.places.map((venue) => (
             <article class="venue-item">
               <div class="venue-info">
-                {venue.website ? (
-                  <a href={venue.website} target="_blank" rel="nofollow noreferrer" class="venue-name">
-                    {venue.place}
-                  </a>
-                ) : (
-                  <span class="venue-name">{venue.place}</span>
-                )}
+                <div class="venue-header">
+                  {venue.website ? (
+                    <a href={venue.website} target="_blank" rel="nofollow noreferrer" class="venue-name">
+                      {venue.place}
+                    </a>
+                  ) : (
+                    <span class="venue-name">{venue.place}</span>
+                  )}
+                  
+                  {venue.website && (
+                    <a href={venue.website} target="_blank" rel="nofollow noreferrer" class="venue-icon" title="Visit Website">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                      </svg>
+                    </a>
+                  )}
+                </div>
                 <span class="venue-frequency">{venue.frequency}</span>
               </div>
-              
-              {venue.website && (
-                  <a href={venue.website} target="_blank" rel="nofollow noreferrer" class="venue-icon" title="Visit Website">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
-                    </svg>
-                  </a>
-              )}
             </article>
           ))}
         </div>
@@ -122,10 +124,10 @@ const initials = getInitials(lpo.name);
     top: 60px; /* Starts exactly below the top red banner */
     right: 0;
     bottom: 0;
-    width: 45%; /* Fills the right side of the card */
+    width: 55%; /* Fills the right side of the card */
     background-size: cover;
     background-position: center right;
-    opacity: 0.25; /* Keeps it strictly as a watermark */
+    opacity: 0.30; /* Keeps it strictly as a watermark */
     z-index: -1; /* Pushes it behind all the text */
     pointer-events: none; /* Prevents it from blocking clicks on links */
     
@@ -277,21 +279,28 @@ const initials = getInitials(lpo.name);
   }
 
   .venues-list { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 0.75rem; 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1.5rem 1rem; 
   }
 
   .venue-item { 
     display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 0.5rem 0; 
+    flex-direction: column;
+    padding: 0; 
   }
 
   .venue-info { 
     display: flex; 
     flex-direction: column; 
+    gap: 0.15rem;
+  }
+
+  /* Pins the SVG close to the Name */
+  .venue-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .venue-name { 
@@ -299,6 +308,7 @@ const initials = getInitials(lpo.name);
     color: var(--heading-color); 
     text-decoration: none; 
     font-size: 1.05rem; 
+    line-height: 1.2;
   }
 
   .venue-name:hover { 
@@ -309,12 +319,13 @@ const initials = getInitials(lpo.name);
   .venue-frequency { 
     font-size: 0.85rem; 
     color: var(--text-muted); 
-    margin-top: 0.2rem; 
   }
 
   .venue-icon { 
     color: var(--border-subtle); 
-    transition: color 0.2s; 
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
   }
 
   .venue-icon:hover { 
@@ -350,5 +361,11 @@ const initials = getInitials(lpo.name);
     } 
     /* On mobile, we make it full width but super faint 
        so the text remains legible */
+  }
+
+  @media (max-width: 600px) {
+    .venues-list {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

@@ -1,41 +1,43 @@
 ---
-/* 1. IMPORT YOUR GLOBAL CSS 
-  Adjust this path if your global css is named differently or located elsewhere.
-  This ensures var(--bg), var(--accent), etc. still work.
-*/
 import '../styles/global.css';
+import bgImage from '../assets/images/unused/planarNexus.jpg';
 
 const pageTitle = "TLR Links";
 
+// Stripped down to just the essential button data
 const links = [
   { 
-    title: "Official Website", 
-    url: "/", 
-    subtitle: "Rules, Guides & Philosophy",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>` 
+    action: "Official-TLR.com", 
+    url: "https://charming-fairy-527f9e.netlify.app/", 
+    cssClass: "btn-website",
+    viewBox: "0 0 24 24",
+    svgPath: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
   },
   { 
-    title: "Discord Community", 
+    action: "Join the Discord", 
     url: "https://discord.com/invite/jq9KWHAdTm", 
-    subtitle: "Join the discussion & Play some games",
-    icon: `<svg viewBox="0 0 127.14 96.36" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22c2.36-24.44-2-47.27-18.9-72.15ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>`
+    cssClass: "btn-discord",
+    viewBox: "0 0 127.14 96.36",
+    svgPath: "M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22c2.36-24.44-2-47.27-18.9-72.15ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"
   },
   { 
-    title: "YouTube Channel", 
+    action: "Watch on YouTube", 
     url: "https://www.youtube.com/@TinyLeadersRebornCommittee/featured", 
-    subtitle: "Gameplay, Set Reviews & Podcast",
-    icon: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.498-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`
+    cssClass: "btn-youtube",
+    viewBox: "0 0 24 24",
+    svgPath: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.498-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
   },
   { 
-    title: "Bluesky", 
+    action: "Follow on Bluesky", 
     url: "https://bsky.app/profile/tinyleadersreborn.bsky.social", 
-    subtitle: "Follow us for quick updates",
-    icon: `<svg viewBox="0 0 600 530" fill="currentColor"><path d="M135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 124.81-275.31 28.011-193.34-58.523-23.583 24.916-46.039 10.492-46.039 10.492s-22.456 14.425-46.039-10.492c81.97 86.534-70.953 183.33-193.34 58.523-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/></svg>`
+    cssClass: "btn-bluesky",
+    viewBox: "0 0 600 530",
+    svgPath: "m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"
   }
 ];
 ---
 
-<html lang="en">
+<html lang="en" data-theme="committee">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -44,8 +46,14 @@ const links = [
   </head>
   
   <body>
+    {/* 1. The Art Layer (Blurred and scaled slightly to hide edges) */}
+    <div 
+      class="bg-art" 
+      style={`background-image: url('${bgImage.src}');`}
+    ></div>
     
-    <div class="background-overlay"></div>
+    {/* 2. The Tint Layer (Darkens the art so text remains legible) */}
+    <div class="bg-tint"></div>
 
     <main class="links-container">
       
@@ -62,162 +70,135 @@ const links = [
 
       <div class="link-stack">
         {links.map((link) => (
-          <a href={link.url} class="link-card" target={link.url.startsWith('http') ? "_blank" : "_self"}>
-            <div class="icon-box" set:html={link.icon} />
-            <div class="link-info">
-              <span class="link-title">{link.title}</span>
-              <span class="link-sub">{link.subtitle}</span>
-            </div>
-            <span class="arrow">&rarr;</span>
+          <a 
+            href={link.url} 
+            class={`brand-btn ${link.cssClass}`} 
+            target={link.url.startsWith('http') ? "_blank" : "_self"}
+          >
+            {/* Left Icon */}
+            <svg 
+              class="brand-icon" 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox={link.viewBox} 
+              fill="currentColor"
+            >
+                <path d={link.svgPath}/>
+            </svg>
+            
+            <span>{link.action}</span>
           </a>
         ))}
       </div>
 
     </main>
-
   </body>
 </html>
 
 <style>
   /* --- PAGE SETUP --- */
   body {
-    background-color: var(--bg);
-    color: var(--text-main);
-    font-family: var(--font-body, sans-serif);
     margin: 0;
     min-height: 100vh;
+    font-family: var(--font-body, system-ui, sans-serif);
     display: flex;
-    justify-content: center;
-    align-items: center; /* Vertically centers content on desktop */
+    flex-direction: column;
+    align-items: center;
   }
 
-  /* Optional: Adds a subtle gradient if you want it to look "premium" */
-  .background-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at top, var(--surface) 0%, transparent 70%);
+  /* Cinematic Background Setup */
+  .bg-art {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    filter: blur(2px); transform: scale(1.1); 
+    z-index: -2;
+  }
+
+  .bg-tint {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    /* Lowered from 0.75 to 0.4 for a much lighter tint */
+    background: rgba(20, 20, 25, 0.5); 
     z-index: -1;
-    pointer-events: none;
   }
 
   /* --- CONTAINER --- */
   .links-container {
-    width: 100%;
-    max-width: 480px;
-    padding: 2rem 1.5rem;
-    text-align: center;
+    width: 100%; max-width: 450px; 
+    padding: 4rem 1.5rem; text-align: center;
+    position: relative; z-index: 1; /* Keeps it above the bg */
   }
 
   /* --- HEADER --- */
-  .profile-header {
-    margin-bottom: 2.5rem;
-  }
+  .profile-header { margin-bottom: 3rem; }
 
   .avatar-circle {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 2px solid var(--accent);
-    padding: 4px;
+    width: 96px; height: 96px; margin: 0 auto 1.5rem; border-radius: 50%;
+    background: var(--surface); border: 2px solid var(--accent);
+    padding: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   }
 
   .avatar-circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
+    width: 100%; height: 100%; object-fit: cover;
+    border-radius: 50%; display: block;
   }
 
   h1 {
-    font-size: 1.5rem;
-    margin: 0 0 0.5rem 0;
-    color: var(--heading-color);
-    font-weight: 800;
+    font-size: 1.8rem; margin: 0 0 0.5rem 0;
+    color: #ffffff; /* Forced pure white for contrast */
+    font-family: var(--font-heading, sans-serif); font-weight: 800;
   }
 
   .bio-text {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0;
+    color: #cccccc; /* Forced light gray */
+    font-size: 1rem; line-height: 1.5; margin: 0;
   }
 
-  /* --- LINK STACK --- */
+  /* --- LINK STACK & BUTTONS --- */
   .link-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
+    display: flex; flex-direction: column; gap: 1rem; width: 100%;
   }
 
-  .link-card {
-    display: flex;
-    align-items: center;
-    background-color: var(--surface);
-    border: 1px solid var(--border-subtle);
-    padding: 1rem;
-    text-decoration: none;
-    border-radius: 12px; /* Slightly softer corners for mobile feel */
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  .brand-btn {
     position: relative;
-  }
-
-  .link-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 2;
-  }
-
-  /* --- CARD INTERNALS --- */
-  .icon-box {
-    font-size: 1.5rem;
-    margin-right: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 32px;  /* Fixed width for alignment */
-    height: 32px; /* Fixed height for alignment */
-    color: var(--heading-color); /* Makes icons match your theme */
-  }
-
-  /* Force the SVG to fill the box */
-  .icon-box :global(svg) {
+    justify-content: center; /* Centers the whole group */
+    gap: 0.75rem; /* Adds perfect breathing room between icons and text */
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    /* Keep the padding standard, but ensure box-sizing includes it */
+    box-sizing: border-box; 
+    padding: 1.1rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ffffff;
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .link-info {
-    flex-grow: 1;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+  .brand-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(110%);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
   }
 
-  .link-title {
-    font-family: var(--font-heading, sans-serif);
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--heading-color);
+  /* Let the icon flow naturally in the flex container */
+  .brand-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0; /* Prevents the icons from squishing if text is long */
   }
 
-  .link-sub {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-top: 2px;
+  /* Specific Brand Colors */
+  
+  /* Website gets a premium Frosted Glass look so it matches the TLR theme */
+  .btn-website { 
+    background: rgba(255, 255, 255, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
-
-  .arrow {
-    font-size: 1.2rem;
-    color: var(--border-subtle);
-    margin-left: 0.5rem;
-  }
-
-  .link-card:hover .arrow {
-    color: var(--accent);
-  }
+  .btn-website:hover { background: rgba(255, 255, 255, 0.15); border-color: var(--accent); }
+  
+  .btn-discord { background-color: #5865F2; border: 1px solid #5865F2; }
+  .btn-youtube { background-color: #FF0000; border: 1px solid #FF0000; }
+  .btn-bluesky { background-color: #0560FF; border: 1px solid #0560FF; }
 </style>

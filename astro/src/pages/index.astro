@@ -10,14 +10,13 @@ import { Image } from 'astro:assets';
 <head>
     <meta charset="UTF-8">
     <title>Tiny Leaders Reborn</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================
            1. FONTS & VARIABLES
            ========================================= */
         
-        /* Custom Local Font */
         @font-face {
             font-family: 'BrotherSignature';
             src: url('/fonts/BrotherSignature-7BWnK.otf') format('opentype'); 
@@ -26,13 +25,14 @@ import { Image } from 'astro:assets';
             font-display: swap;
         }
 
-        :root {
-            --bg: #0a0a0a;
-            --text: #fff;
+        /* Default to Light Theme variables */
+        :root, [data-theme='light'] {
+            --bg: #f0f0f0;
+            --text: #111;
             --accent: #ff4d00;
         }
 
-        [data-theme='light'] { --bg: #f0f0f0; --text: #111; --accent: #ff4d00; }
+        [data-theme='dark'] { --bg: #0a0a0a; --text: #fff; --accent: #ff4d00; }
         [data-theme='committee'] { --bg: #1a1a1a; --text: #eee; --accent: #9c27b0; }
         [data-theme='charlotte'] { --bg: #111; --text: #fff; --accent: #ff69b4; }
 
@@ -46,7 +46,7 @@ import { Image } from 'astro:assets';
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transition: all 0.5s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
             font-family: 'Montserrat', sans-serif;
             position: relative; 
             overflow-x: hidden;
@@ -56,142 +56,173 @@ import { Image } from 'astro:assets';
            3. BACKGROUND LAYER
            ========================================= */
         .fullscreen-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none;
         }
 
+        /* LIGHT THEME (Default): Full color, visible */
         .bg-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.15; 
-            filter: grayscale(100%);
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.35; 
+            filter: grayscale(0%);
+            transition: all 0.5s ease;
         }
 
-        /* LIGHT THEME OVERRIDE: Restore color and bump opacity */
-        [data-theme='light'] .bg-img {
-            filter: grayscale(0%); 
-            opacity: 0.35; 
+        /* DARK THEMES: Moody, grayscale, cinematic muting */
+        [data-theme='dark'] .bg-img,
+        [data-theme='committee'] .bg-img,
+        [data-theme='charlotte'] .bg-img {
+            filter: grayscale(100%); 
+            opacity: 0.15; 
         }
 
         /* =========================================
            4. MAIN CONTENT (THE TOTEM)
            ========================================= */
-        .totem-link {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 90vh; 
-            cursor: pointer;
-            text-align: center;
-            margin: auto; 
-            padding: 2rem 1rem;
-            position: relative; 
-            z-index: 5; 
-            width: 100%;
-            max-width: 1400px; 
+        .totem-container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: 90vh; text-align: center;
+            margin: auto; padding: 2rem 1rem;
+            position: relative; z-index: 5; 
+            width: 100%; max-width: 1400px; 
         }
 
         /* Typography */
         .slogan-top {
             font-family: 'BrotherSignature', cursive;
-            font-size: 3.5rem; 
-            color: var(--accent);
-            margin-bottom: -1rem; 
-            transform: rotate(-5deg);
-            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            font-size: 3.5rem; color: var(--accent);
+            margin-bottom: -1rem; transform: rotate(-5deg);
             letter-spacing: 2px;
         }
 
+        /* Dedicated space for your future logo */
+        .logo-space {
+            height: 2rem; 
+            width: 100%;
+        }
+
         .logo-main {
-            /* Responsive sizing: Min 3rem, Ideal 13vw, Max 7rem */
-            font-size: clamp(3rem, 13vw, 7rem);
-            letter-spacing: -4px;
-            line-height: 0.8;
-            text-transform: uppercase;
-            margin: 0;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.9); 
+            font-size: clamp(3rem, 13vw, 7rem); letter-spacing: -4px;
+            line-height: 0.8; text-transform: uppercase; margin: 0;
             white-space: nowrap;
         }
 
         .reborn-sub {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 16px;
-            text-transform: uppercase;
-            opacity: 0.9;
-            margin-top: 1rem; 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            font-size: 2rem; font-weight: 300; letter-spacing: 16px;
+            text-transform: uppercase; opacity: 0.9; margin-top: 1rem; 
         }
 
-        .baptize-phrase {
-            margin-top: 8rem; 
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            opacity: 0;
-            animation: fadeIn 2s forwards 1s;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        /* Soft text shadows for Light Mode readability */
+        :root .slogan-top, :root .logo-main, :root .reborn-sub,
+        [data-theme='light'] .slogan-top, [data-theme='light'] .logo-main, [data-theme='light'] .reborn-sub {
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Heavy text shadows for Dark Mode contrast */
+        [data-theme='dark'] .slogan-top, [data-theme='dark'] .logo-main, [data-theme='dark'] .reborn-sub,
+        [data-theme='committee'] .slogan-top, [data-theme='committee'] .logo-main, [data-theme='committee'] .reborn-sub,
+        [data-theme='charlotte'] .slogan-top, [data-theme='charlotte'] .logo-main, [data-theme='charlotte'] .reborn-sub {
+            text-shadow: 0 4px 30px rgba(0,0,0,0.9);
+        }
+
+        /* =========================================
+           5. GATEWAY NAVIGATION
+           ========================================= */
+        .gateway-nav {
+            margin-top: 6rem; display: flex; align-items: center; gap: 1.5rem;
+            opacity: 0; animation: fadeIn 2s forwards 1s;
+        }
+
+        .gateway-nav a {
+            color: var(--text); text-decoration: none;
+            font-size: 1.25rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 4px; transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .gateway-nav a:hover {
+            color: var(--accent); transform: translateY(-3px);
+        }
+
+        .nav-dot {
+            color: var(--accent); font-size: 1.5rem; line-height: 0; opacity: 0.5;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 0.8; transform: translateY(0); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* =========================================
-           5. FOOTER & THEME PICKER
+       /* =========================================
+           6. FOOTER 
            ========================================= */
         .splash-footer-container {
-            width: 100%;
-            position: relative; 
-            z-index: 30;
-            /* Default Dark Fade */
-            background: linear-gradient(to top, var(--bg) 0%, rgba(0,0,0,0) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            padding-bottom: 2rem;
-            margin-top: auto; 
+            width: 100%; position: relative; z-index: 30;
+            display: flex; flex-direction: column; align-items: center;
+            padding-bottom: 2rem; margin-top: auto; 
+            
+            /* Pushed the solid color slightly higher to give text a clear background */
+            background: linear-gradient(to top, var(--bg) 20%, rgba(240, 240, 240, 0.95) 75%, transparent 100%);
         }
 
-        /* Light Theme Footer Override */
-        [data-theme='light'] .splash-footer-container {
-            /* Fade to light gray instead of black */
-            background: linear-gradient(to top, var(--bg) 60%, rgba(240, 240, 240, 0) 100%);
+        /* --- LIGHT MODE (DEFAULT) OVERRIDES --- */
+        /* Forces all generic text to dark gray */
+        :root .splash-footer-container :global(*),
+        [data-theme='light'] .splash-footer-container :global(*) {
+            color: #333 !important; 
+        }
+
+        /* Forces headings to be pure black, bold, and fully opaque */
+        :root .splash-footer-container :global(h1),
+        :root .splash-footer-container :global(h2),
+        :root .splash-footer-container :global(h3),
+        :root .splash-footer-container :global(h4),
+        [data-theme='light'] .splash-footer-container :global(h1),
+        [data-theme='light'] .splash-footer-container :global(h2),
+        [data-theme='light'] .splash-footer-container :global(h3),
+        [data-theme='light'] .splash-footer-container :global(h4) {
+            color: #000 !important;
+            font-weight: 600 !important;
+            opacity: 1 !important; 
+        }
+
+        /* --- DARK THEME OVERRIDES --- */
+        [data-theme='dark'] .splash-footer-container,
+        [data-theme='committee'] .splash-footer-container,
+        [data-theme='charlotte'] .splash-footer-container {
+            background: linear-gradient(to top, var(--bg) 20%, rgba(10, 10, 10, 0.95) 75%, transparent 100%);
         }
         
-        /* Force Footer Text Dark in Light Mode */
-        [data-theme='light'] .splash-footer-container :global(*) {
-            color: #111 !important;
-            border-color: #ccc !important; 
+        [data-theme='dark'] .splash-footer-container :global(*),
+        [data-theme='committee'] .splash-footer-container :global(*),
+        [data-theme='charlotte'] .splash-footer-container :global(*) {
+            color: #ccc !important; 
         }
 
-        .theme-picker { display: flex; gap: 1.5rem; }
-        .theme-btn { width: 25px; height: 25px; border-radius: 50%; border: 2px solid #555; cursor: pointer; transition: transform 0.2s; }
-        .theme-btn:hover { transform: scale(1.3); }
-        .t-light { background: #fff; }
-        .t-dark { background: #333; }
-        .t-committee { background: #9c27b0; }
-        .t-charlotte { background: #ff69b4; }
+        [data-theme='dark'] .splash-footer-container :global(h1),
+        [data-theme='dark'] .splash-footer-container :global(h2),
+        [data-theme='dark'] .splash-footer-container :global(h3),
+        [data-theme='dark'] .splash-footer-container :global(h4),
+        [data-theme='committee'] .splash-footer-container :global(h1),
+        [data-theme='committee'] .splash-footer-container :global(h2),
+        [data-theme='committee'] .splash-footer-container :global(h3),
+        [data-theme='committee'] .splash-footer-container :global(h4),
+        [data-theme='charlotte'] .splash-footer-container :global(h1),
+        [data-theme='charlotte'] .splash-footer-container :global(h2),
+        [data-theme='charlotte'] .splash-footer-container :global(h3),
+        [data-theme='charlotte'] .splash-footer-container :global(h4) {
+            color: #fff !important;
+            font-weight: 600 !important;
+            opacity: 1 !important;
+        }
 
         /* =========================================
-           6. RESPONSIVE
+           7. RESPONSIVE
            ========================================= */
         @media (max-width: 768px) {
             .slogan-top { font-size: 4rem; margin-bottom: 0; }
             .reborn-sub { font-size: 1rem; letter-spacing: 6px; }
-            .baptize-phrase { margin-top: 5rem; font-size: 1.2rem; }
+            .gateway-nav { flex-direction: column; gap: 1.5rem; margin-top: 4rem; }
+            .nav-dot { display: none; }
         }
     </style>
 </head>
@@ -201,33 +232,30 @@ import { Image } from 'astro:assets';
         <Image src={bgImage} alt="Background" class="bg-img" />
     </div>
 
-    <a href="/discover" class="totem-link">
+    <main class="totem-container">
         <span class="slogan-top">Big Plays</span>
+        
+        <div class="logo-space"></div>
+        
         <h1 class="logo-main">Tiny Leaders</h1>
         <span class="reborn-sub">Reborn</span>
         
-        <p class="baptize-phrase">
-            Get baptized by the fire and be reborn.
-        </p>
-    </a>
+        <nav class="gateway-nav">
+            <a href="/discover">Discover</a>
+            <span class="nav-dot">&bull;</span>
+            <a href="/construction">Play</a>
+            <span class="nav-dot">&bull;</span>
+            <a href="/construction">Master</a>
+        </nav>
+    </main>
 
     <div class="splash-footer-container">
-        <nav class="theme-picker">
-            <button class="theme-btn t-light" onclick="setTheme('light')" title="Light Theme"></button>
-            <button class="theme-btn t-dark" onclick="setTheme('dark')" title="Dark Theme"></button>
-            <button class="theme-btn t-committee" onclick="setTheme('committee')" title="Committee Theme"></button>
-            <button class="theme-btn t-charlotte" onclick="setTheme('charlotte')" title="Charlotte Theme"></button>
-        </nav>
         <LegalFooter />
     </div>
 
     <script is:inline>
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-        }
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        setTheme(savedTheme);
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
 </body>
 </html>

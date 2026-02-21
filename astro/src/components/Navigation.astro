@@ -1,184 +1,191 @@
 ---
-// src/components/Navigation.astro
+// Import your central config
+import { subMenus, isExact } from '../data/navigation/navigation.js'; // Adjust the path if needed!
 
-// 1. Get current path
+// 1. Get current path (This must stay here to run on each page load)
 const pathname = new URL(Astro.request.url).pathname;
 
-// 2. Define logic for which section is active
-const isRules = pathname.startsWith('/rules');
-const isAbout = pathname.startsWith('/about');
-const isCommunity = pathname.startsWith('/community');
-const isBanlist = pathname.startsWith('/banlist');
-const isDiscover = pathname.startsWith('/discover');
-const isDesign = pathname.startsWith('/design');
-const isFeed = pathname.startsWith('/feed');
+// 2. Identify standalone wings (Pages without sub-pills)
+const singleLinks = {
+  banlist: pathname.startsWith('/banlist'),
+  design: pathname.startsWith('/design'),
+  feed: pathname.startsWith('/feed'),
+};
+
+// 3. Dynamically find the active pill menu based on the URL prefix
+const activeMenuKey = Object.keys(subMenus).find(key => pathname.startsWith(`/${key}`));
+const activeMenu = activeMenuKey ? subMenus[activeMenuKey] : null;
+
+// 4. Find the exact active item to label the mobile dropdown
+const activeItem = activeMenu ? activeMenu.find(item => item.match(pathname)) : null;
+const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
 ---
 
 <header class="context-header">
   <nav class="breadcrumb-nav">
-    <a href="/">Home</a>
     
-    {/* Discover Link (Always show unless we are on Home or Discover) */}
-    {!isDiscover && pathname !== '/' && (
-      <>
-        <span class="sep">/</span>
-        <a href="/discover">Discover</a>
-      </>
-    )}
+    <div class="desktop-crumbs">
+      <a href="/">Home</a>
+      {pathname !== '/' && (
+        <>
+          <span class="sep">/</span>
+          <a href="/discover" class={isExact(pathname, '/discover') ? "active-wing" : ""}>Discover</a>
+        </>
+      )}
+    </div>
 
-    {/* RULES WING (Overview | Supplements) */}
-    {isRules && (
+    <div class="mobile-crumbs">
+      {pathname !== '/' && (
+        <a 
+          href={isExact(pathname, '/discover') ? '/' : '/discover'} 
+          class="dir-up" 
+          title="Up one level"
+        >
+          ../
+        </a>
+      )}
+    </div>
+
+    {activeMenu ? (
       <>
-        <span class="sep">/</span>
-        <div class="wing-toggle">
-          <a href="/rules/overview" class={!pathname.includes('/supplements') ? "active-wing" : ""}>Rules</a>
-          <span class="pipe">|</span>
-          <a href="/rules/supplements" class={pathname.includes('/supplements') ? "active-wing" : ""}>Supplements</a>
+        <span class="sep hide-mobile">/</span>
+        
+        <div class="wing-toggle smart-pill" id="navPill">
+          
+          <button class="pill-mobile-trigger" onclick="document.getElementById('navPill').classList.toggle('open')">
+            <span class="active-label">{mobileDropdownLabel}</span>
+            <svg class="caret" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+               <path d="M7 10l5 5 5-5z" />
+            </svg>
+          </button>
+          
+          <div class="pill-links">
+            {activeMenu.map((item, index) => (
+              <>
+                <a href={item.path} class={item.match(pathname) ? "active-wing" : ""}>{item.label}</a>
+                {index < activeMenu.length - 1 && <span class="pipe">|</span>}
+              </>
+            ))}
+          </div>
         </div>
       </>
-    )}
-
-    {/* BANLIST WING */}
-    {isBanlist && (
-      <>
-        <span class="sep">/</span>
-        <a href="/banlist" class="active-wing">Banlist</a>
-      </>
-    )}
-
-    {/* DESIGN WING */}
-    {isDesign && (
-      <>
-        <span class="sep">/</span>
-        <a href="/design" class="active-wing">Design</a>
-      </>
-    )}
-
-    {/* FEED WING */}
-    {isFeed && (
-      <>
-        <span class="sep">/</span>
-        <a href="/feed" class="active-wing">The Feed</a>
-      </>
-    )}
-
-    {/* ABOUT WING (About | Committee) */}
-    {isAbout && (
-      <>
-        <span class="sep">/</span>
-        <div class="wing-toggle">
-          <a href="/about" class={!pathname.includes('/committee') ? "active-wing" : ""}>About</a>
-          <span class="pipe">|</span>
-          <a href="/about/committee" class={pathname.includes('/committee') ? "active-wing" : ""}>Committee</a>
-        </div>
-      </>
-    )}
-
-    {/* COMMUNITY WING (Community | Little League | Paper Play | More Ways to Play) - NEW! */}
-    {isCommunity && (
-      <>
-        <span class="sep">/</span>
-        <div class="wing-toggle">
-          {/* Active ONLY if we are at the root '/community' or '/community/' */}
-          <a href="/community" 
-          class={pathname === '/community' || pathname === '/community/' || pathname === '/community/index.astro' ? "active-wing" : ""}>Community</a>
-          <span class="pipe">|</span>
-          {/* Active if IS little-league */}
-          <a href="/community/little-league" class={pathname.includes('/little-league') ? "active-wing" : ""}>Little League</a>
-          <span class="pipe">|</span>
-          {/* Active if IS paper-play */}
-          <a href="/community/paper-play" class={pathname.includes('/paper-play') ? "active-wing" : ""}>Paper Play</a>
-          <span class="pipe">|</span>
-          {/* Active if IS play-options */}
-          <a href="/community/play-options" class={pathname.includes('/play-options') ? "active-wing" : ""}>More Ways to Play</a>
-          <span class="pipe">|</span>
-          {/* Active if IS resources */}
-          <a href="/community/resources" class={pathname.includes('/resources') ? "active-wing" : ""}>Resources</a>
-        </div>
-      </>
+    ) : (
+      /* SINGLE LINKS (No Pill required) */
+      singleLinks.banlist && <><span class="sep hide-mobile">/</span><a href="/banlist" class="active-wing">Banlist</a></> ||
+      singleLinks.design && <><span class="sep hide-mobile">/</span><a href="/design" class="active-wing">Design</a></> ||
+      singleLinks.feed && <><span class="sep hide-mobile">/</span><a href="/feed" class="active-wing">The Feed</a></>
     )}
   </nav>
 </header>
 
 <style>
-  /* SMART HEADER STYLING */
   .context-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: fixed; top: 0; left: 0; width: 100%;
     padding: 1.5rem 2rem;
     background: linear-gradient(to bottom, var(--bg) 60%, transparent);
-    z-index: 500; /* Below the sidebar trigger */
+    z-index: 500;
   }
 
   .breadcrumb-nav {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    font-size: 0.85rem; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 1px;
+    display: flex; align-items: center; gap: 0.75rem;
   }
 
-  .breadcrumb-nav a {
-    color: var(--text-body);
-    opacity: 0.6;
-    text-decoration: none;
+  /* 1 & 2. Fixed inheritance and blocked the global underline */
+  .breadcrumb-nav a { color: var(--text-body); opacity: 0.6; }
+  .breadcrumb-nav a:hover { opacity: 1; color: var(--accent); text-decoration: none; }
+  .breadcrumb-nav .active-wing { color: var(--accent); opacity: 1; }
+  
+  .sep { opacity: 0.3; font-weight: 300; }
+
+  .desktop-crumbs { display: flex; align-items: center; gap: 0.75rem; }
+  .mobile-crumbs { display: none; }
+  
+  /* 3. Removed !important by targeting the 'a' tag specifically */
+  .breadcrumb-nav a.dir-up {
+      font-family: monospace; 
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--accent);
+      opacity: 1;
   }
 
-  .breadcrumb-nav a:hover {
-    opacity: 1;
-    color: var(--accent);
-  }
-
-  .breadcrumb-nav .active-wing {
-    color: var(--accent);
-    opacity: 1;
-  }
-
-  .sep {
-    opacity: 0.3;
-    font-weight: 300;
-  }
-
-  /* THE WING TOGGLE (The Container) */
-  .wing-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    
-    /* The Pill Look */
+  /* THE SMART PILL */
+  .smart-pill {
+    position: relative; 
+    display: inline-flex; align-items: center;
     background-color: var(--surface);
     border: 1px solid var(--border-subtle);
+    border-radius: 50px;
+  }
+
+  .pill-links {
+    display: flex; align-items: center; gap: 0.75rem;
     padding: 0.25rem 1rem;
-    border-radius: 50px; /* Fully rounded ends */
-  }
-
-  /* The Separator inside the toggle */
-  .wing-toggle .pipe {
-    color: var(--border-subtle);
-    font-weight: 300;
-  }
-
-  /* The Active State inside the toggle */
-  .wing-toggle .active-wing {
-    color: var(--accent);
-    font-weight: 800; /* Make it bold to stand out */
-    opacity: 1;
   }
   
-  /* Reset standard links inside the toggle to be subtle */
-  .wing-toggle a:not(.active-wing) {
-    font-weight: 400;
-    opacity: 0.6;
-  }
+  .smart-pill .pipe { color: var(--border-subtle); font-weight: 300; }
+  .smart-pill .active-wing { color: var(--accent); font-weight: 800; opacity: 1; }
+  .smart-pill a:not(.active-wing) { font-weight: 400; opacity: 0.6; }
 
-  /* Responsive Adjustments */
-  @media (max-width: 600px) {
+  .pill-mobile-trigger { display: none; }
+
+  /* RESPONSIVE MOBILE LAYOUT */
+  @media (max-width: 800px) {
+    .hide-mobile { display: none; }
     .context-header { padding: 1rem; }
-    .breadcrumb-nav { font-size: 0.7rem; gap: 0.5rem; }
+    .desktop-crumbs { display: none; } /* Hide Home / Discover */
+    .mobile-crumbs { display: block; } /* Show ../ */
+
+    /* Turn the pill into a button */
+    .smart-pill {
+       border-radius: 8px; /* Slightly squarer for the dropdown feel */
+    }
+
+    .pill-mobile-trigger {
+       display: flex; align-items: center; justify-content: space-between;
+       gap: 0.5rem;
+       background: transparent; border: none;
+       color: var(--accent); font-family: inherit; font-size: 0.85rem; font-weight: 800;
+       text-transform: uppercase; letter-spacing: 1px;
+       padding: 0.4rem 1rem; cursor: pointer;
+    }
+
+    .pill-mobile-trigger .caret {
+       transition: transform 0.2s ease;
+    }
+
+    /* The Vertical Dropdown Menu */
+    .pill-links {
+       display: none; /* Hidden by default on mobile */
+       flex-direction: column;
+       align-items: flex-start;
+       position: absolute;
+       top: 110%; left: 0;
+       background: var(--surface);
+       border: 1px solid var(--border-subtle);
+       border-radius: 8px;
+       padding: 0.5rem 0;
+       width: max-content;
+       min-width: 150px;
+       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .pill-links a {
+       width: 100%;
+       padding: 0.5rem 1rem;
+    }
+
+    .pill-links .pipe { display: none; } /* Hide the | dividers on mobile */
+
+    /* The 'Open' State */
+    .smart-pill.open .pill-links {
+       display: flex; /* Shows the dropdown */
+    }
+    .smart-pill.open .pill-mobile-trigger .caret {
+       transform: rotate(180deg); /* Flips the arrow */
+    }
   }
 </style>

@@ -1,31 +1,27 @@
 ---
 // src/components/NavFooter.astro
+import { footerNav } from '../../data/footer/nav-footer.js';
 ---
 
 <div class="footer-grid">
-  <div class="footer-column">
-    <h3>Play</h3>
-    <ul>
-      <li><a href="/rules/overview">Format Overview</a></li>
-      <li><a href="/banlist">Banlist</a></li>
-      <li><a href="/rules/supplements">Rules Supplements</a></li>
-    </ul>
-  </div>
-  <div class="footer-column">
-    <h3>Connect</h3>
-    <ul>
-      <li><a href="https://discord.com/invite/jq9KWHAdTm">Discord</a></li>
-      <li><a href="https://www.youtube.com/@TinyLeadersRebornCommittee/featured">YouTube</a></li>
-      <li><a href="https://bsky.app/profile/tinyleadersreborn.bsky.social">Bluesky</a></li>
-    </ul>
-  </div>
-  <div class="footer-column">
-    <h3>About</h3>
-    <ul>
-      <li><a href="/about">History & Origins</a></li>
-      <li><a href="/about/committee">Governance</a></li>
-    </ul>
-  </div>
+  {footerNav.map(column => (
+    <div class="footer-column">
+      <h3>{column.title}</h3>
+      <ul>
+        {column.links.map(link => (
+          <li>
+            <a 
+              href={link.url} 
+              target={link.url.startsWith('http') ? '_blank' : '_self'}
+              rel={link.url.startsWith('http') ? 'noopener noreferrer' : ''}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
 </div>
 
 <style>
@@ -49,8 +45,7 @@
 
   .footer-column ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 0; margin: 0;
   }
 
   .footer-column li {

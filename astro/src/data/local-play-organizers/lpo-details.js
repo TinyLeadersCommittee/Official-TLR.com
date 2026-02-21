@@ -5,6 +5,8 @@
         discordUsername: "",
         location: ``,
         details: ``,
+        image: ``, // String URL (e.g., a profile picture)
+        bgImage: ``, // String URL (e.g., a favorite card image)
         places: [
             {
                 place: ``,
@@ -19,10 +21,10 @@
 
 import joePfp from '../../assets/images/lpo/esior.jpg';
 import joeFavCard from '../../assets/images/lpo/acererak.jpg';
-import juanPfp from '../../assets/images/lpo/electro.jpg';
+import juanPfp from '../../assets/images/lpo/otterPenguin.jpg';
 import juanFavCard from '../../assets/images/lpo/doctorWho.jpg';
 import nathanPfp from '../../assets/images/lpo/ashiokDream.jpg';
-import nathanFavCard from '../../assets/images/lpo/ashiokNightmare.jpg';
+import nathanFavCard from '../../assets/images/lpo/frayingSanity.jpg';
 import lucasPfp from '../../assets/images/lpo/tezzeret.jpg';
 import lucasFavCard from '../../assets/images/lpo/tifa.jpg';
 import rorroPfp from '../../assets/images/lpo/chevill.jpg';
@@ -47,22 +49,29 @@ export const lpoDetails = [
         ]
     },
 
-    {
+     {
         role: "Local Play Organizer",
-        name: "Juan",
-        discordUsername: "@Nushio",
-        location: `Monterrey, Nuevo Leon, MX`,
-        details: `Venga y juegue con nosotros los Sabados en Goblin Depot!`,
+        name: "Nushio",
+        discordUsername: "@nushio",
+        location: "Monterrey, Nuevo León, México",
+        details: `Unanse a jugar Tiny Leaders: Reborn`,
         image: juanPfp,
         bgImage: juanFavCard,
         places: [
             {
                 place: `Goblin Depot`,
-                location: `Monterrey, Nuevo Leon, MX`,
-                frequency: `Cada Viernes para FNM`,
+                location: `Monterrey, Nuevo León, México`,
+                frequency: `Segundo Sábado del mes`,
                 website: `https://goblindepot.com/`
+            },
+             {
+                place: `Lion's Dice`,
+                location: `Monterrey, Nuevo León, México`,
+                frequency: `Último Sábado del mes`,
+                website: `https://www.facebook.com/profile.php?id=61567241976689`
             }
         ]
+            
     },
 
     {
