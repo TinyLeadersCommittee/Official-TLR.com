@@ -23,16 +23,16 @@ export const categoryBans = [
     ]
   },
   { 
-    label: "Cards with the card type Conspiracy", 
+    label: "Cards with the card type \"Conspiracy\"", 
     query: "type:conspiracy (mv<=3 or is:land)" 
   },
   { 
-    label: "Racially or culturally offensive cards", 
+    label: "Cards that are racially or culturally offensive", 
     // Wrapped in parens to ensure the OR logic works with the MV check
     query: "(!Clebnse or !Crusade or !Imprison or !\"Invoke Prejudice\" or !Jihad or !\"Pradesh Gypsies\" or !\"Stone-Throwing Devils\") (mv<=3 or is:land)" 
   },
   { 
-    label: "Cards that reference playing for ante", 
+    label: "Cards that reference \"playing for ante\"", 
     query: "o:\"playing for ante\" (mv<=3 or is:land)" 
   },
   { 

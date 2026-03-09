@@ -23,7 +23,7 @@ export const mainCommitteeSections = [
   {
     title: "Local Play Organizers (LPO)",
     members: lpos,
-    shape: "square",
+    shape: "parallelogram",
     color: "#e67e22", // Orange
     description: `The boots on the ground. LPOs run paper events, build local 
     communities, and serve as the bridge between the global online community 
@@ -41,7 +41,7 @@ export const mainCommitteeSections = [
 
 export const contributorConfig = {
     title: "Contributors",
-    shape: "circle",
+    shape: "nonagon",
     color: "#e6ad0e",
     description: `Dedicated community members who help keep the machine running, 
     from discord moderation and judge calls to content creation and playtesting.`

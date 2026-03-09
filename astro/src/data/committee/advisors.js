@@ -1,72 +1,44 @@
-/*
-    {
-        role: "Advisor",
-        name: "",
-        discordUsername: "",
-        focusedContribution: ``,
-        region: "",
-        bio: ``,
-        petDeck: ``,
-        faveCard: ``,
-        img: ,
-        // --- MTG CUSTOMIZATION (Optional) ---
-        faveCardImg: ``, // String URL (e.g., a Scryfall image link)
-        mtgMana: ``,     // e.g., "{1}{W}{U}"
-        mtgType: ``,     // e.g., "Legendary Creature — Core Member"
-        mtgPT: ``        // e.g., "2 / 2" (or set to false to hide the box)
-    }
-*/
-
-//Import images
+// Import images (Portraits for the grid buttons)
 import FisheImg from '../../assets/images/committee/advisors/fishe.jpg';
 import OlivierImg from '../../assets/images/committee/advisors/olivier.jpg';
 import ArnaudImg from '../../assets/images/committee/advisors/arnaud.jpg';
-//
+
+// Import Bio-cards and custom Tiny Leader cards
+/* import FisheBioCard from '../../assets/images/committee/cards/fishe-bio.png';
+import FisheCustomCard from '../../assets/images/committee/cards/fishe-custom.png';
+
+import OlivierBioCard from '../../assets/images/committee/cards/olivier-bio.png';
+import OlivierCustomCard from '../../assets/images/committee/cards/olivier-custom.png';
+
+import ArnaudBioCard from '../../assets/images/committee/cards/arnaud-bio.png';
+import ArnaudCustomCard from '../../assets/images/committee/cards/arnaud-custom.png'; */
+
 export const advisors = [
     {
-        role: "Advisor",
         name: "Fishe",
         discordUsername: "@Fishe",
-        focusedContribution: `Official TLR Little League Commissioner; YouTube 
-        Content Advisor`,
-        region: "British Columbia, Canada",
-        bio: ``,
-        petDeck: ``,
-        faveCard: ``,
-        img: FisheImg
+        img: FisheImg,
+        
+        // The new 3D Modal Images
+        // cardFrontImg: FisheBioCard.src,
+        // cardBackImg: FisheCustomCard.src
     },
-
     {
-        role: "Advisor",
         name: "Olivier",
         discordUsername: "@OlivierDice",
-        focusedContribution: `General Advice and Guidance`,
-        region: "Paris, France",
-        bio: `I'm Olivier MANIN (aka on social medias O'Dicé or Olivier Dicé). 
-        I've been playing since 1997. An old player I guess. I learn to play 
-        MTG with these old rule books, you know these little non-friendly 
-        things you found at this time in Starter decks. My story with this hobby 
-        is long, so I won't give it whole, the main thing to note is: I never 
-        give up (yes even when WotC created the Planeswalkers... what a shame 
-        for the game, We are and remains the real PW!) After decades and various 
-        ways to play and enjoy MTG, nowadays I play Cube and TLR, with few 
-        competitive events (mostly in limited).`,
-        petDeck: `Prosperous Bloom a long time ago, probably Kroxa in tournaments, 
-        and Wilson (+ any color) for casual games`,
-        faveCard: `Anje's Ravager – This card is absurd. I don't think I've ever 
-        lost a game where I solved an attack with it.`,
-        img: OlivierImg
+        img: OlivierImg,
+        
+        // The new 3D Modal Images
+        // cardFrontImg: OlivierBioCard.src,
+        // cardBackImg: OlivierCustomCard.src
     },
-
     {
-        role: "Advisor",
         name: "Arnaud",
         discordUsername: "@Plaguerat",
-        focusedContribution: "General Advice and Guidance",
-        region: "Normandy, France",
-        bio: ``,
-        petDeck: ``,
-        faveCard: ``,
-        img: ArnaudImg
+        img: ArnaudImg,
+        
+        // The new 3D Modal Images
+        // cardFrontImg: ArnaudBioCard.src,
+        // cardBackImg: ArnaudCustomCard.src
     }
-]
+];

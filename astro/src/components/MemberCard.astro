@@ -12,10 +12,10 @@ const displayName = member.name || member.title || "Unknown Legend";
 
 <button 
   class={`member-card ${isTeamFolder ? 'team-folder-card' : ''}`}
-  style={`--role-color: ${member.color || 'var(--accent)'}`}
+  style={member.color ? `--role-color: ${member.color}` : null}
   onclick={isTeamFolder 
     ? `showTeam('${member.id}')` 
-    : `toggleMember('${sectionId}', ${index}, this)`}
+    : `openCardModal(this)`}
   data-member={JSON.stringify(member)}
 >
   <div class={`pfp-container shape-${shape}`}>

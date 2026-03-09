@@ -1,15 +1,21 @@
-/* src/data/contributors/testing-team.js */
+// src/data/contributors/testing-team.js
+
+// Import Images (Portraits for the grid buttons)
+// import MemberNameImg from '../../assets/images/committee/contributors/membername.jpg';
+
+// Import Bio-cards and custom Tiny Leader cards
+/* import MemberNameBioCard from '../../assets/images/committee/cards/membername-bio.png';
+import MemberNameCustomCard from '../../assets/images/committee/cards/membername-custom.png'; */
 
 export const testingTeam = [
-  {
-    name: "MemberName",
-    discordUsername: "@membername",
-    focusedContribution: "Testing Cards",
-    region: "Global",
-    bio: "I help test to see what's busted and whats not.",
-    petDeck: "Acererak",
-    faveCard: "Mox Opal",
-    img: null 
-  },
-  // Add more members here...
+    {
+        name: "MemberName",
+        discordUsername: "@membername",
+        img: null, // Replace with MemberNameImg when you have their portrait
+        
+        // The new 3D Modal Images
+        // cardFrontImg: MemberNameBioCard.src,
+        // cardBackImg: MemberNameCustomCard.src
+    },
+    // Add more members here...
 ];

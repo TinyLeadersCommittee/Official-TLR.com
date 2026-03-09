@@ -1,15 +1,21 @@
-/* src/data/contributors/discord-team.js */
+// src/data/contributors/discord-team.js
+
+// Import Images (Portraits for the grid buttons)
+// import ModNameImg from '../../assets/images/committee/contributors/modname.jpg';
+
+// Import Bio-cards and custom Tiny Leader cards
+/* import ModNameBioCard from '../../assets/images/committee/cards/modname-bio.png';
+import ModNameCustomCard from '../../assets/images/committee/cards/modname-custom.png'; */
 
 export const discordTeam = [
-  {
-    name: "ModName",
-    discordUsername: "@modname",
-    focusedContribution: "Server Moderation",
-    region: "Global",
-    bio: "Keeping the server safe and organized.",
-    petDeck: "Ghalta",
-    faveCard: "Ban Hammer",
-    img: null 
-  },
-  // Add more members here...
+    {
+        name: "ModName",
+        discordUsername: "@modname",
+        img: null, // Replace with ModNameImg when you have their portrait
+        
+        // The new 3D Modal Images
+        // cardFrontImg: ModNameBioCard.src,
+        // cardBackImg: ModNameCustomCard.src
+    },
+    // Add more members here...
 ];
