@@ -2,7 +2,7 @@
 
 The official website for **Tiny Leaders: Reborn** — a fan-created, competitive 1v1 Magic: The Gathering format built on 50-card singleton decks and a hard 3-mana-value cap.
 
-**Live Site:** [charming-fairy-527f9e.netlify.app](https://charming-fairy-527f9e.netlify.app)  
+**Live Site:** *Currently in Closed Beta*  
 **Lead Developer:** Mike Plata  
 **Maintained by:** The TLC Digital Team  
 **Deployed via:** Netlify  
