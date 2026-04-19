@@ -1,5 +1,6 @@
 ---
 import LegalFooter from '../components/footer/LegalFooter.astro';
+import { SITE_LINKS } from '../config/links';
 
 // 1. BACKGROUND ASSET
 import bgImage from '../assets/images/splash-page/eld-64-so-tiny.jpg';
@@ -241,11 +242,11 @@ import { Image } from 'astro:assets';
         <span class="reborn-sub">Reborn</span>
         
         <nav class="gateway-nav">
-            <a href="/discover">Discover</a>
+            <a href={SITE_LINKS.navigation.discover}>Discover</a>
             <span class="nav-dot">&bull;</span>
-            <a href="/construction">Play</a>
+            <a href={SITE_LINKS.navigation.play}>Play</a> 
             <span class="nav-dot">&bull;</span>
-            <a href="/construction">Master</a>
+            <a href={SITE_LINKS.navigation.master}>Master</a> 
         </nav>
     </main>
 

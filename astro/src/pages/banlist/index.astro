@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
 
-// Import Data
-import { watchlist, categoryBans, commanderBans, cardBans } from '../../data/banlist/banlist.js';
+// Import Data (Added companionBans)
+import { watchlist, categoryBans, commanderBans, companionBans, cardBans } from '../../data/banlist/banlist.js';
 import { latestAnnouncement } from '../../data/banlist/latestUpdate.js';
 
 // Import Icon Helper
@@ -17,9 +17,9 @@ import { getIcon } from '../../data/cardIcons.js';
     <header class="page-header" style="text-align: left; margin-left: 0; max-width: 100%;">
       <h1>Banned & Watch Lists</h1>
       <p class="lead">
-        The Tiny Leaders: Reborn ban list is divided into two 
-        categories: cards banned in the 50-card deck and cards 
-        banned <strong>only as a Tiny Leader (commander)</strong>.
+        The Tiny Leaders ban list is divided into categories: cards excluded from the format, 
+        cards banned <strong>only as a Tiny Leader</strong>, cards banned <strong>only as a Companion</strong>, 
+        and cards banned entirely from deck construction.
       </p>
     </header>
 
@@ -79,7 +79,7 @@ import { getIcon } from '../../data/cardIcons.js';
     <hr class="divider" />
 
     <section id="banned-main">
-      <h2>Banned in Tiny Leaders: Reborn</h2>
+      <h2>Banned in Tiny Leaders</h2>
 
       <div class="visual-list-container">
         <span class="visual-list-label">View Visual Banned List on Moxfield:</span>
@@ -117,7 +117,6 @@ import { getIcon } from '../../data/cardIcons.js';
           {categoryBans.map((category) => (
             <li>
               {category.parts ? (
-                /* OPTION A: Multi-link Line */
                 <span class="complex-line">
                   {category.parts.map((part) => (
                     part.query ? (
@@ -138,7 +137,6 @@ import { getIcon } from '../../data/cardIcons.js';
                   ))}
                 </span>
               ) : (
-                /* OPTION B: Single Link */
                 <a 
                   href={`https://scryfall.com/search?q=${encodeURIComponent(category.query)}`}
                   target="_blank" rel="noopener noreferrer" class="category-link"
@@ -176,8 +174,27 @@ import { getIcon } from '../../data/cardIcons.js';
       </div>
 
       <div class="ban-category searchable-section">
-        <h3>3. Banned from Deck Construction</h3>
-        <p>Banned in the Command Zone, Deck, & Sideboard.</p>
+        <h3>3. Banned as Companion Only</h3>
+        <p>These cards <strong>can</strong> be played in your 50-card deck and Command Zone, but <strong>cannot</strong> be your Companion.</p>
+        <ul class="card-list multi-column">
+          {companionBans.map((card) => (
+            <li 
+              class="card-trigger icon-item" 
+              data-set={card.set}
+              data-date={card.date}
+              data-reason={card.reason} 
+              data-announcement={card.announcement}
+            >
+              <span class="card-icon" set:html={getIcon(card.type)} />
+              <span class="card-name">{card.name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="ban-category searchable-section">
+        <h3>4. Banned from Deck Construction</h3>
+        <p>Banned in the Command Zone, Deck, Companion, & Sideboard.</p>
         <ul class="card-list multi-column">
           {cardBans.map((card) => (
             <li 

@@ -1,3 +1,5 @@
+import { SITE_LINKS } from "../../config/links";
+
 export const watchlist = [
     { 
       name: "Light-Paws, Emperor's Voice", 
@@ -88,6 +90,14 @@ export const commanderBans = [
     name: "Wrenn and Six", set: "mh1", type: "planeswalker", date: "2021-07-01",
     reason: 'Banned for complete board control. It stabilizes your mana, kills small creatures, and enables a recursive Wasteland lock that prevents opponents from playing Magic.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2021/07/tlr-ban-list-and-rules-update.html' 
+  }
+];
+
+export const companionBans = [
+  { 
+    name: "Lutri, the Spellchaser", set: "iko", type: "creature", date: "2026-03-09",
+    reason: 'Banned for zero opportunity cost. In a singleton format, the companion condition is free, granting an automatic 8th card that doubles as a lethal late-game finisher with minimal setup.', 
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/03/tmnt-format-update-rules-and-banlist.html' 
   }
 ];
 

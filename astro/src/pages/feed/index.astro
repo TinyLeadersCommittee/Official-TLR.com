@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_LINKS } from '../../config/links.js';
 ---
 
 <BaseLayout title="The Feed">
@@ -11,13 +12,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <hr />
 
   <section class="feed-container">
-    
+
     <article class="feed-item pinned">
       <span class="tag">Latest Update</span>
       <h2>Welcome to the New Website</h2>
       <p class="date">January 2026</p>
       <p>
-        Welcome to the official home of Tiny Leaders Reborn. 
+        Welcome to the official home of Tiny Leaders. 
         We are currently migrating our archives. Stay tuned for 
         upcoming updates and the next banlist announcement.
       </p>
@@ -27,13 +28,45 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <p><em>Archive is being digitized...</em></p>
     </div>
 
+    <article class="feed-item redirect-box" style="text-align: center; border-color: var(--accent-color);">
+      <h2>Redirecting to Legacy Archive...</h2>
+      <p style="font-size: 1.2rem; margin: 1.5rem 0;">
+        Transferring in <strong id="countdown" style="color: var(--accent-color); font-size: 1.5rem;">5</strong> seconds
+      </p>
+      <p style="font-size: 0.9rem; color: #aaa;">
+        If you are not redirected automatically, 
+        <a href={SITE_LINKS.navigation.blogspotFeed} style="text-decoration: underline; color: var(--accent-color);">
+          click here to access the Blogspot
+        </a>.
+      </p>
+    </article>
+
   </section>
 </BaseLayout>
+
+<script define:vars={{ targetUrl: SITE_LINKS.navigation.blogspotFeed }}>
+  // Client-side countdown logic
+  let timeLeft = 6;
+  const countdownEl = document.getElementById('countdown');
+
+  const timer = setInterval(() => {
+    timeLeft -= 1;
+    if (countdownEl) {
+      countdownEl.innerText = timeLeft;
+    }
+    
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      window.location.href = targetUrl;
+    }
+  }, 1000);
+</script>
 
 <style>
   .feed-container {
     max-width: 700px;
     margin: 0 auto;
+    padding: 2rem 0;
   }
 
   .feed-item {

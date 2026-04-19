@@ -17,6 +17,7 @@ import {
   multiPlayerDesignBans, 
   logisticsBans,
   playExperienceBans,
+  companionBans,
   commanderBans
 } from '../../data/design/tlrBanlist.js';
 ---
@@ -306,6 +307,33 @@ bgStyle="object-fit: contain; object-position: center;">
     </section>
 
     <section class="chapter-section alt-bg">
+      <div class="prose-block">
+        <h3>Banned as Companion</h3>
+        <p>
+          The broader Commander format features an official "Banned as Companion" 
+          rules category. While we typically avoid creating format-specific 
+          restriction tiers to keep the ruleset as streamlined as possible, the 
+          committee unanimously voted to adopt this framework for Tiny Leaders 
+          Reborn to align with the parent format's established groundwork.
+        </p>
+        <p>
+          Cards in this category are completely legal to play in your maindeck 
+          or your sideboard, they simply cannot be revealed or played as your 
+          Companion during pregame procedures.
+        </p>
+        <BanlistGrid cards={companionBans} threeCol={true} />
+        <p class="design-note">
+          <strong>The Companion Philosophy:</strong> When a companion's 
+          deckbuilding restriction is met by default in a singleton format, it 
+          creates a "zero opportunity cost" inclusion. Granting a free eighth 
+          card to any deck that can run it heavily homogenizes deckbuilding and
+           violates the format's core philosophy. This category allows us to 
+           restrict that mechanic without removing the card from the format entirely.
+        </p>
+      </div>
+    </section>
+
+    <section class="chapter-section">
       <div class="prose-block">
         <h3>Banned as Tiny Leader (Commander)</h3>
         <p>

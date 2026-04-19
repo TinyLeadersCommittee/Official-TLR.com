@@ -8,12 +8,9 @@ let currentIndex = -1;
 
 // --- PUBLIC ENTRY POINT ---
 export function initCardPreview() {
-    // 1. Setup the DOM
     ensureModalExists();
     cacheDOMTextElements();
-
-    // 2. Bind Global Event Listeners
-    bindGlobalEvents();
+    bindAllEvents();
 }
 
 // --- CORE CONTROLLER ---
@@ -26,9 +23,18 @@ async function loadCard(index) {
     currentIndex = index;
 
     const trigger = currentGroup[index];
-    
-    // Extract Data
-    const cardData = {
+    const cardData = extractCardData(trigger);
+
+    resetUIForLoading();
+    updateNavButtons();
+    updateDetailsUI(cardData);
+    await handleImageLoading(cardData);
+}
+
+// --- DATA EXTRACTION ---
+
+function extractCardData(trigger) {
+    return {
         name: trigger.textContent.trim(),
         set: trigger.getAttribute('data-set'),
         reason: trigger.getAttribute('data-reason'),
@@ -37,41 +43,34 @@ async function loadCard(index) {
         status: trigger.getAttribute('data-status'),
         image: trigger.getAttribute('data-image')
     };
-
-    // Reset UI
-    modalImg.style.display = 'none';
-    loader.style.display = 'block';
-    
-    // Update Navigation Visibility
-    updateNavButtons();
-
-    // Update Text/Details Area
-    updateDetailsUI(cardData);
-
-    // Load the Image
-    await fetchAndDisplayImage(cardData);
 }
 
-// --- SUB-SYSTEMS (Private Helpers) ---
+// --- UI UPDATERS (Details Box) ---
 
-/**
- * Handles the logic for the "Details Box".
- * If data is missing (Design Page), it hides the box.
- * If data exists (Banlist Page), it populates text, dates, and badges.
- */
 function updateDetailsUI(data) {
-    // 1. Simple Case: No reason data? Hide everything (Design Page Mode)
     if (!data.reason) {
-        detailsBox.style.display = 'none';
-        modal.querySelector('.card-modal-content').classList.remove('has-details');
+        hideDetailsBox();
         return;
     }
 
-    // 2. Rich Case: Show details
+    showDetailsBox();
+    updateBadgeAndTitle(data);
+    updateDate(data);
+    updateMainText(data);
+    updateFooter(data);
+}
+
+function hideDetailsBox() {
+    detailsBox.style.display = 'none';
+    modal.querySelector('.card-modal-content').classList.remove('has-details');
+}
+
+function showDetailsBox() {
     detailsBox.style.display = 'block';
     modal.querySelector('.card-modal-content').classList.add('has-details');
+}
 
-    // A. Badge & Title Logic
+function updateBadgeAndTitle(data) {
     const existingBadge = detailsBox.querySelector('.status-badge');
     if (existingBadge) existingBadge.remove();
 
@@ -84,8 +83,9 @@ function updateDetailsUI(data) {
     } else {
         detailsTitle.textContent = "BAN DETAILS";
     }
+}
 
-    // B. Date Logic
+function updateDate(data) {
     if (data.date) {
         detailsDate.style.display = 'block';
         const dateLabel = (data.status === 'watchlist') ? "DATE LISTED" : "DATE BANNED";
@@ -93,11 +93,13 @@ function updateDetailsUI(data) {
     } else {
         detailsDate.style.display = 'none';
     }
+}
 
-    // C. Main Text
+function updateMainText(data) {
     detailsText.textContent = data.reason;
+}
 
-    // D. Footer (Link vs Text)
+function updateFooter(data) {
     if (data.announcement === "Included on the Initial Banned List") {
         detailsFooter.innerHTML = `<span class="initial-ban-text">${data.announcement}</span>`;
     } else if (data.announcement && data.announcement !== "null") {
@@ -107,43 +109,54 @@ function updateDetailsUI(data) {
     }
 }
 
-/**
- * Handles fetching the image from Scryfall or using the direct link.
- */
-async function fetchAndDisplayImage(data) {
+// --- IMAGE HANDLING ---
+
+async function handleImageLoading(data) {
     try {
-        let imageUrl = data.image;
-
-        // If no direct link, fetch from Scryfall
-        if (!imageUrl) {
-            let apiUrl = `https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(data.name)}`;
-            if (data.set) apiUrl += `&set=${data.set}`;
-
-            const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error('Card not found');
-            const apiData = await response.json();
-
-            if (apiData.image_uris) {
-                imageUrl = apiData.image_uris.normal;
-            } else if (apiData.card_faces) {
-                imageUrl = apiData.card_faces[0].image_uris.normal;
-            }
-        }
-
-        // Display
-        modalImg.src = imageUrl;
-        modalImg.onload = () => {
-            loader.style.display = 'none';
-            modalImg.style.display = 'block';
-        };
-
+        const imageUrl = await resolveImageUrl(data);
+        displayImage(imageUrl);
     } catch (error) {
         console.error(error);
         loader.innerText = 'Image not found.';
     }
 }
 
-// --- DOM & EVENT HELPERS ---
+async function resolveImageUrl(data) {
+    // Return direct link if provided
+    if (data.image) return data.image;
+
+    // Otherwise, fetch from Scryfall
+    let apiUrl = `https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(data.name)}`;
+    if (data.set) apiUrl += `&set=${data.set}`;
+
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error('Card not found');
+    
+    const apiData = await response.json();
+
+    if (apiData.image_uris) {
+        return apiData.image_uris.normal;
+    } else if (apiData.card_faces) {
+        return apiData.card_faces[0].image_uris.normal;
+    }
+
+    throw new Error('Image URI not found in Scryfall response');
+}
+
+function displayImage(imageUrl) {
+    modalImg.src = imageUrl;
+    modalImg.onload = () => {
+        loader.style.display = 'none';
+        modalImg.style.display = 'block';
+    };
+}
+
+function resetUIForLoading() {
+    modalImg.style.display = 'none';
+    loader.style.display = 'block';
+}
+
+// --- MODAL CONTROLS & EVENTS ---
 
 function openModal(triggerElement) {
     const parentList = triggerElement.closest('ul');
@@ -155,9 +168,7 @@ function openModal(triggerElement) {
     
     const index = currentGroup.indexOf(triggerElement);
     
-    // ADDED: Push this to the browser's Top Layer natively
     modal.showModal(); 
-    
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -166,9 +177,7 @@ function openModal(triggerElement) {
 }
 
 function closeModal() {
-    // ADDED: Remove it from the Top Layer natively
     modal.close(); 
-    
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -183,8 +192,13 @@ function updateNavButtons() {
     nextBtn.style.visibility = currentIndex === currentGroup.length - 1 ? 'hidden' : 'visible';
 }
 
-function bindGlobalEvents() {
-    // Click Trigger
+function bindAllEvents() {
+    bindClickTriggers();
+    bindModalControls();
+    bindKeyboardNav();
+}
+
+function bindClickTriggers() {
     document.addEventListener('click', (e) => {
         const trigger = e.target.closest('.card-trigger');
         if (trigger) {
@@ -192,8 +206,9 @@ function bindGlobalEvents() {
             openModal(trigger);
         }
     });
+}
 
-    // Modal Controls
+function bindModalControls() {
     const closeBtn = modal.querySelector('.card-modal-close');
     const overlay = modal.querySelector('.card-modal-overlay');
     const prevBtn = modal.querySelector('.nav-prev');
@@ -204,8 +219,9 @@ function bindGlobalEvents() {
     
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', closeModal);
+}
 
-    // Keyboard Nav
+function bindKeyboardNav() {
     document.addEventListener('keydown', (e) => {
         if (!modal.classList.contains('active')) return;
         if (e.key === 'Escape') closeModal();
@@ -213,6 +229,8 @@ function bindGlobalEvents() {
         if (e.key === 'ArrowRight') loadCard(currentIndex + 1);
     });
 }
+
+// --- DOM INITIALIZATION ---
 
 function ensureModalExists() {
     if (document.getElementById('card-modal')) return;
@@ -249,7 +267,6 @@ function cacheDOMTextElements() {
     loader = modal.querySelector('.card-loader');
     detailsBox = document.getElementById('card-modal-details');
     
-    // Text Elements
     detailsTitle = document.getElementById('details-title');
     detailsDate = document.getElementById('details-date');
     detailsText = document.getElementById('details-text');

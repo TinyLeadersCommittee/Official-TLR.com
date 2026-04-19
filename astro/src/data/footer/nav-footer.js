@@ -1,28 +1,29 @@
-// src/data/footer.js
+// src/data/footer/nav-footer.js
+import { SITE_LINKS } from '../../config/links.js';
 
 export const footerNav = [
   {
     title: "Discover",
     links: [
-      { label: "Format Overview", url: "/rules/overview" },
-      { label: "Banlist", url: "/banlist" },
-      { label: "Rules Supplements", url: "/rules/supplements" }
+      { label: "Format Overview", url: SITE_LINKS.rules.overview },
+      { label: "Banlist", url: SITE_LINKS.navigation.banlist },
+      { label: "Rules Supplements", url: SITE_LINKS.rules.supplements }
     ]
   },
   {
     title: "Connect",
     links: [
-      { label: "Discord", url: "https://discord.com/invite/jq9KWHAdTm" },
-      { label: "YouTube", url: "https://www.youtube.com/@TinyLeadersRebornCommittee/featured" },
-      { label: "Bluesky", url: "https://bsky.app/profile/tinyleadersreborn.bsky.social" }
+      { label: "Discord", url: SITE_LINKS.socials.discord },
+      { label: "YouTube", url: SITE_LINKS.socials.youtube },
+      { label: "Bluesky", url: SITE_LINKS.socials.bluesky }
     ]
   },
   {
     title: "About",
     links: [
-      { label: "Origins", url: "/about" },
-      { label: "People", url: "/about/committee" },
-      { label: "Governance", url: "/committee" }
+      { label: "Origins", url: SITE_LINKS.navigation.about },
+      { label: "People", url: SITE_LINKS.about.committee },
+      { label: "Governance", url: SITE_LINKS.tlc.portal } 
     ]
   }
 ];

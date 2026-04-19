@@ -53,7 +53,6 @@ export const formatStructureBans = [
   { name: "Deflecting Swat", set: "c20", status: "added" },
   { name: "Fierce Guardianship", set: "c20", status: "added" },
   { name: "Karakas", set: "leg", status: "initial" },
-  { name: "Lutri, the Spellchaser", set: "iko", status: "added" },
   { name: "Price of Progress", set: "exo", status: "added" },
   { name: "Tasha’s Hideous Laughter", set: "afr", status: "added" }
 ];
@@ -80,6 +79,14 @@ export const playExperienceBans = [
   { name: "Thassa’s Oracle", set: "thb", status: "added" },
   { name: "The Tabernacle at Pendrell Vale", set: "leg", status: "initial" },
   { name: "Umezawa’s Jitte", set: "bok", status: "initial" }
+];
+
+/**
+ * COMPANION BANS
+ * Banned as Companion (Sideboard/Outside the game access).
+ */
+export const companionBans = [
+  { name: "Lutri, the Spellchaser", set: "iko", status: "added" }
 ];
 
 /** * COMMANDER BANS
