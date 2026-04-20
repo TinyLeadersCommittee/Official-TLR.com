@@ -6,26 +6,35 @@ import defaultLogo from '../../assets/images/gameStores/obscuraStorefront.jpg'; 
 
 export const communityStores = [
   {
-    name: "Mox Boarding House",
-    location: "Seattle, WA, USA",
-    frequency: "Occasional events",
-    website: "https://www.moxboardinghouse.com/",
-    image: moxLogo
+    name: "Chupacabra Games Joilet",
+    location: "Joilet, IL, USA",
+    frequency: "Tiny Leaders Tuesdays",
+    website: "https://www.chupacabra-games-joliet.com/",
+    image: defaultLogo,
+    bgColor: "#ffffff"
   },
   {
-    name: "Hareruya Tournament Center",
-    location: "Tokyo, Japan",
-    frequency: "Community reported",
-    website: "https://www.hareruyamtg.com/en/",
-    image: hareruyaLogo,
-    bgColor: "#e3000f"
+    name: "The Jersey Gaming Hub",
+    location: "Jersey, Channel Islands",
+    frequency: "Tiny Tuesdays",
+    website: "http://www.gaming.je/",
+    image: defaultLogo,
+    bgColor: "#ffffff"
   },
   {
-    name: "Patriot Games",
-    location: "Sheffield, UK",
-    frequency: "Weekly",
-    website: "https://patriotgames.uk/",
-    image: patriotLogo,
+    name: "Jesters Vault",
+    location: "Cranbrook, BC, CAN",
+    frequency: "Sporadically & Yearly",
+    website: "https://www.jestersvault.ca/",
+    image: defaultLogo,
+    bgColor: "#ffffff"
+  },
+  {
+    name: "Madhouse33 - Xela",
+    location: "Quetzaltenango, Guatemala",
+    frequency: "Unknown",
+    website: "https://www.madhouse33.com/",
+    image: defaultLogo,
     bgColor: "#ffffff"
   }
 ];
