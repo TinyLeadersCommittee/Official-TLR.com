@@ -9,7 +9,7 @@ export const eventPosters = [
   {
     title: "Weekly Tiny Brawl",
     status: "Ongoing",
-    statusColor: "ongoing", // maps to CSS class
+    statusColor: "ongoing",
     image: brawlImg,
     description: "A week-long, round-robin testing league designed to push deckbuilding to the bleeding edge.",
     details: [

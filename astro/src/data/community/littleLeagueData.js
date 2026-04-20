@@ -1,5 +1,3 @@
-// 1. IMPORT YOUR IMAGES
-// Adjust filenames to match what you downloaded
 import formatImg from '../../assets/images/community/swornCompanions.jpg';
 import platformImg from '../../assets/images/community/cockatrice.jpg';
 import stakesImg from '../../assets/images/community/treasureRavnica.jpg';

@@ -23,7 +23,7 @@ import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
 </div>
 
 <style>
-  /* --- TOOLTIP --- */
+  /* TOOLTIP */
   #card-tooltip {
     position: fixed;
     z-index: 3000;
@@ -36,7 +36,7 @@ import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
   #tooltip-img { width: 100%; border-radius: 10px; }
   .hidden { display: none !important; }
 
-  /* --- MODAL OVERLAY --- */
+  /* MODAL OVERLAY */
   .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -48,30 +48,29 @@ import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
     z-index: 2000;
   }
 
-  /* --- MODAL BOX (UPDATED WIDTH) --- */
+  /* MODAL BOX */
   .modal-content {
     background: var(--bg);
-    width: 95%;          /* Take up most of the screen width */
-    max-width: 1200px;   /* Cap it at a nice wide size (was 800px) */
+    width: 95%;          
+    max-width: 1200px;   
     max-height: 85vh;
     padding: 2rem;
     border-radius: 8px;
     border: 1px solid var(--accent);
-    overflow-y: auto;    /* Scroll if it barely overflows */
+    overflow-y: auto;    
     display: flex;
     flex-direction: column;
   }
 
-  /* --- NEW: THE GRID LAYOUT --- */
+  /* GRID LAYOUT */
   .modal-grid {
     display: grid;
-    /* This creates as many 180px columns as fit on the screen */
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 0.5rem 1rem; /* Space between items */
+    gap: 0.5rem 1rem; 
     margin-top: 1rem;
   }
 
-  /* --- NEW: THE ITEM STYLE (Global because created by JS) --- */
+  /* MODAL ITEM (Global for JS injection) */
   :global(.modal-item) {
     display: block;
     text-decoration: none;
@@ -82,9 +81,9 @@ import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
     font-size: 0.95rem;
     color: var(--heading-color);
     cursor: pointer;
-    white-space: nowrap;      /* Force one line */
-    overflow: hidden;         /* Cut off long names */
-    text-overflow: ellipsis;  /* Add ... if too long */
+    white-space: nowrap;      
+    overflow: hidden;         
+    text-overflow: ellipsis;  
     transition: color 0.2s;
   }
 
@@ -92,7 +91,7 @@ import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
     color: var(--accent) !important;
   }
 
-  /* --- HEADER & CONTROLS --- */
+  /* HEADER & CONTROLS */
   .modal-header {
     display: flex;
     justify-content: space-between;
@@ -119,7 +118,6 @@ import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
 
   @media (max-width: 900px) {
     .nav-arrow { display: none; }
-    /* On mobile, force fewer columns so text is readable */
     .modal-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   }
 </style>
@@ -154,7 +152,6 @@ import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
       link.textContent = card.name;
       link.setAttribute('data-set', card.set);
       
-      // Add the class we defined in CSS (much cleaner than inline styles)
       link.classList.add('modal-item');
 
       // Scryfall Link
@@ -176,7 +173,7 @@ import { initialCardBans } from '../../data/design/tlr2018Banlist.js';
     attachTooltipListeners();
   }
 
-  // --- Event Listeners ---
+  // Event Listeners
 
   document.querySelectorAll('.view-full-btn').forEach(btn => {
     btn.addEventListener('click', () => {

@@ -11,7 +11,7 @@ export const testingTeam = [
     {
         name: "MemberName",
         discordUsername: "@membername",
-        img: null, // Replace with MemberNameImg when you have their portrait
+        img: null,
         
         // The new 3D Modal Images
         // cardFrontImg: MemberNameBioCard.src,

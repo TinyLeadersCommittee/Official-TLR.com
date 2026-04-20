@@ -1,8 +1,6 @@
 ---
 import LegalFooter from '../components/footer/LegalFooter.astro';
 import { SITE_LINKS } from '../config/links';
-
-// 1. BACKGROUND ASSET
 import bgImage from '../assets/images/splash-page/eld-64-so-tiny.jpg';
 import { Image } from 'astro:assets';
 ---
@@ -10,14 +8,13 @@ import { Image } from 'astro:assets';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tiny Leaders Reborn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Tiny Leaders</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json" />
     
     <style>
-        /* =========================================
-           1. FONTS & VARIABLES
-           ========================================= */
-        
+        /* FONTS & VARIABLES */
         @font-face {
             font-family: 'BrotherSignature';
             src: url('/fonts/BrotherSignature-7BWnK.otf') format('opentype'); 
@@ -26,7 +23,6 @@ import { Image } from 'astro:assets';
             font-display: swap;
         }
 
-        /* Default to Light Theme variables */
         :root, [data-theme='light'] {
             --bg: #f0f0f0;
             --text: #111;
@@ -37,31 +33,27 @@ import { Image } from 'astro:assets';
         [data-theme='committee'] { --bg: #1a1a1a; --text: #eee; --accent: #9c27b0; }
         [data-theme='charlotte'] { --bg: #111; --text: #fff; --accent: #ff69b4; }
 
-        /* =========================================
-           2. GLOBAL LAYOUT
-           ========================================= */
+        /* GLOBAL LAYOUT */
         body {
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            min-height: 100vh;
+            height: 100vh;
+            height: 100dvh; 
             display: flex;
             flex-direction: column;
             transition: background-color 0.3s ease, color 0.3s ease;
             font-family: 'Montserrat', sans-serif;
             position: relative; 
-            overflow-x: hidden;
+            overflow: hidden; 
         }
 
-        /* =========================================
-           3. BACKGROUND LAYER
-           ========================================= */
+        /* BACKGROUND LAYER */
         .fullscreen-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0; pointer-events: none;
         }
 
-        /* LIGHT THEME (Default): Full color, visible */
         .bg-img {
             width: 100%; height: 100%; object-fit: cover;
             opacity: 0.35; 
@@ -69,7 +61,6 @@ import { Image } from 'astro:assets';
             transition: all 0.5s ease;
         }
 
-        /* DARK THEMES: Moody, grayscale, cinematic muting */
         [data-theme='dark'] .bg-img,
         [data-theme='committee'] .bg-img,
         [data-theme='charlotte'] .bg-img {
@@ -77,26 +68,23 @@ import { Image } from 'astro:assets';
             opacity: 0.15; 
         }
 
-        /* =========================================
-           4. MAIN CONTENT (THE TOTEM)
-           ========================================= */
+        /* MAIN CONTENT */
         .totem-container {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 90vh; text-align: center;
-            margin: auto; padding: 2rem 1rem;
+            flex: 1; text-align: center;
+            margin: auto; padding: 1rem;
             position: relative; z-index: 5; 
             width: 100%; max-width: 1400px; 
         }
 
-        /* Typography */
         .slogan-top {
             font-family: 'BrotherSignature', cursive;
             font-size: 3.5rem; color: var(--accent);
             margin-bottom: -1rem; transform: rotate(-5deg);
             letter-spacing: 2px;
+            position: relative; z-index: 10;
         }
 
-        /* Dedicated space for your future logo */
         .logo-space {
             height: 2rem; 
             width: 100%;
@@ -113,22 +101,18 @@ import { Image } from 'astro:assets';
             text-transform: uppercase; opacity: 0.9; margin-top: 1rem; 
         }
 
-        /* Soft text shadows for Light Mode readability */
         :root .slogan-top, :root .logo-main, :root .reborn-sub,
         [data-theme='light'] .slogan-top, [data-theme='light'] .logo-main, [data-theme='light'] .reborn-sub {
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        /* Heavy text shadows for Dark Mode contrast */
         [data-theme='dark'] .slogan-top, [data-theme='dark'] .logo-main, [data-theme='dark'] .reborn-sub,
         [data-theme='committee'] .slogan-top, [data-theme='committee'] .logo-main, [data-theme='committee'] .reborn-sub,
         [data-theme='charlotte'] .slogan-top, [data-theme='charlotte'] .logo-main, [data-theme='charlotte'] .reborn-sub {
             text-shadow: 0 4px 30px rgba(0,0,0,0.9);
         }
 
-        /* =========================================
-           5. GATEWAY NAVIGATION
-           ========================================= */
+        /* GATEWAY NAVIGATION */
         .gateway-nav {
             margin-top: 6rem; display: flex; align-items: center; gap: 1.5rem;
             opacity: 0; animation: fadeIn 2s forwards 1s;
@@ -153,26 +137,19 @@ import { Image } from 'astro:assets';
             to { opacity: 1; transform: translateY(0); }
         }
 
-       /* =========================================
-           6. FOOTER 
-           ========================================= */
+        /* FOOTER */
         .splash-footer-container {
             width: 100%; position: relative; z-index: 30;
             display: flex; flex-direction: column; align-items: center;
             padding-bottom: 2rem; margin-top: auto; 
-            
-            /* Pushed the solid color slightly higher to give text a clear background */
             background: linear-gradient(to top, var(--bg) 20%, rgba(240, 240, 240, 0.95) 75%, transparent 100%);
         }
 
-        /* --- LIGHT MODE (DEFAULT) OVERRIDES --- */
-        /* Forces all generic text to dark gray */
         :root .splash-footer-container :global(*),
         [data-theme='light'] .splash-footer-container :global(*) {
             color: #333 !important; 
         }
 
-        /* Forces headings to be pure black, bold, and fully opaque */
         :root .splash-footer-container :global(h1),
         :root .splash-footer-container :global(h2),
         :root .splash-footer-container :global(h3),
@@ -186,7 +163,6 @@ import { Image } from 'astro:assets';
             opacity: 1 !important; 
         }
 
-        /* --- DARK THEME OVERRIDES --- */
         [data-theme='dark'] .splash-footer-container,
         [data-theme='committee'] .splash-footer-container,
         [data-theme='charlotte'] .splash-footer-container {
@@ -216,14 +192,58 @@ import { Image } from 'astro:assets';
             opacity: 1 !important;
         }
 
-        /* =========================================
-           7. RESPONSIVE
-           ========================================= */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .slogan-top { font-size: 4rem; margin-bottom: 0; }
-            .reborn-sub { font-size: 1rem; letter-spacing: 6px; }
-            .gateway-nav { flex-direction: column; gap: 1.5rem; margin-top: 4rem; }
+            .slogan-top { 
+                font-size: 2.5rem; 
+                margin-bottom: -1.8rem; 
+            }
+            
+            .logo-main { 
+                font-size: clamp(2.5rem, 13vw, 4.5rem); 
+            }
+            
+            .reborn-sub { 
+                font-size: 0.9rem; 
+                letter-spacing: 6px; 
+                margin-top: 0.5rem; 
+            }
+            
+            .gateway-nav { 
+                flex-direction: column; 
+                gap: 1rem; 
+                margin-top: 2.5rem; 
+                width: 100%;
+            }
+            
+            .gateway-nav a { 
+                font-size: 1.35rem; 
+                display: block; 
+                width: 100%; 
+                padding: 0.25rem 0;
+            }
+            
             .nav-dot { display: none; }
+            
+            .splash-footer-container { 
+                padding-bottom: 0.25rem; 
+                padding-top: 0.5rem;
+                background: linear-gradient(to top, var(--bg) 10%, rgba(240, 240, 240, 0.95) 40%, transparent 100%);
+            }
+            
+            [data-theme='dark'] .splash-footer-container,
+            [data-theme='committee'] .splash-footer-container,
+            [data-theme='charlotte'] .splash-footer-container {
+                background: linear-gradient(to top, var(--bg) 10%, rgba(10, 10, 10, 0.95) 40%, transparent 100%);
+            }
+            
+            .splash-footer-container :global(*) {
+                font-size: 0.65rem !important;
+                line-height: 1.1 !important;
+                margin-top: 0 !important;
+                margin-bottom: 0.1rem !important;
+                padding: 0 !important;
+            }
         }
     </style>
 </head>

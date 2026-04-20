@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import DocsSidebar from '../../../components/docs/DocsSidebar.astro'; // <--- NEW IMPORT
+import DocsSidebar from '../../../components/docs/DocsSidebar.astro';
 import tamiyo from '../../../assets/images/rules/tamiyoMeetsTheStoryCircle.jpg';
 
 // Import metadata to get PDF links and Cross-links automatically
@@ -27,7 +27,7 @@ const navLinks = allRules
   .filter(r => r.data.docId === entry.data.docId)
   .sort((a, b) => a.data.order - b.data.order)
   .map(link => {
-    // We map the raw collection data into a clean object for the component
+    // map the raw collection data into a clean object for the component
     const [d, s] = link.slug.split('/');
     return {
       title: link.data.title,

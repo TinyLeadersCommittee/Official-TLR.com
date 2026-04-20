@@ -1,28 +1,26 @@
 ---
-// Takes the card's name (for the text) and the image URL (for the hover)
+/* Component Props */
 const { name, imageUri } = Astro.props;
 ---
 
 <span class="card-hover-wrapper card-trigger" data-image={imageUri}>
   <span class="card-name">{name}</span>
   
-  {/* The hidden image that reveals on hover */}
+  {/* Hover Image Reveal */}
   {imageUri && (
     <img src={imageUri} alt={name} class="card-hover-img" loading="lazy" />
   )}
 </span>
 
 <style>
-  /* 1. THE WRAPPER 
-    Acts as the anchor point for the floating image.
-  */
+  /* --- WRAPPER --- */
   .card-hover-wrapper {
     position: relative;
     display: inline-block;
     color: var(--accent); 
     font-weight: 600;
     cursor: pointer;
-    border-bottom: 1px dotted var(--accent); /* Classic tooltip visual indicator */
+    border-bottom: 1px dotted var(--accent);
     transition: color 0.2s;
   }
 
@@ -30,31 +28,27 @@ const { name, imageUri } = Astro.props;
     color: var(--heading-color);
   }
 
-  /* 2. THE FLOATING IMAGE 
-    Hidden by default, positioned absolutely above the text.
-  */
+  /* --- FLOATING IMAGE OVERLAY --- */
   .card-hover-img {
     position: absolute;
-    bottom: 130%; /* Pushes it just above the text */
+    bottom: 130%; 
     left: 50%;
-    transform: translateX(-50%) translateY(10px); /* Starts slightly lower for animation */
+    transform: translateX(-50%) translateY(10px); 
     
-    width: 220px; /* Standard MTG card readability size */
+    width: 220px; 
     height: auto;
-    border-radius: 4.75% / 3.5%; /* MTG corner math */
+    border-radius: 4.75% / 3.5%; /* Standard MTG Card Corner Radius */
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; /* Prevents the image from messing with the user's mouse */
-    z-index: 1000; /* Forces it above everything else on the page */
+    pointer-events: none; 
+    z-index: 1000; 
     
     transition: all 0.2s ease-out;
   }
 
-  /* 3. THE HOVER MAGIC 
-    When the mouse hits the text, the image fades in and floats up.
-  */
+  /* --- HOVER STATE ANIMATION --- */
   .card-hover-wrapper:hover .card-hover-img {
     opacity: 1;
     visibility: visible;

@@ -1,17 +1,17 @@
 ---
 // src/components/design/LineageComparison.astro
 
-// 1. Data Imports
+// Data Imports
 import { legacyBans2013 } from '../../data/design/legacy2013Banlist.js';
 import { tloCardBans, tloCommanderBans } from '../../data/design/tlo2018Banlist.js';
 import { initialCardBans, initialCommanderBans } from '../../data/design/tlr2018Banlist.js';
 
-// 2. Helper Logic
+// Utility Functions
 const isUniqueInitial = (cardName, listA, listB) => {
   return !listA.some(c => c.name === cardName) && !listB.some(c => c.name === cardName);
 };
 
-// 3. Helper: Generate Scryfall URL
+// URL Generation
 const getScryfallUrl = (name, set) => {
   const query = `!"${name}"${set ? ` e:${set}` : ''}`;
   return `https://scryfall.com/search?q=${encodeURIComponent(query)}`;
@@ -180,21 +180,16 @@ const getScryfallUrl = (name, set) => {
     gap: 0.25rem;
   }
 
-  /* UPDATED: We explicitly force the Color and Font here 
-     so it ignores default <a> tag styles (blue/underline).
-  */
   .mini-card-list a {
     display: block;
     text-decoration: none;
-    font-family: "Goudy Old Style", serif; /* Restored Font */
+    font-family: "Goudy Old Style", serif; 
     font-size: 0.85rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 2px 0;
-    
-    /* VISUAL RESTORATION */
-    color: var(--heading-color); /* Restored Dark Color */
+    color: var(--heading-color); 
     cursor: pointer;
     transition: color 0.2s ease;
   }

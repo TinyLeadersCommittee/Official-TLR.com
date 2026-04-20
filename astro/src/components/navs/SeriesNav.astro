@@ -47,7 +47,7 @@ const { prevUrl, prevTitle, nextUrl, nextTitle } = Astro.props;
     border-top: 1px solid var(--border-subtle);
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Aligns them to bottom on desktop */
+    align-items: flex-end; /* Aligns to bottom on desktop */
     gap: 1rem;
   }
 
@@ -108,7 +108,7 @@ const { prevUrl, prevTitle, nextUrl, nextTitle } = Astro.props;
     text-align: right;
   }
   
-  /* Spacer keeps the "Next" button on the right if "Previous" is missing */
+  /* Preserves flex alignment for orphaned buttons */
   .nav-spacer {
     flex: 1; 
   }
@@ -116,28 +116,29 @@ const { prevUrl, prevTitle, nextUrl, nextTitle } = Astro.props;
   /* --- MOBILE RESPONSIVE --- */
   @media (max-width: 600px) {
     .series-nav {
-      /* This is the magic line: flips the order so Next is on top */
+      /* Reverses stack order for mobile hierarchy */
       flex-direction: column-reverse; 
       gap: 1.5rem;
-      align-items: stretch; /* Make full width */
+      align-items: stretch; /* Forces full width */
     }
     
     .nav-card {
       max-width: 100%;
-      /* Center align text for cleaner mobile look */
+      /* Centers text alignment */
       align-items: center;
       text-align: center;
       
-      /* Add a background so they look like big buttons */
+      /* Applies mobile button background styling */
       background-color: var(--surface);
       border-color: var(--border-subtle);
     }
     
-    /* Ensure internal flex stays centered */
+    /* Centers internal flex items */
     .prev .nav-inner, .next .nav-inner {
         justify-content: center;
     }
     
-    .nav-spacer { display: none; } /* Don't take up space if empty on mobile */
+    /* Hides empty spacers on mobile */
+    .nav-spacer { display: none; } 
   }
 </style>

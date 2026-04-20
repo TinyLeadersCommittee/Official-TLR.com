@@ -7,7 +7,7 @@ export const playOptions = [
   {
     title: "The Official TLR Little League",
     image: leagueImg,
-    position: "center", // Adjust as needed
+    position: "center",
     description: "Our year-long, free-to-play league. Every month is a new chance "+
                 "to find glory (and sometimes prizes!)."
   },

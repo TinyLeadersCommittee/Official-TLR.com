@@ -1,22 +1,21 @@
 ---
-// Import your central config
-import { subMenus, isExact } from '../data/navigation/navigation.js'; // Adjust the path if needed!
+import { subMenus, isExact } from '../data/navigation/navigation.js';
 
-// 1. Get current path (This must stay here to run on each page load)
+// Current Path Evaluation
 const pathname = new URL(Astro.request.url).pathname;
 
-// 2. Identify standalone wings (Pages without sub-pills)
+// Standalone Wings Extraction
 const singleLinks = {
   banlist: pathname.startsWith('/banlist'),
   design: pathname.startsWith('/design'),
   feed: pathname.startsWith('/feed'),
 };
 
-// 3. Dynamically find the active pill menu based on the URL prefix
+// Active Menu Resolution
 const activeMenuKey = Object.keys(subMenus).find(key => pathname.startsWith(`/${key}`));
 const activeMenu = activeMenuKey ? subMenus[activeMenuKey] : null;
 
-// 4. Find the exact active item to label the mobile dropdown
+// Active Item Resolution
 const activeItem = activeMenu ? activeMenu.find(item => item.match(pathname)) : null;
 const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
 ---
@@ -70,7 +69,7 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
         </div>
       </>
     ) : (
-      /* SINGLE LINKS (No Pill required) */
+      /* Single Links */
       singleLinks.banlist && <><span class="sep hide-mobile">/</span><a href="/banlist" class="active-wing">Banlist</a></> ||
       singleLinks.design && <><span class="sep hide-mobile">/</span><a href="/design" class="active-wing">Design</a></> ||
       singleLinks.feed && <><span class="sep hide-mobile">/</span><a href="/feed" class="active-wing">The Feed</a></>
@@ -79,6 +78,7 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
 </header>
 
 <style>
+  /* --- HEADER CONTAINER --- */
   .context-header {
     position: fixed; top: 0; left: 0; width: 100%;
     padding: 1.5rem 2rem;
@@ -86,6 +86,7 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
     z-index: 500;
   }
 
+  /* --- BREADCRUMB NAVIGATION --- */
   .breadcrumb-nav {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.85rem; font-weight: bold;
@@ -93,7 +94,6 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
     display: flex; align-items: center; gap: 0.75rem;
   }
 
-  /* 1 & 2. Fixed inheritance and blocked the global underline */
   .breadcrumb-nav a { color: var(--text-body); opacity: 0.6; }
   .breadcrumb-nav a:hover { opacity: 1; color: var(--accent); text-decoration: none; }
   .breadcrumb-nav .active-wing { color: var(--accent); opacity: 1; }
@@ -103,7 +103,6 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
   .desktop-crumbs { display: flex; align-items: center; gap: 0.75rem; }
   .mobile-crumbs { display: none; }
   
-  /* 3. Removed !important by targeting the 'a' tag specifically */
   .breadcrumb-nav a.dir-up {
       font-family: monospace; 
       font-size: 1.1rem;
@@ -112,7 +111,7 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
       opacity: 1;
   }
 
-  /* THE SMART PILL */
+  /* --- SMART PILL CONTAINER --- */
   .smart-pill {
     position: relative; 
     display: inline-flex; align-items: center;
@@ -132,16 +131,15 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
 
   .pill-mobile-trigger { display: none; }
 
-  /* RESPONSIVE MOBILE LAYOUT */
+  /* --- MOBILE RESPONSIVE --- */
   @media (max-width: 800px) {
     .hide-mobile { display: none; }
     .context-header { padding: 1rem; }
-    .desktop-crumbs { display: none; } /* Hide Home / Discover */
-    .mobile-crumbs { display: block; } /* Show ../ */
+    .desktop-crumbs { display: none; } 
+    .mobile-crumbs { display: block; } 
 
-    /* Turn the pill into a button */
     .smart-pill {
-       border-radius: 8px; /* Slightly squarer for the dropdown feel */
+       border-radius: 8px; 
     }
 
     .pill-mobile-trigger {
@@ -157,9 +155,9 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
        transition: transform 0.2s ease;
     }
 
-    /* The Vertical Dropdown Menu */
+    /* --- VERTICAL DROPDOWN MENU --- */
     .pill-links {
-       display: none; /* Hidden by default on mobile */
+       display: none; 
        flex-direction: column;
        align-items: flex-start;
        position: absolute;
@@ -178,14 +176,14 @@ const mobileDropdownLabel = activeItem ? activeItem.label : 'Menu';
        padding: 0.5rem 1rem;
     }
 
-    .pill-links .pipe { display: none; } /* Hide the | dividers on mobile */
+    .pill-links .pipe { display: none; } 
 
-    /* The 'Open' State */
+    /* --- MENU OPEN STATE --- */
     .smart-pill.open .pill-links {
-       display: flex; /* Shows the dropdown */
+       display: flex; 
     }
     .smart-pill.open .pill-mobile-trigger .caret {
-       transform: rotate(180deg); /* Flips the arrow */
+       transform: rotate(180deg); 
     }
   }
 </style>

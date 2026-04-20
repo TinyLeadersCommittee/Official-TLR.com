@@ -18,6 +18,6 @@ export const getIcon = (type) => {
   const safeType = type ? type.toLowerCase() : 'default';
   const url = iconPaths[safeType] || iconPaths.default;
   
-  // CHANGED: Returns a span with the URL stored in a variable
+  // Returns a span with the URL stored in a variable
   return `<span class="type-symbol" style="--icon-url: url('${url}')"></span>`;
 };

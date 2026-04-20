@@ -5,7 +5,7 @@ export const footerNav = [
   {
     title: "Discover",
     links: [
-      { label: "Format Overview", url: SITE_LINKS.rules.overview },
+      { label: "Format Overview", url: SITE_LINKS.navigation.rules },
       { label: "Banlist", url: SITE_LINKS.navigation.banlist },
       { label: "Rules Supplements", url: SITE_LINKS.rules.supplements }
     ]

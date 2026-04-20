@@ -18,9 +18,7 @@ const { cards, threeCol = false } = Astro.props;
 </div>
 
 <style>
-  /* We moved these styles from the main page to here.
-     Now they only load when this component is used.
-  */
+  /* Main Grid Layout */
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -28,9 +26,10 @@ const { cards, threeCol = false } = Astro.props;
     margin: 1.5rem 0;
   }
 
-  .card-grid a { /* Changed from span to a */
-    display: block; /* Anchors are inline by default, this fixes layout */
-    text-decoration: none; /* Remove default blue underline */
+  /* Anchor Link Styling */
+  .card-grid a { 
+    display: block; 
+    text-decoration: none; 
     font-family: "Goudy Old Style", "Garamond", "Georgia", serif; 
     font-weight: 700; 
     letter-spacing: 0.03em; 
@@ -38,18 +37,21 @@ const { cards, threeCol = false } = Astro.props;
     color: var(--heading-color);
     border-bottom: 1px solid var(--border-subtle);
     padding: 0.25rem 0;
-    cursor: pointer; /* Changed from help to pointer */
+    cursor: pointer; 
     transition: color 0.2s;
   }
 
+  /* Anchor Hover State */
   .card-grid a:hover {
-    color: var(--accent) !important; /* Force hover color */
+    color: var(--accent) !important; 
   }
 
+  /* Three-Column Modifier */
   .three-col {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
 
+  /* Span Element Styling */
   .card-grid span {
     font-family: "Goudy Old Style", "Garamond", "Georgia", serif; 
     font-weight: 700; 

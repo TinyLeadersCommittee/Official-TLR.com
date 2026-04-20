@@ -1,7 +1,6 @@
 ---
-/* src/components/NavSidebar.astro */
 import sidebarBg from '../assets/images/NavSidebar/mirariConjecture.jpg';
-import { sidebarNav } from '../data/navigation/navigation.js'; // Import your new data!
+import { sidebarNav } from '../data/navigation/navigation.js';
 ---
 
 <button id="nav-trigger" class="ghost-trigger" aria-label="Open Menu">
@@ -40,7 +39,6 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
         
         {category.links.map(link => (
           <a href={link.url} class="tree-link">
-            {/* FIX: Just one single SVG wrapper with dynamic viewBox! */}
             <svg 
               class="icon-svg" 
               viewBox={link.iconPath.length > 500 ? "0 -960 960 960" : "0 0 24 24"} 
@@ -71,7 +69,7 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
 <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
 <style>
-  /* 1. GHOST TRIGGER */
+  /* 1. TRIGGER BUTTON */
   .ghost-trigger {
     position: fixed;
     top: 3.0rem; right: 1.5rem; z-index: 1000;
@@ -84,8 +82,14 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
 
   /* 2. SIDEBAR DRAWER */
   .sidebar {
-    position: fixed; top: 0; right: -100%; 
-    width: 320px; height: 100vh;
+    position: fixed; 
+    top: 0; 
+    bottom: 0; /* Anchors to viewport boundaries */
+    right: -100%; 
+    width: 320px; 
+    box-sizing: border-box; 
+    overflow-y: hidden; 
+    overscroll-behavior: none; /* Prevents mobile rubber-band scrolling */
     border-left: 1px solid #333; z-index: 2000;
     display: flex; flex-direction: column;
     box-shadow: -5px 0 20px rgba(0,0,0,0.5);
@@ -113,7 +117,12 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
   .close-btn:hover { color: var(--accent); }
 
   /* 4. SITE TREE NAVIGATION */
-  .site-tree { flex: 1; overflow-y: auto; padding: 1.5rem; }
+  .site-tree { 
+    flex: 1; 
+    overflow-y: auto; 
+    overscroll-behavior: none; /* Prevents internal container scroll-chaining */
+    padding: 1.5rem; 
+  }
   .tree-category { margin-bottom: 2rem; }
   .cat-title {
     display: block; font-size: 0.75rem; text-transform: uppercase;
@@ -129,7 +138,7 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
     color: var(--accent); transform: translateX(5px);
   }
 
-  /* Gray out the SVGs cleanly */
+  /* SVG Icon Styling */
   .icon-svg {
     width: 20px; height: 20px; margin-right: 12px; opacity: 0.5;
   }
@@ -152,10 +161,10 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
   }
   .mini-theme-picker { display: flex; gap: 1rem; }
   
-  /* CIRCLE BUTTONS FIX */
+  /* Theme Toggle Buttons */
   .t-btn {
     width: 24px; height: 24px; border: 1px solid #555;
-    border-radius: 50%; /* Made them circles! */
+    border-radius: 50%; 
     cursor: pointer; transition: transform 0.2s;
   }
   .t-btn:hover { transform: scale(1.2); border-color: var(--text); }
@@ -165,7 +174,7 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
   .t-committee { background: #9c27b0; }
   .t-charlotte { background: #ff69b4; }
 
-  /* 6. OVERLAY (Backdrop) */
+  /* 6. OVERLAY BACKDROP */
   .sidebar-backdrop {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(0,0,0,0.5); backdrop-filter: blur(2px);
@@ -177,7 +186,6 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
 </style>
 
 <script>
-  // CLIENT-SIDE LOGIC
   const trigger = document.getElementById('nav-trigger');
   const sidebar = document.getElementById('sidebar-menu');
   const closeBtn = document.getElementById('close-btn');
@@ -188,11 +196,13 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
       sidebar.classList.toggle('open');
       backdrop.classList.toggle('active');
       
-      // BONUS: Lock the body scroll when menu is open!
+      /* Background scroll lock */
       if (sidebar.classList.contains('open')) {
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden'; /* Root element scroll lock */
       } else {
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
       }
     }
   }
@@ -201,7 +211,7 @@ import { sidebarNav } from '../data/navigation/navigation.js'; // Import your ne
   closeBtn?.addEventListener('click', toggleMenu);
   backdrop?.addEventListener('click', toggleMenu);
 
-  // Theme Picker Logic
+  /* Theme Initialization & Event Listeners */
   const themeBtns = document.querySelectorAll('.t-btn'); 
   themeBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {

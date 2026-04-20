@@ -56,17 +56,17 @@ const today = new Date();
     font-weight: 700; margin-bottom: 0.5rem; opacity: 0.8;
   }
 
-  /* FIX: Use --footer-text instead of the global body text variable */
+  /* Used --footer-text instead of the global body text variable */
   .legal-block :global(p) {
     font-size: 0.7rem; 
     color: var(--footer-text); 
-    opacity: 0.7; /* Makes it look muted without using the wrong color */
+    opacity: 0.7;
     line-height: 1.5; 
     margin: 0 auto 0.5rem auto;
     max-width: 700px;
   }
 
-  /* FIX: Force white so names pop against the universally dark footer */
+  /* Force white so names pop against the universally dark footer */
   .legal-block :global(strong) {
     color: #ffffff; 
   }
@@ -96,7 +96,7 @@ const today = new Date();
 
   .dev-credit:hover p { opacity: 1; }
 
-  /* FIX: Force white instead of --heading-color */
+  /* Force white instead of --heading-color */
   .architect-name {
     color: #ffffff; font-weight: 700; text-decoration: none;
   }

@@ -1,4 +1,3 @@
-// Import images for the tools
 import manaboxImg from '../../assets/images/community/manabox-logo.png'; 
 import moxfieldImg from '../../assets/images/community/moxfield-logo.jpg';
 import triomeImg from '../../assets/images/community/triomelab-logo.svg';
@@ -11,23 +10,21 @@ import topdeckImg from '../../assets/images/community/topdeck-logo.jpg';
 export const buildTools = [
   {
     title: "ManaBox",
-    description: "A Fast, reliable, and excellent deckbuilder for quickly"+ 
-                " drafting up decks or managing your collection on the go.",
+    description: "A Fast, reliable, and excellent deckbuilder for quickly drafting up decks or managing your collection on the go.",
     link: "https://manabox.app/",
     linkText: "Get the App",
-    image: manaboxImg, // Use the imported image
-    icon: "manabox", // We'll handle icons in the component or use an SVG path here
-    bgSize: "contain", // Adjust background size for better logo fit
+    image: manaboxImg, 
+    icon: "manabox", 
+    bgSize: "contain", 
     bgColor: "#101010",
     isFeatured: true
   },
   {
     title: "Moxfield",
-    description: "A modern interface with powerful features like price tracking,"+ 
-                " versioning, and easy sharing.",
+    description: "A modern interface with powerful features like price tracking, versioning, and easy sharing.",
     link: "https://www.moxfield.com",
     linkText: "Visit Site",
-    image: moxfieldImg, // Use the imported image
+    image: moxfieldImg, 
     icon: "moxfield",
     bgSize: "cover",
     bgColor: "#5e3e8c",
@@ -35,11 +32,10 @@ export const buildTools = [
   },
   {
     title: "TriomeLab",
-    description: "Explore the meta, Analyze trends, & Find top staples in this"+ 
-                " deep card recommendation and data analysis platform.",
-    link: "https://triomelab.com/", // Add real link when you have it
+    description: "Explore the meta, Analyze trends, & Find top staples in this deep card recommendation and data analysis platform.",
+    link: "https://triomelab.com/", 
     linkText: "Explore Data",
-    image: triomeImg, // Use the imported image
+    image: triomeImg, 
     icon: "chart",
     bgSize: "contain",
     bgColor: "#1E2732", 
@@ -47,7 +43,7 @@ export const buildTools = [
   }
 ];
 
-// Updated Scryfall shortcuts with simplified descriptions
+/* Scryfall Shortcuts */
 export const scryfallShortcuts = [
   {
     label: "Split Cards",
@@ -75,7 +71,6 @@ export const playTools = [
     image: cockatriceImg, 
     bgSize: "contain",
     bgColor: "#ffffff",
-    // No guide needed
     hasGuide: false
   },
   {
@@ -85,7 +80,7 @@ export const playTools = [
     linkText: "Launch Web App",
     image: spelltableImg,
     bgSize: "contain",
-    bgColor: "#0a0a0a", // Matches SpellTable dark aesthetic
+    bgColor: "#0a0a0a", 
     hasGuide: false
   },
   {
@@ -96,7 +91,6 @@ export const playTools = [
     image: mtgoImg,
     bgSize: "contain",
     bgColor: "#ffffff",
-    // This triggers the extra button
     hasGuide: true 
   }
 ];
@@ -115,10 +109,10 @@ export const competeTools = [
     description: "The engine behind our Monthly Leagues. You will need an account here to register for official events and report your match results.",
     link: "https://challonge.com/communities/tinyleaders", 
     linkText: "Join Community",
-    image: challongeImg, // Use the imported image
+    image: challongeImg, 
     icon: "trophy",
     bgSize: "cover",
-    bgColor: "#23262B", // Matches the dark aesthetic of the Challonge logo
+    bgColor: "#23262B", 
     isFeatured: true
   },
   {
@@ -126,7 +120,7 @@ export const competeTools = [
     description: "The home of competitive EDH tournament data. While we primarily use Challonge, check here for larger open event listings.",
     link: "https://topdeck.gg/", 
     linkText: "Find Events",
-    image: topdeckImg, // Use the imported image
+    image: topdeckImg, 
     icon: "chart-bar",
     bgSize: "contain",
     bgColor: "#1c2532", 
@@ -136,11 +130,11 @@ export const competeTools = [
 
 export const brandResources = {
   title: "Logos & Branding",
-  description: "Making a video or writing an article? Feel free to use the official Tiny Leaders: Reborn logos. Includes transparent PNGs and SVGs.",
+  description: "Making a video or writing an article? Feel free to use the official Tiny Leaders logos. Includes transparent PNGs and SVGs.",
   buttons: [
     {
       text: "Download Logo Pack (ZIP)",
-      link: "/downloads/tlr-logos.zip",
+      link: "/downloads/tl-logos.zip",
       style: "primary"
     },
     {

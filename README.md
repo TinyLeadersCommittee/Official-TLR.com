@@ -61,11 +61,6 @@ The site is a multi-page resource hub for the TLR community, organized into the 
 | `/about/committee` | Meet the current Committee members and their roles |
 | `/feed` | Latest announcements, articles, and format updates |
 
-### In Development
-| Page | Description |
-|---|---|
-| `/construction` | Play and Master sections — currently under construction |
-
 ---
 
 ## Tech Stack

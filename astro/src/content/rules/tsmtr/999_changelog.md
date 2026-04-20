@@ -3,10 +3,15 @@ title: "Changelog"
 docTitle: "Tournament Rules"
 docId: "tsmtr"
 order: 3
-lastUpdated: "November 24, 2025"
+lastUpdated: "March 09, 2026"
 ---
 
 ## Changelog
+
+**March 09, 2026**
+* New Category: Banned as Companion
+* Add: “Lutri, the Spellchaser” to banned as companion list
+* Remove: “Lutri, the Spellchaser” from banned list
 
 **November 24, 2025**
 * Update: Remove “Edric, Spymaster of Trest” and “Metalworker” from the Banned List.

@@ -1,5 +1,6 @@
 ---
 // src/components/ToolkitCTA.astro
+import { SITE_LINKS } from '../config/links.js';
 ---
 
 <aside id="toolkit" class="toolkit-cta">
@@ -11,7 +12,7 @@
     </p>
   </div>
   
-  <a href="/community/resources" class="toolkit-btn">
+  <a href={SITE_LINKS.community.resources} class="toolkit-btn">
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 24 24" 

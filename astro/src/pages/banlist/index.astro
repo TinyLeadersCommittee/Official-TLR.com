@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import judgement from '../../assets/images/banlist/councilsJudgement.jpg';
 
-// Import Data (Added companionBans)
+// Import Data
 import { watchlist, categoryBans, commanderBans, companionBans, cardBans } from '../../data/banlist/banlist.js';
 import { latestAnnouncement } from '../../data/banlist/latestUpdate.js';
 
@@ -262,7 +262,7 @@ import { getIcon } from '../../data/cardIcons.js';
     flex-shrink: 0; 
   }
 
-  /* This class is injected by your getIcon() helper. 
+  /* This class is injected by getIcon() helper. 
      It uses the image as a mask to apply the accent color.
      NOTE: This requires transparency in the source image! */
   .type-symbol {
@@ -498,7 +498,7 @@ import { getIcon } from '../../data/cardIcons.js';
     backdrop-filter: blur(5px);
   }
 
-  /* Force transparency so we don't see white box corners behind the card */
+  /* Force transparency so the white box corners behind the card aren't shown*/
   .card-modal-content, 
   .modal-body {
     background: transparent !important;

@@ -1,19 +1,20 @@
 // src/data/rules/supplementsData.js
+import { SITE_LINKS } from "../../config/links";
 
 export const officialDocs = [
   {
     acronym: "TSMCR",
     title: "Comprehensive Rules",
     // Link to the Preamble we created in the tsmcr folder
-    viewLink: "/rules/tsmcr/00_preamble", 
-    downloadLink: "/docs/TSMCR_Supplement.pdf"
+    viewLink: SITE_LINKS.rules.tsmcrIntro, 
+    downloadLink: SITE_LINKS.rules.tsmcrPDF
   },
   {
     acronym: "TSMTR",
     title: "Tournament Rules",
     // Link to the Preamble we created in the tsmtr folder
-    viewLink: "/rules/tsmtr/00_preamble",
-    downloadLink: "/docs/TSMTR_Supplement.pdf"
+    viewLink: SITE_LINKS.rules.tsmtrIntro,
+    downloadLink: SITE_LINKS.rules.tsmtrPDF
   }
 ];
 

@@ -1,0 +1,21 @@
+{
+  "name": "Tiny Leaders",
+  "short_name": "TLR",
+  "description": "The official rules, banlist, and community hub for Tiny Leaders.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#141419",
+  "theme_color": "#D4AF37",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

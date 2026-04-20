@@ -1,26 +1,25 @@
 import { SITE_LINKS } from "../../config/links";
 
 export const watchlist = [
-    { 
-      name: "Light-Paws, Emperor's Voice", 
-      set: "neo", 
-      type: "creature",
-      date: "2026-01-27",
-      reason: 'Placed on the Watchlist to monitor if the metagame can adapt to its speed and protection suite, or if its polarizing impact necessitates a future ban.',
-      announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/01/lorwyn-eclipsed-ban-watchlist.html'
-    }
+  { 
+    name: "Light-Paws, Emperor's Voice", 
+    set: "neo", 
+    type: "creature",
+    date: "2026-01-27",
+    reason: 'Placed on the Watchlist to monitor if the metagame can adapt to its speed and protection suite, or if its polarizing impact necessitates a future ban.',
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/01/lorwyn-eclipsed-ban-watchlist.html'
+  }
 ]
 
 // src/data/banlist/banlist.js
 
 export const categoryBans = [
   { 
-    // COMPLEX ENTRY: Contains multiple links in one line
     parts: [
       { label: "Silver-bordered", query: "border:silver (mv<=3 or is:land)" },
-      { label: ", " }, // Separator text
+      { label: ", " }, 
       { label: "Gold-bordered", query: "border:gold (mv<=3 or is:land)" },
-      { label: ", or " }, // Separator text
+      { label: ", or " }, 
       { label: "Acorn-stamped cards", query: "stamp:acorn (mv<=3 or is:land)" }
     ]
   },
@@ -30,7 +29,6 @@ export const categoryBans = [
   },
   { 
     label: "Cards that are racially or culturally offensive", 
-    // Wrapped in parens to ensure the OR logic works with the MV check
     query: "(!Clebnse or !Crusade or !Imprison or !\"Invoke Prejudice\" or !Jihad or !\"Pradesh Gypsies\" or !\"Stone-Throwing Devils\") (mv<=3 or is:land)" 
   },
   { 
@@ -219,11 +217,6 @@ export const cardBans = [
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2021/09/ban-list-update.html' 
   },
   { 
-    name: "Lutri, the Spellchaser", set: "iko", type: "creature", date: "2025-08-01",
-    reason: 'Banned for zero opportunity cost. In a singleton format, the companion condition is free, granting an automatic 8th card that doubles as a lethal late-game finisher with minimal setup.', 
-    announcement: 'https://tiny-leaders-reborn.blogspot.com/2025/08/edge-of-eternities-format-update-ban.html' 
-  },
-  { 
     name: "Maddening Hex", set: "afc", type: "enchantment", date: "2021-09-01",
     reason: 'Banned due to being a high-variance, high-impact damage designed for multiplayer that is too punishing in a 1v1 setting.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2021/09/ban-list-update.html' 
@@ -372,7 +365,7 @@ export const cardBans = [
   },
   { 
     name: "True-Name Nemesis", set: "c13", type: "creature", date: "2018-01-15",
-    reason: 'Too difficult to manage within the $CMC \le 3$ constraints of the format, especially with new tribal power-creep from Ixalan.', 
+    reason: 'Too difficult to manage within the $CMC \\le 3$ constraints of the format, especially with new tribal power-creep from Ixalan.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2022/01/011518-ban-list-update.html' 
   },
   { name: "Umezawa’s Jitte", set: "bok", type: "artifact", date: "2018-00-00", 

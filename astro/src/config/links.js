@@ -31,16 +31,20 @@ export const SITE_LINKS = {
   rules:{
     supplements: '/rules/supplements',
     philosophy: '/rules/supplements#philosophy',
+    
+    //tsmcr
     tsmcrIntro: '/rules/tsmcr/00_preamble',
     tsmcr100: '/rules/tsmcr/100_game_concepts',
     tsmcr906: '/rules/tsmcr/906_tiny_leaders',
     tsmcr999: '/rules/tsmcr/999_changelog',
+    tsmcrPDF: '/docs/TSMTR_Supplement.pdf',
+    
+    //tsmtr
     tsmtrIntro: '/rules/tsmtr/00_preamble',
     tsmtr01: '/rules/tsmtr/01_general_tournament',
     tsmtr06: '/rules/tsmtr/06_construction',
     tsmtr999: '/rules/tsmtr/999_changelog',
-    ///docs/TSMTR_Supplement.pdf
-    ///docs/TSMCR_Supplement.pdf
+    tsmtrPDF: '/docs/TSMCR_Supplement.pdf'
   },
 
   //banlist links
@@ -66,7 +70,7 @@ export const SITE_LINKS = {
     littleLeague: '/community/little-league',
     paperPlay: '/community/paper-play',
     playOptions: '/community/play-options',
-    resources: '/community/resouces'
+    resources: '/community/resources'
   },
 
   //about pages

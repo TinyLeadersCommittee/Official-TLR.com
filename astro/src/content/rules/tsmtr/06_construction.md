@@ -3,7 +3,7 @@ title: "6. Constructed Rules & Ban List"
 docTitle: "Tournament Rules"
 docId: "tsmtr"
 order: 2
-lastUpdated: "November 24, 2025"
+lastUpdated: "March 09, 2026"
 ---
 
 ## 6. Constructed Tournament Rules
@@ -16,7 +16,7 @@ Constructed decks… fifteen cards. **Decks constructed for the TL:R format must
 
 **TL:R decks may consist of cards from all Magic card sets. Cards from expansions and special sets (like From the Vault, Magic: The Gathering—Commander, Duel Decks, Conspiracy, etc.) are legal in the TL:R format on the date of release of the expansion or special set.**
 
-**TL:R uses two ban lists. One list refers to cards banned entirely in the format. The other refers to cards that cannot be played as a deck’s commander (banned as commander) but may be played in the main deck or sideboard.**
+**TL:R uses distinct restriction lists. One list refers to cards banned entirely in the format. Another refers to cards that cannot be played as a deck’s commander (banned as commander) but may be played in the main deck or sideboard. A third refers to cards that cannot be played as a companion (banned as companion) but may be played otherwise.**
 
 ### The following cards are banned in TL:R
 
@@ -39,6 +39,10 @@ Constructed decks… fifteen cards. **Decks constructed for the TL:R format must
 * Rofellos, Llanowar Emissary
 * Uro, Titan of Nature’s Wrath
 * Wrenn and Six
+
+### The following cards are banned as companion (but may be played otherwise unless noted on a previous list):
+
+* Lutri, the Spellchaser
 
 **A**
 * Ancestral Recall
@@ -87,7 +91,6 @@ Constructed decks… fifteen cards. **Decks constructed for the TL:R format must
 **L**
 * Library of Alexandria
 * Lion’s Eye Diamond
-* Lutri, the Spellchaser
 
 **M**
 * Maddening Hex

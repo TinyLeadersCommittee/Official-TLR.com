@@ -10,7 +10,7 @@ import {
   competeTools 
 } from '../../data/community/resourceData.js';
 
-// Import our new build-time fetcher
+// Import build-time fetcher
 import { getRuleOfThreeCards } from '../../utils/scryfallAPI.js';
 
 // Fetch the data at build time
@@ -18,7 +18,7 @@ const legalSplit = await getRuleOfThreeCards('game:paper is:split');
 const legalAdventure = await getRuleOfThreeCards('game:paper is:adventure');
 const legalMDFC = await getRuleOfThreeCards('game:paper is:mdfc');
 
-// Structure it for the UI
+// Structure the data for the UI
 const scryfallCategories = [
   { id: 'modal-split', title: 'Split Cards', desc: 'View all format-legal split cards.', cards: legalSplit },
   { id: 'modal-adv', title: 'Adventure Cards', desc: 'View all format-legal adventure cards.', cards: legalAdventure },
@@ -90,9 +90,6 @@ bgStyle="object-fit: contain; object-position: center;">
           </header>
           
           <div class="modal-body list-modal-body">
-             {/* Here is the magic. You just pass the array into the component. 
-                 It handles the HTML, the mapping, and the CSS scoping automatically. 
-             */}
              <CardGallery cards={cat.cards} />
           </div>
           
@@ -140,7 +137,7 @@ bgStyle="object-fit: contain; object-position: center;">
 <script>
   import { initCardPreview } from '../../scripts/cardPreview.js';
 
-  // Initialize your global card viewer
+  // Initialize global card viewer
   initCardPreview();
 
   // Handle MTGO Modal

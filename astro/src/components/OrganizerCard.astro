@@ -1,7 +1,7 @@
 ---
 const { lpo } = Astro.props;
 
-// Fallback Initials Generator
+/* Fallback Initials Generator */
 const getInitials = (name) => {
   if (!name) return "TL"; 
   const parts = name.trim().split(" ");
@@ -109,49 +109,48 @@ const initials = getInitials(lpo.name);
 </article>
 
 <style>
+  /* --- BASE CARD --- */
   .lpo-profile-card {
     padding: 0; 
     overflow: hidden; 
     display: flex;
     flex-direction: column;
-    position: relative; /* Crucial for absolute positioning the background art */
+    position: relative;
     z-index: 1;
   }
 
-  /* --- NEW: Background Art Styling --- */
+  /* --- BACKGROUND ART --- */
   .profile-bg-art {
     position: absolute;
-    top: 60px; /* Starts exactly below the top red banner */
+    top: 60px; 
     right: 0;
     bottom: 0;
-    width: 55%; /* Fills the right side of the card */
+    width: 55%; 
     background-size: cover;
     background-position: center right;
-    opacity: 0.30; /* Keeps it strictly as a watermark */
-    z-index: -1; /* Pushes it behind all the text */
-    pointer-events: none; /* Prevents it from blocking clicks on links */
-    
-    /* The magic fade: goes from transparent on the left to solid on the right */
+    opacity: 0.30; 
+    z-index: -1; 
+    pointer-events: none; 
     mask-image: linear-gradient(to right, transparent 0%, black 60%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%);
   }
 
-  /* Top decorative banner */
+  /* --- DECORATIVE BANNER --- */
   .profile-banner {
     width: 100%;
     height: 60px;
     background: linear-gradient(135deg, var(--accent), #ff7b7b);
     position: relative;
-    z-index: 2; /* Sits above the background art */
+    z-index: 2; 
   }
 
-  /* Main content area */
+  /* --- MAIN CONTENT --- */
   .profile-content {
     padding: 0 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
     position: relative;
-    z-index: 2; /* Sits above the background art */
+    z-index: 2; 
   }
 
   .profile-header {
@@ -162,7 +161,7 @@ const initials = getInitials(lpo.name);
     margin-bottom: 1rem;
   }
 
-  /* --- NEW: PFP Avatar Styling --- */
+  /* --- PFP AVATAR --- */
   .avatar-circle {
     width: 80px;
     height: 80px;
@@ -178,19 +177,20 @@ const initials = getInitials(lpo.name);
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     flex-shrink: 0;
     overflow: hidden; 
-    position: relative; /* NEW: Anchors the absolute image to this circle */
+    position: relative; 
   }
 
   .avatar-img {
-    position: absolute; /* Rips it out of the Flexbox flow */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Now it can crop perfectly without being squished! */
+    object-fit: cover; 
   }
 
-.profile-identity { 
+  /* --- IDENTITY --- */
+  .profile-identity { 
     display: flex; 
     flex-direction: column; 
     align-items: flex-start; 
@@ -212,7 +212,7 @@ const initials = getInitials(lpo.name);
     font-weight: 800; 
   }
 
-  /* Meta tags (Discord & Location) */
+  /* --- META TAGS --- */
   .profile-meta-tags { 
     display: flex; 
     flex-wrap: wrap; 
@@ -243,9 +243,9 @@ const initials = getInitials(lpo.name);
     color: var(--text-muted); 
   }
 
-  /* Interactive Tag Styling */
+  /* --- INTERACTIVE TAGS --- */
   .clickable-tag {
-    text-decoration: none; /* Strips the default blue link underline */
+    text-decoration: none; 
     transition: all 0.2s ease;
   }
 
@@ -256,7 +256,7 @@ const initials = getInitials(lpo.name);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
 
-  /* Bio Text */
+  /* --- BIO TEXT --- */
   .profile-bio { 
     margin-bottom: 2rem; 
     line-height: 1.6; 
@@ -267,7 +267,7 @@ const initials = getInitials(lpo.name);
     padding-left: 1rem; 
   }
 
-  /* Venues Section */
+  /* --- VENUES SECTION --- */
   .profile-venues h3 { 
     font-size: 0.9rem; 
     text-transform: uppercase; 
@@ -296,7 +296,6 @@ const initials = getInitials(lpo.name);
     gap: 0.15rem;
   }
 
-  /* Pins the SVG close to the Name */
   .venue-header {
     display: flex;
     align-items: center;
@@ -332,6 +331,7 @@ const initials = getInitials(lpo.name);
     color: var(--accent); 
   }
 
+  /* --- RESPONSIVE MOBILE --- */
   @media (max-width: 600px) {
     .profile-content { 
       padding: 0 1.5rem 1.5rem 1.5rem; 
@@ -359,11 +359,7 @@ const initials = getInitials(lpo.name);
       mask-image: none; 
       -webkit-mask-image: none; 
     } 
-    /* On mobile, we make it full width but super faint 
-       so the text remains legible */
-  }
 
-  @media (max-width: 600px) {
     .venues-list {
       grid-template-columns: 1fr;
     }

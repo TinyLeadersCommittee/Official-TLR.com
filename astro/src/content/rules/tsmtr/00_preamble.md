@@ -10,8 +10,8 @@ lastUpdated: "November 24, 2025"
 
 This document is an unofficial supplement to the Magic: the Gathering Tournament Rules (MTR).
 
-* **Last updated:** November 24, 2025
-* **Effective Date:** November 24, 2025
+* **Last updated:** March 09, 2026
+* **Effective Date:** March 09, 2026
 
 Tiny Leaders: Reborn (hereafter referred to as TL:R) is an unofficial format not supported or endorsed by Wizards of the Coast ®. As such, all updates and changes to, as well as concerns with, this document are the responsibility of the TL:R Committee, which can be found on Discord here.
 

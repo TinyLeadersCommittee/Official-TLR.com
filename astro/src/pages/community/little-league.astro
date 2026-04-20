@@ -1,10 +1,8 @@
 ---
-// 1. Layout & Assets
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import battle from '../../assets/images/community/battleStrain.jpg';
 import join from '../../assets/images/community/kellanJoinsUp.jpg';
 
-// 2. Data Imports
 import { 
   leagueSchedule, 
   leagueRules, 
@@ -113,7 +111,7 @@ bgStyle="object-fit: contain; object-position: center;">
                     ))}
                 </ul>
                 
-                {/* Conditional Rendering: Warning Box */}
+                {/* Warning Box */}
                 {event.warning && (
                     <div class="alert-box warning">
                         <div class="alert-icon">
@@ -192,10 +190,7 @@ bgStyle="object-fit: contain; object-position: center;">
 </BaseLayout>
 
 <style>
-  /* =========================================
-     1. PAGE LAYOUTS & GRIDS
-     ========================================= */
-  
+  /* --- PAGE LAYOUTS & GRIDS --- */
   .rules-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -203,85 +198,19 @@ bgStyle="object-fit: contain; object-position: center;">
     margin-top: 2rem;
   }
 
-  /* NEW: Tighten spacing specifically for Rules Cards */
   .rules-grid .media-card-body h3 {
-    margin-top: 0;      /* Remove top gap */
-    margin-bottom: 0.50rem; /* Pull paragraph closer */
-    font-size: 1.2rem;  /* Optional: slightly smaller header fits better */
+    margin-top: 0;      
+    margin-bottom: 0.50rem; 
+    font-size: 1.2rem;  
   }
 
   .rules-grid .media-card-body p {
-    margin-top: 0;      /* Remove top gap */
+    margin-top: 0;      
     margin-bottom: 0;
-    line-height: 1.4;   /* Slightly tighter text leading */
+    line-height: 1.4;   
     font-size: 0.95rem;
   }
   
-  /* Update your existing .icon-wrapper to ensure it doesn't push too hard */
-  .icon-wrapper {
-    color: var(--accent);
-    margin-bottom: 0.5rem; /* Keep this small */
-    display: inline-flex;
-    padding: 12px;
-    background-color: var(--surface);
-    border-radius: 50%;
-    border: 1px solid var(--border-subtle);
-  }
-
-  /* Seasonal Events Layout */
-  .events-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  /* =========================================
-     ... inside .events-container section ...
-     ========================================= */
-
-  /* NEW: Tighten spacing for Event Cards */
-  .events-container .media-card-body h3 {
-    margin-top: 0;
-    margin-bottom: 0.25rem; /* Pulls the meta-data closer */
-    font-size: 1.5rem;
-  }
-
-  .events-container .event-meta {
-    margin-bottom: 1rem;    /* Reduces gap before the description */
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .events-container .media-card-body p {
-    margin-top: 0;          /* Removes gap between meta and text */
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-
-  .events-container .specs-list {
-    margin-top: 0;          /* Pulls the list up to the text */
-    margin-bottom: 1.5rem;
-    padding-left: 1.2rem;
-  }
-
-  /* Footer Links Layout */
-  .resource-links {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap; 
-  }
-
-  /* =========================================
-     2. LOCAL COMPONENTS
-     ========================================= */
-
-  /* Icon Wrapper (Used in Rules Cards) */
   .icon-wrapper {
     color: var(--accent);
     margin-bottom: 0.5rem; 
@@ -292,7 +221,50 @@ bgStyle="object-fit: contain; object-position: center;">
     border: 1px solid var(--border-subtle);
   }
 
-  /* Alert Box (Used in Event Cards) */
+  /* --- SEASONAL EVENTS LAYOUT --- */
+  .events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .events-container .media-card-body h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem; 
+    font-size: 1.5rem;
+  }
+
+  .events-container .event-meta {
+    margin-bottom: 1rem;    
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .events-container .media-card-body p {
+    margin-top: 0;          
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .events-container .specs-list {
+    margin-top: 0;          
+    margin-bottom: 1.5rem;
+    padding-left: 1.2rem;
+  }
+
+  .resource-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap; 
+  }
+
+  /* --- LOCAL COMPONENTS --- */
   .alert-box {
     display: flex;
     gap: 1rem;
@@ -312,7 +284,6 @@ bgStyle="object-fit: contain; object-position: center;">
     padding-top: 2px;
   }
 
-  /* Philosophy Block Typography */
   .callout-box blockquote {
     font-size: 1.1rem;
     margin: 0 0 1rem 0;
@@ -333,7 +304,6 @@ bgStyle="object-fit: contain; object-position: center;">
     font-size: 0.85rem;
   }
 
-  /* Event Card Details */
   .event-meta {
     display: block;
     font-size: 0.85rem;
@@ -350,15 +320,12 @@ bgStyle="object-fit: contain; object-position: center;">
     color: var(--text-body);
   }
 
-  /* Specific Card Override: Championship */
   .championship-card {
     background-color: var(--surface); 
     border-color: var(--accent);
   }
 
-  /* =========================================
-     3. SCHEDULE GRID (Complex Table Layout)
-     ========================================= */
+  /* --- SCHEDULE GRID --- */
   .schedule-grid {
     display: flex;
     flex-direction: column;
@@ -410,12 +377,10 @@ bgStyle="object-fit: contain; object-position: center;">
   }
 
   .schedule-row.special {
-    border-left: 4px solid #FFD700; /* Gold */
+    border-left: 4px solid #FFD700; 
   }
 
-  /* =========================================
-     4. RESPONSIVE
-     ========================================= */
+  /* --- RESPONSIVE --- */
   @media (max-width: 600px) {
     .schedule-header { display: none; }
     

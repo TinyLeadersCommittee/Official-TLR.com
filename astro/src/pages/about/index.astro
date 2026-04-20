@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import founding from '../../assets/images/about/foundingTheThirdPath.jpg';
-// Removed unused Image import
+import { SITE_LINKS } from '../../config/links';
 ---
 
 <BaseLayout title="History of TLR" 
@@ -166,7 +166,7 @@ bgStyle="object-fit: contain; object-position: 10% center;">
             behind TLR.
           </p>
         </div>
-        <a href="/about/committee" class="btn btn-primary" style="white-space: nowrap;">
+        <a href={SITE_LINKS.about.committee} class="btn btn-primary" style="white-space: nowrap;">
           View Profiles &rarr;
         </a>
       </aside>
