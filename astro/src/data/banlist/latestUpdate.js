@@ -2,17 +2,13 @@
 import { SITE_LINKS } from "../../config/links";
 
 export const latestAnnouncement = {
-  date: "March 09, 2026",
-  title: "TMNT — Post-Release Update",
+  date: "April 29, 2026",
+  title: "Secrets of Strixhaven — Post-Release Update",
   link: SITE_LINKS.banlist.latestAnnouncement, // Where the "Full Announcement" button goes
   changes: [
     { 
-      card: "New Banned Category Added", 
-      status: "Banned as Companion" 
-    },
-    { 
-      card: "Lutri, the Spellchaser", 
-      status: "Moved from Banned to Banned as Companion" 
+      card: "NO CHANGES", 
+      status: "Light-Paws, Emperor's Voice remains on the Watchlist" 
     }
   ]
 };

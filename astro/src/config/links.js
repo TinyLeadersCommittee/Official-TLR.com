@@ -49,7 +49,7 @@ export const SITE_LINKS = {
 
   //banlist links
   banlist:{
-    latestAnnouncement: 'https://tiny-leaders-reborn.blogspot.com/2026/03/tmnt-format-update-rules-and-banlist.html',
+    latestAnnouncement: 'https://tiny-leaders-reborn.blogspot.com/2026/04/secrets-of-strixhaven-format-update-ban.html',
     watchlist01: 'https://tiny-leaders-reborn.blogspot.com/2026/01/lorwyn-eclipsed-ban-watchlist.html'
   },
 
