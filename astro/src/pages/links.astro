@@ -46,19 +46,19 @@ const links = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
   </head>
-  
+
   <body>
     {/* 1. The Art Layer (Blurred and scaled slightly to hide edges) */}
     <div 
       class="bg-art" 
       style={`background-image: url('${bgImage.src}');`}
     ></div>
-    
+
     {/* 2. The Tint Layer (Darkens the art so text remains legible) */}
     <div class="bg-tint"></div>
 
     <main class="links-container">
-      
+
       <header class="profile-header">
         <div class="avatar-circle">
           <img src={tlrPfp.src} alt="TLR Logo" />
@@ -75,7 +75,8 @@ const links = [
           <a 
             href={link.url} 
             class={`brand-btn ${link.cssClass}`} 
-            target={link.url.startsWith('http') ? "_blank" : "_self"}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {/* Left Icon */}
             <svg 
@@ -86,7 +87,7 @@ const links = [
             >
                 <path d={link.svgPath}/>
             </svg>
-            
+
             <span>{link.action}</span>
           </a>
         ))}
@@ -189,7 +190,7 @@ const links = [
     height: 24px;
     flex-shrink: 0; /* Prevents the icons from squishing if text is long */
   }
-  
+
   /* Website gets a premium Frosted Glass look so it matches the TLR theme */
   .btn-website { 
     background: rgba(255, 255, 255, 0.1); 
@@ -197,7 +198,7 @@ const links = [
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
   .btn-website:hover { background: rgba(255, 255, 255, 0.15); border-color: var(--accent); }
-  
+
   .btn-discord { background-color: #5865F2; border: 1px solid #5865F2; }
   .btn-youtube { background-color: #FF0000; border: 1px solid #FF0000; }
   .btn-bluesky { background-color: #0560FF; border: 1px solid #0560FF; }
