@@ -85,7 +85,7 @@ export const SITE_LINKS = {
 
   // Social Media & Community Platforms
   socials: {
-    discord: "https://discord.com/invite/jq9KWHAdTm",
+    discord: "https://discord.gg/N9arJsFcUy",
     youtube: "https://www.youtube.com/@TinyLeadersRebornCommittee/featured",
     bluesky: "https://bsky.app/profile/tinyleadersreborn.bsky.social",
   },
