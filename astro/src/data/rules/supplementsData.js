@@ -131,7 +131,7 @@ export const faqSections = [
 export const authorProfile = {
   name: "Gray",
   credentials: "Rules Manager • Level 2 Judge",
-  discordLink: "https://discord.gg/tiny-leaders",
+  discordLink: SITE_LINKS.socials.discord,
   bio: [
     "<strong>Gray</strong> is a Level 2 Magic Judge and the TLR " +
     "Committee’s Rules Manager, responsible for authoring and maintaining " +

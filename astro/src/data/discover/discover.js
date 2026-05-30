@@ -12,6 +12,8 @@ import discordBg from '../../assets/images/discover/tinybonesJoinsUp.jpg';
 import youtubeArt from '../../assets/images/discover/hauntedScreen.jpg';
 import blueskyArt from '../../assets/images/discover/butterfly.jpg';
 
+import { SITE_LINKS } from '../../config/links.js';
+
 /* --- 2. THE EXPLORE GRID --- */
 export const exploreCards = [
   { 
@@ -75,7 +77,7 @@ export const discordBanner = {
     "Communicate directly with members of the Tiny Leaders Committee"
   ],
   buttonText: "Join the Community",
-  buttonUrl: "https://discord.com/invite/jq9KWHAdTm",
+  buttonUrl: SITE_LINKS.socials.discord,
   bgImg: discordBg
 };
 
@@ -85,7 +87,7 @@ export const mediaCards = [
     platform: "YouTube",
     desc: "Watch gameplay, deck techs, and format updates on our official channel.",
     action: "YouTube Channel",
-    url: "https://www.youtube.com/@TinyLeadersRebornCommittee/featured",
+    url: SITE_LINKS.socials.discord,
     cssClass: "btn-youtube",
     img: youtubeArt,
     svgPath: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
@@ -94,7 +96,7 @@ export const mediaCards = [
     platform: "Bluesky",
     desc: "Follow us for quick updates and community highlights.",
     action: "Follow on Bluesky",
-    url: "https://bsky.app/profile/tinyleadersreborn.bsky.social",
+    url: SITE_LINKS.socials.bluesky,
     cssClass: "btn-bluesky",
     img: blueskyArt,
     viewBox: "0 0 600 530", 

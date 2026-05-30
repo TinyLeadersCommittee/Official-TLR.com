@@ -5,6 +5,7 @@ import StoreCard from '../../components/StoreCard.astro';
 import recruiter from '../../assets/images/community/recruiterOfTheGaurd.jpg';
 import { lpoDetails } from '../../data/local-play-organizers/lpo-details';
 import { communityStores } from '../../data/local-play-organizers/community-stores';
+import { SITE_LINKS } from '../../config/links';
 ---
 
 <BaseLayout title="Paper Play Directory" bgImage={recruiter}>
@@ -39,7 +40,7 @@ import { communityStores } from '../../data/local-play-organizers/community-stor
         Join the Discord and reach out to The Committee to learn about
         the requirements to join the Committee as an LPO.
       </p>
-      <a href="https://discord.com/invite/jq9KWHAdTm" class="btn-primary">Join the Discord</a>
+      <a href={SITE_LINKS.socials.discord} class="btn-primary">Join the Discord</a>
     </section>
 
     <section class="paper-play-container" aria-label="Community Reported Paper Play">
