@@ -77,6 +77,7 @@ export const playExperienceBans = [
   { name: "Oko, Thief of Crowns", set: "eld", status: "added" },
   { name: "Teferi, Time Raveler", set: "war", status: "added" },
   { name: "Thassa’s Oracle", set: "thb", status: "added" },
+  { name: "The Fantasticar", set: "msh", status: "added" },
   { name: "The Tabernacle at Pendrell Vale", set: "leg", status: "initial" },
   { name: "Umezawa’s Jitte", set: "bok", status: "initial" }
 ];
@@ -99,6 +100,7 @@ export const commanderBans = [
   { name: "Erayo, Soratami Ascendant", set: "sok", status: "initial" },
   { name: "Jeska, Thrice Reborn", set: "cmr", status: "added" },
   { name: "Ketramose, the New Dawn", set: "dft", status: "added" },
+  { name: "Light-Paws, Emperor's Voice", set: "neo", status: "added" },
   { name: "Nadu, Winged Wisdom", set: "mh3", status: "added" },
   { name: "Rofellos, Llanowar Emissary", set: "uds", status: "initial" },
   { name: "Uro, Titan of Nature’s Wrath", set: "thb", status: "added" },

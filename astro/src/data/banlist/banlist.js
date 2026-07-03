@@ -2,12 +2,12 @@ import { SITE_LINKS } from "../../config/links";
 
 export const watchlist = [
   { 
-    name: "Light-Paws, Emperor's Voice", 
-    set: "neo", 
-    type: "creature",
-    date: "2026-01-27",
-    reason: 'Placed on the Watchlist to monitor if the metagame can adapt to its speed and protection suite, or if its polarizing impact necessitates a future ban.',
-    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/01/lorwyn-eclipsed-ban-watchlist.html'
+    name: "Flawless Maneuver", 
+    set: "c20", 
+    type: "instant",
+    date: "2026-06-30",
+    reason: 'Added to the watchlist to monitor its utility as a free counterspell and staple in Yoshi/Rog decks.',
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/06/marvel-super-heroes-format-update-ban.html'
   }
 ]
 
@@ -69,6 +69,11 @@ export const commanderBans = [
     name: "Ketramose, the New Dawn", set: "dft", type: "creature", date: "2025-09-01",
     reason: 'Banned for doing too much. Combining powerful card draw and interaction with an indestructible, lifelinking body creates a Commander that is virtually impossible to race or grind out.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2025/09/marvels-spider-man-format-update-ban.html' 
+  },
+  { 
+    name: "Light-Paws, Emperor's Voice", set: "neo", type: "creature", date: "2026-06-30",
+    reason: 'Banned as a commander because its ability consistently produced the exact same board state every game, routinely achieving protection on turn three and a lethal attack by turn four.', 
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/06/marvel-super-heroes-format-update-ban.html' 
   },
   { 
     name: "Nadu, Winged Wisdom", set: "mh3", type: "creature", date: "2024-08-02",
@@ -339,7 +344,13 @@ export const cardBans = [
     reason: 'Banned due to being a high-efficiency combo piece that is too easy to enable in a 50-card format with powerful tutors.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2021/07/tlr-ban-list-and-rules-update.html' 
   },
-  { name: "The Tabernacle at Pendrell Vale", set: "leg", type: "land", date: "2018-00-00", 
+  { 
+    name: "The Fantasticar", set: "msh", type: "artifact", date: "2026-06-30", 
+    reason: 'Banned because it enabled overly consistent turn-one and turn-two combos that dictated the outcome of the game and left opponents with little to no chance to recover.', 
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/06/marvel-super-heroes-format-update-ban.html' 
+  },
+  { 
+    name: "The Tabernacle at Pendrell Vale", set: "leg", type: "land", date: "2018-00-00", 
     reason: 'Banned for raw efficiency. Whether through specific interactions or sheer value, these cards create an insurmountable advantage that forces every deck to look the same just to compete.', 
     announcement: 'Included on the Initial Banned List' 
   },

@@ -11,7 +11,7 @@ export const keyRules = [
     },
     { 
         label: "Commander Requirement", 
-        text: "A legendary creature or planeswalker must be designated as a commander." 
+        text: "A legendary creature, planeswalker, or vehicle must be designated as a commander." 
     },
     { 
         label: "Deck Size", 
