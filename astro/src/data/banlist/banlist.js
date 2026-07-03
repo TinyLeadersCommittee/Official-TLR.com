@@ -345,7 +345,7 @@ export const cardBans = [
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2021/07/tlr-ban-list-and-rules-update.html' 
   },
   { 
-    name: "The Fantasticar", set: "msh", type: "artifact", date: "2026-06-30", 
+    name: "The Fantasticar", set: "msc", type: "artifact", date: "2026-06-30", 
     reason: 'Banned because it enabled overly consistent turn-one and turn-two combos that dictated the outcome of the game and left opponents with little to no chance to recover.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/06/marvel-super-heroes-format-update-ban.html' 
   },

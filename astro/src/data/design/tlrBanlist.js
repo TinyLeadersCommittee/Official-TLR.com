@@ -77,7 +77,7 @@ export const playExperienceBans = [
   { name: "Oko, Thief of Crowns", set: "eld", status: "added" },
   { name: "Teferi, Time Raveler", set: "war", status: "added" },
   { name: "Thassa’s Oracle", set: "thb", status: "added" },
-  { name: "The Fantasticar", set: "msh", status: "added" },
+  { name: "The Fantasticar", set: "msc", status: "added" },
   { name: "The Tabernacle at Pendrell Vale", set: "leg", status: "initial" },
   { name: "Umezawa’s Jitte", set: "bok", status: "initial" }
 ];
