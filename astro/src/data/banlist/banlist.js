@@ -3,7 +3,7 @@ import { SITE_LINKS } from "../../config/links";
 export const watchlist = [
   { 
     name: "Rograkh, Son of Rohgahh", 
-    set: "c20", 
+    set: "cmr", 
     type: "instant",
     date: "2026-08-17",
     reason: 'Added to the Watchlist because it is a 0-mana enabler of the deck\'s aggressive early scaling and free spells.',
