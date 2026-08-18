@@ -8,6 +8,19 @@ lastUpdated: "October 10, 2025"
 
 ## Changelog
 
+**August 18, 2026**
+
+* Update: 906.4c to include reference to 722 “Preparation Cards”
+* Update: 906.5b-e to refer to game concept “Tiny”
+* Update: 906.6d modified language for clarity
+* Update: 906.8c to reference correct rule 906.8b
+
+
+**April 10, 2026**
+* Update: 906.3e added example
+* Update: 906.4c added example to include cards with prepared spells
+* Edit: Effective date changed to April 17 to reflect release of SOS
+
 **October 8, 2025**
 * Add: 906.4a-c concept and definitions of “cost identity” and being “Tiny”
 * Update: 906.5 reorganized

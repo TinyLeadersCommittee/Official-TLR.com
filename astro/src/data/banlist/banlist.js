@@ -3,16 +3,16 @@ import { SITE_LINKS } from "../../config/links";
 export const watchlist = [
   { 
     name: "Rograkh, Son of Rohgahh", 
-    set: "cmr", 
-    type: "instant",
+    set: "CMR", 
+    type: "creature",
     date: "2026-08-17",
     reason: 'Added to the Watchlist because it is a 0-mana enabler of the deck\'s aggressive early scaling and free spells.',
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/08/the-hobbit-format-update-banlist-and.html'
   },
   { 
     name: "Yoshimaru, Ever Faithful", 
-    set: "c20", 
-    type: "instant",
+    set: "nec", 
+    type: "creature",
     date: "2026-08-17",
     reason: 'Added to the Watchlist due to it being a fast-growing, must-answer threat in the early game.',
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/08/the-hobbit-format-update-banlist-and.html'
@@ -33,7 +33,7 @@ export const categoryBans = [
   },
   { 
     label: "Cards with the card type \"Conspiracy\"", 
-    query: "type:conspiracy (mv<=3 or is:land)" 
+    query: "type:conspiracy" 
   },
   { 
     label: "Cards that are racially or culturally offensive", 
@@ -45,13 +45,13 @@ export const categoryBans = [
   },
   { 
     label: "Cards that bring stickers or attractions into the game", 
-    query: "(oracle:sticker or type:attraction) (mv<=3 or is:land)" 
+    query: "(oracle:\"sticker on\" or type:attraction) (mv<=3 or is:land)" 
   }
 ];
 
 export const commanderBans = [
   { 
-    name: "Ajani, Nacatl Pariah", set: "mh3", type: "planeswalker", date: "2024-11-15",
+    name: "Ajani, Nacatl Pariah", set: "mh3", type: "creature", date: "2024-11-15",
     reason: 'Banned as a Leader for efficient snowballing. He offers guaranteed, low-mana access to bodies, removal, and damage that takes over the game before opponents can stabilize.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2024/11/banlist-update-november-15-2024.html' 
   },

@@ -3,7 +3,7 @@ title: "906. Tiny Leaders Variant"
 docTitle: "Comprehensive Rules"
 docId: "tsmcr"
 order: 2
-lastUpdated: "October 10, 2025"
+lastUpdated: "August 18, 2026"
 ---
 
 ## Section 900: Casual Variants
@@ -36,6 +36,8 @@ lastUpdated: "October 10, 2025"
 
 **906.3e:** If a card has any alternative characteristics, those characteristics are included when determining the card’s color identity.
 
+> *Example: Burn Together is the Adventure of Callous Sellsword. It has a mana cost of {R}. Callous Sellsword has a mana cost of {1B}. Callous Sellsword has a color identity of [BR].*
+
 **906.4:** TL:R uses cost identity to determine if a card is “Tiny”, or legal in the format. The cost identity of a card is the set of mana values of each set of characteristics of each face of that card. A card is considered “Tiny” if each value in its cost identity is 3 or less. See rule 202 “Mana Cost and Color”.
 
 > *Example: Psychic Frog has a mana cost of {UB}. It has a cost identity of [2]. As this value is 3 or less, Psychic Frog is Tiny.*
@@ -48,7 +50,7 @@ lastUpdated: "October 10, 2025"
 
 > *Example: Esika, God of the Tree // The Prismatic Bridge has a front face mana cost of {1GG} and a back face mana cost of {WUBRG}. It has a cost identity of [3, 5]. Since one of its values is greater than 3, Esika is not Tiny.*
 
-**906.4c:** The cost identity of a card with alternative characteristics includes each set of alternative characteristics. See rules 715 “Adventure Cards”, 718 “Prototype Cards”, and 720 “Omen Cards.”
+**906.4c:** The cost identity of a card with alternative characteristics includes each set of alternative characteristics. See rules 715 “Adventure Cards,” 718 “Prototype Cards,” and 720 “Omen Cards,” and 722 "Preparation Cards."
 
 > *Example: Bonecrusher Giant // Stomp has respective mana costs of {2R} and {1R}. It has a cost identity of [2, 3]. As each value does not exceed 3, Bonecrusher Giant is Tiny.*
 >
@@ -56,23 +58,25 @@ lastUpdated: "October 10, 2025"
 >
 > *Example: Steel Seraph has a mana cost of {6} and a Prototype cost of {1WW}. It has a cost identity of [3, 6]. As its identity includes a value greater than 3, Steel Seraph is not Tiny.*
 
+> *Example: Run the Play is the prepared spell of Striding Shotcaller. Run the Play has a mana cost of {XGU}, and Striding Shotcaller has a mana cost of {GU}. Striding Shotcaller has a cost identity of [2, 2], and is therefore Tiny.*
+
 **906.5:** Each TL:R deck is subject to the following deck construction rules.
 
 **906.5a:** Each deck must contain exactly 50 cards, including its commander(s). In other words, the minimum deck size and the maximum deck size are both 50.
 
-**906.5b:** A card can be included in a TL:R deck only if each value in its cost identity is 3 or less. See rules 202.3 and 906.4.
+**906.5b:** A card can be included in a TL:R deck only if it is Tiny. See rules 202.3 and 906.4.
 
-**906.5c:** Modal double-faced cards can be included in a TL:R deck only if each value in its cost identity is 3 or less. See rule 906.4b.
+**906.5c:** Modal double-faced cards can be included in a TL:R deck only if it is Tiny. See rule 906.4b.
 
 > *Example: Bala Ged Recovery has a front mana cost of {2G} and the back face has no mana cost. As its cost identity is [0, 3] it is Tiny and may be included in a TL:R deck.*
 >
 > *Example: Valki, God of Lies has a mana cost of {1B} and Tibalt, Cosmic Imposter (the back face) has a mana cost of {5BR}. Its cost identity is [2, 7] and so is not Tiny.*
 
-**906.5d:** Cards with alternate characteristics (such as cards with Adventure and Prototype) can be included in a TL:R deck only if each value in its cost identity is 3 or less. See rules 202.3 and 906.4c.
+**906.5d:** Cards with alternate characteristics (such as cards with Adventure and Prototype) can be included in a TL:R deck only if it is Tiny. See rules 202.3 and 906.4c.
 
 > *Example: Flaxen Intruder has a mana cost of {G}. Welcome Home, the Adventure of Flaxen Intruder, has a mana cost of {5GG}. It has a cost identity of [1, 7]. As its identity includes a value greater than 3, Flaxen Intruder is not Tiny.*
 
-**906.5e:** Split cards can be included in a TL:R deck only if each value in its cost identity is 3 or less. See rules 709 and 906.4a.
+**906.5e:** Split cards can be included in a TL:R deck only if it is Tiny. See rules 709 and 906.4a.
 
 > *Example: Fire // Ice is a split card with a combined mana cost of 4 {2UR}. Fire, one half of the split card, has a mana cost of {1R}. Ice, the other half, has a mana cost of {1U}. Fire // Ice has a cost identity of [2, 2] and so is Tiny.*
 
@@ -102,7 +106,7 @@ lastUpdated: "October 10, 2025"
 
 > *Example: Adam is playing with two commanders. They draw their opening hand of seven and immediately put one on the bottom of their library. If Adam chooses to mulligan again, they draw seven and put one on the bottom of their library again.*
 
-**906.6d:** In a Vanguard game, just like in a normal game, a player with more than one commander takes a forced mulligan by drawing cards equal to their starting hand size (normally seven, as modified by their Vanguard’s hand modifier) and choosing one to put on the bottom of their library. Subsequent mulligans are treated as normal. (In a multiplayer game, that player does not get a “free” mulligan).
+**906.6d:** In a Vanguard game, just like in a normal game, a player with more than one commander takes a forced mulligan by drawing cards equal to their starting hand size (normally seven, as modified by their Vanguard’s hand modifier) and choosing one to put on the bottom of their library. Subsequent mulligans are treated as normal. (In a multiplayer game, this counts as that player's “free” mulligan).
 
 > *Example: Adam is playing with two commanders. They draw their opening hand of seven and immediately put one on the bottom of their library. If Adam chooses to mulligan again, they draw seven and put one on the bottom of their library again.*
 
@@ -116,6 +120,6 @@ lastUpdated: "October 10, 2025"
 
 **906.8b:** If a commander would be put into its owner’s hand or library from anywhere, its owner may put it into the command zone instead. This replacement effect may apply more than once to the same event. This is an exception to rule 614.5.
 
-**906.8c:** If a commander is a melded permanent or a merged permanent and its owner chooses to put it into the command zone using the replacement effect described in rule 903.9b, that permanent and each component representing it that isn’t a commander are put into the appropriate zone, and the card that represents it and is a commander is put into the command zone.
+**906.8c:** If a commander is a melded permanent or a merged permanent and its owner chooses to put it into the command zone using the replacement effect described in rule 906.8b, that permanent and each component representing it that isn’t a commander are put into the appropriate zone, and the card that represents it and is a commander is put into the command zone.
 
 **906.9:** If a player is allowed to bring a card from outside the game into a TL:R game, that player can only choose from among cards in their sideboard.
