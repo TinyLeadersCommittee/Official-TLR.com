@@ -49,8 +49,8 @@ export const SITE_LINKS = {
 
   //banlist links
   banlist:{
-    latestAnnouncement: 'https://tiny-leaders-reborn.blogspot.com/2026/06/marvel-super-heroes-format-update-ban.html',
-    watchlist01: 'https://tiny-leaders-reborn.blogspot.com/2026/06/marvel-super-heroes-format-update-ban.html'
+    latestAnnouncement: 'https://tiny-leaders-reborn.blogspot.com/2026/08/the-hobbit-format-update-banlist-and.html',
+    watchlist01: 'https://tiny-leaders-reborn.blogspot.com/2026/08/the-hobbit-format-update-banlist-and.html'
   },
 
   //design pages

@@ -2,12 +2,20 @@ import { SITE_LINKS } from "../../config/links";
 
 export const watchlist = [
   { 
-    name: "Flawless Maneuver", 
+    name: "Rograkh, Son of Rohgahh", 
     set: "c20", 
     type: "instant",
-    date: "2026-06-30",
-    reason: 'Added to the watchlist to monitor its utility as a free counterspell and staple in Yoshi/Rog decks.',
-    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/06/marvel-super-heroes-format-update-ban.html'
+    date: "2026-08-17",
+    reason: 'Added to the Watchlist because it is a 0-mana enabler of the deck\'s aggressive early scaling and free spells.',
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/08/the-hobbit-format-update-banlist-and.html'
+  },
+  { 
+    name: "Yoshimaru, Ever Faithful", 
+    set: "c20", 
+    type: "instant",
+    date: "2026-08-17",
+    reason: 'Added to the Watchlist due to it being a fast-growing, must-answer threat in the early game.',
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/08/the-hobbit-format-update-banlist-and.html'
   }
 ]
 
@@ -173,6 +181,11 @@ export const cardBans = [
     name: "Fierce Guardianship", set: "c20", type: "instant", date: "2021-09-01",
     reason: 'Banned because it\'s free interaction that is virtually always "on" due to the low-cost nature of Commanders in this format.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2021/09/ban-list-update.html' 
+  },
+  { 
+    name: "Flawless Maneuver", set: "c20", type: "instant", date: "2026-08-17",
+    reason: 'Banned because it functions as a completely free protection spell and combat trick with a nonexistent alternative cost, allowing decks to overextend without fear of a blowout.', 
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/08/the-hobbit-format-update-banlist-and.html' 
   },
   { 
     name: "Forth Eorlingas!", set: "ltc", type: "sorcery", date: "2024-11-15",
