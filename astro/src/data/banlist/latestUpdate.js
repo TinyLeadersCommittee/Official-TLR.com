@@ -11,7 +11,7 @@ export const latestAnnouncement = {
       status: "Banned" 
     },
     { 
-      card: "Rograkh, Son of Rohgahh"", 
+      card: "Rograkh, Son of Rohgahh", 
       status: "Watchlisted" 
     },
     { 
