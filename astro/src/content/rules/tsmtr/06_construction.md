@@ -3,14 +3,14 @@ title: "6. Constructed Rules & Ban List"
 docTitle: "Tournament Rules"
 docId: "tsmtr"
 order: 2
-lastUpdated: "March 09, 2026"
+lastUpdated: "August 17, 2026"
 ---
 
 ## 6. Constructed Tournament Rules
 
 **6.1 Deck Construction Restrictions**
 
-Constructed decks… fifteen cards. **Decks constructed for the TL:R format must be exactly 50 cards, to include its commander(s). A player's commander(s) are determined as a match begins and cannot be changed during a match. If a player chooses to use a sideboard, it cannot contain more than ten cards.**
+Constructed decks (…) fifteen cards. **Decks constructed for the TL:R format must be exactly 50 cards, to include its commander(s). A player's commander(s) are determined as a match begins and cannot be changed during a match. If a player chooses to use a sideboard, it cannot contain more than ten cards.**
 
 **6.8 TL:R deck construction**
 
@@ -69,6 +69,7 @@ Constructed decks… fifteen cards. **Decks constructed for the TL:R format must
 * Falling Star
 * Fastbond
 * Fierce Guardianship
+* Flawless Maneuver
 * Forth, Eorlingas!
 
 **G**

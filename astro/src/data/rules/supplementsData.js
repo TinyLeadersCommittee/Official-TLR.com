@@ -79,7 +79,7 @@ export const faqSections = [
         a: "<strong>Discrete Philosophy Check:</strong> Split cards are evaluated by checking each half independently. All halves must have a mana value of 3 or less for the card to be legal."
       },
       {
-        q: "Can I use Adventure cards?",
+        q: "Can I use Adventure (or similar) cards?",
         a: "<strong>Discrete Philosophy Check:</strong> Every part of the card must be MV 3 or less. You must check the creature AND the Adventure spell. If either part is MV 4+, the entire card is illegal."
       },
       {

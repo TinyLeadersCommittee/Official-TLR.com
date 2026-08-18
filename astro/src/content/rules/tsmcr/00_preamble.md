@@ -3,15 +3,15 @@ title: "Introduction"
 docTitle: "Comprehensive Rules"
 docId: "tsmcr"
 order: 0
-lastUpdated: "October 10, 2025"
+lastUpdated: "August 18, 2026"
 ---
 
 **Tiny Leaders: Reborn Supplement to the Magic Comprehensive Rules (TSMCR)**
 
 This document is an unofficial supplement to the Magic: the Gathering Comprehensive Rules (MCR).
 
-* **Last updated:** October 10, 2025
-* **Effective Date:** October 10, 2025
+* **Last updated:** August 18, 2026
+* **Effective Date:** August 18, 2026
 
 Tiny Leaders: Reborn (hereafter referred to as TL:R) is an unofficial format not supported or endorsed by Wizards of the Coast ®. As such, all updates and changes to, as well as concerns with, this document are the responsibility of the TL:R Committee, which can be found on Discord here.
 
