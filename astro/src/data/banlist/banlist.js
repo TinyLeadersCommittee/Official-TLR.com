@@ -2,14 +2,6 @@ import { SITE_LINKS } from "../../config/links";
 
 export const watchlist = [
   { 
-    name: "Rograkh, Son of Rohgahh", 
-    set: "CMR", 
-    type: "creature",
-    date: "2026-08-17",
-    reason: 'Added to the Watchlist because it is a 0-mana enabler of the deck\'s aggressive early scaling and free spells.',
-    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/08/the-hobbit-format-update-banlist-and.html'
-  },
-  { 
     name: "Yoshimaru, Ever Faithful", 
     set: "nec", 
     type: "creature",
@@ -87,6 +79,11 @@ export const commanderBans = [
     name: "Nadu, Winged Wisdom", set: "mh3", type: "creature", date: "2024-08-02",
     reason: 'Banned for explosive, self-sustaining loops. Nadu turns cheap targeting effects into a massive engine of card draw and ramp that buries opponents in a single turn.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2024/08/banlist-update-august-2-2024.html' 
+  },
+  { 
+    name: "Rograkh, Son of Rohgahh", set: "CMR", type: "creature", date: "2026-08-17",
+    reason: 'Banned because it is a 0-mana enabler of the deck\'s aggressive early scaling and free spells.',
+    announcement: 'TBA'
   },
   { name: "Rofellos, Llanowar Emissary", set: "uds", type: "creature", date: "2018-00-00", 
     reason: 'Banned for extreme acceleration. Having a mana doubler in the Command Zone trivializes costs, allowing you to power out game-ending threats while opponents are still developing.', 
@@ -391,10 +388,6 @@ export const cardBans = [
     name: "True-Name Nemesis", set: "c13", type: "creature", date: "2018-01-15",
     reason: 'Too difficult to manage within the $CMC \\le 3$ constraints of the format, especially with new tribal power-creep from Ixalan.', 
     announcement: 'https://tiny-leaders-reborn.blogspot.com/2022/01/011518-ban-list-update.html' 
-  },
-  { name: "Umezawa’s Jitte", set: "bok", type: "artifact", date: "2018-00-00", 
-    reason: 'Banned for raw efficiency. Whether through specific interactions or sheer value, these cards create an insurmountable advantage that forces every deck to look the same just to compete.', 
-    announcement: 'Included on the Initial Banned List' 
   },
   { 
     name: "Vampiric Tutor", set: "vis", type: "instant", date: "2018-00-00",
