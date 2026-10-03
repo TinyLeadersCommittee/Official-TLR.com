@@ -73,6 +73,9 @@ lastUpdated: "October 10, 2025"
 **May 31, 2023**
 * Update: Renumbered section 904 to 906
 
+**September 30, 2026**
+*	Update: 906.6a-e nonfunctional update to language to provide greater clarity and improved future-proofing
+
 **January 26, 2023**
 * Update: 904.2 updated for clarity
 
