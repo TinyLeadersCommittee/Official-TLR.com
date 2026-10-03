@@ -16,7 +16,7 @@ Constructed decks (…) fifteen cards. **Decks constructed for the TL:R format m
 
 **TL:R decks may consist of cards from all Magic card sets. Cards from expansions and special sets (like From the Vault, Magic: The Gathering—Commander, Duel Decks, Conspiracy, etc.) are legal in the TL:R format on the date of release of the expansion or special set.**
 
-**TL:R uses distinct restriction lists. One list refers to cards banned entirely in the format. Another refers to cards that cannot be played as a deck’s commander (banned as commander) but may be played in the main deck or sideboard. A third refers to cards that cannot be played as a companion (banned as companion) but may be played otherwise.**
+**TL:R uses three ban lists. One list refers to cards banned entirely in the format. The second refers to cards that cannot be played as a deck’s commander (banned as commander) though may be played in the main deck or sideboard. The third refers to cards that cannot be used as a Companion (see CR 103.2b and 702.139).**
 
 ### The following cards are banned in TL:R
 
