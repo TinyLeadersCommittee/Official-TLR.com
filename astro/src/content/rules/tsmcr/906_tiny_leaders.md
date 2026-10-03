@@ -92,25 +92,25 @@ lastUpdated: "August 18, 2026"
 
 **906.6:** Once the starting player has been determined, each player sets their life total to 20 and draws a hand of seven cards.
 
-**906.6a:** A player using more than one commander begins the game with a “forced mulligan”. This is achieved by drawing cards equal to the player's starting hand size and choosing one to place on the bottom of their library. This counts as the player’s first mulligan, and occurs before any player makes a mulligan decision. Subsequent mulligans are treated as normal. This is an exception to rules 103.5 and 103.5b. This is informally known as the “forced mulligan” rule.
+**906.6a:** A player using more than one commander draws their opening hand as though they have already taken their first mulligan. That is, they draw seven cards, then choose one to put on the bottom of their library. Subsequent mulligans are treated as sequential to this initial mulligan. This is an exception to rules 103.5 and 103.5b. This is informally known as the “forced mulligan” rule.
 
 > *Example: Adam is playing with two commanders. At the start of the game, they will draw seven cards and put one on the bottom of their library. Then Adam will have the option to take another mulligan when appropriate.*
->
+
 > *Example: Adele is playing with two commanders and is playing first. Adele performs their “forced mulligan”, then decides whether or not to take a second mulligan with their hand of six cards. Then their opponent makes their choice to mulligan.*
 
-**906.6b:** In a multiplayer game, a player with more than one commander performs a forced mulligan with their initial starting hand. Then, if that player chooses to mulligan, they return one card to the bottom of their library. Further mulligans are performed as normal. This is an exception to rules 103.5c and 800.6.
+**906.6b:** In a multiplayer game, a player with more than one commander draws their opening hand as though they have already taken their first mulligan. That is, they draw seven cards, then choose one to put on the bottom of their library. Subsequent mulligans are treated as sequential to this initial mulligan. This is an exception to rules 103.5c and 800.6.
 
 > *Example: Adam is playing with two commanders. They draw their opening hand of seven and immediately put one on the bottom of their library. If Adam chooses to mulligan again, they draw seven and put one on the bottom of their library again.*
 
-**906.6c:** In a multiplayer game using the shared team turns option, if a player has more than one commander, that player takes a forced mulligan. Subsequent mulligans are treated as normal. That player does not get a “free” mulligan. This is an exception to rules 103.5d and 805.3a.
+**906.6c:** In a multiplayer game using the shared team turns option, if a player has more than one commander, draws their opening hand as though they have already taken their first mulligan. That is, they draw seven cards, then choose one to put on the bottom of their library. Subsequent mulligans are treated as sequential to this initial mulligan. That player does not get a “free” mulligan. This is an exception to rules 103.5d and 805.3a.
 
 > *Example: Adam is playing with two commanders. They draw their opening hand of seven and immediately put one on the bottom of their library. If Adam chooses to mulligan again, they draw seven and put one on the bottom of their library again.*
 
-**906.6d:** In a Vanguard game, just like in a normal game, a player with more than one commander takes a forced mulligan by drawing cards equal to their starting hand size (normally seven, as modified by their Vanguard’s hand modifier) and choosing one to put on the bottom of their library. Subsequent mulligans are treated as normal. (In a multiplayer game, this counts as that player's “free” mulligan).
+**906.6d:** In a Vanguard game, just like in a normal game, a player with more than one commander draws their opening hand as though they have already taken their first mulligan. That is, they draw cards equal to their starting hand size (normally seven, as modified by their Vanguard’s hand modifier), then choose one to put on the bottom of their library. Subsequent mulligans are treated as sequential to this initial mulligan. (In a multiplayer game, that player does not get a “free” mulligan).
 
 > *Example: Adam is playing with two commanders. They draw their opening hand of seven and immediately put one on the bottom of their library. If Adam chooses to mulligan again, they draw seven and put one on the bottom of their library again.*
 
-**906.6e:** If an effect allows a player to perform an action “any time [that player] could mulligan”, the player may perform that action at a time they would declare whether they will take a mulligan. If a player is using more than one commander, the first mulligan is forced and not subject to this rule. This is an exception to rule 103.5b.
+**906.6e:** If an effect allows a player to perform an action “any time [that player] could mulligan”, the player may perform that action at a time they would declare whether they will take a mulligan. If a player is using more than one commander, the first time a player could take a mulligan is after the procedure described in 906.6a-d. This is an exception to rule 103.5b.
 
 **906.7:** A player may cast a commander they own from the command zone. A commander cast from the command zone costs an additional {2} for each previous time the player casting it has cast it from the command zone that game. This additional cost is informally known as the “commander tax.”
 
