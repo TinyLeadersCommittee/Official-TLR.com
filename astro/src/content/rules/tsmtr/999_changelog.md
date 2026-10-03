@@ -3,10 +3,16 @@ title: "Changelog"
 docTitle: "Tournament Rules"
 docId: "tsmtr"
 order: 3
-lastUpdated: "August 17, 2026"
+lastUpdated: "October 03, 2026"
 ---
 
 ## Changelog
+
+**October 03, 2026**
+*	Add: Rograkh, Son of Rohgahh to banned as commander list
+* Remove: Umezawa’s Jitte from banned list 
+* Update: Added reference to, and definition of, banned as companion list
+
 
 **August 17, 2026**
 * Add: Flawless Maneuver to Banned List
@@ -46,10 +52,12 @@ lastUpdated: "August 17, 2026"
 
 **December 31, 2023**
 * Add: “Jeska, Thrice Reborn” to Banned as Commander List
-
 **November 24, 2022**
 * Add: Section 2.7 Deck Registration
 
 **June 01, 2022**
 * Add: “Effective Date”
 * Update: Update to 6.8 to include “banned as commander” may be played in main deck or sideboard
+
+**November 24, 2022**
+*	Add: Section 2.7 Deck Registration
