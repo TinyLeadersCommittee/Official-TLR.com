@@ -3,7 +3,7 @@ title: "6. Constructed Rules & Ban List"
 docTitle: "Tournament Rules"
 docId: "tsmtr"
 order: 2
-lastUpdated: "August 17, 2026"
+lastUpdated: "October 03, 2026"
 ---
 
 ## 6. Constructed Tournament Rules
