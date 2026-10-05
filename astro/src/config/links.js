@@ -37,14 +37,14 @@ export const SITE_LINKS = {
     tsmcr100: '/rules/tsmcr/100_game_concepts',
     tsmcr906: '/rules/tsmcr/906_tiny_leaders',
     tsmcr999: '/rules/tsmcr/999_changelog',
-    tsmcrPDF: '/docs/TSMTR_Supplement.pdf',
+    tsmcrPDF: '/docs/Official TSMCR 30Sep2026.pdf',
     
     //tsmtr
     tsmtrIntro: '/rules/tsmtr/00_preamble',
     tsmtr01: '/rules/tsmtr/01_general_tournament',
     tsmtr06: '/rules/tsmtr/06_construction',
     tsmtr999: '/rules/tsmtr/999_changelog',
-    tsmtrPDF: '/docs/TSMCR_Supplement.pdf'
+    tsmtrPDF: '/docs/Official TSMTR 05Oct2026.pdf'
   },
 
   //banlist links
