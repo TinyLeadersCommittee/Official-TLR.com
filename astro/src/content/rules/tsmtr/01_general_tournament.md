@@ -3,7 +3,7 @@ title: "1-4. General Tournament Rules"
 docTitle: "Tournament Rules"
 docId: "tsmtr"
 order: 1
-lastUpdated: "August 17, 2026"
+lastUpdated: "October 03, 2026"
 ---
 
 ## 1. Tournament Fundamentals

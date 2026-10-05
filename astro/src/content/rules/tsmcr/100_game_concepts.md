@@ -3,7 +3,7 @@ title: "100. Game Concepts"
 docTitle: "Comprehensive Rules"
 docId: "tsmcr"
 order: 1
-lastUpdated: "August 18, 2026"
+lastUpdated: "September 30, 2026"
 ---
 
 ## Section 100: Game Concepts

@@ -3,13 +3,15 @@ title: "Changelog"
 docTitle: "Comprehensive Rules"
 docId: "tsmcr"
 order: 3
-lastUpdated: "October 10, 2025"
+lastUpdated: "September 30, 2026"
 ---
 
 ## Changelog
 
-**August 18, 2026**
+**September 30, 2026**
+*	Update: 906.6a-e nonfunctional update to language to provide greater clarity and improved future-proofing
 
+**August 18, 2026**
 * Update: 906.4c to include reference to 722 “Preparation Cards”
 * Update: 906.5b-e to refer to game concept “Tiny”
 * Update: 906.6d modified language for clarity
