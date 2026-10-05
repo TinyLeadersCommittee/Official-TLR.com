@@ -83,7 +83,7 @@ export const commanderBans = [
   { 
     name: "Rograkh, Son of Rohgahh", set: "CMR", type: "creature", date: "2026-08-17",
     reason: 'Banned because it is a 0-mana enabler of the deck\'s aggressive early scaling and free spells.',
-    announcement: 'TBA'
+    announcement: 'https://tiny-leaders-reborn.blogspot.com/2026/10/reality-fracture-format-update-banlist.html'
   },
   { name: "Rofellos, Llanowar Emissary", set: "uds", type: "creature", date: "2018-00-00", 
     reason: 'Banned for extreme acceleration. Having a mana doubler in the Command Zone trivializes costs, allowing you to power out game-ending threats while opponents are still developing.', 
